@@ -24,8 +24,8 @@ router.post('/subscribe',
   async (req, res) => {
     try {
       const supabase = req.app.locals.supabase;
-      const companyId = req.user.company_id;
-      const { tier } = req.body;
+      const companyId = req.user.companyId;
+      const { tier } = req.validatedBody;
 
       // Get company
       const { data: company, error: companyError } = await supabase
@@ -101,8 +101,8 @@ router.post('/change-tier',
   async (req, res) => {
     try {
       const supabase = req.app.locals.supabase;
-      const companyId = req.user.company_id;
-      const { tier } = req.body;
+      const companyId = req.user.companyId;
+      const { tier } = req.validatedBody;
 
       // Get subscription
       const { data: company, error } = await supabase
@@ -163,7 +163,7 @@ router.get('/status',
   async (req, res) => {
     try {
       const supabase = req.app.locals.supabase;
-      const companyId = req.user.company_id;
+      const companyId = req.user.companyId;
 
       const { data: company, error } = await supabase
         .from('companies')
@@ -215,7 +215,7 @@ router.post('/cancel',
   async (req, res) => {
     try {
       const supabase = req.app.locals.supabase;
-      const companyId = req.user.company_id;
+      const companyId = req.user.companyId;
 
       const { data: company, error } = await supabase
         .from('companies')

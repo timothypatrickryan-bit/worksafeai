@@ -3,7 +3,7 @@ const router = express.Router();
 const { authenticateToken, authorizeRole } = require('../middleware/auth');
 const { verifyCompanyAccess } = require('../middleware/companyAccess');
 const { validateBody } = require('../middleware/validation');
-const { inviteEmployeeSchema } = require('../validation/schemas');
+const { inviteEmployeeSchema, updateCompanySchema } = require('../validation/schemas');
 
 // GET /api/companies/:id
 router.get('/:id', authenticateToken, async (req, res) => {
@@ -32,10 +32,10 @@ router.get('/:id', authenticateToken, async (req, res) => {
 });
 
 // PATCH /api/companies/:id
-router.patch('/:id', authenticateToken, authorizeRole(['owner', 'admin']), verifyCompanyAccess, async (req, res) => {
+router.patch('/:id', authenticateToken, authorizeRole(['owner', 'admin']), verifyCompanyAccess, validateBody(updateCompanySchema), async (req, res) => {
   try {
     const supabase = req.app.locals.supabase;
-    const { name } = req.body;
+    const { name } = req.validatedBody;
 
     const { data: company } = await supabase
       .from('companies')
