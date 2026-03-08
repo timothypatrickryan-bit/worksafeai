@@ -60,6 +60,12 @@ See: **APP_DEVELOPMENT_TEMPLATE.md**, **DEPLOYMENT_CHECKLIST.md**, and **WORKFLO
 **Next step:** Add GitHub Secrets (VERCEL_TOKEN) to both repos, then auto-deploy works on next push
 **Impact:** ~50 hours/year saved, 40 min per new app, 20 min per deploy
 
+**Secondary Model Configured (March 8, 2026 @ 14:34 PM):**
+- ✅ Opus-4-6 added to `.openclaw/openclaw.json`
+- ✅ Available for tough problems (deep reasoning, architecture, security reviews)
+- ✅ Cost: ~$1/use vs $0.01-0.10 for Haiku/Sonnet
+- See: `OPUS_USAGE.md` for when/how to use
+
 ---
 
 ## 🚀 JTSA Backend Project → WorkSafeAI App
