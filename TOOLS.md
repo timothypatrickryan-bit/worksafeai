@@ -37,4 +37,20 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 ---
 
+## Cloudflare Infrastructure
+
+**API Token:** Stored in `/.env` (never commit, never share)
+
+**Domains:**
+- **elevationaiwork.com** → Multi-app platform (WorkSafeAI, SuperAdmin)
+  - `worksafeai.elevationaiwork.com` → WorkSafeAI frontend
+  - `worksafeai-api.elevationaiwork.com` → WorkSafeAI backend
+  - `superadmin.elevationaiwork.com` → SuperAdmin console (uses worksafeai-api backend)
+- **elevationaiagents.com** → (reserved, nothing yet)
+- **elevationfec.com** → (reserved, nothing yet)
+
+**Permissions:** Zone read (all), DNS edit, SSL/TLS edit
+
+---
+
 Add whatever helps you do your job. This is your cheat sheet.

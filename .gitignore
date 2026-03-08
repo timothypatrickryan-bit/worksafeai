@@ -1,8 +1,59 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Build & Dist
+dist/
+build/
+.next/
+out/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
 .DS_Store
-/.build
-/Packages
-xcuserdata/
-DerivedData/
-.swiftpm/configuration/registries.json
-.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
-.netrc
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.iml
+.prettierrc.json
+
+# Testing
+coverage/
+.nyc_output/
+
+# Local/Sensitive
+.env.example.local
+*.key
+*.pem
+.email-config.json
+
+# Workspace meta (local only)
+memory/*.local.md
+.review-requested
+*.tmp
+
+# Cache
+.cache/
+.eslintcache
+
+# Turbo/Monorepo
+.turbo/
+.next-cache/

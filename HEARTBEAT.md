@@ -1,9 +1,8 @@
 # HEARTBEAT.md - Periodic Tasks
 
-## JTSA Code Reviews (Every 30 minutes)
+## WorkSafeAI Code Reviews (Manual - Run as Needed)
 
-- Spawn Opus 4.6 subagent to review `/Users/timothyryan/.openclaw/workspace/jtsa-backend/`
+- To spawn Opus 4.6 code review, manually request it
 - Focus: Security, bugs, design issues, missing code
 - Auto-fix any issues found (don't wait for approval)
 - Report summary of findings + fixes applied
-- If no issues: silent, just track that review passed
