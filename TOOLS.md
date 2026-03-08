@@ -37,19 +37,50 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 ---
 
+## 🔑 Credentials & Access
+
+**See CREDENTIALS_MAP.md for complete inventory of:**
+- Vercel projects & tokens
+- Supabase database credentials
+- GitHub repos
+- Domain/DNS setup
+- API keys (OpenAI, Stripe, etc.)
+- Environment variables (what's deployed where)
+- Security checklist
+- Quick access links
+
+**Storage:** Never hardcode secrets. Use:
+- Vercel env vars (production)
+- Local `.env` (development only, never commit)
+- Password manager (backup master credentials)
+
+---
+
 ## Cloudflare Infrastructure
 
-**API Token:** Stored in `/.env` (never commit, never share)
+**Domain:** elevationaiwork.com  
+**Registrar:** Cloudflare  
+**Nameservers:** Cloudflare DNS  
+**Management:** https://dash.cloudflare.com
 
-**Domains:**
-- **elevationaiwork.com** → Multi-app platform (WorkSafeAI, SuperAdmin)
-  - `worksafeai.elevationaiwork.com` → WorkSafeAI frontend
-  - `worksafeai-api.elevationaiwork.com` → WorkSafeAI backend
-  - `superadmin.elevationaiwork.com` → SuperAdmin console (uses worksafeai-api backend)
-- **elevationaiagents.com** → (reserved, nothing yet)
-- **elevationfec.com** → (reserved, nothing yet)
+**Subdomains (CNAME → Vercel):**
+- `worksafeai.elevationaiwork.com` → WorkSafeAI frontend
+- `worksafeai-api.elevationaiwork.com` → WorkSafeAI backend
+- `superadmin.elevationaiwork.com` → SuperAdmin console
 
-**Permissions:** Zone read (all), DNS edit, SSL/TLS edit
+---
+
+## Vercel Deployment Projects
+
+See CREDENTIALS_MAP.md for:
+- Project IDs
+- Vercel token
+- Deployed URLs
+- Environment variables
+
+Quick links:
+- **Dashboard:** https://vercel.com/timothypatrickryan-7139s-projects
+- **Tokens:** https://vercel.com/account/tokens
 
 ---
 

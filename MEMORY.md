@@ -18,7 +18,51 @@
 
 ---
 
-## 🚀 JTSA Backend Project — Active Development
+## 📚 Development Workflow & Template
+
+**Tim's Proven App Development Workflow** (established March 8, 2026)
+
+### Core Principles
+- **Backend:** Express + Node.js, Supabase (PostgreSQL), JWT auth, Zod validation
+- **Frontend:** React + Vite, Tailwind CSS, Zustand state, Supabase client
+- **Deployment:** Vercel (backend + all frontends), custom domains via DNS CNAME
+- **Secrets:** Vercel env vars (never hardcoded, never committed)
+- **Structure:** Monorepo (`apps/[app-name]/{api,web,admin}/`)
+
+### Tech Choices (Locked In)
+- **Database:** Supabase (PostgreSQL with RLS) — reliable, built-in auth
+- **Hosting:** Vercel (Node.js + static, easy deploys, good DX)
+- **Frontend State:** Zustand (lightweight, persistent, no boilerplate)
+- **Validation:** Zod (type-safe, runtime validation)
+- **Auth:** JWT (1h access, 7d refresh, localStorage)
+- **Email:** Nodemailer + Gmail SMTP
+- **CSS:** Tailwind 3.x + custom glassmorphic design
+- **Testing:** Jest + Supertest (backend), manual frontend testing
+- **AI:** OpenAI GPT-4 (primary) or Anthropic Claude
+
+### Deployment (20-min checklist)
+1. Vercel token → deploy all apps
+2. Get project IDs from `.vercel/project.json`
+3. Set env vars via Vercel API (script available)
+4. Add custom domains + CNAME records
+5. Verify: login → create resource → API calls work
+
+See: **APP_DEVELOPMENT_TEMPLATE.md**, **DEPLOYMENT_CHECKLIST.md**, and **WORKFLOW_OPTIMIZATION_REVIEW.md**
+
+**Automation Setup Complete (March 8, 2026 @ 12:37 PM):**
+- ✅ `.github/workflows/deploy-worksafeai.yml` — Auto-deploy on git push
+- ✅ `scripts/setup-vercel-env.sh` — One-command env var setup  
+- ✅ `scripts/create-app.sh` — Generate new app in 2 minutes (tested, working)
+- ✅ `WORKFLOW_OPTIMIZATION_REVIEW.md` — Complete analysis + recommendations
+- ✅ `GITHUB_ACTIONS_SETUP.md` — Step-by-step setup guide
+- ✅ `AUTOMATION_SETUP_COMPLETE.md` — Ready-to-use reference
+
+**Next step:** Add GitHub Secrets (VERCEL_TOKEN) to both repos, then auto-deploy works on next push
+**Impact:** ~50 hours/year saved, 40 min per new app, 20 min per deploy
+
+---
+
+## 🚀 JTSA Backend Project → WorkSafeAI App
 
 **Status:** Week 2 in progress (billing, caching, migrations, testing, deployment)
 
@@ -175,6 +219,21 @@
   - **Status:** Awaiting Opus 4.6 code review (spawned 14:12)
   - **Setup:** Opus review every 30 minutes, auto-fix issues
   - Next: Opus review results → fix issues → Supabase deployment → integration testing
+
+**2026-03-08 — Session 4: Full Production Deployment (09:00-11:15 EST)**
+- ✅ Both Vercel apps deployed (main + super-admin)
+- ✅ Backend API deployed to Vercel (Express)
+- ✅ All environment variables configured via Vercel API
+- ✅ Custom domains added to all 3 projects
+- ✅ DNS CNAME records configured (awaiting propagation)
+- ✅ Created APP_DEVELOPMENT_TEMPLATE.md (reusable workflow)
+- ✅ Created DEPLOYMENT_CHECKLIST.md (20-min quick reference)
+- **Status:** All 3 apps live on Vercel, awaiting DNS propagation
+- **Domains:**
+  - `worksafeai.elevationaiwork.com` → main app (React)
+  - `superadmin.elevationaiwork.com` → admin console (React)
+  - `worksafeai-api.elevationaiwork.com` → backend (Express)
+- **Next:** DNS propagation, test login flow, enable production features
 
 **2026-03-07 — Session 3: Complete App Transformation (10:40-12:24 EST)**
 

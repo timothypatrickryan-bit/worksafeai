@@ -38,3 +38,4 @@ Thumbs.db
 # Secrets/sensitive
 secrets.json
 credentials.json
+.vercel
