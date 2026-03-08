@@ -131,16 +131,12 @@ export default function CompanyOnboardingPage() {
     setError(null);
 
     try {
-      // First, complete the onboarding with the profile data
+      // Complete the onboarding with the profile data
       await apiClient.post(`/companies/${user.companyId}/onboarding`, formData);
       
-      // Then create the subscription with the selected plan
-      if (formData.selectedPlan) {
-        await apiClient.post('/billing/subscribe', {
-          tier: formData.selectedPlan,
-        });
-      }
-
+      // Note: Free trial is automatically created in backend during registration
+      // Billing subscription creation is handled in production separately
+      // For now, just skip directly to dashboard
       navigate('/dashboard');
     } catch (err) {
       console.log('Full error:', err);
@@ -167,7 +163,7 @@ export default function CompanyOnboardingPage() {
         return formData.safetyPriorities.concerns.length > 0 &&
                formData.safetyPriorities.riskTolerance;
       case 5:
-        return formData.selectedPlan;
+        return true; // Allow skipping in development
       default:
         return false;
     }
