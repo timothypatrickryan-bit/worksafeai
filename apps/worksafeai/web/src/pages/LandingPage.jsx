@@ -86,33 +86,48 @@ export default function LandingPage() {
         </div>
 
         {/* Hero visual - Dashboard screenshot */}
-        <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900">
-            {/* Dashboard mockup */}
-            <div className="p-6 h-full flex flex-col">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+        <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-gradient-to-br from-slate-800 to-slate-900">
+          <div className="h-full p-8 flex flex-col">
+            {/* Top bar */}
+            <div className="flex justify-between items-center mb-8 pb-6 border-b border-white/10">
+              <div>
+                <div className="h-3 bg-gradient-to-r from-blue-400 to-cyan-300 rounded w-40 mb-2"></div>
+                <div className="h-2 bg-white/20 rounded w-56"></div>
               </div>
-              <div className="space-y-3 flex-1">
-                <div className="h-2 bg-white/10 rounded w-32"></div>
-                <div className="h-2 bg-white/10 rounded w-48"></div>
-                <div className="grid grid-cols-2 gap-3 mt-6">
-                  <div className="p-4 bg-blue-500/20 rounded-lg border border-blue-500/30">
-                    <div className="h-2 bg-white/10 rounded mb-2 w-20"></div>
-                    <div className="h-3 bg-cyan-400/50 rounded"></div>
-                  </div>
-                  <div className="p-4 bg-cyan-500/20 rounded-lg border border-cyan-500/30">
-                    <div className="h-2 bg-white/10 rounded mb-2 w-16"></div>
-                    <div className="h-3 bg-emerald-400/50 rounded"></div>
-                  </div>
-                </div>
-                <div className="mt-6 space-y-2">
-                  <div className="h-2 bg-white/10 rounded w-full"></div>
-                  <div className="h-2 bg-white/10 rounded w-5/6"></div>
-                  <div className="h-2 bg-white/10 rounded w-4/6"></div>
-                </div>
+              <img src="/worksafe_icon.jpg" alt="Icon" className="w-8 h-8 rounded" />
+            </div>
+
+            {/* Main content */}
+            <div className="grid grid-cols-3 gap-4 mb-8">
+              {/* Card 1 */}
+              <div className="bg-gradient-to-br from-blue-500/30 to-blue-600/20 border border-blue-400/30 rounded-xl p-4">
+                <div className="h-2 bg-blue-300/30 rounded w-16 mb-3"></div>
+                <div className="h-4 bg-blue-400/60 rounded w-12 mb-2"></div>
+                <div className="h-1.5 bg-white/10 rounded w-full"></div>
+              </div>
+              {/* Card 2 */}
+              <div className="bg-gradient-to-br from-emerald-500/30 to-emerald-600/20 border border-emerald-400/30 rounded-xl p-4">
+                <div className="h-2 bg-emerald-300/30 rounded w-16 mb-3"></div>
+                <div className="h-4 bg-emerald-400/60 rounded w-12 mb-2"></div>
+                <div className="h-1.5 bg-white/10 rounded w-full"></div>
+              </div>
+              {/* Card 3 */}
+              <div className="bg-gradient-to-br from-purple-500/30 to-purple-600/20 border border-purple-400/30 rounded-xl p-4">
+                <div className="h-2 bg-purple-300/30 rounded w-16 mb-3"></div>
+                <div className="h-4 bg-purple-400/60 rounded w-12 mb-2"></div>
+                <div className="h-1.5 bg-white/10 rounded w-full"></div>
+              </div>
+            </div>
+
+            {/* Chart area */}
+            <div className="bg-white/5 border border-white/10 rounded-xl p-4 flex-1">
+              <div className="h-2 bg-white/20 rounded w-32 mb-4"></div>
+              <div className="flex items-end gap-2 h-20">
+                <div className="flex-1 bg-gradient-to-t from-cyan-500/40 to-cyan-500/20 rounded-t h-16"></div>
+                <div className="flex-1 bg-gradient-to-t from-cyan-500/40 to-cyan-500/20 rounded-t h-20"></div>
+                <div className="flex-1 bg-gradient-to-t from-cyan-500/40 to-cyan-500/20 rounded-t h-12"></div>
+                <div className="flex-1 bg-gradient-to-t from-cyan-500/40 to-cyan-500/20 rounded-t h-24"></div>
+                <div className="flex-1 bg-gradient-to-t from-cyan-500/40 to-cyan-500/20 rounded-t h-14"></div>
               </div>
             </div>
           </div>
@@ -241,25 +256,49 @@ export default function LandingPage() {
 
             {/* Right side - visual - Dashboard mockup */}
             <div className="relative">
-              <div className="aspect-square rounded-2xl bg-slate-800 border border-white/10 flex items-center justify-center overflow-hidden p-4">
-                {/* Dashboard mockup */}
-                <div className="w-full h-full bg-gradient-to-b from-slate-700 to-slate-800 rounded-xl p-4 space-y-4">
-                  <div className="h-3 bg-gradient-to-r from-blue-500/40 to-cyan-500/40 rounded w-1/3"></div>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="p-3 bg-blue-500/20 border border-blue-500/30 rounded-lg">
-                      <div className="h-1 bg-white/10 rounded mb-2"></div>
-                      <div className="h-3 bg-blue-400/50 rounded"></div>
-                    </div>
-                    <div className="p-3 bg-emerald-500/20 border border-emerald-500/30 rounded-lg">
-                      <div className="h-1 bg-white/10 rounded mb-2"></div>
-                      <div className="h-3 bg-emerald-400/50 rounded"></div>
+              <div className="aspect-square rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 overflow-hidden p-6 flex flex-col">
+                {/* Form header */}
+                <div className="mb-6 pb-4 border-b border-white/10">
+                  <div className="h-3 bg-gradient-to-r from-blue-400 to-cyan-300 rounded w-1/2 mb-2"></div>
+                  <div className="h-2 bg-white/20 rounded w-full"></div>
+                </div>
+
+                {/* Form fields */}
+                <div className="space-y-4 flex-1">
+                  {/* Input field */}
+                  <div>
+                    <div className="h-1.5 bg-white/30 rounded w-24 mb-2"></div>
+                    <div className="h-8 bg-white/5 border border-white/10 rounded-lg"></div>
+                  </div>
+
+                  {/* Select field */}
+                  <div>
+                    <div className="h-1.5 bg-white/30 rounded w-28 mb-2"></div>
+                    <div className="h-8 bg-white/5 border border-white/10 rounded-lg flex items-center px-3">
+                      <div className="h-1 bg-white/40 rounded w-20"></div>
                     </div>
                   </div>
-                  <div className="space-y-2 pt-2">
-                    <div className="h-2 bg-white/10 rounded"></div>
-                    <div className="h-2 bg-white/10 rounded w-5/6"></div>
-                    <div className="h-2 bg-white/10 rounded w-4/6"></div>
+
+                  {/* Checkboxes */}
+                  <div>
+                    <div className="h-1.5 bg-white/30 rounded w-32 mb-3"></div>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 bg-blue-500/40 border border-blue-400/50 rounded"></div>
+                        <div className="h-1.5 bg-white/20 rounded w-24"></div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 bg-cyan-500/40 border border-cyan-400/50 rounded"></div>
+                        <div className="h-1.5 bg-white/20 rounded w-20"></div>
+                      </div>
+                    </div>
                   </div>
+                </div>
+
+                {/* Action buttons */}
+                <div className="flex gap-3 mt-6 pt-4 border-t border-white/10">
+                  <div className="flex-1 h-9 bg-white/10 border border-white/20 rounded-lg"></div>
+                  <div className="flex-1 h-9 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-lg"></div>
                 </div>
               </div>
             </div>
