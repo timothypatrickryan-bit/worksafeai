@@ -46,7 +46,10 @@
 - Features: Verification emails, password resets, team invites
 - Documentation: See EMAIL_SETUP.md
 
-**Git:** `https://github.com/[TBD]` (not yet pushed)
+**Git:** `https://github.com/timothypatrickryan-bit/worksafeai` 
+- Initial commit pushed: 2026-03-08 12:24 UTC
+- 194 files, 29,655 insertions
+- Git credentials stored in macOS keychain (osxkeychain)
 
 ### Session 2 (2026-03-07 10:00-10:25 EST) — Local Testing & Fixes
 
