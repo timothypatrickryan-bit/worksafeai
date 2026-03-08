@@ -46,9 +46,18 @@
 - Features: Verification emails, password resets, team invites
 - Documentation: See EMAIL_SETUP.md
 
-**Git:** `https://github.com/timothypatrickryan-bit/worksafeai` 
-- Initial commit pushed: 2026-03-08 12:24 UTC
-- 194 files, 29,655 insertions
+**Git Repositories:**
+
+1. **Main Monorepo** — `https://github.com/timothypatrickryan-bit/worksafeai`
+   - Backend API + Frontend + Marketing + Docs
+   - 194 files, 29,655 insertions
+   - Pushed: 2026-03-08 12:24 UTC
+
+2. **Super Admin Dashboard** — `https://github.com/timothypatrickryan-bit/worksafeai-super-admin`
+   - Standalone admin operations dashboard
+   - 44 files, 6,122 insertions
+   - Pushed: 2026-03-08 12:28 UTC
+
 - Git credentials stored in macOS keychain (osxkeychain)
 
 ### Session 2 (2026-03-07 10:00-10:25 EST) — Local Testing & Fixes
