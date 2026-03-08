@@ -51,8 +51,8 @@ app.post('/api/billing/webhook',
   }
 );
 
-// Parse JSON bodies for all other routes
-app.use(express.json());
+// Parse JSON bodies for all other routes (limit body size to prevent DoS)
+app.use(express.json({ limit: '1mb' }));
 
 // Rate limiting
 const rateLimit = require('express-rate-limit');
@@ -225,16 +225,58 @@ const startServer = async () => {
   // Make cache available to routes
   app.locals.cacheService = cacheService;
 
-  app.listen(PORT, () => {
+  return app.listen(PORT, () => {
     console.log(`\n✓ JTSA Backend running on port ${PORT}`);
     console.log(`✓ Cache service: ${cacheService.connected ? 'enabled' : 'disabled'}`);
     console.log('✓ Ready to accept requests\n');
   });
 };
 
-startServer().catch(error => {
+let server;
+
+startServer().then(s => {
+  server = s;
+}).catch(error => {
   console.error('Failed to start server:', error);
   process.exit(1);
+});
+
+// Graceful shutdown handler
+const gracefulShutdown = async (signal) => {
+  console.log(`\n${signal} received. Shutting down gracefully...`);
+  
+  // Give in-flight requests 10s to complete, then force exit
+  const forceTimer = setTimeout(() => {
+    console.error('Forced shutdown after timeout');
+    process.exit(1);
+  }, 10000);
+  forceTimer.unref(); // Don't block event loop from exiting naturally
+
+  if (server) {
+    await new Promise((resolve) => {
+      server.close(() => {
+        console.log('HTTP server closed');
+        resolve();
+      });
+    });
+  }
+  
+  // Disconnect Redis cache
+  try {
+    await cacheService.disconnect();
+  } catch (err) {
+    console.error('Error disconnecting cache:', err.message);
+  }
+
+  process.exit(0);
+};
+
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+
+// Handle unhandled promise rejections
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
 });
 
 module.exports = app;

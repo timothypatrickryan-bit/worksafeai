@@ -15,7 +15,8 @@ const useAuthStore = create(
       login: async (email, password) => {
         set({ loading: true, error: null });
         try {
-          const response = await fetch('http://localhost:3000/api/auth/login', {
+          const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+          const response = await fetch(`${apiUrl}/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
@@ -28,8 +29,11 @@ const useAuthStore = create(
             throw new Error(data.error || `Login failed: ${response.status}`);
           }
 
-          Cookies.set('token', data.accessToken, { expires: 1 });
-          Cookies.set('refreshToken', data.refreshToken, { expires: 7 });
+          const isSecure = window.location.protocol === 'https:';
+          const cookieOpts = { expires: 1, sameSite: 'Strict', ...(isSecure && { secure: true }) };
+          const refreshCookieOpts = { expires: 7, sameSite: 'Strict', ...(isSecure && { secure: true }) };
+          Cookies.set('token', data.accessToken, cookieOpts);
+          Cookies.set('refreshToken', data.refreshToken, refreshCookieOpts);
 
           set({
             user: {
@@ -52,7 +56,8 @@ const useAuthStore = create(
       register: async (email, password, fullName, companyName, industry) => {
         set({ loading: true, error: null });
         try {
-          const response = await fetch('http://localhost:3000/api/auth/register', {
+          const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+          const response = await fetch(`${apiUrl}/auth/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
@@ -65,8 +70,11 @@ const useAuthStore = create(
             throw new Error(data.error || `Registration failed: ${response.status}`);
           }
 
-          Cookies.set('token', data.accessToken, { expires: 1 });
-          Cookies.set('refreshToken', data.refreshToken, { expires: 7 });
+          const isSecure = window.location.protocol === 'https:';
+          const cookieOpts = { expires: 1, sameSite: 'Strict', ...(isSecure && { secure: true }) };
+          const refreshCookieOpts = { expires: 7, sameSite: 'Strict', ...(isSecure && { secure: true }) };
+          Cookies.set('token', data.accessToken, cookieOpts);
+          Cookies.set('refreshToken', data.refreshToken, refreshCookieOpts);
 
           set({
             user: {
@@ -117,10 +125,8 @@ const useAuthStore = create(
               user: {
                 id: payload.id,
                 email: payload.email,
-                fullName: payload.fullName,
                 role: payload.role,
                 companyId: payload.companyId,
-                industry: payload.industry,
               },
             });
           } catch (error) {
@@ -137,12 +143,13 @@ const useAuthStore = create(
     }),
     {
       name: 'auth-store',
+      // NOTE: Token is NOT persisted to localStorage — it lives only in cookies
+      // (httpOnly when possible). Only non-sensitive UI state is persisted.
       partialize: (state) => ({
         user: state.user ? {
           ...state.user,
           industry: state.user.industry,
         } : null,
-        token: state.token,
         isAuthenticated: state.isAuthenticated,
       }),
     }

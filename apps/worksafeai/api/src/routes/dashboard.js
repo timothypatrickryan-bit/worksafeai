@@ -31,34 +31,31 @@ router.get('/companies/:id/dashboard',
         return res.status(404).json({ error: 'Company not found' });
       }
 
-      // Get employee count
-      const { data: employees } = await supabase
-        .from('users')
-        .select('id')
-        .eq('company_id', companyId);
-
-      // Get today's JTSAs (no projects needed, direct company query)
+      // Use count queries instead of fetching all rows (much more efficient)
       const today = new Date().toISOString().split('T')[0];
-      const { data: todaysJtsas } = await supabase
-        .from('jtsas')
-        .select('id')
-        .eq('company_id', companyId)
-        .eq('date', today);
-
-      // Get completed JTSAs (this week)
       const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-      const { data: completedJtsas } = await supabase
-        .from('jtsas')
-        .select('id')
-        .eq('company_id', companyId)
-        .gte('date', weekAgo)
-        .eq('status', 'completed');
 
-      // Get total JTSAs created
-      const { data: totalJtsas } = await supabase
-        .from('jtsas')
-        .select('id')
-        .eq('company_id', companyId);
+      const [employeeResult, totalJtsaResult, todayJtsaResult, completedResult] = await Promise.all([
+        supabase
+          .from('users')
+          .select('id', { count: 'exact', head: true })
+          .eq('company_id', companyId),
+        supabase
+          .from('jtsas')
+          .select('id', { count: 'exact', head: true })
+          .eq('company_id', companyId),
+        supabase
+          .from('jtsas')
+          .select('id', { count: 'exact', head: true })
+          .eq('company_id', companyId)
+          .eq('date', today),
+        supabase
+          .from('jtsas')
+          .select('id', { count: 'exact', head: true })
+          .eq('company_id', companyId)
+          .gte('date', weekAgo)
+          .eq('status', 'completed'),
+      ]);
 
       res.json({
         company: {
@@ -71,14 +68,15 @@ router.get('/companies/:id/dashboard',
           createdAt: company.created_at,
         },
         stats: {
-          totalEmployees: employees?.length || 0,
-          totalJtsas: totalJtsas?.length || 0,
-          todaysJtsas: todaysJtsas?.length || 0,
-          completedThisWeek: completedJtsas?.length || 0,
+          totalEmployees: employeeResult.count || 0,
+          totalJtsas: totalJtsaResult.count || 0,
+          todaysJtsas: todayJtsaResult.count || 0,
+          completedThisWeek: completedResult.count || 0,
         },
       });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      console.error('Dashboard error:', error.message);
+      res.status(500).json({ error: 'Failed to load dashboard data' });
     }
   }
 );
@@ -129,7 +127,8 @@ router.get('/companies/:id/audit-log',
         },
       });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      console.error('Audit log error:', error.message);
+      res.status(500).json({ error: 'Failed to load audit logs' });
     }
   }
 );

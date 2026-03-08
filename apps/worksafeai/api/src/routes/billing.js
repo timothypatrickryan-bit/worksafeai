@@ -99,7 +99,7 @@ router.post('/subscribe',
       });
     } catch (error) {
       console.error('Subscription creation error:', error);
-      res.status(400).json({ error: error.message });
+      res.status(400).json({ error: 'Failed to create subscription. Please try again.' });
     }
   }
 );
@@ -168,7 +168,7 @@ router.post('/change-tier',
       });
     } catch (error) {
       console.error('Tier change error:', error);
-      res.status(400).json({ error: error.message });
+      res.status(400).json({ error: 'Failed to change subscription tier. Please try again.' });
     }
   }
 );
@@ -224,7 +224,7 @@ router.get('/status',
       });
     } catch (error) {
       console.error('Get billing status error:', error);
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ error: 'Failed to retrieve billing status' });
     }
   }
 );
@@ -275,7 +275,7 @@ router.post('/cancel',
       });
     } catch (error) {
       console.error('Cancellation error:', error);
-      res.status(400).json({ error: error.message });
+      res.status(400).json({ error: 'Failed to cancel subscription. Please try again.' });
     }
   }
 );

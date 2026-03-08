@@ -19,11 +19,15 @@ axiosInstance.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-    console.log(`[API] ${config.method.toUpperCase()} ${config.url}`);
+    if (import.meta.env.DEV) {
+      console.log(`[API] ${config.method.toUpperCase()} ${config.url}`);
+    }
     return config;
   },
   (error) => {
-    console.error('[API] Request error:', error);
+    if (import.meta.env.DEV) {
+      console.error('[API] Request error:', error);
+    }
     return Promise.reject(error);
   }
 );
@@ -31,7 +35,9 @@ axiosInstance.interceptors.request.use(
 // Response interceptor - handle errors
 axiosInstance.interceptors.response.use(
   (response) => {
-    console.log(`[API] Response OK: ${response.config.url}`);
+    if (import.meta.env.DEV) {
+      console.log(`[API] Response OK: ${response.config.url}`);
+    }
     return response;
   },
   (error) => {
@@ -48,11 +54,13 @@ axiosInstance.interceptors.response.use(
     }
 
     // Handle 403 - forbidden
-    if (status === 403) {
+    if (import.meta.env.DEV && status === 403) {
       console.error('[API] Access forbidden:', message);
     }
 
-    console.error(`[API] Error ${status}: ${message}`);
+    if (import.meta.env.DEV) {
+      console.error(`[API] Error ${status}: ${message}`);
+    }
     return Promise.reject({
       status,
       message,

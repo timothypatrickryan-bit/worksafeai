@@ -106,7 +106,8 @@ router.post('/companies/:cid/onboarding',
         message: 'Company onboarding completed',
       });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      console.error('Onboarding error:', error.message);
+      res.status(500).json({ error: 'Failed to complete onboarding. Please try again.' });
     }
   }
 );
@@ -134,7 +135,8 @@ router.get('/companies/:cid/profile',
         onboardingCompleted: company.onboarding_completed,
       });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      console.error('Get profile error:', error.message);
+      res.status(500).json({ error: 'Failed to load company profile' });
     }
   }
 );
@@ -196,7 +198,8 @@ router.put('/companies/:cid/profile',
         message: 'Company profile updated successfully',
       });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      console.error('Update profile error:', error.message);
+      res.status(500).json({ error: 'Failed to update company profile' });
     }
   }
 );

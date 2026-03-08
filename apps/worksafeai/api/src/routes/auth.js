@@ -119,7 +119,8 @@ router.get('/me', authenticateToken, async (req, res) => {
 
     res.json(user);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('Auth /me error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch user profile' });
   }
 });
 
@@ -221,7 +222,7 @@ router.post('/accept-invite', validateBody(acceptInviteSchema), async (req, res)
     // If new password provided, hash and update it; otherwise use existing hash
     let passwordHash = user.password_hash;
     if (newPassword) {
-      passwordHash = await bcrypt.hash(newPassword, 10);
+      passwordHash = await bcrypt.hash(newPassword, 12);
     }
 
     // Activate user and update password
@@ -416,8 +417,8 @@ router.post('/reset-password', validateBody(resetPasswordSchema), async (req, re
       return res.status(401).json({ error: 'Invalid reset token' });
     }
 
-    // Hash new password
-    const newPasswordHash = await bcrypt.hash(newPassword, 10);
+    // Hash new password (12 rounds to match registration — consistent security)
+    const newPasswordHash = await bcrypt.hash(newPassword, 12);
 
     // Update password
     const { data: user, error: updateError } = await supabase
@@ -484,8 +485,8 @@ router.post('/change-password', authenticateToken, validateBody(changePasswordSc
       return res.status(401).json({ error: 'Current password is incorrect' });
     }
 
-    // Hash new password
-    const newPasswordHash = await bcrypt.hash(newPassword, 10);
+    // Hash new password (12 rounds to match registration — consistent security)
+    const newPasswordHash = await bcrypt.hash(newPassword, 12);
 
     // Update password
     const { error: updateError } = await supabase

@@ -136,8 +136,17 @@ const validateEnv = () => {
       errors.push('SUPABASE_URL must be production URL in production environment');
     }
 
-    if (process.env.JWT_SECRET === 'your-secret-key-here') {
-      errors.push('JWT_SECRET must be changed in production');
+    // Reject common weak/default JWT secrets
+    const weakSecrets = [
+      'your-secret-key-here',
+      'your-super-secret-jwt-key-min-32-characters-long!',
+      'secret',
+      'jwt-secret',
+      'changeme',
+    ];
+    const jwtSecret = process.env.JWT_SECRET || '';
+    if (weakSecrets.includes(jwtSecret) || jwtSecret.length < 32) {
+      errors.push('JWT_SECRET must be a strong random value (minimum 32 characters) in production');
     }
 
     if (process.env.STRIPE_SECRET_KEY?.includes('test')) {

@@ -121,7 +121,8 @@ router.post('/companies/:cid/jtsas',
         })),
       });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      console.error('JTSA creation error:', error.message);
+      res.status(500).json({ error: 'Failed to create JTSA. Please try again.' });
     }
   }
 );
@@ -197,7 +198,8 @@ router.get('/companies/:cid/jtsas',
         },
       });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      console.error('JTSA list error:', error.message);
+      res.status(500).json({ error: 'Failed to list JTSAs' });
     }
   }
 );
@@ -248,7 +250,8 @@ router.get('/jtsas/:id',
 
       res.json(jtsa_data);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      console.error('JTSA detail error:', error.message);
+      res.status(500).json({ error: 'Failed to fetch JTSA details' });
     }
   }
 );
@@ -318,7 +321,8 @@ router.patch('/jtsas/:id',
 
       res.json(updated);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      console.error('JTSA update error:', error.message);
+      res.status(500).json({ error: 'Failed to update JTSA' });
     }
   }
 );
@@ -395,7 +399,8 @@ router.post('/jtsas/:id/participants',
 
       res.status(201).json(participant);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      console.error('Add participant error:', error.message);
+      res.status(500).json({ error: 'Failed to add participant' });
     }
   }
 );
@@ -454,7 +459,8 @@ router.post('/jtsas/:id/complete',
 
       res.json(updated);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      console.error('JTSA complete error:', error.message);
+      res.status(500).json({ error: 'Failed to complete JTSA' });
     }
   }
 );

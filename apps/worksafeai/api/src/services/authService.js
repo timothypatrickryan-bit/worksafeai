@@ -2,10 +2,13 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const generateToken = (user) => {
+  // Minimal claims — avoid PII in tokens (they are base64-visible client-side)
+  // NOTE: email removed from token payload to reduce PII exposure.
+  // Use /api/auth/me to fetch user details when needed.
   return jwt.sign(
-    { id: user.id, email: user.email, role: user.role, companyId: user.company_id, fullName: user.full_name },
+    { id: user.id, role: user.role, companyId: user.company_id },
     process.env.JWT_SECRET,
-    { expiresIn: parseInt(process.env.JWT_EXPIRY) || 3600 }
+    { expiresIn: parseInt(process.env.JWT_EXPIRY) || 3600, algorithm: 'HS256' }
   );
 };
 
@@ -18,7 +21,7 @@ const generateRefreshToken = (user) => {
   return jwt.sign(
     { id: user.id, type: 'refresh' },
     refreshSecret,
-    { expiresIn: process.env.JWT_REFRESH_EXPIRY || 604800 }
+    { expiresIn: parseInt(process.env.JWT_REFRESH_EXPIRY) || 604800, algorithm: 'HS256' }
   );
 };
 
@@ -66,8 +69,8 @@ const register = async (supabase, data) => {
 
   if (companyError) throw companyError;
 
-  // Hash password
-  const hashedPassword = await bcrypt.hash(validated.password, 10);
+  // Hash password (12 rounds recommended for production security)
+  const hashedPassword = await bcrypt.hash(validated.password, 12);
 
   // Create user (owner) - email_verified defaults to false
   const { data: user, error: userError } = await supabase
@@ -118,11 +121,11 @@ const login = async (supabase, data) => {
   // Data is already validated by middleware
   const validated = data;
 
-  // Find user
+  // Find user (case-insensitive to match registration check)
   const { data: user, error } = await supabase
     .from('users')
     .select('*')
-    .eq('email', validated.email)
+    .ilike('email', validated.email)
     .single();
 
   if (error || !user) {

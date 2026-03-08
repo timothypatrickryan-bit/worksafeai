@@ -32,7 +32,8 @@ function OnboardingRequiredRoute({ children }) {
           return;
         }
         
-        const response = await fetch(`http://localhost:3000/api/companies/${user.companyId}/profile`, {
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+        const response = await fetch(`${apiUrl}/companies/${user.companyId}/profile`, {
           headers: {
             'Authorization': `Bearer ${useAuthStore.getState().token}`
           }

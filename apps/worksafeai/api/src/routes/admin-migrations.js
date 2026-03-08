@@ -60,6 +60,11 @@ router.post('/admin/migrations/apply-script',
         return res.status(400).json({ error: 'Invalid filename' });
       }
 
+      // Reject filenames with directory traversal characters
+      if (/[\/\\]/.test(filename) || filename.includes('..')) {
+        return res.status(400).json({ error: 'Invalid filename' });
+      }
+
       // Security: normalise both paths and require a path separator after the
       // base directory to prevent prefix-based traversal attacks
       // (e.g. /app/scripts_evil/file.sql starts with /app/scripts)

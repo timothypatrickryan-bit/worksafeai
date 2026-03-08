@@ -17,23 +17,32 @@ apiClient.interceptors.request.use((config) => {
   return config;
 });
 
-// Handle expired tokens
+// Handle expired tokens (with retry guard to prevent infinite loops)
 apiClient.interceptors.response.use(
   (response) => response,
   async (error) => {
-    if (error.response?.status === 401) {
+    const originalRequest = error.config;
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
       const refreshToken = Cookies.get('refreshToken');
       if (refreshToken) {
         try {
           const response = await apiClient.post('/auth/refresh-token', { refreshToken });
-          Cookies.set('token', response.data.accessToken, { expires: 1 });
+          const isSecure = window.location.protocol === 'https:';
+          const cookieOpts = { expires: 1, sameSite: 'Strict', ...(isSecure && { secure: true }) };
+          Cookies.set('token', response.data.accessToken, cookieOpts);
+          if (response.data.refreshToken) {
+            const refreshCookieOpts = { expires: 7, sameSite: 'Strict', ...(isSecure && { secure: true }) };
+            Cookies.set('refreshToken', response.data.refreshToken, refreshCookieOpts);
+          }
           
-          // Retry original request
-          const originalRequest = error.config;
+          // Retry original request with new token
           originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`;
           return apiClient(originalRequest);
         } catch (err) {
-          // Refresh failed, redirect to login
+          // Refresh failed, clear cookies and redirect to login
+          Cookies.remove('token');
+          Cookies.remove('refreshToken');
           window.location.href = '/login';
         }
       }

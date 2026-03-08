@@ -17,15 +17,32 @@ const useAuthStore = create(
       login: async (email, password) => {
         set({ loading: true, error: null });
         try {
-          // TODO: Implement login API call
-          // For now, mock super-user token
-          const mockToken = btoa(JSON.stringify({ email, role: 'super-admin' }));
+          const apiUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+          const response = await fetch(`${apiUrl}/api/auth/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+          });
+
+          const data = await response.json();
+
+          if (!response.ok) {
+            throw new Error(data.error || 'Login failed');
+          }
+
+          // Verify user has admin/owner role for super-admin access
+          if (!['owner', 'admin'].includes(data.user?.role)) {
+            throw new Error('Insufficient permissions. Super-admin access required.');
+          }
+
           set({
-            token: mockToken,
+            token: data.accessToken,
             user: {
-              email,
-              name: 'Super Admin',
-              role: 'super-admin',
+              id: data.user.id,
+              email: data.user.email,
+              name: data.user.fullName,
+              role: data.user.role,
+              companyId: data.user.companyId,
             },
             loading: false,
           });
