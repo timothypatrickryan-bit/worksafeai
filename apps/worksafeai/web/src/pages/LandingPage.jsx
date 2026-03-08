@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { 
-  Shield, Brain, Users, TrendingUp, CheckCircle2, ArrowRight, 
+  Brain, Users, TrendingUp, CheckCircle2, ArrowRight, 
   Zap, Lock, BarChart3, Clock, AlertTriangle, Lightbulb,
-  MapPin, Target, Award, Heart
+  Target, Award, Heart
 } from 'lucide-react';
 
 export default function LandingPage() {
@@ -20,7 +20,7 @@ export default function LandingPage() {
       {/* Navigation */}
       <nav className="relative z-20 flex justify-between items-center px-6 md:px-12 py-6">
         <div className="flex items-center gap-3">
-          <Shield className="w-8 h-8 text-cyan-400" />
+          <img src="/worksafe_icon.jpg" alt="WorkSafeAI" className="w-8 h-8 rounded" />
           <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
             WorkSafeAI
           </span>
@@ -67,11 +67,6 @@ export default function LandingPage() {
           >
             Start Free Trial <ArrowRight className="w-4 h-4" />
           </button>
-          <button
-            className="px-8 py-3 rounded-xl border border-white/20 text-white font-semibold hover:bg-white/5 transition-all"
-          >
-            Watch Demo
-          </button>
         </div>
 
         {/* Hero stats */}
@@ -90,12 +85,35 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* Hero visual */}
+        {/* Hero visual - Dashboard screenshot */}
         <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-cyan-500/20 backdrop-blur-sm flex items-center justify-center">
-            <div className="text-center">
-              <Shield className="w-24 h-24 text-cyan-400/40 mx-auto mb-4" />
-              <p className="text-white/60">App Preview Coming Soon</p>
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900">
+            {/* Dashboard mockup */}
+            <div className="p-6 h-full flex flex-col">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              <div className="space-y-3 flex-1">
+                <div className="h-2 bg-white/10 rounded w-32"></div>
+                <div className="h-2 bg-white/10 rounded w-48"></div>
+                <div className="grid grid-cols-2 gap-3 mt-6">
+                  <div className="p-4 bg-blue-500/20 rounded-lg border border-blue-500/30">
+                    <div className="h-2 bg-white/10 rounded mb-2 w-20"></div>
+                    <div className="h-3 bg-cyan-400/50 rounded"></div>
+                  </div>
+                  <div className="p-4 bg-cyan-500/20 rounded-lg border border-cyan-500/30">
+                    <div className="h-2 bg-white/10 rounded mb-2 w-16"></div>
+                    <div className="h-3 bg-emerald-400/50 rounded"></div>
+                  </div>
+                </div>
+                <div className="mt-6 space-y-2">
+                  <div className="h-2 bg-white/10 rounded w-full"></div>
+                  <div className="h-2 bg-white/10 rounded w-5/6"></div>
+                  <div className="h-2 bg-white/10 rounded w-4/6"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -221,25 +239,27 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Right side - visual */}
+            {/* Right side - visual - Dashboard mockup */}
             <div className="relative">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-blue-600/20 to-cyan-500/20 border border-white/10 flex items-center justify-center overflow-hidden">
-                <div className="relative w-full h-full flex items-center justify-center">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,255,0.1)_0%,transparent_70%)]"></div>
-                  
-                  {/* Animated circles */}
-                  <div className="absolute w-32 h-32 rounded-full border border-cyan-500/30 animate-spin" style={{ animationDuration: '8s' }}></div>
-                  <div className="absolute w-48 h-48 rounded-full border border-blue-500/20 animate-spin" style={{ animationDuration: '12s', animationDirection: 'reverse' }}></div>
-                  <div className="absolute w-20 h-20 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center justify-center">
-                    <Shield className="w-10 h-10 text-white" />
+              <div className="aspect-square rounded-2xl bg-slate-800 border border-white/10 flex items-center justify-center overflow-hidden p-4">
+                {/* Dashboard mockup */}
+                <div className="w-full h-full bg-gradient-to-b from-slate-700 to-slate-800 rounded-xl p-4 space-y-4">
+                  <div className="h-3 bg-gradient-to-r from-blue-500/40 to-cyan-500/40 rounded w-1/3"></div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="p-3 bg-blue-500/20 border border-blue-500/30 rounded-lg">
+                      <div className="h-1 bg-white/10 rounded mb-2"></div>
+                      <div className="h-3 bg-blue-400/50 rounded"></div>
+                    </div>
+                    <div className="p-3 bg-emerald-500/20 border border-emerald-500/30 rounded-lg">
+                      <div className="h-1 bg-white/10 rounded mb-2"></div>
+                      <div className="h-3 bg-emerald-400/50 rounded"></div>
+                    </div>
                   </div>
-                </div>
-              </div>
-
-              <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl p-4 text-white font-semibold shadow-xl">
-                <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle2 className="w-5 h-5" />
-                  <span>ISO 45001 Ready</span>
+                  <div className="space-y-2 pt-2">
+                    <div className="h-2 bg-white/10 rounded"></div>
+                    <div className="h-2 bg-white/10 rounded w-5/6"></div>
+                    <div className="h-2 bg-white/10 rounded w-4/6"></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -392,7 +412,7 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Shield className="w-6 h-6 text-cyan-400" />
+                <img src="/worksafe_icon.jpg" alt="WorkSafeAI" className="w-6 h-6 rounded" />
                 <span className="font-bold text-white">WorkSafeAI</span>
               </div>
               <p className="text-slate-400 text-sm">Protecting workers with AI-powered safety intelligence.</p>
