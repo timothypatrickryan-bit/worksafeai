@@ -108,14 +108,14 @@ Add GitHub Secrets to enable auto-deploy:
 1. Go to: https://github.com/timothypatrickryan-bit/worksafeai/settings/secrets/actions
 2. Click **New repository secret**
 3. Name: `VERCEL_TOKEN`
-4. Value: `vcp_101WpZTMREmF2kqOEDR7fguBZ6cvJHLGxcPflZ3ktjRqhuiFQv0MTEL5`
+4. Value: Get from https://vercel.com/account/tokens (starts with `vcp_`)
 5. Save
 
 **For worksafeai-super-admin repo:**
 1. Go to: https://github.com/timothypatrickryan-bit/worksafeai-super-admin/settings/secrets/actions
 2. Click **New repository secret**
 3. Name: `VERCEL_TOKEN`
-4. Value: `vcp_101WpZTMREmF2kqOEDR7fguBZ6cvJHLGxcPflZ3ktjRqhuiFQv0MTEL5`
+4. Value: Get from https://vercel.com/account/tokens (starts with `vcp_`)
 5. Save
 
 **Result:** Next push to main → auto-deploys!

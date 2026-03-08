@@ -27,7 +27,7 @@ Both repos need your Vercel token as a GitHub Secret.
 1. Go to: https://github.com/timothypatrickryan-bit/worksafeai/settings/secrets/actions
 2. Click **New repository secret**
 3. Name: `VERCEL_TOKEN`
-4. Value: `vcp_101WpZTMREmF2kqOEDR7fguBZ6cvJHLGxcPflZ3ktjRqhuiFQv0MTEL5`
+4. Value: `vcp_your_vercel_token_here` (Get from https://vercel.com/account/tokens)
 5. Click **Add secret**
 
 ### For `timothypatrickryan-bit/worksafeai-super-admin`
@@ -35,7 +35,7 @@ Both repos need your Vercel token as a GitHub Secret.
 1. Go to: https://github.com/timothypatrickryan-bit/worksafeai-super-admin/settings/secrets/actions
 2. Click **New repository secret**
 3. Name: `VERCEL_TOKEN`
-4. Value: `vcp_101WpZTMREmF2kqOEDR7fguBZ6cvJHLGxcPflZ3ktjRqhuiFQv0MTEL5`
+4. Value: `vcp_your_vercel_token_here` (Get from https://vercel.com/account/tokens)
 5. Click **Add secret**
 
 ---

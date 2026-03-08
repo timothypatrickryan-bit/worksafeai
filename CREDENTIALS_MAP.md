@@ -22,8 +22,8 @@ Complete inventory of all accounts, credentials, and where they're stored. **Nev
 
 **Account:** timothypatrickryan-7139  
 **Login:** https://vercel.com  
-**Token:** `vcp_101WpZTMREmF2kqOEDR7fguBZ6cvJHLGxcPflZ3ktjRqhuiFQv0MTEL5`  
-**Stored in:** OpenClaw workspace (Tim's machine)  
+**Token:** Stored securely in GitHub Secrets (not shown here)  
+**Stored in:** GitHub Secrets (worksafeai + worksafeai-super-admin repos)  
 **Manage Tokens:** https://vercel.com/account/tokens
 
 **Projects (as of March 8, 2026):**
