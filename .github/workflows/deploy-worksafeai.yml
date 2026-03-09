@@ -4,27 +4,42 @@ on:
   push:
     branches: [main]
 
-env:
-  VERCEL_TOKEN: ${{ secrets.VERVEL_TOKEN2 }}
-
 jobs:
-  deploy:
+  deploy-backend:
+    name: Deploy Backend API
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      
-      - name: Deploy backend to Vercel
-        run: |
-          npm install -g vercel@latest
-          cd apps/worksafeai/api
-          vercel deploy --prod --token $VERCEL_TOKEN --yes || true
-      
-      - name: Deploy frontend to Vercel
-        run: |
-          cd apps/worksafeai/web
-          vercel deploy --prod --token $VERCEL_TOKEN --yes || true
-      
-      - name: Deploy admin to Vercel
-        run: |
-          cd apps/super-admin
-          vercel deploy --prod --token $VERCEL_TOKEN --yes || true
+      - uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Deploy to Vercel
+        run: vercel deploy --prod --yes --token ${{ secrets.VERVEL_TOKEN2 }}
+        working-directory: apps/worksafeai/api
+
+  deploy-frontend:
+    name: Deploy Frontend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Deploy to Vercel
+        run: vercel deploy --prod --yes --token ${{ secrets.VERVEL_TOKEN2 }}
+        working-directory: apps/worksafeai/web
+
+  deploy-admin:
+    name: Deploy Admin Console
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Deploy to Vercel
+        run: vercel deploy --prod --yes --token ${{ secrets.VERVEL_TOKEN2 }}
+        working-directory: apps/super-admin
