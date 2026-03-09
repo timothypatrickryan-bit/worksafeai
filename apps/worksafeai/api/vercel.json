@@ -1,23 +1,17 @@
 {
   "version": 2,
-  "buildCommand": "npm install",
-  "env": {
-    "NODE_ENV": "production"
-  },
-  "functions": {
-    "src/server.js": {
-      "memory": 1024,
-      "maxDuration": 60
-    }
-  },
+  "buildCommand": "npm ci",
+  "public": false,
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/src/server.js"
-    },
     {
       "source": "/(.*)",
       "destination": "/src/server.js"
     }
-  ]
+  ],
+  "functions": {
+    "src/server.js": {
+      "maxDuration": 30,
+      "memory": 1024
+    }
+  }
 }
