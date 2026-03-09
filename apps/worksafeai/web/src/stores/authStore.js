@@ -2,22 +2,27 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import Cookies from 'js-cookie';
 
-// Determine API URL: use env var if set, otherwise infer from current domain
-const getApiUrl = () => {
-  let apiUrl = import.meta.env.VITE_API_URL;
-  if (!apiUrl) {
-    // In production, derive API URL from current domain
-    if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
-      const domain = window.location.hostname;
-      const apiDomain = domain.replace('worksafeai.', 'worksafeai-api.').replace('superadmin.', 'worksafeai-api.');
-      apiUrl = `${window.location.protocol}//${apiDomain}/api`;
-    } else {
-      // Development: use localhost
-      apiUrl = 'http://localhost:3000/api';
-    }
+// Determine API URL at module load time
+function getApiUrl() {
+  // First, check environment variable
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
   }
-  return apiUrl;
-};
+  
+  // Then check current domain
+  if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
+    // Production: dynamically derive from current domain
+    const hostname = window.location.hostname;
+    // worksafeai.elevationaiwork.com → worksafeai-api.elevationaiwork.com
+    // superadmin.elevationaiwork.com → worksafeai-api.elevationaiwork.com
+    let apiHostname = hostname.replace('worksafeai.', 'worksafeai-api.');
+    apiHostname = apiHostname.replace('superadmin.', 'worksafeai-api.');
+    return `https://${apiHostname}/api`;
+  }
+  
+  // Development fallback
+  return 'http://localhost:3000/api';
+}
 
 const useAuthStore = create(
   persist(
