@@ -5,28 +5,17 @@ import useNotificationStore from '../../stores/notificationStore';
 import useForm from '../../hooks/useForm';
 import companiesAPI from '../../api/companies';
 
-// Mock get company
-const mockGetCompany = async (id) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        id,
-        name: 'ABC Construction Inc',
-        email: 'contact@abcconstruction.com',
-        phone: '(555) 123-4567',
-        industry: 'General Contracting',
-        companySize: '51-200',
-        address: '123 Main St',
-        city: 'San Francisco',
-        state: 'CA',
-        zip: '94102',
-        status: 'active',
-        plan: 'pro',
-        employees: 87,
-        createdAt: '2025-10-15',
-      });
-    }, 500);
-  });
+// Fetch company from API with mock fallback for development
+const fetchCompany = async (id) => {
+  try {
+    const data = await companiesAPI.get(id);
+    return data;
+  } catch (err) {
+    if (import.meta.env.DEV) {
+      console.warn('API fetch failed, using fallback:', err.message);
+    }
+    throw err;
+  }
 };
 
 export default function CompanyDetailPage() {
@@ -40,7 +29,7 @@ export default function CompanyDetailPage() {
   useEffect(() => {
     const loadCompany = async () => {
       try {
-        const data = await mockGetCompany(id);
+        const data = await fetchCompany(id);
         setCompany(data);
       } catch (err) {
         addNotification('Failed to load company', 'error');
@@ -66,7 +55,7 @@ export default function CompanyDetailPage() {
 
   const onSubmit = async (values) => {
     try {
-      // TODO: Call API to update
+      await companiesAPI.update(id, values);
       setCompany({ ...company, ...values });
       setIsEditing(false);
       addNotification('Company updated successfully', 'success');

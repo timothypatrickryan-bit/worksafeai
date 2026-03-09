@@ -81,12 +81,26 @@ export default function CompaniesListPage() {
   // Handle export
   const handleExport = async () => {
     try {
+      // Sanitize CSV values to prevent CSV injection (formula injection)
+      const sanitizeCsvValue = (val) => {
+        const str = String(val ?? '');
+        // Prefix dangerous characters that could be interpreted as formulas
+        if (/^[=+\-@\t\r]/.test(str)) {
+          return `"'${str.replace(/"/g, '""')}"`;
+        }
+        // Quote values containing commas, quotes, or newlines
+        if (/[",\n\r]/.test(str)) {
+          return `"${str.replace(/"/g, '""')}"`;
+        }
+        return str;
+      };
+
       const csv = [
         ['Name', 'Email', 'Plan', 'Status', 'Created'].join(','),
         ...companies.map((c) =>
-          [c.name, c.email, c.plan, c.status, new Date(c.createdAt).toLocaleDateString()].join(
-            ','
-          )
+          [c.name, c.email, c.plan, c.status, new Date(c.createdAt).toLocaleDateString()]
+            .map(sanitizeCsvValue)
+            .join(',')
         ),
       ].join('\n');
 
@@ -186,7 +200,8 @@ export default function CompaniesListPage() {
       />
 
       {/* Pagination */}
-      <Pagination page={page} pageSize={pageSize} total={companies.length * 2} onPageChange={setPage} onPageSizeChange={setPageSize} />
+      {/* TODO: Replace with actual total from API response (e.g., response.meta.total) */}
+      <Pagination page={page} pageSize={pageSize} total={companies.length} onPageChange={setPage} onPageSizeChange={setPageSize} />
 
       {/* Delete Modal */}
       {deleteTarget && (

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import useAuthStore from '../stores/authStore';
 import useAppStore from '../stores/appStore';
 import { Menu, LogOut, X, Shield, Settings, Database, BarChart3, FileText, Users } from 'lucide-react';
@@ -97,28 +97,32 @@ export default function Layout({ children }) {
             {navItems.map(item => {
               const Icon = item.icon;
               return (
-                <a
+                <button
                   key={item.href}
-                  href={item.href}
-                  onClick={() => setSidebarOpen(false)}
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:text-white hover:bg-slate-700 transition-colors"
+                  onClick={() => {
+                    navigate(item.href);
+                    setSidebarOpen(false);
+                  }}
+                  className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:text-white hover:bg-slate-700 transition-colors"
                 >
                   <Icon className="w-5 h-5" />
                   <span className="font-medium">{item.label}</span>
-                </a>
+                </button>
               );
             })}
 
             {/* Settings */}
             <div className="pt-4 mt-4 border-t border-slate-700">
-              <a
-                href="/settings"
-                onClick={() => setSidebarOpen(false)}
-                className="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:text-white hover:bg-slate-700 transition-colors"
+              <button
+                onClick={() => {
+                  navigate('/settings');
+                  setSidebarOpen(false);
+                }}
+                className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:text-white hover:bg-slate-700 transition-colors"
               >
                 <Settings className="w-5 h-5" />
                 <span className="font-medium">Settings</span>
-              </a>
+              </button>
             </div>
           </nav>
         </aside>

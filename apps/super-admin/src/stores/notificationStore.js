@@ -33,34 +33,22 @@ const useNotificationStore = create((set) => ({
     set({ notifications: [] });
   },
 
-  // Convenience methods
-  success: (message, duration) =>
-    set((state) => {
-      const id = Date.now();
-      state.addNotification(message, 'success', duration);
-      return { notifications: state.notifications };
-    }),
+  // Convenience methods — use get() to access store methods
+  success: (message, duration) => {
+    useNotificationStore.getState().addNotification(message, 'success', duration);
+  },
 
-  error: (message, duration) =>
-    set((state) => {
-      const id = Date.now();
-      state.addNotification(message, 'error', duration);
-      return { notifications: state.notifications };
-    }),
+  error: (message, duration) => {
+    useNotificationStore.getState().addNotification(message, 'error', duration);
+  },
 
-  warning: (message, duration) =>
-    set((state) => {
-      const id = Date.now();
-      state.addNotification(message, 'warning', duration);
-      return { notifications: state.notifications };
-    }),
+  warning: (message, duration) => {
+    useNotificationStore.getState().addNotification(message, 'warning', duration);
+  },
 
-  info: (message, duration) =>
-    set((state) => {
-      const id = Date.now();
-      state.addNotification(message, 'info', duration);
-      return { notifications: state.notifications };
-    }),
+  info: (message, duration) => {
+    useNotificationStore.getState().addNotification(message, 'info', duration);
+  },
 }));
 
 export default useNotificationStore;

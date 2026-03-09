@@ -61,11 +61,12 @@ axiosInstance.interceptors.response.use(
     if (import.meta.env.DEV) {
       console.error(`[API] Error ${status}: ${message}`);
     }
-    return Promise.reject({
-      status,
-      message,
-      data: error.response?.data,
-    });
+
+    // Return a proper Error object so callers can use err.message consistently
+    const apiError = new Error(message);
+    apiError.status = status;
+    apiError.data = error.response?.data;
+    return Promise.reject(apiError);
   }
 );
 

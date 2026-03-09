@@ -1,22 +1,27 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 /**
- * Custom hook for data fetching with loading and error states
- * @param {Function} fetchFn - Async function to fetch data
- * @param {Array} deps - Dependency array
- * @param {Object} options - Options (initialData, skip, cache)
+ * Custom hook for data fetching with loading and error states.
+ *
+ * @param {Function} fetchFn - Async function that returns data. Wrap in useCallback
+ *   or pass a stable reference to avoid re-fetching on every render.
+ * @param {Array} deps - Dependency array that triggers a re-fetch when changed.
+ * @param {Object} options - Options (initialData, skip)
  */
 export const useFetch = (fetchFn, deps = [], options = {}) => {
   const {
     initialData = null,
     skip = false,
-    cacheTime = 5 * 60 * 1000, // 5 minutes
   } = options;
 
   const [data, setData] = useState(initialData);
   const [loading, setLoading] = useState(!skip && initialData === null);
   const [error, setError] = useState(null);
-  const [lastFetch, setLastFetch] = useState(null);
+  const mountedRef = useRef(true);
+
+  // Store fetchFn in a ref so the effect doesn't re-run when the function identity changes
+  const fetchFnRef = useRef(fetchFn);
+  fetchFnRef.current = fetchFn;
 
   const refetch = useCallback(async () => {
     if (skip) return;
@@ -24,27 +29,34 @@ export const useFetch = (fetchFn, deps = [], options = {}) => {
     try {
       setLoading(true);
       setError(null);
-      const result = await fetchFn();
-      setData(result);
-      setLastFetch(Date.now());
+      const result = await fetchFnRef.current();
+      if (mountedRef.current) {
+        setData(result);
+      }
     } catch (err) {
-      setError(err?.message || 'Failed to fetch data');
-      console.error('Fetch error:', err);
+      if (mountedRef.current) {
+        setError(err?.message || 'Failed to fetch data');
+        if (import.meta.env.DEV) {
+          console.error('Fetch error:', err);
+        }
+      }
     } finally {
-      setLoading(false);
+      if (mountedRef.current) {
+        setLoading(false);
+      }
     }
-  }, [fetchFn, skip]);
+  }, [skip]);
 
   useEffect(() => {
-    if (skip) return;
-
-    // Check cache validity
-    if (lastFetch && Date.now() - lastFetch < cacheTime) {
-      return;
+    mountedRef.current = true;
+    if (!skip) {
+      refetch();
     }
-
-    refetch();
-  }, [skip, lastFetch, cacheTime, refetch]);
+    return () => {
+      mountedRef.current = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [...deps, skip]);
 
   return {
     data,

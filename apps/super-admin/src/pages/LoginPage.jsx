@@ -6,7 +6,7 @@ import { Shield, ArrowRight, AlertCircle } from 'lucide-react';
 export default function LoginPage() {
   const navigate = useNavigate();
   const { login } = useAuthStore();
-  const [email, setEmail] = useState('timothy.patrick.ryan@gmail.com');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -14,11 +14,17 @@ export default function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
+    if (!email.trim() || !password.trim()) {
+      setError('Email and password are required.');
+      return;
+    }
+
     setLoading(true);
 
     try {
       await login(email, password);
-      navigate('/dashboard');
+      navigate('/dashboard', { replace: true });
     } catch (err) {
       setError(err.message || 'Login failed. Please try again.');
     } finally {
@@ -109,13 +115,15 @@ export default function LoginPage() {
             </button>
           </form>
 
-          {/* Test Credentials */}
-          <div className="mt-6 pt-6 border-t border-white/10">
-            <p className="text-xs text-slate-400 mb-2">Test credentials:</p>
-            <p className="text-xs text-slate-300 font-mono bg-white/5 p-3 rounded">
-              timothy.patrick.ryan@gmail.com
-            </p>
-          </div>
+          {/* Test Credentials - only in development */}
+          {import.meta.env.DEV && (
+            <div className="mt-6 pt-6 border-t border-white/10">
+              <p className="text-xs text-slate-400 mb-2">Development mode</p>
+              <p className="text-xs text-slate-300 font-mono bg-white/5 p-3 rounded">
+                Use test credentials from .env
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Footer */}
