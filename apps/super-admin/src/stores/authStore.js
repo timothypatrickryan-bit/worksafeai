@@ -5,20 +5,27 @@ import { persist } from 'zustand/middleware';
 const TOKEN_EXPIRY_MARGIN_MS = 5 * 60 * 1000;
 
 // Determine API URL: use env var if set, otherwise infer from current domain
-const getApiUrl = () => {
-  let apiUrl = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL;
-  if (!apiUrl) {
-    // In production, derive API URL from current domain
-    if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
-      const domain = window.location.hostname;
-      apiUrl = `${window.location.protocol}//worksafeai-api.${domain.split('.').slice(1).join('.')}`;
-    } else {
-      // Development: use localhost
-      apiUrl = 'http://localhost:3000';
-    }
+function getApiUrl() {
+  // First, check environment variables
+  if (import.meta.env.VITE_API_BASE_URL) {
+    return import.meta.env.VITE_API_BASE_URL;
   }
-  return apiUrl;
-};
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+  
+  // Then check current domain
+  if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
+    // Production: dynamically derive from current domain
+    // superadmin.elevationaiwork.com → https://worksafeai-api.elevationaiwork.com
+    const hostname = window.location.hostname;
+    const domain = hostname.split('.').slice(1).join('.');
+    return `https://worksafeai-api.${domain}`;
+  }
+  
+  // Development fallback
+  return 'http://localhost:3000';
+}
 
 /**
  * Decode JWT payload without external dependencies.
