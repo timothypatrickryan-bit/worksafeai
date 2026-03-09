@@ -1,7 +1,20 @@
 import axios from 'axios';
 import useAuthStore from '../stores/authStore';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+// Determine API URL: use env var if set, otherwise infer from current domain
+let API_BASE_URL = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL;
+
+if (!API_BASE_URL) {
+  // In production, derive API URL from current domain
+  if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
+    // Production: superadmin.elevationaiwork.com → worksafeai-api.elevationaiwork.com
+    const domain = window.location.hostname;
+    API_BASE_URL = `${window.location.protocol}//worksafeai-api.${domain.split('.').slice(1).join('.')}`;
+  } else {
+    // Development: use localhost
+    API_BASE_URL = 'http://localhost:3000';
+  }
+}
 
 // Create axios instance
 const axiosInstance = axios.create({
