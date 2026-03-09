@@ -2,6 +2,23 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import Cookies from 'js-cookie';
 
+// Determine API URL: use env var if set, otherwise infer from current domain
+const getApiUrl = () => {
+  let apiUrl = import.meta.env.VITE_API_URL;
+  if (!apiUrl) {
+    // In production, derive API URL from current domain
+    if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
+      const domain = window.location.hostname;
+      const apiDomain = domain.replace('worksafeai.', 'worksafeai-api.').replace('superadmin.', 'worksafeai-api.');
+      apiUrl = `${window.location.protocol}//${apiDomain}/api`;
+    } else {
+      // Development: use localhost
+      apiUrl = 'http://localhost:3000/api';
+    }
+  }
+  return apiUrl;
+};
+
 const useAuthStore = create(
   persist(
     (set, get) => ({
@@ -15,7 +32,7 @@ const useAuthStore = create(
       login: async (email, password) => {
         set({ loading: true, error: null });
         try {
-          const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+          const apiUrl = getApiUrl();
           const response = await fetch(`${apiUrl}/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -56,7 +73,7 @@ const useAuthStore = create(
       register: async (email, password, fullName, companyName, industry) => {
         set({ loading: true, error: null });
         try {
-          const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+          const apiUrl = getApiUrl();
           const response = await fetch(`${apiUrl}/auth/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
