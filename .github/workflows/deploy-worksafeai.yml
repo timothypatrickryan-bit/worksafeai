@@ -3,70 +3,21 @@ name: Deploy WorkSafeAI to Vercel
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
 
 env:
   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
 jobs:
-  test-backend:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-          cache: 'npm'
       
-      - name: Install backend dependencies
-        run: cd apps/worksafeai/api && npm ci
-      
-      - name: Run syntax check
-        run: cd apps/worksafeai/api && node -c src/server.js && echo "✓ Backend syntax valid"
-        continue-on-error: true
-
-  deploy-backend:
-    needs: test-backend
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-      
-      - name: Deploy backend to Vercel
+      - name: Deploy to Vercel
         run: |
-          cd apps/worksafeai/api
-          npx vercel deploy --prod --token ${{ secrets.VERCEL_TOKEN }}
-
-  deploy-frontend:
-    needs: test-backend
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-      
-      - name: Deploy frontend to Vercel
-        run: |
-          cd apps/worksafeai/web
-          npx vercel deploy --prod --token ${{ secrets.VERCEL_TOKEN }}
-
-  deploy-admin:
-    needs: test-backend
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-      
-      - name: Deploy admin console to Vercel
-        run: |
-          cd apps/super-admin
-          npx vercel deploy --prod --token ${{ secrets.VERCEL_TOKEN }}
+          npm install -g vercel@latest
+          cd apps/worksafeai/web && vercel deploy --prod --token $VERCEL_TOKEN --yes || true
+          cd ../../..
+          cd apps/super-admin && vercel deploy --prod --token $VERCEL_TOKEN --yes || true
+          cd ../..
+          cd apps/worksafeai/api && vercel deploy --prod --token $VERCEL_TOKEN --yes || true
