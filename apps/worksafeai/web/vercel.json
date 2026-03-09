@@ -1,22 +1,10 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "cleanUrls": false,
-  "trailingSlash": false,
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600"
-        }
-      ]
-    }
-  ],
+  "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/:path*",
+      "source": "/:path((?!_next/|_static/|api/|[\\w-]+\\.\\w+).*)",
       "destination": "/index.html"
     }
   ]
