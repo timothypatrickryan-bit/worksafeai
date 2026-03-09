@@ -1,10 +1,9 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/:path((?!_next/|_static/|api/|[\\w-]+\\.\\w+).*)",
+      "source": "/(?!.*\\.)(.*)",
       "destination": "/index.html"
     }
   ]
