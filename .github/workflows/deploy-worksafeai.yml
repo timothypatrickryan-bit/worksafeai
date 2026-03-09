@@ -3,12 +3,8 @@ name: Deploy WorkSafeAI to Vercel
 on:
   push:
     branches: [main]
-    paths:
-      - 'apps/worksafeai/**'
   pull_request:
     branches: [main]
-    paths:
-      - 'apps/worksafeai/**'
 
 env:
   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
