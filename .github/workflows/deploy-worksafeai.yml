@@ -13,11 +13,21 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Deploy to Vercel
+      - name: Deploy backend to Vercel
         run: |
           npm install -g vercel@latest
-          cd apps/worksafeai/web && vercel deploy --prod --token $VERCEL_TOKEN --yes || true
-          cd ../../..
-          cd apps/super-admin && vercel deploy --prod --token $VERCEL_TOKEN --yes || true
-          cd ../..
-          cd apps/worksafeai/api && vercel deploy --prod --token $VERCEL_TOKEN --yes || true
+          cd apps/worksafeai/api
+          npm ci
+          vercel deploy --prod --token $VERCEL_TOKEN --yes || true
+      
+      - name: Deploy frontend to Vercel
+        run: |
+          cd apps/worksafeai/web
+          npm ci
+          vercel deploy --prod --token $VERCEL_TOKEN --yes || true
+      
+      - name: Deploy admin to Vercel
+        run: |
+          cd apps/super-admin
+          npm ci
+          vercel deploy --prod --token $VERCEL_TOKEN --yes || true
