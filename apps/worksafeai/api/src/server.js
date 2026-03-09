@@ -18,10 +18,13 @@ const app = express();
 app.use(helmet());
 
 // CORS - whitelist allowed origins
-const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:3000,http://localhost:3001').split(',');
+const defaultOrigins = 'http://localhost:3000,http://localhost:3001,http://localhost:5173,https://worksafeai.elevationaiwork.com,https://superadmin.elevationaiwork.com';
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || defaultOrigins).split(',').map(o => o.trim());
 app.use(cors({
   origin: allowedOrigins,
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 // Middleware
