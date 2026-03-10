@@ -71,11 +71,13 @@ router.post('/register', validateBody(registerSchema), async (req, res) => {
     const statusCode = isDevelopment ? 200 : 201;
     res.status(statusCode).json(response);
   } catch (error) {
+    console.error('Registration error:', error.message, error.code, error.details, error.hint);
     // Don't expose detailed error messages for security
     const message = error.message?.includes('Email already exists')
       ? 'Email already exists'
       : 'Registration failed. Please try again.';
-    res.status(400).json({ error: message });
+    // Temporarily include debug info in non-production or always for now
+    res.status(400).json({ error: message, _debug: error.message, _code: error.code });
   }
 });
 

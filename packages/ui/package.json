@@ -1,0 +1,22 @@
+{
+  "name": "@elevationai/ui",
+  "version": "0.1.0",
+  "description": "Shared UI components for ElevationAI apps",
+  "type": "module",
+  "exports": {
+    "./AppShell": "./src/AppShell.jsx",
+    "./LandingPageTemplate": "./src/LandingPageTemplate.jsx",
+    "./DataTable": "./src/DataTable.jsx",
+    "./Modal": "./src/Modal.jsx",
+    "./Toast": "./src/Toast.jsx",
+    "./Pagination": "./src/Pagination.jsx",
+    "./ErrorBoundary": "./src/ErrorBoundary.jsx",
+    "./StatusBadge": "./src/StatusBadge.jsx"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "react-router-dom": ">=6.0.0",
+    "lucide-react": ">=0.200.0"
+  }
+}

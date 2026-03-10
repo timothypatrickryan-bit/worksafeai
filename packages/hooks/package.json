@@ -1,0 +1,13 @@
+{
+  "name": "@elevationai/hooks",
+  "version": "0.1.0",
+  "description": "Shared React hooks for ElevationAI apps",
+  "type": "module",
+  "exports": {
+    "./useFetch": "./src/useFetch.js",
+    "./useForm": "./src/useForm.js"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  }
+}
