@@ -1,15 +1,42 @@
+let bootError = null;
+try {
 require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
-const { createClient } = require('@supabase/supabase-js');
-const cacheService = require('./services/cacheService');
-const MigrationService = require('./services/migrationService');
-const { assertEnv } = require('./config/envValidation');
-const { errorHandler, requestIdMiddleware, structuredLogger } = require('./middleware/errorHandler');
+} catch (e) { /* dotenv optional */ }
 
-// Validate environment variables
-assertEnv();
+let express, cors, helmet, createClient, cacheService, MigrationService, assertEnv, errorHandler, requestIdMiddleware, structuredLogger;
+
+try {
+  express = require('express');
+  cors = require('cors');
+  helmet = require('helmet');
+  ({ createClient } = require('@supabase/supabase-js'));
+  cacheService = require('./services/cacheService');
+  MigrationService = require('./services/migrationService');
+  ({ assertEnv } = require('./config/envValidation'));
+  ({ errorHandler, requestIdMiddleware, structuredLogger } = require('./middleware/errorHandler'));
+
+  // Validate environment variables
+  assertEnv();
+} catch (e) {
+  bootError = e;
+  console.error('🔥 BOOT ERROR:', e.message);
+  console.error(e.stack);
+}
+
+// If boot failed, export a diagnostic handler
+if (bootError) {
+  const fallbackExpress = require('express');
+  const fallbackApp = fallbackExpress();
+  fallbackApp.use((req, res) => {
+    res.status(503).json({
+      error: 'Server failed to start',
+      message: bootError.message,
+      stack: bootError.stack,
+    });
+  });
+  module.exports = fallbackApp;
+  return; // This won't work at top level in CJS, need to wrap differently
+}
 
 // Initialize app
 const app = express();
