@@ -93,7 +93,7 @@ router.post('/:id/users', authenticateToken, authorizeRole(['owner', 'admin']), 
     // Create user with is_active = false (pending invite acceptance)
     const crypto = require('crypto');
     const tempPassword = crypto.randomBytes(16).toString('hex');
-    const bcrypt = require('bcrypt');
+    const bcrypt = require('bcryptjs');
     const hashedPassword = await bcrypt.hash(tempPassword, 12);
 
     const { data: newUser, error: createError } = await supabase
