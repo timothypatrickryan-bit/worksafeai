@@ -249,6 +249,29 @@ app.use('/pdfs', pdfsRoutes);
 // Health checks
 app.use('/health', require('./routes/health'));
 
+// Diagnostic endpoint - test POST processing
+app.post('/diag/test-post', async (req, res) => {
+  const steps = [];
+  try {
+    steps.push('body_parsed: ' + JSON.stringify(req.body));
+
+    // Test Supabase
+    const { data, error } = await req.app.locals.supabase
+      .from('companies').select('id').limit(1);
+    steps.push('supabase: ' + (error ? 'ERROR ' + error.message : 'OK'));
+
+    // Test bcryptjs
+    const bcryptjs = require('bcryptjs');
+    const hash = await bcryptjs.hash('test', 4); // minimal rounds
+    steps.push('bcryptjs: OK hash=' + hash.substring(0, 10));
+
+    res.json({ ok: true, steps });
+  } catch (e) {
+    steps.push('ERROR: ' + e.message);
+    res.status(500).json({ ok: false, steps, error: e.message });
+  }
+});
+
 // 404 handler
 app.use((req, res) => {
   res.status(404).json({ error: 'Not found' });
