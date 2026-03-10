@@ -33,7 +33,7 @@ const useAuthStore = create(
       loading: false,
       error: null,
 
-      // Login
+      // Login with email/password
       login: async (email, password) => {
         set({ loading: true, error: null });
         try {
@@ -58,10 +58,7 @@ const useAuthStore = create(
           Cookies.set('refreshToken', data.refreshToken, refreshCookieOpts);
 
           set({
-            user: {
-              ...data.user,
-              industry: data.industry,
-            },
+            user: data.user,
             token: data.accessToken,
             isAuthenticated: true,
             loading: false,
@@ -72,6 +69,21 @@ const useAuthStore = create(
           set({ error: error.message, loading: false });
           return false;
         }
+      },
+
+      // Auto-login with tokens (used after registration)
+      setTokens: (accessToken, refreshToken, user) => {
+        const isSecure = window.location.protocol === 'https:';
+        const cookieOpts = { expires: 1, sameSite: 'Strict', ...(isSecure && { secure: true }) };
+        const refreshCookieOpts = { expires: 7, sameSite: 'Strict', ...(isSecure && { secure: true }) };
+        Cookies.set('token', accessToken, cookieOpts);
+        Cookies.set('refreshToken', refreshToken, refreshCookieOpts);
+
+        set({
+          user,
+          token: accessToken,
+          isAuthenticated: true,
+        });
       },
 
       // Register

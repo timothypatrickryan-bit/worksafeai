@@ -10,103 +10,141 @@ const { registerSchema, loginSchema, acceptInviteSchema } = require('../validati
 const { verifyEmailSchema, forgotPasswordSchema, resetPasswordSchema, changePasswordSchema } = require('../validation/email-schemas');
 const emailService = require('../services/emailService');
 
-// POST /api/auth/register
-router.post('/register', validateBody(registerSchema), async (req, res) => {
+// POST /api/auth/register - Simplified registration
+router.post('/register', async (req, res) => {
   try {
+    const { email, password, fullName, companyName } = req.body;
     const supabase = req.app.locals.supabase;
-    const result = await authService.register(supabase, req.validatedBody);
-    const auditService = require('../services/auditService');
-    
-    // Generate email verification token (7-day expiry)
-    const verificationToken = crypto.randomBytes(32).toString('hex');
-    const tokenHash = await bcrypt.hash(verificationToken, 10);
-    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+    const { v4: uuidv4 } = require('uuid');
 
-    // Store verification token
-    await supabase
-      .from('email_verification_tokens')
+    // Validate required fields
+    if (!email || !password || !fullName || !companyName) {
+      return res.status(400).json({ error: 'All fields required' });
+    }
+
+    if (password.length < 12) {
+      return res.status(400).json({ error: 'Password must be at least 12 characters' });
+    }
+
+    // Check if email already exists
+    const { data: existingUser } = await supabase
+      .from('users')
+      .select('id')
+      .eq('email', email)
+      .single();
+
+    if (existingUser) {
+      return res.status(409).json({ error: 'Email already exists' });
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 12);
+
+    // Create company
+    const companyId = uuidv4();
+    const { error: companyError } = await supabase
+      .from('companies')
       .insert({
-        user_id: result.user.id,
-        token_hash: tokenHash,
-        expires_at: expiresAt,
+        id: companyId,
+        name: companyName,
+        subscription_tier: 'starter',
+        subscription_status: 'trialing',
+        trial_ends_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       });
 
-    // Log registration audit event
-    await auditService.logAction(supabase, {
-      companyId: result.user.companyId,
-      userId: result.user.id,
-      action: 'user_registered',
-      resourceType: 'user',
-      resourceId: result.user.id,
-      dataChanged: { email: result.user.email },
-      ipAddress: auditService.getClientIp(req),
+    if (companyError) throw companyError;
+
+    // Create user
+    const userId = uuidv4();
+    const { error: userError } = await supabase
+      .from('users')
+      .insert({
+        id: userId,
+        email,
+        password_hash: hashedPassword,
+        full_name: fullName,
+        company_id: companyId,
+        role: 'owner',
+        is_active: true,
+        email_verified: true,
+        language: 'en',
+      });
+
+    if (userError) throw userError;
+
+    // Generate JWT tokens
+    const accessToken = jwt.sign(
+      { id: userId, email, fullName, companyId, role: 'owner' },
+      process.env.JWT_SECRET,
+      { algorithm: 'HS256', expiresIn: '1h' }
+    );
+
+    const refreshToken = jwt.sign(
+      { id: userId, email },
+      process.env.JWT_SECRET + '_refresh',
+      { algorithm: 'HS256', expiresIn: '7d' }
+    );
+
+    res.status(201).json({
+      message: 'Registration successful',
+      accessToken,
+      refreshToken,
+      user: { id: userId, email, fullName, companyId, role: 'owner' },
     });
-
-    // Send verification email asynchronously
-    emailService.sendVerificationEmail({
-      recipientEmail: result.user.email,
-      recipientName: result.user.fullName,
-      verificationLink: `${process.env.APP_URL || 'https://app.jtsa-tool.com'}/verify-email?user_id=${result.user.id}&token=${verificationToken}`,
-    }).catch(err => {
-      console.error(`Failed to send verification email to ${result.user.email}:`, err.message);
-    });
-
-    // Response depends on environment:
-    // - Development: Return tokens immediately for testing
-    // - Production: Require email verification before login
-    const isDevelopment = process.env.NODE_ENV === 'development';
-    const response = {
-      message: isDevelopment
-        ? 'Registration successful. Email verification required for production use.'
-        : 'Registration successful. Please check your email to verify your account before logging in.',
-      user: result.user,
-    };
-
-    // In development, return tokens immediately for testing
-    if (isDevelopment) {
-      response.accessToken = result.accessToken;
-      response.refreshToken = result.refreshToken;
-    }
-
-    const statusCode = isDevelopment ? 200 : 201;
-    res.status(statusCode).json(response);
   } catch (error) {
-    console.error('Registration error:', error.message, error.code, error.details, error.hint);
-    // Don't expose detailed error messages for security
-    const message = error.message?.includes('Email already exists')
-      ? 'Email already exists'
-      : 'Registration failed. Please try again.';
-    // Only include debug info in development
-    const response = { error: message };
-    if (process.env.NODE_ENV === 'development') {
-      response._debug = error.message;
-      response._code = error.code;
-    }
-    res.status(400).json(response);
+    console.error('Registration error:', error.message);
+    res.status(500).json({ error: 'Registration failed. Please try again.' });
   }
 });
 
-// POST /api/auth/login
-router.post('/login', validateBody(loginSchema), async (req, res) => {
+// POST /api/auth/login - Simplified login
+router.post('/login', async (req, res) => {
   try {
+    const { email, password } = req.body;
     const supabase = req.app.locals.supabase;
-    const result = await authService.login(supabase, req.validatedBody);
-    res.json(result);
-  } catch (error) {
-    const auditService = require('../services/auditService');
-    // Log failed login attempt (without exposing which field failed)
-    const clientIp = auditService.getClientIp(req);
-    console.warn(`Failed login attempt from IP: ${clientIp} for email: ${req.validatedBody.email || 'unknown'}`);
 
-    // Map internal error messages to safe client-facing messages.
-    // Avoid exposing account existence or disabled status (user enumeration).
-    const msg = error.message || '';
-    if (msg.includes('verify your email')) {
-      // This UX message is intentionally surfaced so users know to check their inbox.
-      return res.status(401).json({ error: 'Please verify your email before logging in' });
+    if (!email || !password) {
+      return res.status(400).json({ error: 'Email and password required' });
     }
-    // All other failures (wrong password, disabled account, not found) → generic message
-    res.status(401).json({ error: 'Invalid email or password' });
+
+    // Get user
+    const { data: user, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', email)
+      .single();
+
+    if (error || !user) {
+      return res.status(401).json({ error: 'Invalid email or password' });
+    }
+
+    // Check password
+    const passwordMatch = await bcrypt.compare(password, user.password_hash);
+    if (!passwordMatch) {
+      return res.status(401).json({ error: 'Invalid email or password' });
+    }
+
+    // Generate tokens
+    const accessToken = jwt.sign(
+      { id: user.id, email: user.email, fullName: user.full_name, companyId: user.company_id, role: user.role },
+      process.env.JWT_SECRET,
+      { algorithm: 'HS256', expiresIn: '1h' }
+    );
+
+    const refreshToken = jwt.sign(
+      { id: user.id, email: user.email },
+      process.env.JWT_SECRET + '_refresh',
+      { algorithm: 'HS256', expiresIn: '7d' }
+    );
+
+    res.json({
+      accessToken,
+      refreshToken,
+      user: { id: user.id, email: user.email, fullName: user.full_name, companyId: user.company_id, role: user.role },
+    });
+  } catch (error) {
+    console.error('Login error:', error.message);
+    res.status(500).json({ error: 'Login failed' });
   }
 });
 

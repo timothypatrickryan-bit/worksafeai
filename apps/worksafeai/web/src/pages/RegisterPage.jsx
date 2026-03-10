@@ -1,24 +1,17 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import useAuthStore from '../stores/authStore';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
 
 export default function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
   const [companyName, setCompanyName] = useState('');
-  const { register, loading, error } = useAuthStore();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const { setTokens } = useAuthStore();
   const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Industry will be selected in onboarding Step 1
-    const success = await register(email, password, fullName, companyName, '');
-    if (success) {
-      navigate('/onboarding');
-    }
-  };
 
   const passwordRequirements = [
     { label: 'At least 12 characters', met: password.length >= 12 },
@@ -28,9 +21,47 @@ export default function RegisterPage() {
     { label: 'Special character (!@#$%^&*)', met: /[!@#$%^&*]/.test(password) },
   ];
 
+  const allRequirementsMet = passwordRequirements.every(r => r.met);
+  const canSubmit = email && password && fullName && companyName && allRequirementsMet;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          password,
+          fullName,
+          companyName,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || 'Registration failed');
+        return;
+      }
+
+      // Auto-login after registration
+      setTokens(data.accessToken, data.refreshToken, data.user);
+      navigate('/onboarding');
+    } catch (err) {
+      console.error('Registration error:', err);
+      setError('Registration failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-hero flex items-center justify-center overflow-hidden relative py-12 px-4">
-      {/* Animated background elements */}
+      {/* Animated background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 right-20 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl animate-float"></div>
         <div className="absolute bottom-20 left-20 w-72 h-72 bg-violet-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
@@ -38,13 +69,13 @@ export default function RegisterPage() {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-2xl">
-        {/* Logo & Brand */}
+        {/* Header */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center justify-center mb-6">
             <img 
               src="/worksafe_icon.jpg" 
               alt="WorkSafeAI" 
-              className="w-16 h-16 rounded-2xl shadow-lg animate-pulse object-cover"
+              className="w-16 h-16 rounded-2xl shadow-lg object-cover"
             />
           </div>
           <h1 className="text-4xl font-bold mb-2">
@@ -52,181 +83,157 @@ export default function RegisterPage() {
               Get Started with WorkSafeAI
             </span>
           </h1>
-          <p className="text-slate-400 text-sm">Create your account and protect your workplace with AI intelligence</p>
+          <p className="text-slate-400 text-sm">Create your account in 30 seconds</p>
         </div>
 
-        {/* Registration Form */}
+        {/* Form & Requirements */}
         <div className="grid md:grid-cols-2 gap-6">
-          {/* Form */}
-          <div className="relative rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl p-8">
-            <form className="space-y-5" onSubmit={handleSubmit}>
+          {/* Registration Form */}
+          <div className="rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl p-8">
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Error Message */}
+              {error && (
+                <div className="flex items-start gap-3 p-4 rounded-xl bg-red-500/20 border border-red-500/30">
+                  <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+                  <p className="text-sm text-red-200">{error}</p>
+                </div>
+              )}
+
               {/* Full Name */}
               <div>
-                <label htmlFor="fullName" className="block text-sm font-semibold text-slate-200 mb-2">
+                <label className="block text-sm font-semibold text-slate-200 mb-2">
                   Full Name
                 </label>
                 <input
-                  id="fullName"
                   type="text"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="John Doe"
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400/50 focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300 backdrop-blur-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400/50 focus:ring-2 focus:ring-cyan-500/20"
                 />
               </div>
 
               {/* Company Name */}
               <div>
-                <label htmlFor="companyName" className="block text-sm font-semibold text-slate-200 mb-2">
+                <label className="block text-sm font-semibold text-slate-200 mb-2">
                   Company Name
                 </label>
                 <input
-                  id="companyName"
                   type="text"
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
                   placeholder="Acme Corp"
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400/50 focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300 backdrop-blur-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400/50 focus:ring-2 focus:ring-cyan-500/20"
                 />
               </div>
 
               {/* Email */}
               <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-slate-200 mb-2">
+                <label className="block text-sm font-semibold text-slate-200 mb-2">
                   Email Address
                 </label>
                 <input
-                  id="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@company.com"
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400/50 focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300 backdrop-blur-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400/50 focus:ring-2 focus:ring-cyan-500/20"
                 />
               </div>
 
               {/* Password */}
               <div>
-                <label htmlFor="password" className="block text-sm font-semibold text-slate-200 mb-2">
+                <label className="block text-sm font-semibold text-slate-200 mb-2">
                   Password
                 </label>
                 <input
-                  id="password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400/50 focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300 backdrop-blur-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400/50 focus:ring-2 focus:ring-cyan-500/20"
                 />
               </div>
 
-              {/* Error Message */}
-              {error && (
-                <div className="p-4 rounded-xl bg-red-500/20 border border-red-500/30 text-red-200 text-sm font-medium">
-                  {error}
-                </div>
-              )}
-
-              {/* Create Account Button */}
+              {/* Submit Button */}
               <button
                 type="submit"
-                disabled={loading}
-                className="w-full relative overflow-hidden rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 py-3 px-4 font-semibold text-white transition-all duration-300 hover:shadow-depth disabled:opacity-50 disabled:cursor-not-allowed hover:from-blue-500 hover:to-cyan-400 mt-6"
+                disabled={!canSubmit || loading}
+                className={`w-full py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all duration-300 ${
+                  canSubmit && !loading
+                    ? 'bg-gradient-to-r from-blue-500 to-cyan-400 hover:shadow-lg hover:shadow-cyan-500/30 text-white'
+                    : 'bg-slate-600 text-slate-300 cursor-not-allowed'
+                }`}
               >
-                <div className="flex items-center justify-center gap-2">
-                  {loading ? (
-                    <>
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                      <span>Creating account...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>Create Account</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </>
-                  )}
-                </div>
+                {loading ? 'Creating Account...' : <>Create Account<ArrowRight className="w-4 h-4" /></>}
               </button>
 
               {/* Sign In Link */}
-              <div className="text-center">
-                <p className="text-slate-400 text-sm">
-                  Already have an account?{' '}
-                  <Link to="/login" className="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
-                    Sign in
-                  </Link>
-                </p>
-              </div>
+              <p className="text-center text-sm text-slate-400">
+                Already have an account? <Link to="/login" className="text-cyan-400 hover:text-cyan-300 font-semibold">Sign in</Link>
+              </p>
             </form>
           </div>
 
           {/* Password Requirements */}
-          <div className="relative rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl p-8 hidden md:block">
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-cyan-400" />
-                  Password Requirements
-                </h3>
-                <p className="text-slate-400 text-sm mb-6">Your password must include:</p>
-              </div>
+          <div className="rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <CheckCircle2 className="w-6 h-6 text-cyan-400" />
+              <h3 className="text-lg font-semibold text-white">Password Requirements</h3>
+            </div>
 
-              <div className="space-y-3">
-                {passwordRequirements.map((req, idx) => (
-                  <div
-                    key={idx}
-                    className={`flex items-center gap-3 p-3 rounded-lg transition-all duration-300 ${
-                      req.met
-                        ? 'bg-emerald-500/20 border border-emerald-500/30'
-                        : 'bg-white/5 border border-white/10'
-                    }`}
-                  >
-                    <div
-                      className={`w-5 h-5 rounded-full flex items-center justify-center transition-all ${
-                        req.met ? 'bg-emerald-500 text-white' : 'bg-white/20 text-white/50'
-                      }`}
-                    >
-                      {req.met ? <CheckCircle2 className="w-4 h-4" /> : '○'}
-                    </div>
-                    <span className={`text-sm font-medium ${req.met ? 'text-emerald-300' : 'text-slate-400'}`}>
-                      {req.label}
-                    </span>
+            <p className="text-sm text-slate-300 mb-4">Your password must include:</p>
+
+            <div className="space-y-3">
+              {passwordRequirements.map((req, idx) => (
+                <div key={idx} className={`flex items-center gap-3 p-3 rounded-lg transition-all ${
+                  req.met 
+                    ? 'bg-green-500/20 border border-green-500/30' 
+                    : 'bg-slate-500/20 border border-slate-500/30'
+                }`}>
+                  <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
+                    req.met ? 'bg-green-500/40' : 'bg-slate-500/40'
+                  }`}>
+                    {req.met && <CheckCircle2 className="w-4 h-4 text-green-400" />}
                   </div>
-                ))}
-              </div>
-
-              {/* Features */}
-              <div className="pt-6 border-t border-white/10">
-                <h4 className="text-sm font-bold text-white mb-4">WorkSafeAI Features:</h4>
-                <div className="space-y-2 text-sm text-slate-300">
-                  <p className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-                    AI-powered hazard intelligence
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-                    Automated risk assessment
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-                    Compliance & safety tracking
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-                    Workplace protection at scale
-                  </p>
+                  <span className={req.met ? 'text-green-300' : 'text-slate-400'}>
+                    {req.label}
+                  </span>
                 </div>
-              </div>
+              ))}
+            </div>
+
+            {/* Features */}
+            <div className="mt-8 pt-6 border-t border-white/10">
+              <h4 className="text-sm font-semibold text-white mb-4">WorkSafeAI Features:</h4>
+              <ul className="space-y-2 text-sm text-slate-300">
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></span>
+                  AI-powered hazard intelligence
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></span>
+                  Automated risk assessment
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></span>
+                  Compliance & safety tracking
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></span>
+                  Workplace protection at scale
+                </li>
+              </ul>
             </div>
           </div>
         </div>
 
         {/* Footer */}
-        <p className="text-center text-slate-400 text-xs mt-8">
+        <p className="text-center text-xs text-slate-400 mt-8">
           By creating an account, you agree to our Terms of Service and Privacy Policy
         </p>
       </div>
