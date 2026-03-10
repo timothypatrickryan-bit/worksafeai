@@ -76,8 +76,13 @@ router.post('/register', validateBody(registerSchema), async (req, res) => {
     const message = error.message?.includes('Email already exists')
       ? 'Email already exists'
       : 'Registration failed. Please try again.';
-    // Temporarily include debug info in non-production or always for now
-    res.status(400).json({ error: message, _debug: error.message, _code: error.code });
+    // Only include debug info in development
+    const response = { error: message };
+    if (process.env.NODE_ENV === 'development') {
+      response._debug = error.message;
+      response._code = error.code;
+    }
+    res.status(400).json(response);
   }
 });
 
@@ -145,11 +150,11 @@ router.post('/refresh-token', async (req, res) => {
     // Specify algorithm explicitly to prevent algorithm confusion attacks
     const decoded = jwt.verify(refreshToken, refreshSecret, { algorithms: ['HS256'] });
     
-    // Fetch fresh user data from DB
+    // Fetch fresh user data from DB (only fields needed for token generation)
     const supabase = req.app.locals.supabase;
     const { data: user, error } = await supabase
       .from('users')
-      .select('*')
+      .select('id, email, full_name, role, company_id, is_active, deleted_at, email_verified')
       .eq('id', decoded.id)
       .single();
 
@@ -192,7 +197,7 @@ router.post('/accept-invite', validateBody(acceptInviteSchema), async (req, res)
     // Fetch user (should have is_active=false)
     const { data: user, error: userError } = await supabase
       .from('users')
-      .select('*')
+      .select('id, email, full_name, role, company_id, password_hash, is_active, created_at')
       .eq('id', userId)
       .single();
 
@@ -338,7 +343,7 @@ router.post('/forgot-password', validateBody(forgotPasswordSchema), async (req, 
     // Find user
     const { data: user } = await supabase
       .from('users')
-      .select('*')
+      .select('id, email, full_name')
       .eq('email', email)
       .single();
 
@@ -470,10 +475,10 @@ router.post('/change-password', authenticateToken, validateBody(changePasswordSc
     const supabase = req.app.locals.supabase;
     const { currentPassword, newPassword } = req.validatedBody;
 
-    // Fetch user
+    // Fetch user (only password_hash needed for verification)
     const { data: user } = await supabase
       .from('users')
-      .select('*')
+      .select('id, password_hash')
       .eq('id', req.user.id)
       .single();
 

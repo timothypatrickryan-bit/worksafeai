@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import apiClient from '../api/client';
 import useAuthStore from '../stores/authStore';
-import { Plus, Users, LogOut, Loader } from 'lucide-react';
+import { Plus, Users, Trash2, Loader } from 'lucide-react';
 
 export default function AdminPage() {
   const { user } = useAuthStore();
@@ -12,6 +12,7 @@ export default function AdminPage() {
   const [showInviteForm, setShowInviteForm] = useState(false);
   const [inviteData, setInviteData] = useState({ email: '', fullName: '', role: 'employee' });
   const [submitting, setSubmitting] = useState(false);
+  const [removing, setRemoving] = useState(null);
 
   useEffect(() => {
     fetchEmployees();
@@ -45,6 +46,19 @@ export default function AdminPage() {
       setError(err.response?.data?.error || 'Failed to invite employee');
     } finally {
       setSubmitting(false);
+    }
+  };
+
+  const handleRemoveEmployee = async (employeeId) => {
+    if (!window.confirm('Are you sure you want to remove this employee?')) return;
+    setRemoving(employeeId);
+    try {
+      await apiClient.delete(`/companies/${user.companyId}/users/${employeeId}`);
+      await fetchEmployees();
+    } catch (err) {
+      setError(err.response?.data?.error || 'Failed to remove employee');
+    } finally {
+      setRemoving(null);
     }
   };
 
@@ -203,9 +217,20 @@ export default function AdminPage() {
                         </span>
                       </td>
                       <td className="py-3 px-4">
-                        <button className="text-red-600 hover:text-red-700 font-medium text-sm">
-                          Remove
-                        </button>
+                        {emp.id !== user.id && (
+                          <button
+                            onClick={() => handleRemoveEmployee(emp.id)}
+                            disabled={removing === emp.id}
+                            className="text-red-600 hover:text-red-700 font-medium text-sm flex items-center gap-1 disabled:opacity-50"
+                          >
+                            {removing === emp.id ? (
+                              <Loader className="w-3 h-3 animate-spin" />
+                            ) : (
+                              <Trash2 className="w-3 h-3" />
+                            )}
+                            Remove
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))}

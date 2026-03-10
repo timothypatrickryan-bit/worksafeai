@@ -8,10 +8,15 @@ if (!API_BASE_URL) {
   // In production, derive API URL from current domain
   if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
     // Production: worksafeai.elevationaiwork.com → worksafeai-api.elevationaiwork.com
+    // Also handles: superadmin.elevationaiwork.com → worksafeai-api.elevationaiwork.com
     const domain = window.location.hostname;
-    const apiDomain = domain.replace('worksafeai.', 'worksafeai-api.');
-    const apiDomain2 = domain.replace('superadmin.', 'worksafeai-api.');
-    API_BASE_URL = `${window.location.protocol}//${apiDomain || apiDomain2}/api`;
+    let apiDomain = domain;
+    if (domain.startsWith('worksafeai.')) {
+      apiDomain = domain.replace('worksafeai.', 'worksafeai-api.');
+    } else if (domain.startsWith('superadmin.')) {
+      apiDomain = domain.replace('superadmin.', 'worksafeai-api.');
+    }
+    API_BASE_URL = `${window.location.protocol}//${apiDomain}/api`;
   } else {
     // Development: use localhost
     API_BASE_URL = 'http://localhost:3000/api';

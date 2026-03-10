@@ -23,20 +23,23 @@ try {
   console.error(e.stack);
 }
 
-// If boot failed, export a diagnostic handler
+// If boot failed, export a diagnostic handler and skip the rest
 if (bootError) {
   const fallbackExpress = require('express');
   const fallbackApp = fallbackExpress();
   fallbackApp.use((req, res) => {
-    res.status(503).json({
+    // Don't expose stack traces in production
+    const response = {
       error: 'Server failed to start',
-      message: bootError.message,
-      stack: bootError.stack,
-    });
+      message: process.env.NODE_ENV === 'production' ? 'Internal server error' : bootError.message,
+    };
+    if (process.env.NODE_ENV !== 'production') {
+      response.stack = bootError.stack;
+    }
+    res.status(503).json(response);
   });
   module.exports = fallbackApp;
-  return; // This won't work at top level in CJS, need to wrap differently
-}
+} else {
 
 // Initialize app
 const app = express();
@@ -112,6 +115,8 @@ const tokenLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
 });
+app.use('/api/auth/register', authLimiter);
+app.use('/auth/register', authLimiter);
 app.use('/api/auth/login', authLimiter);
 app.use('/auth/login', authLimiter);
 app.use('/api/auth/accept-invite', authLimiter);
@@ -123,13 +128,14 @@ app.use('/auth/verify-email', tokenLimiter);
 app.use('/api/auth/reset-password', tokenLimiter);
 app.use('/auth/reset-password', tokenLimiter);
 
-// Email invite rate limiting (prevent spam)
+// Email invite rate limiting (prevent spam) — POST only
 const inviteLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
   max: 20, // Limit each IP to 20 invites per hour
   message: 'Too many invites sent, please try again later',
   standardHeaders: true,
   legacyHeaders: false,
+  skip: (req) => req.method !== 'POST',
 });
 app.use('/api/companies/:id/users', inviteLimiter);
 app.use('/companies/:id/users', inviteLimiter);
@@ -249,28 +255,30 @@ app.use('/pdfs', pdfsRoutes);
 // Health checks
 app.use('/health', require('./routes/health'));
 
-// Diagnostic endpoint - test POST processing
-app.post('/diag/test-post', async (req, res) => {
-  const steps = [];
-  try {
-    steps.push('body_parsed: ' + JSON.stringify(req.body));
+// Diagnostic endpoint - development only (exposes internal state)
+if (process.env.NODE_ENV === 'development') {
+  app.post('/diag/test-post', async (req, res) => {
+    const steps = [];
+    try {
+      steps.push('body_parsed: ' + JSON.stringify(req.body));
 
-    // Test Supabase
-    const { data, error } = await req.app.locals.supabase
-      .from('companies').select('id').limit(1);
-    steps.push('supabase: ' + (error ? 'ERROR ' + error.message : 'OK'));
+      // Test Supabase
+      const { data, error } = await req.app.locals.supabase
+        .from('companies').select('id').limit(1);
+      steps.push('supabase: ' + (error ? 'ERROR ' + error.message : 'OK'));
 
-    // Test bcryptjs
-    const bcryptjs = require('bcryptjs');
-    const hash = await bcryptjs.hash('test', 4); // minimal rounds
-    steps.push('bcryptjs: OK hash=' + hash.substring(0, 10));
+      // Test bcryptjs
+      const bcryptjs = require('bcryptjs');
+      const hash = await bcryptjs.hash('test', 4); // minimal rounds
+      steps.push('bcryptjs: OK hash=' + hash.substring(0, 10));
 
-    res.json({ ok: true, steps });
-  } catch (e) {
-    steps.push('ERROR: ' + e.message);
-    res.status(500).json({ ok: false, steps, error: e.message });
-  }
-});
+      res.json({ ok: true, steps });
+    } catch (e) {
+      steps.push('ERROR: ' + e.message);
+      res.status(500).json({ ok: false, steps, error: e.message });
+    }
+  });
+}
 
 // 404 handler
 app.use((req, res) => {
@@ -364,3 +372,4 @@ process.on('unhandledRejection', (reason, promise) => {
 });
 
 module.exports = app;
+} // end if (!bootError)

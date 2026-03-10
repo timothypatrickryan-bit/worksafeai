@@ -158,6 +158,68 @@ router.post('/:id/users', authenticateToken, authorizeRole(['owner', 'admin']), 
   }
 });
 
+// DELETE /api/companies/:id/users/:userId - soft-delete employee
+router.delete('/:id/users/:userId', authenticateToken, authorizeRole(['owner', 'admin']), verifyCompanyAccess, async (req, res, next) => {
+  try {
+    const supabase = req.app.locals.supabase;
+    const companyId = req.params.id;
+    const targetUserId = req.params.userId;
+
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(targetUserId)) {
+      return res.status(400).json({ error: 'Invalid user ID format' });
+    }
+
+    // Prevent self-deletion
+    if (targetUserId === req.user.id) {
+      return res.status(400).json({ error: 'Cannot remove yourself' });
+    }
+
+    // Verify target user belongs to this company
+    const { data: targetUser, error: fetchError } = await supabase
+      .from('users')
+      .select('id, role, company_id')
+      .eq('id', targetUserId)
+      .eq('company_id', companyId)
+      .single();
+
+    if (fetchError || !targetUser) {
+      return res.status(404).json({ error: 'User not found in this company' });
+    }
+
+    // Prevent removing the owner
+    if (targetUser.role === 'owner') {
+      return res.status(403).json({ error: 'Cannot remove the company owner' });
+    }
+
+    // Soft delete the user
+    const { error: updateError } = await supabase
+      .from('users')
+      .update({
+        is_active: false,
+        deleted_at: new Date(),
+        updated_at: new Date(),
+      })
+      .eq('id', targetUserId);
+
+    if (updateError) throw updateError;
+
+    // Audit log
+    const auditService = require('../services/auditService');
+    await auditService.logAction(supabase, {
+      companyId,
+      userId: req.user.id,
+      action: 'user_removed',
+      resourceType: 'user',
+      resourceId: targetUserId,
+    });
+
+    res.json({ message: 'User removed successfully' });
+  } catch (error) {
+    next(error);
+  }
+});
+
 // GET /api/companies/:id/users
 router.get('/:id/users', authenticateToken, authorizeRole(['owner', 'admin']), verifyCompanyAccess, async (req, res, next) => {
   try {
@@ -171,9 +233,8 @@ router.get('/:id/users', authenticateToken, authorizeRole(['owner', 'admin']), v
 
     const { data: users, error: usersError } = await supabase
       .from('users')
-      .select('id, email, full_name, role, is_active, created_at')
+      .select('id, email, full_name, role, is_active, email_verified, created_at')
       .eq('company_id', req.params.id)
-      .eq('is_active', true)
       .is('deleted_at', null);
 
     if (usersError) throw usersError;

@@ -34,19 +34,11 @@ router.post('/companies/:cid/onboarding',
       }
 
       // Save company profile and industry
-      // Note: company_profile and onboarding_completed columns may not exist if migrations haven't been applied
       const updateData = {
         industry: req.validatedBody.industry,
+        company_profile: req.validatedBody,
+        onboarding_completed: true,
       };
-      
-      // Try to add optional fields if columns exist
-      try {
-        updateData.company_profile = req.validatedBody;
-        updateData.onboarding_completed = true;
-      } catch (e) {
-        // Columns may not exist yet, that's okay
-        console.warn('Note: company_profile/onboarding_completed columns may not exist yet');
-      }
 
       let { error } = await supabase
         .from('companies')

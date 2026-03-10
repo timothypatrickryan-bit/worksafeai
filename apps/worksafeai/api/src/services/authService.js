@@ -124,7 +124,7 @@ const login = async (supabase, data) => {
   // Find user (case-insensitive to match registration check)
   const { data: user, error } = await supabase
     .from('users')
-    .select('*')
+    .select('id, email, full_name, role, company_id, password_hash, is_active, deleted_at, email_verified')
     .ilike('email', validated.email)
     .single();
 

@@ -49,8 +49,8 @@ export default function DashboardPage() {
     },
     {
       icon: FolderOpen,
-      label: 'Total Projects',
-      value: stats?.totalProjects || 0,
+      label: 'Total JTSAs',
+      value: stats?.totalJtsas || 0,
       gradient: 'from-emerald-500 to-teal-500',
       accentColor: 'text-emerald-400',
     },
@@ -76,7 +76,7 @@ export default function DashboardPage() {
         {/* Header */}
         <div>
           <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-100 to-slate-300 bg-clip-text text-transparent mb-2">
-            Welcome back, {user?.fullName?.split(' ')[0]}
+            Welcome back{user?.fullName ? `, ${user.fullName.split(' ')[0]}` : ''}
           </h1>
           <p className="text-slate-400">Your workplace safety intelligence dashboard</p>
         </div>
@@ -159,9 +159,9 @@ export default function DashboardPage() {
                 </div>
                 <div>
                   <p className="text-4xl font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
-                    {stats?.totalProjects || 0}
+                    {stats?.totalJtsas || 0}
                   </p>
-                  <p className="text-slate-400 text-sm mt-1">Active Projects</p>
+                  <p className="text-slate-400 text-sm mt-1">Total JTSAs</p>
                 </div>
                 <div>
                   <p className="text-4xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">

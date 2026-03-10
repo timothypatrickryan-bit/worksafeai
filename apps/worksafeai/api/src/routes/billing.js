@@ -33,10 +33,9 @@ router.post('/subscribe',
       }
 
       // Get company
-      // Note: Don't select stripe columns here as they may not exist until migrations are applied
       const { data: company, error: companyError } = await supabase
         .from('companies')
-        .select('*')
+        .select('id, name, stripe_customer_id, stripe_subscription_id, subscription_tier')
         .eq('id', companyId)
         .single();
 
@@ -124,7 +123,7 @@ router.post('/change-tier',
       // Get subscription
       const { data: company, error } = await supabase
         .from('companies')
-        .select('*')
+        .select('id, stripe_subscription_id, subscription_tier')
         .eq('id', companyId)
         .single();
 
@@ -189,7 +188,7 @@ router.get('/status',
 
       const { data: company, error } = await supabase
         .from('companies')
-        .select('*')
+        .select('id, subscription_tier, subscription_status, billing_period_end, stripe_subscription_id')
         .eq('id', companyId)
         .single();
 
@@ -246,7 +245,7 @@ router.post('/cancel',
 
       const { data: company, error } = await supabase
         .from('companies')
-        .select('*')
+        .select('id, stripe_subscription_id')
         .eq('id', companyId)
         .single();
 

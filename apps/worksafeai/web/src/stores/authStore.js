@@ -128,34 +128,47 @@ const useAuthStore = create(
 
       // Initialize auth from persisted state or cookies
       initializeAuth: () => {
-        // First try to get from current state (persist middleware restores this)
-        const currentState = get();
-        if (currentState.token && currentState.isAuthenticated && currentState.user) {
-          // Already restored from localStorage by persist middleware
+        const token = Cookies.get('token');
+        
+        if (!token) {
+          // No cookie token — clear any stale persisted state
+          set({ token: null, isAuthenticated: false, user: null });
           return;
         }
 
-        // Fallback: check cookies
-        const token = Cookies.get('token');
-        if (token) {
-          try {
-            // Decode JWT to extract user data (without verification, just to get payload)
-            const payload = JSON.parse(atob(token.split('.')[1]));
-            set({
-              token,
-              isAuthenticated: true,
-              user: {
-                id: payload.id,
-                email: payload.email,
-                role: payload.role,
-                companyId: payload.companyId,
-              },
-            });
-          } catch (error) {
-            // Invalid token, clear it
+        // Cookie exists — check if persisted user state is still valid
+        const currentState = get();
+        if (currentState.isAuthenticated && currentState.user) {
+          // Restore token into state from cookie (token is not persisted to localStorage)
+          set({ token });
+          return;
+        }
+
+        // Fallback: decode JWT to extract user data
+        try {
+          const payload = JSON.parse(atob(token.split('.')[1]));
+          
+          // Check token expiry
+          if (payload.exp && payload.exp * 1000 < Date.now()) {
             Cookies.remove('token');
             set({ token: null, isAuthenticated: false, user: null });
+            return;
           }
+          
+          set({
+            token,
+            isAuthenticated: true,
+            user: {
+              id: payload.id,
+              role: payload.role,
+              companyId: payload.companyId,
+            },
+          });
+        } catch (error) {
+          // Invalid token, clear it
+          Cookies.remove('token');
+          Cookies.remove('refreshToken');
+          set({ token: null, isAuthenticated: false, user: null });
         }
       },
       
