@@ -158,7 +158,7 @@ const validateEnv = () => {
 };
 
 /**
- * Exit if validation fails
+ * Throw if validation fails (safe for serverless — never process.exit)
  */
 const assertEnv = () => {
   const { errors, warnings } = validateEnv();
@@ -166,12 +166,11 @@ const assertEnv = () => {
   // Print warnings
   warnings.forEach(w => console.warn(`${w}`));
 
-  // Exit on errors
+  // Throw on errors (don't process.exit — kills serverless cold starts)
   if (errors.length > 0) {
-    console.error('\n❌ Environment Validation Failed:\n');
-    errors.forEach(e => console.error(`  - ${e}`));
-    console.error('\nPlease check your .env file and try again.\n');
-    process.exit(1);
+    const msg = `Environment Validation Failed:\n${errors.map(e => `  - ${e}`).join('\n')}`;
+    console.error(`\n❌ ${msg}\n`);
+    throw new Error(msg);
   }
 
   console.log('✓ Environment validation passed');

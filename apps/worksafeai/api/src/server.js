@@ -33,26 +33,23 @@ app.use(structuredLogger);
 
 // Webhook endpoint must be registered BEFORE body parsing middleware
 // This is because Stripe webhooks require raw body for signature verification
-app.post('/api/billing/webhook',
-  express.raw({ type: 'application/json' }),
-  async (req, res) => {
-    const stripeService = require('./services/stripeService');
-    const signature = req.headers['stripe-signature'];
+const webhookMiddleware = express.raw({ type: 'application/json' });
+const webhookHandler = async (req, res) => {
+  const stripeService = require('./services/stripeService');
+  const signature = req.headers['stripe-signature'];
 
-    try {
-      const event = stripeService.verifyWebhookSignature(req.body, signature);
-      const supabase = app.locals.supabase;
-
-      // Handle event
-      await stripeService.handleWebhookEvent(event, supabase);
-
-      res.json({ received: true });
-    } catch (error) {
-      console.error('Webhook error:', error);
-      res.status(400).json({ error: error.message });
-    }
+  try {
+    const event = stripeService.verifyWebhookSignature(req.body, signature);
+    const supabase = app.locals.supabase;
+    await stripeService.handleWebhookEvent(event, supabase);
+    res.json({ received: true });
+  } catch (error) {
+    console.error('Webhook error:', error);
+    res.status(400).json({ error: error.message });
   }
-);
+};
+app.post('/api/billing/webhook', webhookMiddleware, webhookHandler);
+app.post('/billing/webhook', webhookMiddleware, webhookHandler);
 
 // Parse JSON bodies for all other routes (limit body size to prevent DoS)
 app.use(express.json({ limit: '1mb' }));
@@ -68,8 +65,10 @@ const aiLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
 });
-app.use('/api/projects/:pid/jtsa', aiLimiter); // JTSA creation (generates hazards)
-app.use('/api/hazards/:id/mitigations', aiLimiter); // Mitigation creation (AI review)
+app.use('/api/projects/:pid/jtsa', aiLimiter);
+app.use('/projects/:pid/jtsa', aiLimiter);
+app.use('/api/hazards/:id/mitigations', aiLimiter);
+app.use('/hazards/:id/mitigations', aiLimiter);
 
 // Auth endpoints rate limiting (prevent brute force)
 const authLimiter = rateLimit({
@@ -87,10 +86,15 @@ const tokenLimiter = rateLimit({
   legacyHeaders: false,
 });
 app.use('/api/auth/login', authLimiter);
+app.use('/auth/login', authLimiter);
 app.use('/api/auth/accept-invite', authLimiter);
+app.use('/auth/accept-invite', authLimiter);
 app.use('/api/auth/refresh-token', tokenLimiter);
+app.use('/auth/refresh-token', tokenLimiter);
 app.use('/api/auth/verify-email', tokenLimiter);
+app.use('/auth/verify-email', tokenLimiter);
 app.use('/api/auth/reset-password', tokenLimiter);
+app.use('/auth/reset-password', tokenLimiter);
 
 // Email invite rate limiting (prevent spam)
 const inviteLimiter = rateLimit({
@@ -101,6 +105,7 @@ const inviteLimiter = rateLimit({
   legacyHeaders: false,
 });
 app.use('/api/companies/:id/users', inviteLimiter);
+app.use('/companies/:id/users', inviteLimiter);
 
 // Data enumeration rate limiting (prevent reconnaissance attacks)
 const enumerationLimiter = rateLimit({
@@ -118,7 +123,9 @@ const enumerationLimiter = rateLimit({
   },
 });
 app.use('/api/companies', enumerationLimiter);
+app.use('/companies', enumerationLimiter);
 app.use('/api/projects', enumerationLimiter);
+app.use('/projects', enumerationLimiter);
 
 // Password reset rate limiting (prevent email enumeration)
 const forgotPasswordLimiter = rateLimit({
@@ -129,6 +136,7 @@ const forgotPasswordLimiter = rateLimit({
   legacyHeaders: false,
 });
 app.use('/api/auth/forgot-password', forgotPasswordLimiter);
+app.use('/auth/forgot-password', forgotPasswordLimiter);
 
 // CSRF/Origin validation middleware
 const validateOrigin = (req, res, next) => {
@@ -172,21 +180,44 @@ const supabase = createClient(
 // Make Supabase available to routes
 app.locals.supabase = supabase;
 
-// Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/companies', require('./routes/companies'));
-app.use('/api', require('./routes/company'));
-app.use('/api', require('./routes/projects'));
-app.use('/api', require('./routes/jtsa'));
-app.use('/api', require('./routes/hazards'));
-app.use('/api', require('./routes/mitigations'));
-app.use('/api', require('./routes/dashboard'));
-app.use('/api/billing', require('./routes/billing'));
-app.use('/api', require('./routes/admin-migrations'));
+// Routes — mounted at both /api/* (legacy) and /* (production Vercel routing)
+const authRoutes = require('./routes/auth');
+const companiesRoutes = require('./routes/companies');
+const companyRoutes = require('./routes/company');
+const projectsRoutes = require('./routes/projects');
+const jtsaRoutes = require('./routes/jtsa');
+const hazardsRoutes = require('./routes/hazards');
+const mitigationsRoutes = require('./routes/mitigations');
+const dashboardRoutes = require('./routes/dashboard');
+const billingRoutes = require('./routes/billing');
+const adminMigrationsRoutes = require('./routes/admin-migrations');
+const pdfsRoutes = require('./routes/pdfs');
 
-// Protected PDF download (not static)
-// Use: GET /api/pdfs/:jtsa_id (authenticateToken verifies access)
-app.use('/api/pdfs', require('./routes/pdfs'));
+// Mount at /api/* (for local dev / direct calls)
+app.use('/api/auth', authRoutes);
+app.use('/api/companies', companiesRoutes);
+app.use('/api', companyRoutes);
+app.use('/api', projectsRoutes);
+app.use('/api', jtsaRoutes);
+app.use('/api', hazardsRoutes);
+app.use('/api', mitigationsRoutes);
+app.use('/api', dashboardRoutes);
+app.use('/api/billing', billingRoutes);
+app.use('/api', adminMigrationsRoutes);
+app.use('/api/pdfs', pdfsRoutes);
+
+// Mount at /* (Vercel serverless — frontend calls /auth/register, not /api/auth/register)
+app.use('/auth', authRoutes);
+app.use('/companies', companiesRoutes);
+app.use('/', companyRoutes);
+app.use('/', projectsRoutes);
+app.use('/', jtsaRoutes);
+app.use('/', hazardsRoutes);
+app.use('/', mitigationsRoutes);
+app.use('/', dashboardRoutes);
+app.use('/billing', billingRoutes);
+app.use('/', adminMigrationsRoutes);
+app.use('/pdfs', pdfsRoutes);
 
 // Health checks
 app.use('/health', require('./routes/health'));
