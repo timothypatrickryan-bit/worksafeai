@@ -2,6 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
+const { v4: uuidv4 } = require('uuid');
 const router = express.Router();
 const authService = require('../services/authService');
 const { authenticateToken } = require('../middleware/auth');
@@ -15,7 +16,6 @@ router.post('/register', async (req, res) => {
   try {
     const { email, password, fullName, companyName } = req.body;
     const supabase = req.app.locals.supabase;
-    const { v4: uuidv4 } = require('uuid');
 
     // Validate required fields
     if (!email || !password || !fullName || !companyName) {
