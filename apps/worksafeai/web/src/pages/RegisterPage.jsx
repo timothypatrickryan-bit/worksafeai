@@ -10,6 +10,7 @@ export default function RegisterPage() {
   const [companyName, setCompanyName] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
   const { setTokens } = useAuthStore();
   const navigate = useNavigate();
 
@@ -48,9 +49,21 @@ export default function RegisterPage() {
         return;
       }
 
-      // Auto-login after registration
-      setTokens(data.accessToken, data.refreshToken, data.user);
-      navigate('/onboarding');
+      // CRITICAL: Don't auto-login - user must verify email first
+      if (data.requiresEmailVerification) {
+        setSuccess(true);
+        // Redirect to login page after 3 seconds
+        setTimeout(() => {
+          navigate('/login');
+        }, 3000);
+        return;
+      }
+
+      // If email verification is skipped (dev mode), auto-login
+      if (data.accessToken && data.user) {
+        setTokens(data.accessToken, data.refreshToken, data.user);
+        navigate('/onboarding');
+      }
     } catch (err) {
       console.error('Registration error:', err);
       setError('Registration failed. Please try again.');
@@ -90,12 +103,28 @@ export default function RegisterPage() {
         <div className="grid md:grid-cols-2 gap-6">
           {/* Registration Form */}
           <div className="rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl p-8">
+            {success ? (
+              <div className="text-center py-12">
+                <CheckCircle2 className="w-16 h-16 text-green-400 mx-auto mb-4" />
+                <h2 className="text-2xl font-bold text-white mb-2">Check Your Email</h2>
+                <p className="text-slate-300 mb-4">We've sent a verification link to <strong>{email}</strong></p>
+                <p className="text-sm text-slate-400">Redirecting to login...</p>
+              </div>
+            ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* Error Message */}
               {error && (
                 <div className="flex items-start gap-3 p-4 rounded-xl bg-red-500/20 border border-red-500/30">
                   <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
                   <p className="text-sm text-red-200">{error}</p>
+                </div>
+              )}
+
+              {/* Success Message */}
+              {success && (
+                <div className="flex items-start gap-3 p-4 rounded-xl bg-green-500/20 border border-green-500/30">
+                  <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                  <p className="text-sm text-green-200">Registration successful! Check your email to verify your account.</p>
                 </div>
               )}
 
@@ -177,6 +206,7 @@ export default function RegisterPage() {
                 Already have an account? <Link to="/login" className="text-cyan-400 hover:text-cyan-300 font-semibold">Sign in</Link>
               </p>
             </form>
+            )}
           </div>
 
           {/* Password Requirements */}

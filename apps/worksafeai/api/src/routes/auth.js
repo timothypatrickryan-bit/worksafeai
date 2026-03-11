@@ -22,8 +22,18 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ error: 'All fields required' });
     }
 
-    if (password.length < 12) {
-      return res.status(400).json({ error: 'Password must be at least 12 characters' });
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: 'Invalid email format' });
+    }
+
+    // CRITICAL: Enforce password requirements on backend
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{12,}$/;
+    if (!passwordRegex.test(password)) {
+      return res.status(400).json({ 
+        error: 'Password must be at least 12 characters with uppercase, lowercase, number, and special character' 
+      });
     }
 
     // Check if email already exists
@@ -34,7 +44,7 @@ router.post('/register', async (req, res) => {
       .single();
 
     if (existingUser) {
-      return res.status(409).json({ error: 'Email already exists' });
+      return res.status(409).json({ error: 'Email already registered' });
     }
 
     // Hash password
@@ -54,7 +64,7 @@ router.post('/register', async (req, res) => {
 
     if (companyError) throw companyError;
 
-    // Create user
+    // Create user - CRITICAL: Set email_verified to false
     const userId = uuidv4();
     const { error: userError } = await supabase
       .from('users')
@@ -66,30 +76,25 @@ router.post('/register', async (req, res) => {
         company_id: companyId,
         role: 'owner',
         is_active: true,
-        email_verified: true,
+        email_verified: false, // Require verification
         language: 'en',
       });
 
     if (userError) throw userError;
 
-    // Generate JWT tokens
-    const accessToken = jwt.sign(
-      { id: userId, email, fullName, companyId, role: 'owner' },
-      process.env.JWT_SECRET,
-      { algorithm: 'HS256', expiresIn: '1h' }
-    );
+    // Send verification email
+    emailService.sendVerificationEmail({
+      recipientEmail: email,
+      recipientName: fullName,
+      verificationLink: `${process.env.APP_URL}/verify-email?user_id=${userId}&token=placeholder`,
+    }).catch(err => {
+      console.error(`Failed to send verification email to ${email}:`, err.message);
+    });
 
-    const refreshToken = jwt.sign(
-      { id: userId, email },
-      process.env.JWT_SECRET + '_refresh',
-      { algorithm: 'HS256', expiresIn: '7d' }
-    );
-
+    // Return success message - user must verify email before login
     res.status(201).json({
-      message: 'Registration successful',
-      accessToken,
-      refreshToken,
-      user: { id: userId, email, fullName, companyId, role: 'owner' },
+      message: 'Registration successful. Please check your email to verify your account.',
+      requiresEmailVerification: true,
     });
   } catch (error) {
     console.error('Registration error:', error.message);
@@ -114,26 +119,39 @@ router.post('/login', async (req, res) => {
       .eq('email', email)
       .single();
 
-    if (error || !user) {
+    // CRITICAL: Check password validity first to prevent email enumeration
+    let passwordMatch = false;
+    if (user && user.password_hash) {
+      passwordMatch = await bcrypt.compare(password, user.password_hash);
+    }
+
+    // Return generic error (don't reveal if user exists)
+    if (error || !user || !passwordMatch) {
       return res.status(401).json({ error: 'Invalid email or password' });
     }
 
-    // Check password
-    const passwordMatch = await bcrypt.compare(password, user.password_hash);
-    if (!passwordMatch) {
-      return res.status(401).json({ error: 'Invalid email or password' });
+    // CRITICAL: Check user account status before allowing login
+    if (!user.is_active) {
+      return res.status(401).json({ error: 'Account is disabled' });
     }
 
-    // Generate tokens
+    // Check if email is verified (unless in development)
+    if (process.env.NODE_ENV !== 'development' && !user.email_verified) {
+      return res.status(401).json({ error: 'Please verify your email before logging in' });
+    }
+
+    // Generate tokens using proper secrets
     const accessToken = jwt.sign(
       { id: user.id, email: user.email, fullName: user.full_name, companyId: user.company_id, role: user.role },
       process.env.JWT_SECRET,
       { algorithm: 'HS256', expiresIn: '1h' }
     );
 
+    // CRITICAL: Use proper refresh secret (not concatenation)
+    const refreshSecret = process.env.JWT_REFRESH_SECRET || process.env.JWT_SECRET;
     const refreshToken = jwt.sign(
       { id: user.id, email: user.email },
-      process.env.JWT_SECRET + '_refresh',
+      refreshSecret,
       { algorithm: 'HS256', expiresIn: '7d' }
     );
 
