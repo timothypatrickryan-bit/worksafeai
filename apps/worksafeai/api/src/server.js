@@ -326,12 +326,23 @@ const startServer = async () => {
 
 let server;
 
-startServer().then(s => {
-  server = s;
-}).catch(error => {
-  console.error('Failed to start server:', error);
-  process.exit(1);
-});
+// Initialize cache service for Vercel (serverless environment)
+if (process.env.VERCEL) {
+  cacheService.init().catch(error => {
+    console.warn('Cache service failed to initialize on Vercel:', error.message);
+  });
+  app.locals.cacheService = cacheService;
+}
+
+// Start server locally
+if (require.main === module && !process.env.VERCEL) {
+  startServer().then(s => {
+    server = s;
+  }).catch(error => {
+    console.error('Failed to start server:', error);
+    process.exit(1);
+  });
+}
 
 // Graceful shutdown handler
 const gracefulShutdown = async (signal) => {
