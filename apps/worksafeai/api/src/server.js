@@ -65,23 +65,46 @@ try {
 // Make supabase available to routes
 app.locals.supabase = supabase;
 
+// ============= RATE LIMITING =============
+const rateLimit = require('express-rate-limit');
+
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // 5 attempts
+  message: 'Too many login attempts, try again later',
+  standardHeaders: true,
+  legacyHeaders: false,
+  skip: (req) => process.env.NODE_ENV === 'development',
+});
+
+const registerLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 3, // 3 new accounts per hour
+  message: 'Too many registration attempts, try again later',
+  standardHeaders: true,
+  legacyHeaders: false,
+  skip: (req) => process.env.NODE_ENV === 'development',
+});
+
 // ============= AUTH ROUTES =============
 const registerRoute = require('./routes/auth/register');
 const loginRoute = require('./routes/auth/login');
 const refreshRoute = require('./routes/auth/refresh');
 const logoutRoute = require('./routes/auth/logout');
+const { authenticateToken } = require('./middleware/auth');
 
-app.post('/auth/register', registerRoute);
-app.post('/auth/login', loginRoute);
+app.post('/auth/register', registerLimiter, registerRoute);
+app.post('/auth/login', loginLimiter, loginRoute);
 app.post('/auth/refresh', refreshRoute);
-app.post('/auth/logout', logoutRoute);
+app.post('/auth/logout', authenticateToken, logoutRoute);
 
 // ============= COMPANY ROUTES =============
 const getCompanyRoute = require('./routes/company/getCompany');
 const updateCompanyRoute = require('./routes/company/updateCompany');
+const { verifyCompanyAccess } = require('./middleware/companyAccess');
 
-app.get('/company', getCompanyRoute);
-app.put('/company', updateCompanyRoute);
+app.get('/company', authenticateToken, verifyCompanyAccess, getCompanyRoute);
+app.put('/company', authenticateToken, verifyCompanyAccess, updateCompanyRoute);
 
 // ============= PROJECT ROUTES =============
 const listProjectsRoute = require('./routes/projects/listProjects');
@@ -89,10 +112,10 @@ const createProjectRoute = require('./routes/projects/createProject');
 const getProjectRoute = require('./routes/projects/getProject');
 const updateProjectRoute = require('./routes/projects/updateProject');
 
-app.get('/projects', listProjectsRoute);
-app.post('/projects', createProjectRoute);
-app.get('/projects/:projectId', getProjectRoute);
-app.put('/projects/:projectId', updateProjectRoute);
+app.get('/projects', authenticateToken, listProjectsRoute);
+app.post('/projects', authenticateToken, createProjectRoute);
+app.get('/projects/:projectId', authenticateToken, getProjectRoute);
+app.put('/projects/:projectId', authenticateToken, updateProjectRoute);
 
 // ============= JTSA ROUTES =============
 const createJtsaRoute = require('./routes/jtsa/createJtsa');
@@ -101,34 +124,34 @@ const getJtsaRoute = require('./routes/jtsa/getJtsa');
 const updateJtsaRoute = require('./routes/jtsa/updateJtsa');
 const completeJtsaRoute = require('./routes/jtsa/completeJtsa');
 
-app.post('/jtsa', createJtsaRoute);
-app.get('/jtsa', listJtsasRoute);
-app.get('/jtsa/:jtsaId', getJtsaRoute);
-app.put('/jtsa/:jtsaId', updateJtsaRoute);
-app.post('/jtsa/:jtsaId/complete', completeJtsaRoute);
+app.post('/jtsa', authenticateToken, createJtsaRoute);
+app.get('/jtsa', authenticateToken, listJtsasRoute);
+app.get('/jtsa/:jtsaId', authenticateToken, getJtsaRoute);
+app.put('/jtsa/:jtsaId', authenticateToken, updateJtsaRoute);
+app.post('/jtsa/:jtsaId/complete', authenticateToken, completeJtsaRoute);
 
 // ============= HAZARD ROUTES =============
 const listHazardsRoute = require('./routes/hazards/listHazards');
 const acknowledgeHazardRoute = require('./routes/hazards/acknowledgeHazard');
 
-app.get('/hazards', listHazardsRoute);
-app.post('/hazards/:hazardId/acknowledge', acknowledgeHazardRoute);
+app.get('/hazards', authenticateToken, listHazardsRoute);
+app.post('/hazards/:hazardId/acknowledge', authenticateToken, acknowledgeHazardRoute);
 
 // ============= MITIGATION ROUTES =============
 const listMitigationsRoute = require('./routes/mitigations/listMitigations');
 const acceptMitigationRoute = require('./routes/mitigations/acceptMitigation');
 const rejectMitigationRoute = require('./routes/mitigations/rejectMitigation');
 
-app.get('/mitigations', listMitigationsRoute);
-app.post('/mitigations/:mitigationId/accept', acceptMitigationRoute);
-app.post('/mitigations/:mitigationId/reject', rejectMitigationRoute);
+app.get('/mitigations', authenticateToken, listMitigationsRoute);
+app.post('/mitigations/:mitigationId/accept', authenticateToken, acceptMitigationRoute);
+app.post('/mitigations/:mitigationId/reject', authenticateToken, rejectMitigationRoute);
 
 // ============= DASHBOARD ROUTES =============
 const dashboardRoute = require('./routes/dashboard/dashboard');
 const auditLogRoute = require('./routes/dashboard/auditLog');
 
-app.get('/dashboard', dashboardRoute);
-app.get('/audit-log', auditLogRoute);
+app.get('/dashboard', authenticateToken, dashboardRoute);
+app.get('/audit-log', authenticateToken, auditLogRoute);
 
 // ============= ERROR HANDLER =============
 app.use((error, req, res, next) => {

@@ -11,27 +11,46 @@ module.exports = async (req, res, next) => {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    if (password.length < 12) {
+    // Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: 'Invalid email format' });
+    }
+
+    // Sanitize inputs
+    const trimmedPassword = password.trim();
+    const trimmedEmail = email.trim().toLowerCase();
+
+    if (trimmedPassword.length < 12) {
       return res.status(400).json({ error: 'Password must be at least 12 characters' });
     }
 
-    if (!/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password) || !/[!@#$%^&*]/.test(password)) {
-      return res.status(400).json({ error: 'Password must contain uppercase, lowercase, number, and special character' });
+    // Better special character validation (CRITICAL FIX)
+    const specialCharRegex = /[!@#$%^&*()_+=\-\[\]{};':"\\|,.<>\/?]/;
+    const hasUppercase = /[A-Z]/.test(trimmedPassword);
+    const hasLowercase = /[a-z]/.test(trimmedPassword);
+    const hasNumber = /[0-9]/.test(trimmedPassword);
+    const hasSpecialChar = specialCharRegex.test(trimmedPassword);
+
+    if (!hasUppercase || !hasLowercase || !hasNumber || !hasSpecialChar) {
+      return res.status(400).json({ 
+        error: 'Password must contain uppercase, lowercase, number, and special character' 
+      });
     }
 
     // Check if email already exists
     const { data: existingUser } = await supabase
       .from('users')
       .select('id')
-      .eq('email', email)
+      .eq('email', trimmedEmail)
       .single();
 
     if (existingUser) {
       return res.status(409).json({ error: 'Email already registered' });
     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 12);
+    // Hash password (use trimmed password)
+    const hashedPassword = await bcrypt.hash(trimmedPassword, 12);
 
     // Create company
     const { data: company, error: companyError } = await supabase
@@ -53,7 +72,7 @@ module.exports = async (req, res, next) => {
       .from('users')
       .insert({
         company_id: company.id,
-        email,
+        email: trimmedEmail,
         full_name: fullName,
         password_hash: hashedPassword,
         role: 'owner',
