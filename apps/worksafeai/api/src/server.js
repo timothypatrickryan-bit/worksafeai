@@ -21,6 +21,9 @@ if (missingEnv.length > 0) {
 // Initialize app
 const app = express();
 
+// Trust Vercel proxy (required for X-Forwarded-For headers)
+app.set('trust proxy', 1);
+
 // Security middleware
 app.use(helmet());
 
@@ -52,10 +55,15 @@ app.get('/health', (req, res) => {
 // Initialize Supabase client
 let supabase = null;
 try {
-  supabase = createClient(
-    process.env.SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_ROLE_KEY
-  );
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  
+  if (!supabaseUrl || !supabaseKey) {
+    throw new Error(`Missing Supabase credentials: URL=${!!supabaseUrl}, Key=${!!supabaseKey}`);
+  }
+  
+  console.log('Initializing Supabase with URL:', supabaseUrl);
+  supabase = createClient(supabaseUrl, supabaseKey);
   console.log('✓ Supabase client initialized');
 } catch (error) {
   console.error('❌ Failed to initialize Supabase:', error.message);
@@ -68,6 +76,12 @@ app.locals.supabase = supabase;
 // ============= RATE LIMITING =============
 const rateLimit = require('express-rate-limit');
 
+// Custom key generator for Vercel (uses X-Forwarded-For header)
+const getClientIp = (req) => {
+  const forwarded = req.headers['x-forwarded-for'];
+  return forwarded ? forwarded.split(',')[0].trim() : req.ip;
+};
+
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 5, // 5 attempts
@@ -75,6 +89,7 @@ const loginLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   skip: (req) => process.env.NODE_ENV === 'development',
+  keyGenerator: (req) => getClientIp(req),
 });
 
 const registerLimiter = rateLimit({
@@ -84,6 +99,7 @@ const registerLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   skip: (req) => process.env.NODE_ENV === 'development',
+  keyGenerator: (req) => getClientIp(req),
 });
 
 // ============= AUTH ROUTES =============

@@ -82,23 +82,30 @@ router.post('/register', async (req, res) => {
 
     if (userError) throw userError;
 
-    // Send verification email
+    // Send verification email (non-critical — won't block registration)
+    const appUrl = process.env.APP_URL || 'https://worksafeai.elevationaiwork.com';
     emailService.sendVerificationEmail({
       recipientEmail: email,
       recipientName: fullName,
-      verificationLink: `${process.env.APP_URL}/verify-email?user_id=${userId}&token=placeholder`,
+      verificationLink: `${appUrl}/verify-email?user_id=${userId}&token=placeholder`,
     }).catch(err => {
       console.error(`Failed to send verification email to ${email}:`, err.message);
+      // Email failure is non-critical for registration — user can still login with email verification bypassed in dev
     });
 
-    // Return success message - user must verify email before login
+    // Return success message
     res.status(201).json({
       message: 'Registration successful. Please check your email to verify your account.',
+      user: { id: userId, email, companyId, fullName },
       requiresEmailVerification: true,
     });
   } catch (error) {
     console.error('Registration error:', error.message);
-    res.status(500).json({ error: 'Registration failed. Please try again.' });
+    console.error('Full error:', error);
+    res.status(500).json({ 
+      error: 'Registration failed. Please try again.',
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined,
+    });
   }
 });
 
