@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "name": "worksafeai-api",
   "builds": [
     {
       "src": "src/server.js",
