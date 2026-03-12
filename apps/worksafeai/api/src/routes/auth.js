@@ -52,14 +52,15 @@ router.post('/register', async (req, res) => {
 
     // Create company
     const companyId = uuidv4();
+    const trialEndsAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
     const { error: companyError } = await supabase
       .from('companies')
       .insert({
         id: companyId,
         name: companyName,
         subscription_tier: 'starter',
-        subscription_status: 'trialing',
-        trial_ends_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+        trial_ends_at: trialEndsAt,
+        billing_active: false,
       });
 
     if (companyError) throw companyError;
