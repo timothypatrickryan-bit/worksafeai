@@ -113,6 +113,7 @@ const useAuthStore = create(
           set({
             user: {
               ...data.user,
+              companyId: data.company.id, // Store company ID for API calls
               industry: data.industry, // Include industry for onboarding page
             },
             token: data.accessToken,
