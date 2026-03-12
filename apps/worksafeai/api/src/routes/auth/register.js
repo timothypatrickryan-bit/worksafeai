@@ -1,0 +1,94 @@
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+module.exports = async (req, res, next) => {
+  try {
+    const { fullName, companyName, email, password } = req.body;
+    const supabase = req.app.locals.supabase;
+
+    // Validation
+    if (!fullName || !companyName || !email || !password) {
+      return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    if (password.length < 12) {
+      return res.status(400).json({ error: 'Password must be at least 12 characters' });
+    }
+
+    if (!/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password) || !/[!@#$%^&*]/.test(password)) {
+      return res.status(400).json({ error: 'Password must contain uppercase, lowercase, number, and special character' });
+    }
+
+    // Check if email already exists
+    const { data: existingUser } = await supabase
+      .from('users')
+      .select('id')
+      .eq('email', email)
+      .single();
+
+    if (existingUser) {
+      return res.status(409).json({ error: 'Email already registered' });
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 12);
+
+    // Create company
+    const { data: company, error: companyError } = await supabase
+      .from('companies')
+      .insert({
+        name: companyName,
+        trial_ends_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+      })
+      .select('id')
+      .single();
+
+    if (companyError) {
+      console.error('❌ Company creation error:', companyError);
+      return res.status(500).json({ error: 'Failed to create company' });
+    }
+
+    // Create user
+    const { data: user, error: userError } = await supabase
+      .from('users')
+      .insert({
+        company_id: company.id,
+        email,
+        full_name: fullName,
+        password_hash: hashedPassword,
+        role: 'owner',
+        email_verified: process.env.NODE_ENV === 'development', // Auto-verify in dev
+      })
+      .select('id, email, full_name, role')
+      .single();
+
+    if (userError) {
+      console.error('❌ User creation error:', userError);
+      return res.status(500).json({ error: 'Failed to create user' });
+    }
+
+    // Generate JWT tokens
+    const accessToken = jwt.sign(
+      { userId: user.id, companyId: company.id, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    const refreshToken = jwt.sign(
+      { userId: user.id, companyId: company.id },
+      process.env.JWT_SECRET,
+      { expiresIn: '7d' }
+    );
+
+    res.status(201).json({
+      user,
+      company: { id: company.id, name: companyName },
+      accessToken,
+      refreshToken,
+      message: 'Account created successfully',
+    });
+  } catch (error) {
+    console.error('❌ Registration error:', error);
+    next(error);
+  }
+};
