@@ -57,7 +57,9 @@ module.exports = async (req, res, next) => {
       .from('companies')
       .insert({
         name: companyName,
+        subscription_tier: 'starter',
         trial_ends_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+        billing_active: false,
       })
       .select('id')
       .single();
