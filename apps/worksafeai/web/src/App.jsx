@@ -33,7 +33,7 @@ function OnboardingRequiredRoute({ children }) {
         }
         
         const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
-        const response = await fetch(`${apiUrl}/companies/${user.companyId}/profile`, {
+        const response = await fetch(`${apiUrl}/companies/${user.companyId}`, {
           headers: {
             'Authorization': `Bearer ${useAuthStore.getState().token}`
           }
@@ -41,7 +41,7 @@ function OnboardingRequiredRoute({ children }) {
         
         if (response.ok) {
           const data = await response.json();
-          setOnboardingStatus(data.onboardingCompleted === true);
+          setOnboardingStatus(data.onboarding_completed === true);
         } else {
           setOnboardingStatus(false);
         }
