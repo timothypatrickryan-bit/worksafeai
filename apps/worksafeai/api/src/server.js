@@ -117,10 +117,18 @@ app.post('/auth/logout', authenticateToken, logoutRoute);
 // ============= COMPANY ROUTES =============
 const getCompanyRoute = require('./routes/company/getCompany');
 const updateCompanyRoute = require('./routes/company/updateCompany');
+const companyRouter = require('./routes/company');
+const companiesRouter = require('./routes/companies');
 const { verifyCompanyAccess } = require('./middleware/companyAccess');
 
 app.get('/company', authenticateToken, verifyCompanyAccess, getCompanyRoute);
 app.put('/company', authenticateToken, verifyCompanyAccess, updateCompanyRoute);
+
+// Mount company router (includes onboarding endpoint)
+app.use(companyRouter);
+
+// Mount companies router (includes individual company operations)
+app.use('/api/companies', companiesRouter);
 
 // ============= PROJECT ROUTES =============
 const listProjectsRoute = require('./routes/projects/listProjects');
