@@ -275,10 +275,45 @@ const sendPasswordResetEmail = async (options) => {
   }
 };
 
+// Send admin notification about duplicate company registration attempt
+const sendCompanyRegistrationAttemptEmail = async (options) => {
+  const { adminEmail, adminName, newUserName, newUserEmail, companyName } = options;
+
+  try {
+    const mailOptions = {
+      from: process.env.EMAIL_FROM || 'noreply@worksafeai.com',
+      to: adminEmail,
+      subject: `New Registration Request for ${escapeHtml(companyName)} - WorkSafeAI`,
+      html: `
+        <h2>New Registration Request</h2>
+        <p>Hi ${escapeHtml(adminName)},</p>
+        <p>Someone has attempted to register with your company name on WorkSafeAI.</p>
+        <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+          <p><strong>Registration Details:</strong></p>
+          <p><strong>Name:</strong> ${escapeHtml(newUserName)}</p>
+          <p><strong>Email:</strong> ${escapeHtml(newUserEmail)}</p>
+          <p><strong>Company Name:</strong> ${escapeHtml(companyName)}</p>
+        </div>
+        <p>If you'd like to add this person to your WorkSafeAI team, please contact them at ${escapeHtml(newUserEmail)} or manage team members in your account settings.</p>
+        <p>If you don't recognize this person or didn't expect this request, you can safely ignore this email.</p>
+        <p>Best regards,<br>WorkSafeAI Team</p>
+      `,
+    };
+
+    const result = await transporter.sendMail(mailOptions);
+    console.log(`Company registration notification sent to ${adminEmail}:`, result.messageId);
+    return result;
+  } catch (error) {
+    console.error('Email send error:', error);
+    throw error;
+  }
+};
+
 module.exports = {
   sendJTSACompletionEmail,
   sendInviteEmail,
   sendVerificationEmail,
   sendPasswordResetEmail,
+  sendCompanyRegistrationAttemptEmail,
   testConnection,
 };

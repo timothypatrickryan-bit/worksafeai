@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { sendCompanyRegistrationAttemptEmail } = require('../../services/emailService');
 
 module.exports = async (req, res, next) => {
   try {
@@ -47,6 +48,44 @@ module.exports = async (req, res, next) => {
 
     if (existingUser) {
       return res.status(409).json({ error: 'Email already registered' });
+    }
+
+    // Check if company already exists (case-insensitive)
+    const { data: existingCompany } = await supabase
+      .from('companies')
+      .select('id, name')
+      .ilike('name', companyName)
+      .single();
+
+    if (existingCompany) {
+      // Company exists — get owner info and send notification
+      const { data: owner } = await supabase
+        .from('users')
+        .select('email, full_name')
+        .eq('company_id', existingCompany.id)
+        .eq('role', 'owner')
+        .single();
+
+      if (owner) {
+        try {
+          await sendCompanyRegistrationAttemptEmail({
+            adminEmail: owner.email,
+            adminName: owner.full_name || 'Admin',
+            newUserName: fullName,
+            newUserEmail: trimmedEmail,
+            companyName: companyName,
+          });
+          console.log(`Admin notification sent to ${owner.email} for ${companyName}`);
+        } catch (emailError) {
+          console.error('Failed to send admin notification:', emailError);
+          // Don't fail registration if email fails — just log it
+        }
+      }
+
+      return res.status(409).json({
+        error: 'Company already exists',
+        message: `The company "${companyName}" is already registered. We've notified the company admin about your registration request. They may invite you to join their team.`,
+      });
     }
 
     // Hash password (use trimmed password)

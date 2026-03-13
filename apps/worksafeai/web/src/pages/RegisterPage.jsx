@@ -45,7 +45,8 @@ export default function RegisterPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.error || 'Registration failed');
+        // Show friendly message if available (e.g., "Company already exists")
+        setError(data.message || data.error || 'Registration failed');
         return;
       }
 
