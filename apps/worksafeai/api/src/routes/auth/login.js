@@ -51,6 +51,7 @@ module.exports = async (req, res, next) => {
         email: user.email,
         fullName: user.full_name,
         role: user.role,
+        companyId: user.company_id,
       },
       accessToken,
       refreshToken,

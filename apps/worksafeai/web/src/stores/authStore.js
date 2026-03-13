@@ -172,7 +172,7 @@ const useAuthStore = create(
             token,
             isAuthenticated: true,
             user: {
-              id: payload.id,
+              id: payload.userId || payload.id,
               role: payload.role,
               companyId: payload.companyId,
             },

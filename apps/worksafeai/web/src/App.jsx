@@ -51,7 +51,7 @@ function OnboardingRequiredRoute({ children }) {
       }
     };
 
-    if (isAuthenticated && user?.companyId) {
+    if (isAuthenticated) {
       checkOnboarding();
     }
   }, [isAuthenticated, user?.companyId]);
