@@ -1,5 +1,54 @@
 # HEARTBEAT.md - Periodic Tasks
 
+## 🚀 AUTOMATED JOBS (macOS launchd)
+
+**Both jobs now running automatically (every 30-60 minutes):**
+
+### 1. **Autonomy Loop** (Every 30 minutes - HIGHEST PRIORITY)
+- **Job:** `com.openclaw.autonomy-loop`
+- **Script:** `scripts/autonomy-heartbeat.js`
+- **Frequency:** Every 1800 seconds (30 minutes)
+- **What it does:**
+  - Checks for completed agent work
+  - Reviews executing task progress
+  - Monitors for stuck tasks (>4h with no progress)
+  - Logs all transitions to `.autonomy-log.txt`
+  - Enables real-time awareness of work status
+
+### 2. **Mission Control Heartbeat** (Every 60 minutes)
+- **Job:** `com.openclaw.heartbeat-mission-control`
+- **Script:** `scripts/heartbeat-mission-control.js`
+- **Frequency:** Every 3600 seconds (60 minutes)
+- **What it does:**
+  - Processes queued tasks → generates briefings
+  - Updates task statuses
+  - Reports pending work to console
+  - Logs activity for audit trail
+
+**Status Check:**
+```bash
+launchctl list | grep -E "heartbeat|autonomy"
+```
+
+**Logs:**
+```bash
+tail -f /Users/timothyryan/.openclaw/workspace/.autonomy-heartbeat.log
+tail -f /Users/timothyryan/.openclaw/workspace/.heartbeat-mission-control.log
+```
+
+**Unload (if needed):**
+```bash
+launchctl unload ~/Library/LaunchAgents/com.openclaw.autonomy-loop.plist
+launchctl unload ~/Library/LaunchAgents/com.openclaw.heartbeat-mission-control.plist
+```
+
+**Reload (restart):**
+```bash
+launchctl unload && launchctl load ~/Library/LaunchAgents/com.openclaw.autonomy-loop.plist
+```
+
+---
+
 ## Mission Control Status (Every Heartbeat) ✅ AUTOMATED
 
 **Auto-run on every heartbeat:**
