@@ -80,17 +80,36 @@ worksafeai-api     CNAME  cname.vercel.com
 
 ### Email Service
 
-**Provider:** Gmail (SMTP)  
-**Account:** f5zothoi@gmail.com  
-**App Password:** (stored in local `.env` as `GMAIL_PASSWORD`)  
-**IMAP Server:** imap.gmail.com:993 (SSL/TLS)  
-**SMTP Server:** smtp.gmail.com:587 (STARTTLS)  
+**Primary Agent Email:** lucy@elevationaiagents.com  
+**Cloudflare Email Routing:** ✅ Configured (March 16, 2026)  
+- **Incoming mail:** lucy@elevationaiagents.com → forwarded to f5zothoi@gmail.com
+- **Setup:** https://dash.cloudflare.com → Email Routing
+
+**SMTP Relay (Outbound):** Gmail
+- **Provider:** Gmail (SMTP)  
+- **Account:** f5zothoi@gmail.com  
+- **App Password:** (stored in Vercel as `GMAIL_PASSWORD`)  
+- **IMAP Server:** imap.gmail.com:993 (SSL/TLS)  
+- **SMTP Server:** smtp.gmail.com:587 (STARTTLS)  
 
 **Backend Env Vars:**
 - `GMAIL_USER` = f5zothoi@gmail.com
 - `GMAIL_PASSWORD` = [stored in Vercel]
+- `MAIL_FROM` = lucy@elevationaiagents.com (MANDATORY - all outbound emails)
 
-**Used for:** Registration verification, password resets, JTSA completion emails
+**🔒 HARD RULE (March 16, 2026):**
+**ALL emails sent by Lucy MUST be from lucy@elevationaiagents.com**
+- No exceptions
+- No fallback to f5zothoi@gmail.com
+- No app-specific addresses
+- Always: lucy@elevationaiagents.com
+
+**Used for:** 
+- Registration verification emails
+- Password resets
+- JTSA completion notifications
+- Agent-to-user communications
+- All outbound mail from Lucy
 
 ---
 

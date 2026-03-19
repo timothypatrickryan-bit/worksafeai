@@ -84,4 +84,15 @@ Quick links:
 
 ---
 
+## 📧 Email Configuration
+
+**Agent Email:** lucy@elevationaiagents.com  
+**Incoming:** Cloudflare Email Routing → f5zothoi@gmail.com  
+**Outgoing:** Gmail SMTP relay (f5zothoi@gmail.com account)  
+**Status:** ✅ Ready to use (March 16, 2026)
+
+Emails sent through WorkSafeAI, Consensus, and other apps will appear as coming from lucy@elevationaiagents.com (professional agent brand).
+
+---
+
 Add whatever helps you do your job. This is your cheat sheet.
