@@ -1,0 +1,966 @@
+/* ========================================
+   UNIFIED DASHBOARD STYLES - 3-LEVEL HIERARCHY
+   ======================================== */
+
+.section {
+  padding: 24px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #fafbfc 100%);
+  border-radius: 12px;
+  border: 1px solid #e1e8ed;
+}
+
+.header {
+  margin-bottom: 28px;
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a2332;
+  margin: 0 0 8px 0;
+}
+
+.header p {
+  font-size: 14px;
+  color: #7a8a99;
+  margin: 0;
+}
+
+.createProjectBtn,
+.createTaskBtn {
+  flex-shrink: 0;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.createProjectBtn:hover,
+.createTaskBtn:hover {
+  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.createProjectBtn:active,
+.createTaskBtn:active {
+  transform: translateY(0);
+}
+
+.projectMeta {
+  font-size: 13px;
+  color: #9ca8b3;
+  margin-top: 4px !important;
+}
+
+.backBtn,
+.closeBtn {
+  background: none;
+  border: none;
+  color: #0066ff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 12px;
+  transition: color 0.2s;
+}
+
+.backBtn:hover,
+.closeBtn:hover {
+  color: #0052cc;
+}
+
+/* ========================================
+   SUMMARY STATS
+   ======================================== */
+
+.summaryStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.stat {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #e1e8ed;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.stat .label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #7a8a99;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.stat .value {
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a2332;
+}
+
+/* ========================================
+   TAB NAVIGATION
+   ======================================== */
+
+.tabNav {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #e1e8ed;
+}
+
+.tab {
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: #7a8a99;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: #1a2332;
+  background: rgba(0, 102, 255, 0.05);
+}
+
+.tab.active {
+  color: #0066ff;
+  border-bottom-color: #0066ff;
+}
+
+/* ========================================
+   PROJECT GRID (LEVEL 1)
+   ======================================== */
+
+.projectGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.projectCard {
+  background: white;
+  border-radius: 12px;
+  border: 2px solid #e1e8ed;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.projectCard:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  border-color: #d0dae6;
+}
+
+.projectCard.health-green {
+  border-left: 4px solid #00aa44;
+}
+
+.projectCard.health-yellow {
+  border-left: 4px solid #ff9900;
+}
+
+.projectCard.health-red {
+  border-left: 4px solid #dd3333;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.cardHeader h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a2332;
+  margin: 0 0 4px 0;
+}
+
+.statusLabel {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #7a8a99;
+  background: #f0f4f9;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.healthBadge {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.description {
+  font-size: 14px;
+  color: #7a8a99;
+  margin: 0 0 12px 0;
+  line-height: 1.5;
+}
+
+/* Orchestrator Plan Highlight */
+.orchestratorHighlight {
+  background: #f0f4f9;
+  border: 1px solid #d0dae6;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.orchestratorHighlight h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a2332;
+  margin: 0 0 8px 0;
+}
+
+.planItem {
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.planItem strong {
+  color: #1a2332;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.planItem p {
+  color: #7a8a99;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Progress Bar */
+.progressBar {
+  height: 8px;
+  background: #e1e8ed;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, #0066ff 0%, #0052cc 100%);
+  transition: width 0.5s ease;
+}
+
+.progressText {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #7a8a99;
+  margin-bottom: 12px;
+}
+
+/* Task Summary */
+.taskSummary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.taskCount {
+  text-align: center;
+}
+
+.taskCount .label {
+  font-size: 11px;
+  color: #7a8a99;
+  text-transform: uppercase;
+}
+
+.queuedCount,
+.inProgressCount,
+.completedCount {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a2332;
+  margin-bottom: 4px;
+}
+
+.inProgressCount {
+  color: #ff9900;
+}
+
+.completedCount {
+  color: #00aa44;
+}
+
+/* Card Footer */
+.cardFooter {
+  display: flex;
+  gap: 8px;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  flex: 1;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.primaryBtn {
+  background: #0066ff;
+  color: white;
+}
+
+.primaryBtn:hover {
+  background: #0052cc;
+}
+
+.secondaryBtn {
+  background: #f0f4f9;
+  color: #0066ff;
+  border: 1px solid #d0dae6;
+}
+
+.secondaryBtn:hover {
+  background: #e1e8ed;
+}
+
+/* ========================================
+   PROJECT DETAIL VIEW (LEVEL 2)
+   ======================================== */
+
+.projectInfoSection {
+  background: white;
+  border: 1px solid #e1e8ed;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.projectInfoSection h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a2332;
+  margin: 0 0 16px 0;
+}
+
+.planGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.planCard {
+  background: #f8f9fa;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.planCard h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a2332;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.planCard p {
+  font-size: 13px;
+  color: #7a8a99;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.phasesList {
+  list-style: decimal;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.phasesList li {
+  font-size: 13px;
+  color: #7a8a99;
+  margin-bottom: 4px;
+}
+
+.metricsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.metricsList li {
+  font-size: 13px;
+  color: #7a8a99;
+  margin-bottom: 6px;
+}
+
+/* Tasks Section */
+.tasksSection {
+  margin-bottom: 24px;
+}
+
+.tasksSection h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a2332;
+  margin: 0 0 16px 0;
+}
+
+.statusColumns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  overflow-x: auto;
+}
+
+.statusColumn {
+  background: white;
+  border: 1px solid #e1e8ed;
+  border-radius: 10px;
+  padding: 12px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.columnHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e1e8ed;
+}
+
+.columnHeader h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a2332;
+  margin: 0;
+}
+
+.count {
+  background: #e1e8ed;
+  color: #7a8a99;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.taskItem {
+  background: #f8f9fa;
+  border: 1px solid #e1e8ed;
+  border-radius: 6px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.taskItem:hover {
+  background: white;
+  border-color: #d0dae6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.taskItem h5 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a2332;
+  margin: 0 0 6px 0;
+}
+
+.taskMeta {
+  font-size: 11px;
+  color: #7a8a99;
+  margin: 0;
+}
+
+.miniProgress {
+  height: 4px;
+  background: #e1e8ed;
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 6px 0;
+}
+
+.emptyColumn {
+  font-size: 12px;
+  color: #9ca8b3;
+  text-align: center;
+  padding: 24px 0;
+  margin: auto 0;
+}
+
+/* Approvals Section */
+.approvalsSection {
+  background: white;
+  border: 2px solid #0066ff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 24px;
+}
+
+.approvalsSection h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a2332;
+  margin: 0 0 8px 0;
+}
+
+.approvalsCount {
+  font-size: 12px;
+  color: #7a8a99;
+  margin: 0 0 16px 0;
+}
+
+.approvalsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.approvalItem {
+  background: #f8f9fa;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.approvalInfo {
+  flex: 1;
+}
+
+.approvalInfo h5 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a2332;
+  margin: 0 0 4px 0;
+}
+
+.approvalMeta {
+  font-size: 11px;
+  color: #7a8a99;
+  margin: 0;
+}
+
+.approvalMeta .timeline {
+  margin-left: 8px;
+  color: #0066ff;
+}
+
+.approvalButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.inlineApproveBtn,
+.inlineRejectBtn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.inlineApproveBtn {
+  background: #e6f7ed;
+  color: #00aa44;
+  border: 1px solid #00aa44;
+}
+
+.inlineApproveBtn:hover {
+  background: #00aa44;
+  color: white;
+}
+
+.inlineRejectBtn {
+  background: #fff5f5;
+  color: #dd3333;
+  border: 1px solid #dd3333;
+}
+
+.inlineRejectBtn:hover {
+  background: #dd3333;
+  color: white;
+}
+
+/* ========================================
+   TASK DETAIL (LEVEL 3)
+   ======================================== */
+
+.taskProgressBar {
+  position: relative;
+  height: 12px;
+  background: #e1e8ed;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.taskProgressBar .progress {
+  height: 100%;
+  background: linear-gradient(90deg, #0066ff 0%, #0052cc 100%);
+}
+
+.progressPercent {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  font-weight: 700;
+  color: white;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+.statusBadge.briefing {
+  background: #f0f4f9;
+  color: #0066ff;
+}
+
+.statusBadge.queued {
+  background: #fff5e6;
+  color: #ff9900;
+}
+
+.statusBadge.executing {
+  background: #fff5e6;
+  color: #ff9900;
+}
+
+.statusBadge.completed {
+  background: #e6f7ed;
+  color: #00aa44;
+}
+
+/* Task Detail Layout */
+.taskDetailLayout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .taskDetailLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detailSection {
+  background: white;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.detailSection h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a2332;
+  margin: 0 0 12px 0;
+}
+
+.field {
+  margin-bottom: 12px;
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #7a8a99;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.field p {
+  font-size: 14px;
+  color: #1a2332;
+  margin: 0;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li {
+  font-size: 14px;
+  color: #1a2332;
+  margin-bottom: 8px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.list li:before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #00aa44;
+  font-weight: 700;
+}
+
+.milestones {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.milestones li {
+  margin-bottom: 16px;
+  padding-left: 0;
+}
+
+.milestones li:before {
+  display: none;
+}
+
+.milestone {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a2332;
+  margin-bottom: 4px;
+}
+
+.milestones p {
+  font-size: 12px;
+  color: #7a8a99;
+  margin: 0;
+}
+
+.activityLog {
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.activityItem {
+  padding: 12px;
+  border-bottom: 1px solid #e1e8ed;
+  font-size: 13px;
+}
+
+.activityItem:last-child {
+  border-bottom: none;
+}
+
+.time {
+  display: block;
+  font-size: 11px;
+  color: #7a8a99;
+  margin-bottom: 4px;
+}
+
+.activityItem p {
+  margin: 0;
+  color: #1a2332;
+  line-height: 1.4;
+}
+
+/* ========================================
+   APPROVAL PANEL (INLINE)
+   ======================================== */
+
+.approvalPanel {
+  background: linear-gradient(135deg, #f0f4f9 0%, #e6f2ff 100%);
+  border: 2px solid #0066ff;
+  border-radius: 8px;
+  padding: 16px;
+  position: sticky;
+  top: 100px;
+}
+
+.approvalPanel h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a2332;
+  margin: 0 0 8px 0;
+}
+
+.approvalDesc {
+  font-size: 12px;
+  color: #7a8a99;
+  margin: 0 0 16px 0;
+  line-height: 1.4;
+}
+
+.approvalActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn {
+  padding: 10px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.approveBtn {
+  background: #00aa44;
+  color: white;
+}
+
+.approveBtn:hover {
+  background: #009933;
+  box-shadow: 0 4px 12px rgba(0, 170, 68, 0.2);
+}
+
+.rejectBtn {
+  background: white;
+  color: #dd3333;
+  border: 1px solid #dd3333;
+}
+
+.rejectBtn:hover {
+  background: #fff5f5;
+  border-color: #cc2222;
+}
+
+/* ========================================
+   EMPTY STATE
+   ======================================== */
+
+.empty {
+  text-align: center;
+  padding: 48px 24px;
+  color: #7a8a99;
+}
+
+.empty p {
+  font-size: 14px;
+  margin: 0;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #e1e8ed;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 1024px) {
+  .statusColumns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .planGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .projectGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .statusColumns {
+    grid-template-columns: 1fr;
+  }
+
+  .summaryStats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .approvalPanel {
+    position: static;
+  }
+
+  .taskDetailLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .tabNav {
+    flex-wrap: wrap;
+  }
+}
