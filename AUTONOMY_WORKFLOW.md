@@ -89,9 +89,10 @@ fi
 
 **When task is COMPLETE:**
 1. ✅ Review output (quality, completeness, correctness)
-2. ✅ If good → mark task `complete`, move to next priority task
-3. ✅ If incomplete → brief same agent for revision (don't wait for Tim)
-4. ✅ If blocked → ask Tim (only this case), but don't stop other work
+2. ✅ **Update mission-control-state.json** to reflect completion (so dashboard shows real status)
+3. ✅ If good → mark task `complete`, move to next priority task
+4. ✅ If incomplete → brief same agent for revision (don't wait for Tim)
+5. ✅ If blocked → ask Tim (only this case), but don't stop other work
 
 **When task is STUCK (no progress > 2h):**
 1. ✅ Check agent status (idle? crashed? lost?)
@@ -211,8 +212,11 @@ fi
 ### Step 1: Establish Review Habit (This Session)
 **Right now:** Check all 7 "executing" tasks. Which are ACTUALLY executing? Which need new assignments?
 
-### Step 2: Add to Heartbeat (Next Update)
-Add autonomy checklist to `HEARTBEAT.md` so it runs every 60 min
+### Step 2: Add State Sync to Every Completion
+When a briefing completes:
+1. Run: `node scripts/update-mission-control-state.js <command>`
+2. This updates `.mission-control-state.json` immediately
+3. Dashboard reflects actual progress in real-time
 
 ### Step 3: Create Autonomy Log
 Start `.autonomy-log.txt` to track:
