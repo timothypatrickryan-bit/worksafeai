@@ -11,19 +11,49 @@ const SUBSCRIPTION_TIERS = {
     stripe_price_id: process.env.STRIPE_PRICE_STARTER,
     max_employees: 10,
     max_projects: 5,
+    max_jtsas_per_month: 10,
     cost_cents: 2999, // $29.99/month
+    features: [
+      'Up to 10 employees',
+      'Up to 5 projects',
+      '10 JTSAs per month',
+      'Basic hazard assessment',
+      'Community support',
+    ],
   },
   pro: {
     stripe_price_id: process.env.STRIPE_PRICE_PRO,
     max_employees: 50,
     max_projects: -1, // unlimited
+    max_jtsas_per_month: 500,
     cost_cents: 7999, // $79.99/month
+    features: [
+      'Up to 50 employees',
+      'Unlimited projects',
+      '500 JTSAs per month',
+      'Advanced hazard assessment',
+      'Custom risk profiles',
+      'Priority email support',
+      'API access',
+    ],
   },
   enterprise: {
     stripe_price_id: process.env.STRIPE_PRICE_ENTERPRISE,
     max_employees: -1, // unlimited
     max_projects: -1,
+    max_jtsas_per_month: -1, // unlimited
     cost_cents: null, // custom
+    features: [
+      'Unlimited employees',
+      'Unlimited projects',
+      'Unlimited JTSAs',
+      'Advanced hazard assessment',
+      'Custom integrations',
+      'Dedicated account manager',
+      '24/7 phone & email support',
+      'Custom SLA',
+      'On-premise deployment option',
+    ],
   },
 };
 

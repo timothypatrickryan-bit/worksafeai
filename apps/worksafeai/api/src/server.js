@@ -170,6 +170,31 @@ app.get('/mitigations', authenticateToken, listMitigationsRoute);
 app.post('/mitigations/:mitigationId/accept', authenticateToken, acceptMitigationRoute);
 app.post('/mitigations/:mitigationId/reject', authenticateToken, rejectMitigationRoute);
 
+// ============= BILLING ROUTES =============
+// Webhook MUST come before body parsing middleware to get raw body
+const stripeService = require('./services/stripeService');
+
+app.post('/api/billing/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
+  const signature = req.headers['stripe-signature'];
+
+  try {
+    const event = stripeService.verifyWebhookSignature(req.body, signature);
+    console.log(`Webhook received: ${event.type}`);
+
+    // Process the event
+    await stripeService.handleWebhookEvent(event, supabase);
+
+    res.json({ received: true });
+  } catch (error) {
+    console.error('Webhook error:', error.message);
+    res.status(400).json({ error: error.message });
+  }
+});
+
+// Regular billing routes
+const billingRouter = require('./routes/billing');
+app.use('/api/billing', billingRouter);
+
 // ============= DASHBOARD ROUTES =============
 const dashboardRoute = require('./routes/dashboard/dashboard');
 const auditLogRoute = require('./routes/dashboard/auditLog');

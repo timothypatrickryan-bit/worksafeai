@@ -4,12 +4,14 @@ const { authenticateToken } = require('../middleware/auth');
 const { verifyCompanyAccess } = require('../middleware/companyAccess');
 const { validateBody } = require('../middleware/validation');
 const { createJTSASchema, updateJTSASchema, addParticipantSchema } = require('../validation/schemas');
+const { checkJtsaMonthlyLimit } = require('../middleware/featureLimit');
 const aiService = require('../ai/anthropicService');
 
 // POST /api/companies/:cid/jtsas - create standalone JTSA (no project required)
 router.post('/companies/:cid/jtsas',
   authenticateToken,
   verifyCompanyAccess,
+  checkJtsaMonthlyLimit,
   validateBody(createJTSASchema),
   async (req, res) => {
     try {

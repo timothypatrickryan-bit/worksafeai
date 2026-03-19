@@ -4,11 +4,13 @@ const { authenticateToken, authorizeRole } = require('../middleware/auth');
 const { verifyCompanyAccess } = require('../middleware/companyAccess');
 const { validateBody } = require('../middleware/validation');
 const { createProjectSchema, updateProjectSchema } = require('../validation/schemas');
+const { checkProjectLimit } = require('../middleware/featureLimit');
 
 // POST /api/companies/:cid/projects - create project
 router.post('/companies/:cid/projects', 
   authenticateToken, 
   verifyCompanyAccess,
+  checkProjectLimit,
   validateBody(createProjectSchema),
   async (req, res, next) => {
     try {
