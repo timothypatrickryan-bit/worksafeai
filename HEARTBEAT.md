@@ -86,6 +86,44 @@ Day 6: Collaboration → Improve decision transparency
 
 ---
 
+## Lucy Autonomy Loop (Every Heartbeat - HIGHEST PRIORITY) ⭐
+
+**THIS IS THE CORE WORKFLOW — RUNS EVERY 60 MINUTES**
+
+**What Lucy does autonomously (no permission needed):**
+
+```bash
+# 1. Check agent status (completed work?)
+cat .mission-control-state.json | jq '.agents[] | select(.status == "complete")'
+
+# 2. Review outputs (quality check)
+# [Review output for completeness, correctness, quality]
+
+# 3. Assign next work (queue priority)
+# [Pick highest-priority unstarted task]
+
+# 4. Spawn agent immediately
+# sessions_spawn(task, runtime="subagent")
+
+# 5. Log to memory + autonomy log
+# [Append to memory/YYYY-MM-DD.md + .autonomy-log.txt]
+```
+
+**Success = Work Never Stops**
+- Task completes → Next task assigned < 5 min
+- No gaps, no waiting, no "What's happening?" questions
+- Agents always have work queued
+- Tim sees continuous progress
+
+**See:** AUTONOMY_WORKFLOW.md for complete pattern
+
+**Files:**
+- `.autonomy-log.txt` — Audit trail of all work transitions
+- `AUTONOMY_WORKFLOW.md` — The permanent pattern
+- `memory/2026-03-19.md` — Daily progress
+
+---
+
 ## Lucy Task Automation (Every Heartbeat - PRIORITY)
 
 **Auto-run on every heartbeat:**
