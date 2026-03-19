@@ -1,0 +1,26 @@
+[
+  {
+    "id": "d_1773615343572_luvw61je0",
+    "workDescription": "Review the entire mission control codebase for security and performance issues",
+    "category": "code_review",
+    "priority": "critical",
+    "assignedAgent": "opus",
+    "wasAlternative": false,
+    "matchScore": "8.14",
+    "status": "delegated",
+    "createdAt": "2026-03-15T22:55:43.572Z",
+    "dueBy": "2026-03-15T22:55:43.572Z"
+  },
+  {
+    "id": "d_1773615345961_5ekde4g6s",
+    "workDescription": "Design a modern admin dashboard for Consensus with dark mode and real-time updates",
+    "category": "design",
+    "priority": "medium",
+    "assignedAgent": "johnny",
+    "wasAlternative": false,
+    "matchScore": "7.90",
+    "status": "delegated",
+    "createdAt": "2026-03-15T22:55:45.961Z",
+    "dueBy": "2026-03-16T02:55:45.961Z"
+  }
+]

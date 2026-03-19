@@ -1,0 +1,798 @@
+[
+  {
+    "index": 1,
+    "briefing": {
+      "id": "briefing-task-iphone-missioncontrol-design",
+      "taskId": "task-iphone-missioncontrol-design",
+      "generatedAt": "2026-03-18T11:25:11.228Z",
+      "task": {
+        "title": "Design iOS Mission Control App - Phase 1",
+        "description": "Create iPhone mockups and design specification for Mission Control iOS app. Screens: Task Board (Kanban), Agent Activity Feed, Team View, Settings. Deliverables: Figma file with high-fidelity mockups + design spec document. Platform: iOS 16+, iPhone SE through iPhone 15 Pro. Requirements: Native iOS patterns, WebSocket-ready, WCAG AA accessible, glassmorphic design.",
+        "category": "design",
+        "priority": "high",
+        "status": "queued",
+        "assignedTo": {
+          "id": "johnny",
+          "name": "Johnny",
+          "title": "Senior Designer"
+        },
+        "dueDate": null
+      },
+      "executionPlan": {
+        "title": "Design iOS Mission Control App - Phase 1",
+        "description": "Create iPhone mockups and design specification for Mission Control iOS app. Screens: Task Board (Kanban), Agent Activity Feed, Team View, Settings. Deliverables: Figma file with high-fidelity mockups + design spec document. Platform: iOS 16+, iPhone SE through iPhone 15 Pro. Requirements: Native iOS patterns, WebSocket-ready, WCAG AA accessible, glassmorphic design.",
+        "deliverables": [
+          "Figma file with high",
+          "fidelity mockups + design spec document. Platform: iOS 16+, iPhone SE through iPhone 15 Pro. Requirements: Native iOS patterns, WebSocket",
+          "ready, WCAG AA accessible, glassmorphic design"
+        ],
+        "milestones": [
+          {
+            "name": "Discovery & Requirements",
+            "description": "Understand user needs, constraints, technical requirements",
+            "estimatedDays": 0.5
+          },
+          {
+            "name": "Wireframes & Flow",
+            "description": "Create low-fidelity layouts and user journeys",
+            "estimatedDays": 1
+          },
+          {
+            "name": "High-Fidelity Design",
+            "description": "Develop polished mockups with design system components",
+            "estimatedDays": 1.5
+          },
+          {
+            "name": "Design Review & Iteration",
+            "description": "Stakeholder feedback and refinement",
+            "estimatedDays": 1
+          },
+          {
+            "name": "Handoff & Documentation",
+            "description": "Prepare design specs and component library for dev",
+            "estimatedDays": 0.5
+          }
+        ],
+        "timeline": {
+          "estimatedHours": 20,
+          "estimatedDays": 2.5,
+          "summary": "2.5 days (20 hours)",
+          "breakdown": [
+            {
+              "milestone": "Discovery & Requirements",
+              "estimatedDays": 0.5
+            },
+            {
+              "milestone": "Wireframes & Flow",
+              "estimatedDays": 1
+            },
+            {
+              "milestone": "High-Fidelity Design",
+              "estimatedDays": 1.5
+            },
+            {
+              "milestone": "Design Review & Iteration",
+              "estimatedDays": 1
+            },
+            {
+              "milestone": "Handoff & Documentation",
+              "estimatedDays": 0.5
+            }
+          ]
+        },
+        "resourcesNeeded": {
+          "team": [
+            {
+              "role": "Senior Designer",
+              "name": "Johnny",
+              "model": "Claude Sonnet 4.6",
+              "allocation": "100%"
+            }
+          ],
+          "tools": [
+            "Figma (or design tool with access)",
+            "Design system / component library",
+            "Prototyping tool (optional: Framer, Principle)"
+          ],
+          "infrastructure": [],
+          "external": [],
+          "documentation": [
+            "Design brief and requirements",
+            "Brand guidelines",
+            "User personas",
+            "Competitor design references"
+          ]
+        },
+        "successCriteria": [
+          {
+            "type": "Completion",
+            "description": "All deliverables completed and reviewed",
+            "measurement": "Checklist 100% complete"
+          },
+          {
+            "type": "Quality",
+            "description": "Mockups match brand guidelines and user requirements",
+            "measurement": "Stakeholder approval on design"
+          },
+          {
+            "type": "Usability",
+            "description": "Designs are intuitive and follow UX best practices",
+            "measurement": "Design passes usability review"
+          },
+          {
+            "type": "Technical Readiness",
+            "description": "Design is feasible to implement",
+            "measurement": "Dev review confirms no blockers"
+          },
+          {
+            "type": "Documentation",
+            "description": "Comprehensive handoff documentation provided",
+            "measurement": "Dev can implement without ambiguity"
+          }
+        ],
+        "dependencies": [],
+        "risks": [
+          {
+            "risk": "Scope creep",
+            "likelihood": "medium",
+            "impact": "medium",
+            "mitigation": "Agree on scope upfront, manage change requests"
+          },
+          {
+            "risk": "Stakeholder disagreement",
+            "likelihood": "medium",
+            "impact": "high",
+            "mitigation": "Present multiple options early, get feedback in phases"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "index": 2,
+    "briefing": {
+      "id": "briefing-task-iphone-missioncontrol-api-hardening",
+      "taskId": "task-iphone-missioncontrol-api-hardening",
+      "generatedAt": "2026-03-18T11:25:11.228Z",
+      "task": {
+        "title": "API Hardening for iOS Mission Control - Phase 3",
+        "description": "Audit Mission Control API endpoints for mobile compatibility. Add CORS headers for iOS bundle ID (com.elevationaiagent.missioncontrol). Ensure JWT auth flow works on mobile. Test API with iOS WebSocket client. Verify endpoints handle mobile-specific network conditions (reconnection, timeout). Deliverable: API audit report + implementation of mobile-required changes.",
+        "category": "infrastructure",
+        "priority": "high",
+        "status": "queued",
+        "assignedTo": {
+          "id": "chief",
+          "name": "Chief",
+          "title": "Infrastructure & Team Overseer"
+        },
+        "dueDate": null
+      },
+      "executionPlan": {
+        "title": "API Hardening for iOS Mission Control - Phase 3",
+        "description": "Audit Mission Control API endpoints for mobile compatibility. Add CORS headers for iOS bundle ID (com.elevationaiagent.missioncontrol). Ensure JWT auth flow works on mobile. Test API with iOS WebSocket client. Verify endpoints handle mobile-specific network conditions (reconnection, timeout). Deliverable: API audit report + implementation of mobile-required changes.",
+        "deliverables": [
+          "API audit report + implementation of mobile",
+          "required changes"
+        ],
+        "milestones": [
+          {
+            "name": "Design & Planning",
+            "description": "Architecture review, infrastructure design",
+            "estimatedDays": 1
+          },
+          {
+            "name": "Implementation",
+            "description": "Set up systems, configure services",
+            "estimatedDays": 1.5
+          },
+          {
+            "name": "Testing & Validation",
+            "description": "Load testing, security verification, failover tests",
+            "estimatedDays": 1.5
+          },
+          {
+            "name": "Documentation",
+            "description": "Create runbooks, deployment guides, monitoring setup",
+            "estimatedDays": 0.75
+          },
+          {
+            "name": "Deployment & Monitoring",
+            "description": "Deploy to production, establish monitoring",
+            "estimatedDays": 0.75
+          }
+        ],
+        "timeline": {
+          "estimatedHours": 32,
+          "estimatedDays": 4,
+          "summary": "4 days (32 hours)",
+          "breakdown": [
+            {
+              "milestone": "Design & Planning",
+              "estimatedDays": 1
+            },
+            {
+              "milestone": "Implementation",
+              "estimatedDays": 1.5
+            },
+            {
+              "milestone": "Testing & Validation",
+              "estimatedDays": 1.5
+            },
+            {
+              "milestone": "Documentation",
+              "estimatedDays": 0.75
+            },
+            {
+              "milestone": "Deployment & Monitoring",
+              "estimatedDays": 0.75
+            }
+          ]
+        },
+        "resourcesNeeded": {
+          "team": [
+            {
+              "role": "Infrastructure & Team Overseer",
+              "name": "Chief",
+              "model": "Claude Sonnet 4.6",
+              "allocation": "100%"
+            }
+          ],
+          "tools": [
+            "Infrastructure as Code tools (Terraform, CloudFormation)",
+            "Monitoring & logging platforms",
+            "Container orchestration (Docker, Kubernetes)",
+            "Configuration management tools"
+          ],
+          "infrastructure": [
+            "Cloud provider access & permissions",
+            "Network access",
+            "Certificate & key management",
+            "Deployment pipeline access"
+          ],
+          "external": [],
+          "documentation": [
+            "Current infrastructure diagram",
+            "System requirements & specs",
+            "Scaling policies",
+            "Disaster recovery plan"
+          ]
+        },
+        "successCriteria": [
+          {
+            "type": "Completion",
+            "description": "All deliverables completed and reviewed",
+            "measurement": "Checklist 100% complete"
+          },
+          {
+            "type": "Reliability",
+            "description": "System is highly available and resilient",
+            "measurement": "99.9%+ uptime SLA, <1hr RTO"
+          },
+          {
+            "type": "Security",
+            "description": "Infrastructure meets security standards",
+            "measurement": "Security review passed"
+          },
+          {
+            "type": "Scalability",
+            "description": "System can handle load growth",
+            "measurement": "Auto-scaling configured, load tests pass"
+          },
+          {
+            "type": "Observability",
+            "description": "Full visibility into system health",
+            "measurement": "Monitoring, alerting, logs configured"
+          }
+        ],
+        "dependencies": [
+          {
+            "type": "planning",
+            "description": "Architecture review must be completed",
+            "task": "planning"
+          }
+        ],
+        "risks": [
+          {
+            "risk": "Deployment issues",
+            "likelihood": "medium",
+            "impact": "critical",
+            "mitigation": "Comprehensive testing, clear rollback plan"
+          },
+          {
+            "risk": "Performance degradation",
+            "likelihood": "medium",
+            "impact": "high",
+            "mitigation": "Load testing, monitoring alerts"
+          },
+          {
+            "risk": "Mobile platform fragmentation",
+            "likelihood": "medium",
+            "impact": "medium",
+            "mitigation": "Test on multiple devices/OS versions early"
+          },
+          {
+            "risk": "API integration issues",
+            "likelihood": "medium",
+            "impact": "medium",
+            "mitigation": "Create API contracts upfront, integration test early"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "index": 3,
+    "briefing": {
+      "id": "briefing-task-1773681978523",
+      "taskId": "task-1773681978523",
+      "generatedAt": "2026-03-18T11:25:11.229Z",
+      "task": {
+        "title": "DC Northeast Growth",
+        "description": "I would like to develop a plan to grow my business Pro-Tel. I would like to focus on the Data Center Structured cable installation market in Upstate NY and PA. The output should be daily emails to my work email tim.ryan@pro-tel.com that continue to guide me to the goal.",
+        "category": "strategy",
+        "priority": "medium",
+        "status": "in-progress",
+        "assignedTo": {
+          "id": "laura",
+          "name": "Laura",
+          "title": "Brand Strategy Manager"
+        },
+        "dueDate": null
+      },
+      "executionPlan": {
+        "title": "DC Northeast Growth",
+        "description": "I would like to develop a plan to grow my business Pro-Tel. I would like to focus on the Data Center Structured cable installation market in Upstate NY and PA. The output should be daily emails to my work email tim.ryan@pro-tel.com that continue to guide me to the goal.",
+        "deliverables": [
+          "Strategic plan document (goals, objectives, tactics)",
+          "Market analysis & positioning recommendations",
+          "Go-to-market roadmap with phases",
+          "Success metrics & KPIs",
+          "Executive summary for stakeholder review"
+        ],
+        "milestones": [
+          {
+            "name": "Situation Analysis",
+            "description": "Market research, competitive analysis, SWOT",
+            "estimatedDays": 1.5
+          },
+          {
+            "name": "Strategy Development",
+            "description": "Define positioning, goals, tactics",
+            "estimatedDays": 1.5
+          },
+          {
+            "name": "Roadmap Creation",
+            "description": "Break into phases, set milestones, assign resources",
+            "estimatedDays": 1
+          },
+          {
+            "name": "Business Case & KPIs",
+            "description": "Financial model, success metrics, monitoring plan",
+            "estimatedDays": 1
+          },
+          {
+            "name": "Stakeholder Review",
+            "description": "Present strategy, gather feedback, finalize",
+            "estimatedDays": 0.5
+          }
+        ],
+        "timeline": {
+          "estimatedHours": 20,
+          "estimatedDays": 2.5,
+          "summary": "2.5 days (20 hours)",
+          "breakdown": [
+            {
+              "milestone": "Situation Analysis",
+              "estimatedDays": 1.5
+            },
+            {
+              "milestone": "Strategy Development",
+              "estimatedDays": 1.5
+            },
+            {
+              "milestone": "Roadmap Creation",
+              "estimatedDays": 1
+            },
+            {
+              "milestone": "Business Case & KPIs",
+              "estimatedDays": 1
+            },
+            {
+              "milestone": "Stakeholder Review",
+              "estimatedDays": 0.5
+            }
+          ]
+        },
+        "resourcesNeeded": {
+          "team": [
+            {
+              "role": "Brand Strategy Manager",
+              "name": "Laura",
+              "model": "Claude Sonnet 4.6",
+              "allocation": "100%"
+            },
+            {
+              "role": "Research & Intelligence",
+              "name": "Scout",
+              "model": "Claude Haiku 4.5",
+              "allocation": "30%",
+              "phase": "discovery & analysis"
+            }
+          ],
+          "tools": [
+            "Strategy planning tools (Miro, Figma)",
+            "Financial modeling tools",
+            "Market research platforms"
+          ],
+          "infrastructure": [],
+          "external": [
+            "Market data & reports",
+            "Competitor intelligence",
+            "Industry trend analysis",
+            "Customer interviews (if applicable)"
+          ],
+          "documentation": [
+            "Business context & goals",
+            "Historical performance data",
+            "Customer insights",
+            "Competitive analysis reports"
+          ]
+        },
+        "successCriteria": [
+          {
+            "type": "Completion",
+            "description": "All deliverables completed and reviewed",
+            "measurement": "Checklist 100% complete"
+          },
+          {
+            "type": "Viability",
+            "description": "Strategy is realistic and achievable",
+            "measurement": "No unrealistic timelines or resource needs"
+          },
+          {
+            "type": "Alignment",
+            "description": "Strategy aligns with business goals",
+            "measurement": "Leadership approval"
+          },
+          {
+            "type": "Clarity",
+            "description": "Strategy is clearly communicated",
+            "measurement": "Team understands goals and approach"
+          },
+          {
+            "type": "Measurability",
+            "description": "Success is measurable with defined KPIs",
+            "measurement": "Metrics dashboard can be tracked"
+          }
+        ],
+        "dependencies": [],
+        "risks": [
+          {
+            "risk": "Market conditions change",
+            "likelihood": "medium",
+            "impact": "high",
+            "mitigation": "Build flexibility into plan, monitor key metrics"
+          },
+          {
+            "risk": "Poor execution",
+            "likelihood": "medium",
+            "impact": "high",
+            "mitigation": "Clear roadmap, frequent checkpoints"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "index": 4,
+    "briefing": {
+      "id": "briefing-task-1773616727446",
+      "taskId": "task-1773616727446",
+      "generatedAt": "2026-03-18T11:25:11.229Z",
+      "task": {
+        "title": "Review API endpoint security",
+        "description": "Audit task API endpoints for auth, validation, SQL injection vulnerabilities. Check rate limiting, input sanitization, and error handling. Deliverables: Security audit report with findings and remediation recommendations.",
+        "category": "security",
+        "priority": "high",
+        "status": "rejected",
+        "assignedTo": {
+          "id": "opus",
+          "name": "Opus",
+          "title": "Security & Code Review Specialist"
+        },
+        "dueDate": null
+      },
+      "executionPlan": {
+        "title": "Review API endpoint security",
+        "description": "Audit task API endpoints for auth, validation, SQL injection vulnerabilities. Check rate limiting, input sanitization, and error handling. Deliverables: Security audit report with findings and remediation recommendations.",
+        "deliverables": [
+          "Security audit report with findings and remediation recommendations"
+        ],
+        "milestones": [
+          {
+            "name": "Scope & Planning",
+            "description": "Define audit scope, review checklist, create test plan",
+            "estimatedDays": 0.5
+          },
+          {
+            "name": "Vulnerability Assessment",
+            "description": "Scan, test, identify security issues",
+            "estimatedDays": 2
+          },
+          {
+            "name": "Analysis & Documentation",
+            "description": "Categorize findings, write detailed report",
+            "estimatedDays": 1
+          },
+          {
+            "name": "Remediation Plan",
+            "description": "Prioritize issues, recommend fixes, estimate effort",
+            "estimatedDays": 1
+          },
+          {
+            "name": "Verification & Sign-off",
+            "description": "Validate fixes, provide final assessment",
+            "estimatedDays": 0.5
+          }
+        ],
+        "timeline": {
+          "estimatedHours": 26,
+          "estimatedDays": 3.3,
+          "summary": "3.3 days (26 hours)",
+          "breakdown": [
+            {
+              "milestone": "Scope & Planning",
+              "estimatedDays": 0.5
+            },
+            {
+              "milestone": "Vulnerability Assessment",
+              "estimatedDays": 2
+            },
+            {
+              "milestone": "Analysis & Documentation",
+              "estimatedDays": 1
+            },
+            {
+              "milestone": "Remediation Plan",
+              "estimatedDays": 1
+            },
+            {
+              "milestone": "Verification & Sign-off",
+              "estimatedDays": 0.5
+            }
+          ]
+        },
+        "resourcesNeeded": {
+          "team": [
+            {
+              "role": "Security & Code Review Specialist",
+              "name": "Opus",
+              "model": "Claude Opus 4.6",
+              "allocation": "100%"
+            }
+          ],
+          "tools": [
+            "Security scanning tools (SAST/DAST)",
+            "Vulnerability database access",
+            "Penetration testing tools (if applicable)",
+            "Code analysis tools"
+          ],
+          "infrastructure": [
+            "Access to code repositories",
+            "Access to deployed systems",
+            "Database query access",
+            "Log analysis tools"
+          ],
+          "external": [],
+          "documentation": [
+            "Security policies & standards",
+            "Threat model (if available)",
+            "Previous audit reports",
+            "System architecture documentation"
+          ]
+        },
+        "successCriteria": [
+          {
+            "type": "Completion",
+            "description": "All deliverables completed and reviewed",
+            "measurement": "Checklist 100% complete"
+          },
+          {
+            "type": "Findings",
+            "description": "All vulnerabilities identified and documented",
+            "measurement": "Audit report complete with risk ratings"
+          },
+          {
+            "type": "Critical Issues",
+            "description": "No critical vulnerabilities left unaddressed",
+            "measurement": "Remediation plan for all critical/high issues"
+          },
+          {
+            "type": "Compliance",
+            "description": "System meets compliance requirements",
+            "measurement": "Verification against standards (OWASP, CIS, etc.)"
+          },
+          {
+            "type": "Remediation",
+            "description": "Clear implementation guidance provided",
+            "measurement": "Team has roadmap to fix issues"
+          }
+        ],
+        "dependencies": [],
+        "risks": [
+          {
+            "risk": "Undiscovered vulnerabilities",
+            "likelihood": "medium",
+            "impact": "critical",
+            "mitigation": "Use multiple assessment methods, include expert review"
+          },
+          {
+            "risk": "False positives",
+            "likelihood": "medium",
+            "impact": "medium",
+            "mitigation": "Verify all findings, document methodology"
+          },
+          {
+            "risk": "API integration issues",
+            "likelihood": "medium",
+            "impact": "medium",
+            "mitigation": "Create API contracts upfront, integration test early"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "index": 5,
+    "briefing": {
+      "id": "briefing-task-1773703901057_design_merge",
+      "taskId": "task-1773703901057_design_merge",
+      "generatedAt": "2026-03-18T11:25:11.229Z",
+      "task": {
+        "title": "Design: Unified Project/Task Status Dashboard",
+        "description": "Design a merged dashboard that combines: 1. Projects page (overview of all projects) 2. Task Board (task management with kanban) 3. Task Progress (real-time tracking with timelines)\n\nGoals: Single unified view for project + task management, Show project overview + all tasks within each project, Real-time progress tracking, Timeline/Gantt-style view for task dependencies, Agent assignments visible, Status filtering\n\nDeliverables: Figma mockup of unified dashboard, Design spec (layouts, components, data flow), Navigation/interaction patterns, Mobile responsiveness considerations",
+        "category": "design",
+        "priority": "critical",
+        "status": "queued",
+        "assignedTo": {
+          "id": "johnny",
+          "name": "Johnny",
+          "title": "Senior Designer"
+        },
+        "dueDate": null
+      },
+      "executionPlan": {
+        "title": "Design: Unified Project/Task Status Dashboard",
+        "description": "Design a merged dashboard that combines: 1. Projects page (overview of all projects) 2. Task Board (task management with kanban) 3. Task Progress (real-time tracking with timelines)\n\nGoals: Single unified view for project + task management, Show project overview + all tasks within each project, Real-time progress tracking, Timeline/Gantt-style view for task dependencies, Agent assignments visible, Status filtering\n\nDeliverables: Figma mockup of unified dashboard, Design spec (layouts, components, data flow), Navigation/interaction patterns, Mobile responsiveness considerations",
+        "deliverables": [
+          "Figma mockup of unified dashboard, Design spec (layouts, components, data flow), Navigation/interaction patterns, Mobile responsiveness considerations"
+        ],
+        "milestones": [
+          {
+            "name": "Discovery & Requirements",
+            "description": "Understand user needs, constraints, technical requirements",
+            "estimatedDays": 0.5
+          },
+          {
+            "name": "Wireframes & Flow",
+            "description": "Create low-fidelity layouts and user journeys",
+            "estimatedDays": 1
+          },
+          {
+            "name": "High-Fidelity Design",
+            "description": "Develop polished mockups with design system components",
+            "estimatedDays": 1.5
+          },
+          {
+            "name": "Design Review & Iteration",
+            "description": "Stakeholder feedback and refinement",
+            "estimatedDays": 1
+          },
+          {
+            "name": "Handoff & Documentation",
+            "description": "Prepare design specs and component library for dev",
+            "estimatedDays": 0.5
+          }
+        ],
+        "timeline": {
+          "estimatedHours": 24,
+          "estimatedDays": 3,
+          "summary": "3 days (24 hours)",
+          "breakdown": [
+            {
+              "milestone": "Discovery & Requirements",
+              "estimatedDays": 0.5
+            },
+            {
+              "milestone": "Wireframes & Flow",
+              "estimatedDays": 1
+            },
+            {
+              "milestone": "High-Fidelity Design",
+              "estimatedDays": 1.5
+            },
+            {
+              "milestone": "Design Review & Iteration",
+              "estimatedDays": 1
+            },
+            {
+              "milestone": "Handoff & Documentation",
+              "estimatedDays": 0.5
+            }
+          ]
+        },
+        "resourcesNeeded": {
+          "team": [
+            {
+              "role": "Senior Designer",
+              "name": "Johnny",
+              "model": "Claude Sonnet 4.6",
+              "allocation": "100%"
+            }
+          ],
+          "tools": [
+            "Figma (or design tool with access)",
+            "Design system / component library",
+            "Prototyping tool (optional: Framer, Principle)"
+          ],
+          "infrastructure": [],
+          "external": [],
+          "documentation": [
+            "Design brief and requirements",
+            "Brand guidelines",
+            "User personas",
+            "Competitor design references"
+          ]
+        },
+        "successCriteria": [
+          {
+            "type": "Completion",
+            "description": "All deliverables completed and reviewed",
+            "measurement": "Checklist 100% complete"
+          },
+          {
+            "type": "Quality",
+            "description": "Mockups match brand guidelines and user requirements",
+            "measurement": "Stakeholder approval on design"
+          },
+          {
+            "type": "Usability",
+            "description": "Designs are intuitive and follow UX best practices",
+            "measurement": "Design passes usability review"
+          },
+          {
+            "type": "Technical Readiness",
+            "description": "Design is feasible to implement",
+            "measurement": "Dev review confirms no blockers"
+          },
+          {
+            "type": "Documentation",
+            "description": "Comprehensive handoff documentation provided",
+            "measurement": "Dev can implement without ambiguity"
+          }
+        ],
+        "dependencies": [],
+        "risks": [
+          {
+            "risk": "Scope creep",
+            "likelihood": "medium",
+            "impact": "medium",
+            "mitigation": "Agree on scope upfront, manage change requests"
+          },
+          {
+            "risk": "Stakeholder disagreement",
+            "likelihood": "medium",
+            "impact": "high",
+            "mitigation": "Present multiple options early, get feedback in phases"
+          },
+          {
+            "risk": "Mobile platform fragmentation",
+            "likelihood": "medium",
+            "impact": "medium",
+            "mitigation": "Test on multiple devices/OS versions early"
+          }
+        ]
+      }
+    }
+  }
+]

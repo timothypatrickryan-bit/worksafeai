@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mission Control Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #f5f5f7;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 280px;
+      background: #fff;
+      border-right: 1px solid #e5e5e7;
+      padding: 20px;
+      overflow-y: auto;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .sidebar-header {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #e5e5e7;
+    }
+
+    .sidebar-title {
+      font-size: 1.3em;
+      font-weight: 700;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #34c759;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .nav-item {
+      padding: 12px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      color: #555;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid transparent;
+    }
+
+    .nav-item:hover {
+      background: #f5f5f7;
+      color: #333;
+    }
+
+    .nav-item.active {
+      background: #e8e8ff;
+      color: #0066ff;
+      border-color: #d0d0ff;
+    }
+
+    .nav-icon {
+      font-size: 1.2em;
+      width: 20px;
+      text-align: center;
+    }
+
+    .nav-badge {
+      margin-left: auto;
+      background: #ff3b30;
+      color: white;
+      border-radius: 12px;
+      padding: 2px 8px;
+      font-size: 0.75em;
+      font-weight: 600;
+    }
+
+    .nav-badge.gray {
+      background: #999;
+    }
+
+    /* Main Content */
+    .main {
+      flex: 1;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    .content-header {
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .content-title {
+      font-size: 2em;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .connection-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: #f5f5f7;
+      border-radius: 6px;
+      font-size: 0.9em;
+      color: #666;
+    }
+
+    .connection-status.online {
+      background: #d1f4e0;
+      color: #34c759;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    /* Card Grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e5e5e7;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      transition: all 0.2s;
+    }
+
+    .card:hover {
+      border-color: #d0d0ff;
+      box-shadow: 0 2px 8px rgba(0, 102, 255, 0.1);
+    }
+
+    .card h3 {
+      font-size: 1em;
+      color: #333;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Item Lists */
+    .item {
+      padding: 12px;
+      margin-bottom: 12px;
+      background: #f9f9fb;
+      border-radius: 8px;
+      border-left: 3px solid #0066ff;
+      transition: all 0.2s;
+    }
+
+    .item:hover {
+      background: #f0f0ff;
+    }
+
+    .item.idle { border-left-color: #999; }
+    .item.working { border-left-color: #ff9500; }
+    .item.complete { border-left-color: #34c759; }
+    .item.scheduled { border-left-color: #0066ff; }
+
+    .item-name {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .item-status {
+      font-size: 0.85em;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.75em;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .badge.idle { background: #f0f0f0; color: #999; }
+    .badge.working { background: #fff3cd; color: #ff9500; }
+    .badge.complete { background: #d1f4e0; color: #34c759; }
+    .badge.scheduled { background: #e8e8ff; color: #0066ff; }
+    .badge.ready-to-send { background: #cfe7ff; color: #0066ff; }
+    .badge.sent { background: #d1f4e0; color: #34c759; }
+
+    /* Inbox Items */
+    .inbox-item {
+      padding: 15px;
+      margin-bottom: 12px;
+      background: #fff;
+      border: 1px solid #e5e5e7;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s;
+    }
+
+    .inbox-item:hover {
+      border-color: #d0d0ff;
+      box-shadow: 0 2px 8px rgba(0, 102, 255, 0.1);
+    }
+
+    .inbox-details {
+      flex: 1;
+    }
+
+    .inbox-from-to {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 5px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .inbox-message {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    .inbox-meta {
+      font-size: 0.8em;
+      color: #999;
+    }
+
+    .inbox-actions {
+      display: flex;
+      gap: 8px;
+      margin-left: 15px;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.85em;
+      text-transform: uppercase;
+    }
+
+    .btn-send {
+      background: #0066ff;
+      color: white;
+    }
+
+    .btn-send:hover {
+      background: #0052cc;
+      box-shadow: 0 2px 8px rgba(0, 102, 255, 0.3);
+    }
+
+    .btn-send:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    /* Alerts */
+    .alert {
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+      border-left: 4px solid;
+    }
+
+    .alert-icon {
+      font-size: 1.3em;
+      flex-shrink: 0;
+    }
+
+    .alert-content {
+      flex: 1;
+    }
+
+    .alert-title {
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .alert-time {
+      font-size: 0.8em;
+      color: #999;
+    }
+
+    .alert.critical {
+      background: #ffe8e6;
+      border-left-color: #ff3b30;
+    }
+
+    .alert.warning {
+      background: #fff3cd;
+      border-left-color: #ff9500;
+    }
+
+    .alert.info {
+      background: #e8e8ff;
+      border-left-color: #0066ff;
+    }
+
+    /* Contacts Tree */
+    .contact-group {
+      margin-bottom: 15px;
+    }
+
+    .contact-group-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      background: #f9f9fb;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #333;
+      border: 1px solid #e5e5e7;
+      transition: all 0.2s;
+      user-select: none;
+    }
+
+    .contact-group-header:hover {
+      border-color: #d0d0ff;
+      background: #f0f0ff;
+    }
+
+    .contact-group-toggle {
+      display: inline-block;
+      width: 20px;
+      text-align: center;
+      transition: transform 0.2s;
+      color: #0066ff;
+    }
+
+    .contact-group-toggle.collapsed {
+      transform: rotate(-90deg);
+    }
+
+    .contact-group-content {
+      margin-top: 8px;
+      margin-left: 20px;
+      border-left: 2px solid #e5e5e7;
+      padding-left: 15px;
+    }
+
+    .contact-group-content.hidden {
+      display: none;
+    }
+
+    .contact-item {
+      padding: 12px;
+      margin-bottom: 8px;
+      background: #f9f9fb;
+      border-radius: 8px;
+      border-left: 3px solid;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .contact-item:hover {
+      background: #f0f0ff;
+    }
+
+    .contact-item.human { border-left-color: #34c759; }
+    .contact-item.tool { border-left-color: #0066ff; }
+    .contact-item.platform { border-left-color: #ff9500; }
+
+    .contact-item.expanded {
+      background: #f0f0ff;
+    }
+
+    .contact-summary {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .contact-toggle {
+      display: inline-block;
+      width: 16px;
+      text-align: center;
+      transition: transform 0.2s;
+      font-size: 0.8em;
+      color: #0066ff;
+    }
+
+    .contact-toggle.hidden {
+      opacity: 0;
+    }
+
+    .contact-toggle.collapsed {
+      transform: rotate(-90deg);
+    }
+
+    .contact-name {
+      font-weight: 600;
+      color: #333;
+      flex: 1;
+    }
+
+    .contact-title {
+      font-size: 0.85em;
+      color: #999;
+      font-style: italic;
+    }
+
+    .contact-role {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.7em;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .contact-role.human { background: rgba(52, 199, 89, 0.15); color: #34c759; }
+    .contact-role.tool { background: rgba(0, 102, 255, 0.15); color: #0066ff; }
+    .contact-role.platform { background: rgba(255, 149, 0, 0.15); color: #ff9500; }
+
+    .contact-details {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #e5e5e7;
+      display: none;
+    }
+
+    .contact-item.expanded .contact-details {
+      display: block;
+    }
+
+    .contact-channel {
+      margin-bottom: 8px;
+      padding: 8px;
+      background: #fff;
+      border-radius: 4px;
+      border-left: 2px solid #e5e5e7;
+    }
+
+    .channel-name {
+      font-weight: 600;
+      color: #0066ff;
+      margin-bottom: 3px;
+      font-size: 0.9em;
+    }
+
+    .channel-details {
+      color: #666;
+      font-size: 0.85em;
+      margin-left: 10px;
+    }
+
+    .contact-meta {
+      display: flex;
+      gap: 15px;
+      font-size: 0.85em;
+      color: #999;
+      flex-wrap: wrap;
+    }
+
+    .contact-notes {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid #e5e5e7;
+      font-size: 0.9em;
+      color: #666;
+      font-style: italic;
+    }
+
+    .no-data {
+      color: #999;
+      font-style: italic;
+      padding: 20px;
+      text-align: center;
+      background: #f9f9fb;
+      border-radius: 8px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #999;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #e5e5e7;
+      border-top: 3px solid #0066ff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e5e5e7;
+        padding: 15px;
+      }
+
+      .main {
+        padding: 20px;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title">
+        <span class="status-dot"></span>
+        Mission Control
+      </div>
+    </div>
+
+    <div class="sidebar-nav">
+      <div class="nav-item active" onclick="switchSection('agents')">
+        <span class="nav-icon">📋</span>
+        <span>Agents</span>
+        <span class="nav-badge gray" id="agents-count">3</span>
+      </div>
+      <div class="nav-item" onclick="switchSection('projects')">
+        <span class="nav-icon">🗂️</span>
+        <span>Projects</span>
+        <span class="nav-badge gray" id="projects-count">2</span>
+      </div>
+      <div class="nav-item" onclick="switchSection('inbox')">
+        <span class="nav-icon">📬</span>
+        <span>Inbox</span>
+        <span class="nav-badge" id="inbox-count">0</span>
+      </div>
+      <div class="nav-item" onclick="switchSection('alerts')">
+        <span class="nav-icon">🚨</span>
+        <span>Alerts</span>
+        <span class="nav-badge" id="alerts-count">0</span>
+      </div>
+      <div class="nav-item" onclick="switchSection('contacts')">
+        <span class="nav-icon">👥</span>
+        <span>Contacts</span>
+        <span class="nav-badge gray" id="contacts-count">7</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <div class="content-header">
+      <h1 class="content-title" id="section-title">Agents</h1>
+      <div class="connection-status online" id="connection-status">
+        <span>✓ Connected</span>
+      </div>
+    </div>
+
+    <!-- Agents Section -->
+    <div id="agents" class="section active">
+      <div id="agents-content"></div>
+    </div>
+
+    <!-- Projects Section -->
+    <div id="projects" class="section">
+      <div id="projects-content"></div>
+    </div>
+
+    <!-- Inbox Section -->
+    <div id="inbox" class="section">
+      <div id="inbox-content"></div>
+    </div>
+
+    <!-- Alerts Section -->
+    <div id="alerts" class="section">
+      <div id="alerts-content"></div>
+    </div>
+
+    <!-- Contacts Section -->
+    <div id="contacts" class="section">
+      <div id="contacts-content"></div>
+    </div>
+  </div>
+
+  <script>
+    const WS_URL = `ws://${window.location.host}`;
+    let ws;
+    let state = null;
+    let currentSection = 'agents';
+
+    function connectWebSocket() {
+      ws = new WebSocket(WS_URL);
+
+      ws.addEventListener('open', () => {
+        console.log('✅ WebSocket connected');
+        document.getElementById('connection-status').className = 'connection-status online';
+        document.getElementById('connection-status').textContent = '✓ Connected';
+      });
+
+      ws.addEventListener('message', (event) => {
+        const message = JSON.parse(event.data);
+        if (message.type === 'state-update') {
+          state = message.payload;
+          renderDashboard();
+        }
+      });
+
+      ws.addEventListener('close', () => {
+        console.log('❌ WebSocket disconnected');
+        document.getElementById('connection-status').className = 'connection-status';
+        document.getElementById('connection-status').textContent = '✗ Disconnected';
+        setTimeout(connectWebSocket, 3000);
+      });
+    }
+
+    function switchSection(section) {
+      // Hide all sections
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      
+      // Show selected section
+      document.getElementById(section).classList.add('active');
+
+      // Update nav
+      document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      // Update title
+      const titles = {
+        agents: 'Agents',
+        projects: 'Projects',
+        inbox: 'Inbox',
+        alerts: 'Alerts',
+        contacts: 'Contacts & Platforms'
+      };
+      document.getElementById('section-title').textContent = titles[section];
+
+      currentSection = section;
+    }
+
+    function renderDashboard() {
+      if (!state) return;
+
+      renderAgents();
+      renderProjects();
+      renderInbox();
+      renderAlerts();
+      renderContacts();
+    }
+
+    function renderAgents() {
+      const container = document.getElementById('agents-content');
+      const agents = state.agents || {};
+      const count = document.getElementById('agents-count');
+
+      count.textContent = Object.keys(agents).length;
+
+      if (Object.keys(agents).length === 0) {
+        container.innerHTML = '<div class="no-data">No agents configured</div>';
+        return;
+      }
+
+      container.innerHTML = Object.entries(agents).map(([key, agent]) => {
+        const statusEmoji = {
+          idle: '⏸️',
+          working: '🔄',
+          complete: '✅',
+          scheduled: '🟢',
+          reviewing: '🔍'
+        }[agent.status] || '❓';
+
+        return `
+          <div class="item ${agent.status}">
+            <div class="item-name">${statusEmoji} ${agent.name}</div>
+            <div class="item-status">
+              <span class="badge ${agent.status}">${agent.status}</span>
+              ${agent.lastActivity ? `<span>${new Date(agent.lastActivity).toLocaleTimeString()}</span>` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderProjects() {
+      const container = document.getElementById('projects-content');
+      const projects = state.projects || {};
+      const count = document.getElementById('projects-count');
+
+      count.textContent = Object.keys(projects).length;
+
+      if (Object.keys(projects).length === 0) {
+        container.innerHTML = '<div class="no-data">No projects configured</div>';
+        return;
+      }
+
+      container.innerHTML = Object.entries(projects).map(([name, proj]) => {
+        const healthEmoji = proj.healthCheck === 'passing' ? '✅' : '⚠️';
+        return `
+          <div class="item">
+            <div class="item-name">${healthEmoji} ${name}</div>
+            <div class="item-status">
+              <span class="badge">${proj.status}</span>
+              <span>Health: ${proj.healthCheck || 'unknown'}</span>
+              ${proj.lastDeploy ? `<span>${new Date(proj.lastDeploy).toLocaleString()}</span>` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderInbox() {
+      const container = document.getElementById('inbox-content');
+      const inbox = state.inbox || [];
+      const count = document.getElementById('inbox-count');
+
+      count.textContent = inbox.length;
+
+      if (inbox.length === 0) {
+        container.innerHTML = '<div class="no-data">No inbox items</div>';
+        return;
+      }
+
+      container.innerHTML = inbox.map((item) => {
+        return `
+          <div class="inbox-item">
+            <div class="inbox-details">
+              <div class="inbox-from-to">
+                <strong>${item.from}</strong>
+                <span>→</span>
+                <strong>${item.to}</strong>
+                <span class="badge ${item.status}">${item.status}</span>
+              </div>
+              <div class="inbox-message">"${item.message}"</div>
+              <div class="inbox-meta">
+                ${item.type} • ${new Date(item.timestamp).toLocaleTimeString()}
+              </div>
+            </div>
+            <div class="inbox-actions">
+              ${item.status === 'ready-to-send' ? `
+                <button class="btn btn-send" onclick="sendInboxItem('${item.id}')">Send</button>
+              ` : `
+                <button class="btn btn-send" disabled>${item.status}</button>
+              `}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderAlerts() {
+      const container = document.getElementById('alerts-content');
+      const alerts = state.alerts || [];
+      const count = document.getElementById('alerts-count');
+
+      count.textContent = alerts.length;
+
+      if (alerts.length === 0) {
+        container.innerHTML = '<div class="no-data">No active alerts</div>';
+        return;
+      }
+
+      container.innerHTML = alerts.map((alert) => {
+        const icon = {
+          critical: '🚨',
+          warning: '⚠️',
+          info: 'ℹ️'
+        }[alert.level] || '📌';
+
+        return `
+          <div class="alert ${alert.level}">
+            <div class="alert-icon">${icon}</div>
+            <div class="alert-content">
+              <div class="alert-title">${alert.message}</div>
+              <div class="alert-time">${new Date(alert.timestamp).toLocaleString()}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderContacts() {
+      const container = document.getElementById('contacts-content');
+      const contacts = state.contacts || {};
+      const count = document.getElementById('contacts-count');
+
+      count.textContent = Object.keys(contacts).length;
+
+      if (Object.keys(contacts).length === 0) {
+        container.innerHTML = '<div class="no-data">No contacts configured</div>';
+        return;
+      }
+
+      const grouped = {};
+      Object.entries(contacts).forEach(([key, contact]) => {
+        const role = contact.role || 'other';
+        if (!grouped[role]) grouped[role] = [];
+        grouped[role].push([key, contact]);
+      });
+
+      const roleLabels = {
+        owner: '👤 People - Owners',
+        consultant: '🎯 People - Consultants',
+        tool: '🤖 AI Tools',
+        platform: '⚙️ Platforms & Services',
+        other: '📌 Other'
+      };
+
+      container.innerHTML = `<div class="contacts-tree">
+        ${Object.entries(grouped).map(([role, items]) => `
+          <div class="contact-group">
+            <div class="contact-group-header" onclick="toggleGroup(this)">
+              <span class="contact-group-toggle">▼</span>
+              <span>${roleLabels[role] || role}</span>
+              <span style="margin-left: auto; font-size: 0.85em; color: #999;">${items.length}</span>
+            </div>
+            <div class="contact-group-content">
+              ${items.map(([key, contact]) => {
+                const channelsHtml = Object.entries(contact.channels || {}).map(([chKey, ch]) => {
+                  let detail = '';
+                  if (ch.phone) detail = ch.phone;
+                  else if (ch.handle) detail = ch.handle;
+                  else if (ch.address) detail = ch.address;
+                  else if (ch.endpoint) detail = ch.endpoint;
+                  else if (ch.org) detail = `@${ch.org}`;
+                  else if (ch.account) detail = ch.account;
+                  else if (ch.project) detail = ch.project;
+
+                  return `
+                    <div class="contact-channel">
+                      <div class="channel-name">📞 ${ch.name}</div>
+                      <div class="channel-details">${detail || 'Configured'}</div>
+                    </div>
+                  `;
+                }).join('');
+
+                const hasDetails = contact.channels && Object.keys(contact.channels).length > 0;
+
+                return `
+                  <div class="contact-item ${contact.role}" onclick="toggleContact(this)">
+                    <div class="contact-header" style="display: flex; justify-content: space-between; align-items: center;">
+                      <div class="contact-summary" style="display: flex; align-items: center; gap: 10px; flex: 1;">
+                        ${hasDetails ? '<span class="contact-toggle collapsed">▼</span>' : '<span class="contact-toggle hidden">▼</span>'}
+                        <div>
+                          <div class="contact-name">${contact.name}</div>
+                          <div class="contact-title">${contact.title}</div>
+                        </div>
+                      </div>
+                      <span class="contact-role ${contact.role}">${contact.role}</span>
+                    </div>
+                    <div class="contact-details">
+                      <div class="contact-channels">
+                        ${channelsHtml}
+                      </div>
+                      <div class="contact-meta">
+                        <span>⏰ ${contact.availability || 'Always'}</span>
+                        <span>🌍 ${contact.timezone || 'UTC'}</span>
+                        ${contact.cost_per_use ? `<span>💰 ${contact.cost_per_use}</span>` : ''}
+                      </div>
+                      ${contact.notes ? `<div class="contact-notes">${contact.notes}</div>` : ''}
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `).join('')}
+      </div>`;
+    }
+
+    function toggleGroup(header) {
+      const toggle = header.querySelector('.contact-group-toggle');
+      const content = header.nextElementSibling;
+      toggle.classList.toggle('collapsed');
+      content.classList.toggle('hidden');
+    }
+
+    function toggleContact(item) {
+      const toggle = item.querySelector('.contact-toggle');
+      if (toggle && !toggle.classList.contains('hidden')) {
+        toggle.classList.toggle('collapsed');
+        item.classList.toggle('expanded');
+      }
+    }
+
+    function sendInboxItem(id) {
+      fetch(`/api/inbox/send/${id}`, { method: 'POST' })
+        .then(res => res.json())
+        .then(() => {
+          console.log('✅ Inbox item sent');
+        })
+        .catch(err => console.error('❌ Error:', err));
+    }
+
+    // Connect on load
+    window.addEventListener('load', connectWebSocket);
+  </script>
+</body>
+</html>

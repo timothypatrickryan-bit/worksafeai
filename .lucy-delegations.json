@@ -1,0 +1,33 @@
+{
+  "delegations": [
+    {
+      "taskId": "task-1773681978523",
+      "title": "DC Northeast Growth",
+      "description": "I would like to develop a plan to grow my business Pro-Tel.  I would like to focus on the Data Center Structured cable installation market in Upstate NY and PA.  The output should be daily emails to my work email tim.ryan@pro-tel.com that continue to guide me to the goal.",
+      "category": "design",
+      "primaryAgent": {
+        "matchScore": 8,
+        "reason": "Best match for design work"
+      },
+      "subtasks": [],
+      "status": "planned",
+      "createdAt": "2026-03-16T17:33:38.334Z"
+    },
+    {
+      "taskId": "task-1773681978523",
+      "title": "DC Northeast Growth",
+      "description": "I would like to develop a plan to grow my business Pro-Tel.  I would like to focus on the Data Center Structured cable installation market in Upstate NY and PA.  The output should be daily emails to my work email tim.ryan@pro-tel.com that continue to guide me to the goal.",
+      "category": "strategy",
+      "primaryAgent": {
+        "id": "laura",
+        "name": "Laura",
+        "title": "Brand Strategy Manager",
+        "matchScore": 9,
+        "reason": "Best match for strategy work (specializes in Strategic analysis, market positioning, brand development, competitive intelligence, go-to-market strategy)"
+      },
+      "subtasks": [],
+      "status": "planned",
+      "createdAt": "2026-03-16T22:39:35.959Z"
+    }
+  ]
+}

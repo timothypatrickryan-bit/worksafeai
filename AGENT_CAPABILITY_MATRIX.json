@@ -1,0 +1,542 @@
+{
+  "agents": {
+    "lucy": {
+      "id": "lucy",
+      "name": "Lucy",
+      "title": "Personal AI Orchestrator",
+      "role": "orchestrator",
+      "status": "active",
+      "skills": {
+        "task_routing": 10,
+        "work_classification": 10,
+        "team_coordination": 10,
+        "decision_making": 9,
+        "documentation": 9,
+        "escalation_judgment": 9,
+        "code_review": 4,
+        "design": 3,
+        "strategy": 5
+      },
+      "specialties": [
+        "Work delegation",
+        "Task routing",
+        "Agent orchestration",
+        "Priority management",
+        "Escalation decisions"
+      ],
+      "can_delegate_to": [
+        "opus",
+        "jarvis",
+        "johnny",
+        "laura",
+        "chief",
+        "velma"
+      ]
+    },
+    "opus": {
+      "id": "opus",
+      "name": "Opus Code Reviewer",
+      "title": "Automated Code Analysis & Security",
+      "role": "agent",
+      "type": "subagent",
+      "status": "active",
+      "skills": {
+        "code_review": 10,
+        "security_analysis": 10,
+        "bug_detection": 10,
+        "architecture_review": 9,
+        "performance_tuning": 8,
+        "documentation_qa": 7,
+        "api_design": 8,
+        "testing": 7,
+        "brand_strategy": 0
+      },
+      "specialties": [
+        "Security vulnerability detection",
+        "Code quality analysis",
+        "Architecture review",
+        "Bug finding",
+        "Performance optimization",
+        "API design review"
+      ],
+      "priority_work": [
+        "security",
+        "code_review",
+        "architecture"
+      ],
+      "capacity": 1,
+      "current_load": 0,
+      "accepts_parallel": false
+    },
+    "jarvis": {
+      "id": "jarvis",
+      "name": "Jarvis",
+      "title": "App Developer",
+      "role": "agent",
+      "type": "subagent",
+      "status": "active",
+      "skills": {
+        "full_stack_dev": 10,
+        "architecture": 9,
+        "code_quality": 9,
+        "database_design": 10,
+        "api_design": 9,
+        "backend_development": 10,
+        "performance": 8,
+        "security": 8,
+        "frontend": 3,
+        "design": 0
+      },
+      "specialties": [
+        "Full-stack software architecture",
+        "Backend development",
+        "Database schema design",
+        "API development",
+        "Code optimization",
+        "System design"
+      ],
+      "priority_work": [
+        "feature_development",
+        "backend",
+        "architecture"
+      ],
+      "capacity": 1,
+      "current_load": 0,
+      "accepts_parallel": false
+    },
+    "johnny": {
+      "id": "johnny",
+      "name": "Johnny",
+      "title": "App Designer",
+      "role": "agent",
+      "type": "subagent",
+      "status": "active",
+      "skills": {
+        "ui_ux_design": 10,
+        "design_systems": 9,
+        "prototyping": 9,
+        "mobile_design": 9,
+        "responsive_design": 10,
+        "interaction_design": 9,
+        "brand_identity": 7,
+        "frontend_code": 3,
+        "backend": 0
+      },
+      "specialties": [
+        "UI/UX design",
+        "Design systems",
+        "Interactive prototypes",
+        "Mobile design",
+        "Responsive layouts",
+        "Design handoff specifications"
+      ],
+      "priority_work": [
+        "design",
+        "ui_ux",
+        "prototyping"
+      ],
+      "capacity": 1,
+      "current_load": 0,
+      "accepts_parallel": false
+    },
+    "laura": {
+      "id": "laura",
+      "name": "Laura",
+      "title": "Elevated Children's Brand Manager",
+      "role": "agent",
+      "type": "subagent",
+      "status": "active",
+      "skills": {
+        "brand_strategy": 10,
+        "market_research": 10,
+        "competitive_analysis": 9,
+        "content_creation": 7,
+        "product_development": 8,
+        "pricing_strategy": 8,
+        "go_to_market": 8,
+        "data_analysis": 3,
+        "code_review": 0
+      },
+      "specialties": [
+        "Premium brand positioning",
+        "Market analysis",
+        "Competitive intelligence",
+        "Product strategy",
+        "Pricing & go-to-market",
+        "Brand messaging",
+        "Retail partnerships"
+      ],
+      "priority_work": [
+        "strategy",
+        "market_research",
+        "brand"
+      ],
+      "capacity": 1,
+      "current_load": 0,
+      "accepts_parallel": false
+    },
+    "chief": {
+      "id": "chief",
+      "name": "Chief",
+      "title": "Infrastructure & Team Overseer (ITO)",
+      "role": "agent",
+      "type": "subagent",
+      "status": "active",
+      "skills": {
+        "system_monitoring": 10,
+        "orchestration": 10,
+        "health_checks": 10,
+        "load_balancing": 9,
+        "team_coordination": 10,
+        "resource_auditing": 10,
+        "problem_diagnosis": 8,
+        "code_writing": 2
+      },
+      "specialties": [
+        "System health monitoring",
+        "Infrastructure orchestration",
+        "Agent load balancing",
+        "Team coordination",
+        "Resource auditing",
+        "Problem diagnosis",
+        "Heartbeat monitoring"
+      ],
+      "priority_work": [
+        "monitoring",
+        "orchestration",
+        "health_check"
+      ],
+      "capacity": 2,
+      "current_load": 0,
+      "accepts_parallel": true,
+      "runs_on_schedule": true,
+      "schedule": "every 30 minutes"
+    },
+    "velma": {
+      "id": "velma",
+      "name": "Velma",
+      "title": "Validation & Quality Architect (VQA)",
+      "role": "agent",
+      "type": "subagent",
+      "status": "active",
+      "skills": {
+        "qa_testing": 10,
+        "code_review_qa": 10,
+        "regression_testing": 10,
+        "security_testing": 10,
+        "performance_testing": 8,
+        "documentation_qa": 7,
+        "test_automation": 8,
+        "feature_development": 2
+      },
+      "specialties": [
+        "QA & regression testing",
+        "Security testing",
+        "Code review (QA perspective)",
+        "Performance testing",
+        "Test automation",
+        "Documentation quality",
+        "Hallucination detection"
+      ],
+      "priority_work": [
+        "qa",
+        "testing",
+        "quality_gate"
+      ],
+      "capacity": 1,
+      "current_load": 0,
+      "accepts_parallel": false
+    },
+    "content": {
+      "id": "content",
+      "name": "Content",
+      "title": "Content Writer",
+      "role": "agent",
+      "type": "subagent",
+      "status": "active",
+      "skills": {
+        "content_creation": 9,
+        "writing_quality": 9,
+        "editing": 8,
+        "seo_knowledge": 6,
+        "storytelling": 8,
+        "task_completion": 7,
+        "problem_solving": 7,
+        "documentation": 6
+      },
+      "specialties": [
+        "Content creation and editing",
+        "Clear technical writing",
+        "Blog and article writing",
+        "Documentation"
+      ],
+      "priority_work": [
+        "content",
+        "documentation",
+        "writing"
+      ],
+      "capacity": 2,
+      "current_load": 0,
+      "accepts_parallel": false
+    },
+    "security": {
+      "id": "security",
+      "name": "Security",
+      "title": "Security Developer",
+      "role": "agent",
+      "type": "subagent",
+      "status": "active",
+      "skills": {
+        "code_quality": 8,
+        "architecture": 7,
+        "debugging": 8,
+        "performance": 7,
+        "testing": 6,
+        "documentation": 6,
+        "security_analysis": 8,
+        "api_design": 8,
+        "task_completion": 7,
+        "problem_solving": 7
+      },
+      "specialties": [
+        "Full-stack software development",
+        "API design and implementation",
+        "Code quality and architecture",
+        "Performance optimization"
+      ],
+      "priority_work": [
+        "feature_development",
+        "code_review",
+        "backend"
+      ],
+      "capacity": 2,
+      "current_load": 0,
+      "accepts_parallel": false
+    },
+    "test": {
+      "id": "test",
+      "name": "Test",
+      "title": "Test Writer",
+      "role": "agent",
+      "type": "subagent",
+      "status": "active",
+      "skills": {
+        "content_creation": 9,
+        "writing_quality": 9,
+        "editing": 8,
+        "seo_knowledge": 6,
+        "storytelling": 8,
+        "testing": 8,
+        "task_completion": 7,
+        "problem_solving": 7,
+        "documentation": 6
+      },
+      "specialties": [
+        "Content creation and editing",
+        "Clear technical writing",
+        "Blog and article writing",
+        "Documentation"
+      ],
+      "priority_work": [
+        "content",
+        "documentation",
+        "writing"
+      ],
+      "capacity": 2,
+      "current_load": 0,
+      "accepts_parallel": false
+    }
+  },
+  "work_categories": {
+    "code_review": {
+      "label": "Code Review & Security",
+      "priority_default": "high",
+      "primary_agent": "opus",
+      "secondary_agents": [
+        "velma",
+        "jarvis"
+      ],
+      "followup_agents": [
+        "velma"
+      ],
+      "keywords": [
+        "code review",
+        "security",
+        "bug",
+        "vulnerability",
+        "bug fix",
+        "security audit"
+      ]
+    },
+    "feature_development": {
+      "label": "Feature Development",
+      "priority_default": "high",
+      "primary_agent": "jarvis",
+      "secondary_agents": [
+        "johnny"
+      ],
+      "followup_agents": [
+        "opus",
+        "velma"
+      ],
+      "keywords": [
+        "build",
+        "develop",
+        "feature",
+        "implement",
+        "backend",
+        "api"
+      ],
+      "workflow": [
+        "johnny:design",
+        "jarvis:build",
+        "opus:review",
+        "velma:test"
+      ]
+    },
+    "design": {
+      "label": "Design & UI",
+      "priority_default": "medium",
+      "primary_agent": "johnny",
+      "secondary_agents": [
+        "laura"
+      ],
+      "followup_agents": [
+        "jarvis"
+      ],
+      "keywords": [
+        "design",
+        "ui",
+        "ux",
+        "prototype",
+        "mockup",
+        "interface",
+        "layout",
+        "responsive"
+      ]
+    },
+    "strategy": {
+      "label": "Strategy & Research",
+      "priority_default": "medium",
+      "primary_agent": "laura",
+      "secondary_agents": [],
+      "followup_agents": [],
+      "keywords": [
+        "strategy",
+        "market",
+        "analysis",
+        "competitor",
+        "positioning",
+        "pricing",
+        "research"
+      ]
+    },
+    "system_health": {
+      "label": "System Health & Monitoring",
+      "priority_default": "critical",
+      "primary_agent": "chief",
+      "secondary_agents": [],
+      "followup_agents": [],
+      "keywords": [
+        "health",
+        "monitor",
+        "uptime",
+        "heartbeat",
+        "resource",
+        "audit",
+        "infrastructure"
+      ],
+      "automatic_trigger": true
+    },
+    "qa_testing": {
+      "label": "Quality Assurance & Testing",
+      "priority_default": "high",
+      "primary_agent": "velma",
+      "secondary_agents": [
+        "opus"
+      ],
+      "followup_agents": [],
+      "keywords": [
+        "test",
+        "qa",
+        "regression",
+        "quality",
+        "verify",
+        "validate",
+        "security test"
+      ]
+    }
+  },
+  "priority_levels": {
+    "critical": {
+      "level": 1,
+      "description": "Security vulnerabilities, production outages, data integrity",
+      "examples": [
+        "Security exploit found",
+        "Production down",
+        "Data corruption"
+      ],
+      "sla_minutes": 15,
+      "escalate_to_tim": true
+    },
+    "high": {
+      "level": 2,
+      "description": "Feature code ready for review, blocking decisions, architecture",
+      "examples": [
+        "PR ready for review",
+        "Design decision needed",
+        "Architecture issue"
+      ],
+      "sla_minutes": 60,
+      "escalate_to_tim": false
+    },
+    "medium": {
+      "level": 3,
+      "description": "Design work, documentation, non-urgent code review",
+      "examples": [
+        "New design proposal",
+        "Docs needed",
+        "Code review"
+      ],
+      "sla_minutes": 480,
+      "escalate_to_tim": false
+    },
+    "low": {
+      "level": 4,
+      "description": "Refactoring, optimization, nice-to-have improvements",
+      "examples": [
+        "Code cleanup",
+        "Performance optimization",
+        "UX polish"
+      ],
+      "sla_minutes": 1440,
+      "escalate_to_tim": false
+    }
+  },
+  "routing_rules": {
+    "parallel_work": {
+      "design_and_dev": {
+        "agents": [
+          "johnny",
+          "jarvis"
+        ],
+        "condition": "design != complete AND dev != complete",
+        "sync_point": "after design"
+      },
+      "review_and_test": {
+        "agents": [
+          "opus",
+          "velma"
+        ],
+        "condition": "code complete AND separate concerns",
+        "sync_point": "after review"
+      }
+    },
+    "blocking_conditions": {
+      "design_blocks_dev": "Johnny's design must be complete before Jarvis starts",
+      "review_blocks_merge": "Opus review must pass before code merges",
+      "test_blocks_release": "Velma's tests must pass before release",
+      "strategy_blocks_action": "Laura's analysis must guide execution"
+    }
+  }
+}

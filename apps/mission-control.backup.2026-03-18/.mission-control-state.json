@@ -1,0 +1,115 @@
+{
+  "lastUpdate": "2026-03-18T13:20:00Z",
+  "tasks": [
+    {
+      "id": "task-001",
+      "title": "Deploy Mission Control UI",
+      "description": "Integrate TaskProgressDashboard and AgentBriefingApproval components",
+      "status": "in-progress",
+      "priority": "high",
+      "progress": 75,
+      "assignedTo": "agent-001",
+      "dueDate": "2026-03-18T17:00:00Z",
+      "createdAt": "2026-03-17T10:00:00Z",
+      "lucyPlan": {
+        "primaryAgent": {
+          "id": "agent-001",
+          "name": "Frontend Specialist",
+          "matchScore": 9.2
+        },
+        "subtasks": [
+          {
+            "id": "subtask-001",
+            "title": "Integrate components"
+          },
+          {
+            "id": "subtask-002",
+            "title": "Test UI"
+          },
+          {
+            "id": "subtask-003",
+            "title": "Run app at localhost:3001"
+          }
+        ]
+      }
+    },
+    {
+      "id": "task-002",
+      "title": "API Endpoint Implementation",
+      "description": "Create briefing approval endpoints",
+      "status": "queued",
+      "priority": "high",
+      "assignedTo": "agent-002",
+      "dueDate": "2026-03-19T12:00:00Z",
+      "createdAt": "2026-03-17T14:00:00Z"
+    },
+    {
+      "id": "task-003",
+      "title": "Database Schema Setup",
+      "description": "Create task and briefing tables",
+      "status": "completed",
+      "priority": "critical",
+      "assignedTo": "agent-003",
+      "dueDate": "2026-03-16T18:00:00Z",
+      "createdAt": "2026-03-15T09:00:00Z",
+      "completedAt": "2026-03-16T16:30:00Z"
+    },
+    {
+      "id": "task-004",
+      "title": "Testing & QA",
+      "description": "Verify all components work together",
+      "status": "queued",
+      "priority": "medium",
+      "dueDate": "2026-03-20T17:00:00Z",
+      "createdAt": "2026-03-18T08:00:00Z"
+    }
+  ],
+  "delegations": [
+    {
+      "id": "delegation-001",
+      "assignedAgent": "agent-001",
+      "linkedTask": "task-001",
+      "matchScore": 9.2
+    },
+    {
+      "id": "delegation-002",
+      "assignedAgent": "agent-002",
+      "linkedTask": "task-002",
+      "matchScore": 8.7
+    },
+    {
+      "id": "delegation-003",
+      "assignedAgent": "agent-003",
+      "linkedTask": "task-003",
+      "matchScore": 9.5
+    }
+  ],
+  "team": {
+    "members": [
+      {
+        "id": "agent-001",
+        "name": "Frontend Specialist",
+        "title": "React/Next.js Expert",
+        "avatar": "🎨",
+        "status": "active",
+        "skills": ["React", "Next.js", "Tailwind CSS", "UI/UX"]
+      },
+      {
+        "id": "agent-002",
+        "name": "Backend Engineer",
+        "title": "API & Database Expert",
+        "avatar": "⚙️",
+        "status": "active",
+        "skills": ["Node.js", "Express", "SQL", "PostgreSQL"]
+      },
+      {
+        "id": "agent-003",
+        "name": "DevOps Engineer",
+        "title": "Infrastructure Expert",
+        "avatar": "🔧",
+        "status": "active",
+        "skills": ["Docker", "Kubernetes", "CI/CD", "Cloud Infrastructure"]
+      }
+    ]
+  }
+}
