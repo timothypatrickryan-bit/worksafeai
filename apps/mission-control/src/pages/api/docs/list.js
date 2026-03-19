@@ -31,16 +31,20 @@ export default function handler(req, res) {
       });
     }
 
-    // Check workspace *.md files (excluding underscore files)
+    // Check workspace *.md files + important .txt/.log files
     if (fs.existsSync(workspaceDir)) {
       const workspaceFiles = fs.readdirSync(workspaceDir);
       workspaceFiles.forEach(file => {
-        if (file.endsWith('.md') && !file.startsWith('.') && !file.startsWith('_')) {
+        const isMd = file.endsWith('.md');
+        const isTxt = file.endsWith('.txt') && (file.includes('log') || file.includes('LOG'));
+        const isLog = (file.startsWith('.') && file.endsWith('.txt')) || (file.startsWith('.') && file.endsWith('-log.txt'));
+        
+        if ((isMd || isTxt || isLog) && !file.startsWith('_')) {
           const filePath = path.join(workspaceDir, file);
           const stat = fs.statSync(filePath);
           docs.push({
             filename: file,
-            title: file.replace('.md', ''),
+            title: file.replace('.md', '').replace('.txt', '').replace(/-/g, ' '),
             category: categorizeDoc(file),
             path: `/${file}`,
             size: stat.size,
@@ -63,7 +67,10 @@ function categorizeDoc(filename) {
   if (filename.includes('API')) return 'api';
   if (filename.includes('AGENT')) return 'agent';
   if (filename.includes('AUTOMATION') || filename.includes('automation')) return 'automation';
+  if (filename.includes('AUTONOMY') || filename.includes('autonomy')) return 'autonomy';
+  if (filename.includes('LOG') || filename.includes('log')) return 'logs';
   if (filename.includes('PROJECT')) return 'project';
   if (filename.includes('ARCHITECTURE')) return 'architecture';
+  if (filename.includes('BACKUP') || filename.includes('backup')) return 'backup';
   return 'other';
 }
