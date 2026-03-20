@@ -21,18 +21,22 @@ export function parseGapAnalysis(content) {
  * Extract overall health status (GREEN/YELLOW/RED)
  */
 function extractOverallHealth(content) {
-  // Look for patterns like "Overall Mission Health: 🟢 GREEN" or "🟡 YELLOW"
-  const healthMatch = content.match(/Overall(?:\sMission)?\sHealth[\s:]*(?:🟢|🟡|🔴)\s*(GREEN|YELLOW|RED)/i);
+  // Look for patterns like "Overall Mission Health: 🟡 **YELLOW**"
+  const healthMatch = content.match(
+    /Overall(?:\s+Mission)?\s+Health[\s:]*(?:🟢|🟡|🔴)\s*\*?\*?(GREEN|YELLOW|RED)\*?\*?/i
+  );
   if (healthMatch) {
     return healthMatch[1].toUpperCase();
   }
 
-  // Fallback: look for just the color emoji with status
-  const emojiHealthMatch = content.match(/🟢\s*GREEN|🟡\s*YELLOW|🔴\s*RED/i);
+  // Fallback: look for emoji with word
+  const emojiHealthMatch = content.match(
+    /(🟢\s*GREEN|🟡\s*YELLOW|🔴\s*RED)/i
+  );
   if (emojiHealthMatch) {
-    if (emojiHealthMatch[0].includes('🟢')) return 'GREEN';
-    if (emojiHealthMatch[0].includes('🟡')) return 'YELLOW';
-    if (emojiHealthMatch[0].includes('🔴')) return 'RED';
+    if (emojiHealthMatch[1].includes('🟢')) return 'GREEN';
+    if (emojiHealthMatch[1].includes('🟡')) return 'YELLOW';
+    if (emojiHealthMatch[1].includes('🔴')) return 'RED';
   }
 
   return null;
@@ -52,18 +56,24 @@ function extractTopPriority(content) {
   const prioritySection = topPriorityMatch[1];
   const result = {};
 
-  // Extract swimlane (look for "swimlane:" or context clues)
-  const swimlaneMatch = prioritySection.match(/(?:swimlane|area|track):\s*([^\n]*)/i);
-  if (swimlaneMatch) {
-    result.swimlane = swimlaneMatch[1].trim();
+  // Extract gap description (look for bold text in the first few lines)
+  const gapMatch = prioritySection.match(/\*\*([^*]+)\*\*/);
+  if (gapMatch) {
+    result.gap = gapMatch[1].trim();
   }
 
-  // Extract gap description (usually the first bold/emphasized text or after "Why This Matters")
-  const gapMatch = prioritySection.match(
-    /\*\*(.*?)\*\*|^###\s+(.*?)$/m
-  );
-  if (gapMatch) {
-    result.gap = (gapMatch[1] || gapMatch[2]).trim();
+  // Look for swimlane info - could be "swimlane:", "lane:", or inferred from context
+  // Also try to extract from the gap description
+  if (result.gap && result.gap.includes('CRUD')) {
+    result.swimlane = 'value'; // CRUD UIs are value delivery
+  } else if (result.gap) {
+    // Try to find mentioned swimlane keywords
+    if (result.gap.toLowerCase().includes('autonomy')) result.swimlane = 'autonomy';
+    else if (result.gap.toLowerCase().includes('value')) result.swimlane = 'value';
+    else if (result.gap.toLowerCase().includes('organization')) result.swimlane = 'organization';
+    else if (result.gap.toLowerCase().includes('scale')) result.swimlane = 'scale';
+    else if (result.gap.toLowerCase().includes('reliability')) result.swimlane = 'reliability';
+    else if (result.gap.toLowerCase().includes('human')) result.swimlane = 'human';
   }
 
   // Extract estimated hours (look for patterns like "40-60 hours" or "Effort Required: 80 hours")
@@ -85,7 +95,9 @@ function extractTopPriority(content) {
       .map(l => l.trim())
       .filter(l => l && !l.match(/^[-*]/))
       .join(' ');
-    result.rationale = rationale.slice(0, 200); // Limit to 200 chars
+    if (rationale) {
+      result.rationale = rationale.slice(0, 200);
+    }
   }
 
   return Object.keys(result).length > 0 ? result : null;
@@ -93,6 +105,7 @@ function extractTopPriority(content) {
 
 /**
  * Extract swimlane scores and trends from content
+ * Looks for inline score mentions or tables
  */
 function extractSwimlaneTrends(content) {
   const swimlanes = [
@@ -104,66 +117,55 @@ function extractSwimlaneTrends(content) {
     { id: 'human', name: '👤 Human-AI Collaboration' }
   ];
 
-  // Look for score tables in content
-  const scoreData = extractScoresFromTables(content);
-
-  return swimlanes.map(lane => {
-    const score = scoreData[lane.id];
-    return {
-      id: lane.id,
-      name: lane.name,
-      score: score || null,
-      source: score ? 'auto-detected' : null,
-      trend: extractTrend(content, lane.id)
-    };
-  }).filter(l => l.score !== null);
-}
-
-/**
- * Extract scores from markdown tables
- */
-function extractScoresFromTables(content) {
-  const scores = {};
-
-  // Look for score mentions (3.5/5, 3.5/10, or just scores like "3.5")
-  const scorePatterns = [
-    /🤖[^|]*(autonomy)[^|]*?(\d+\.?\d*)\s*\/\s*\d+/gi,
-    /💰[^|]*(value)[^|]*?(\d+\.?\d*)\s*\/\s*\d+/gi,
-    /🏗️[^|]*(organization)[^|]*?(\d+\.?\d*)\s*\/\s*\d+/gi,
-    /📈[^|]*(scale)[^|]*?(\d+\.?\d*)\s*\/\s*\d+/gi,
-    /🛡️[^|]*(reliability)[^|]*?(\d+\.?\d*)\s*\/\s*\d+/gi,
-    /👤[^|]*(human|collaboration)[^|]*?(\d+\.?\d*)\s*\/\s*\d+/gi
-  ];
-
-  // Also look for ID-based matches
-  const idPatterns = [
-    { id: 'autonomy', pattern: /autonomy[^|]*?(\d+\.?\d*)\s*\/\s*\d+/gi },
-    { id: 'value', pattern: /value[^|]*?(\d+\.?\d*)\s*\/\s*\d+/gi },
-    { id: 'organization', pattern: /organization[^|]*?(\d+\.?\d*)\s*\/\s*\d+/gi },
-    { id: 'scale', pattern: /scale[^|]*?(\d+\.?\d*)\s*\/\s*\d+/gi },
-    { id: 'reliability', pattern: /reliability[^|]*?(\d+\.?\d*)\s*\/\s*\d+/gi },
-    { id: 'human', pattern: /human|collaboration[^|]*?(\d+\.?\d*)\s*\/\s*\d+/gi }
-  ];
-
-  for (const { id, pattern } of idPatterns) {
-    const match = pattern.exec(content);
-    if (match && match[1]) {
-      scores[id] = parseFloat(match[1]);
+  // Look for explicit score mentions in content
+  const scoreMap = {};
+  
+  // Pattern 1: Look for "Lane: X/10" or "Lane: X.X/10"
+  for (const lane of swimlanes) {
+    const pattern = new RegExp(
+      `${lane.id}[^\\d]*(\\d+\\.?\\d*)\\s*\\/\\s*\\d+`,
+      'i'
+    );
+    const match = content.match(pattern);
+    if (match) {
+      scoreMap[lane.id] = parseFloat(match[1]);
     }
   }
 
-  return scores;
+  // Pattern 2: Look for status indicators with numbers
+  // E.g., "Team Autonomy: ✅ Working" or mentions of scores in tables
+  const scorePatterns = [
+    { id: 'autonomy', keywords: ['autonomy', 'independent', 'automation'] },
+    { id: 'value', keywords: ['value', 'delivery', 'output'] },
+    { id: 'organization', keywords: ['organization', 'structure', 'architecture'] },
+    { id: 'scale', keywords: ['scale', 'growth', 'expansion'] },
+    { id: 'reliability', keywords: ['reliability', 'resilience', 'stability'] },
+    { id: 'human', keywords: ['human', 'collaboration', 'interaction'] }
+  ];
+
+  return swimlanes
+    .map(lane => {
+      const score = scoreMap[lane.id];
+      return {
+        id: lane.id,
+        name: lane.name,
+        score: score || null,
+        source: score ? 'auto-detected' : null,
+        trend: extractTrend(content, lane.id)
+      };
+    })
+    .filter(l => l.score !== null);
 }
 
 /**
  * Extract trend information (up, down, stable)
  */
 function extractTrend(content, swimlaneId) {
-  // Look for trend indicators near the swimlane
+  // Look for trend indicators
   const trendPatterns = [
-    { trend: 'up', patterns: [/↗️|↑|up/i, /📈/] },
-    { trend: 'down', patterns: [/↘️|↓|down/i, /📉/] },
-    { trend: 'stable', patterns: [/→|stable|same/i, /➡️/] }
+    { trend: 'up', patterns: [/↗️|↑|\bup\b/i] },
+    { trend: 'down', patterns: [/↘️|↓|\bdown\b/i] },
+    { trend: 'stable', patterns: [/→|➡️|\bstable\b|\bsame\b/i] }
   ];
 
   for (const { trend, patterns } of trendPatterns) {
@@ -178,28 +180,48 @@ function extractTrend(content, swimlaneId) {
 }
 
 /**
- * Extract remediation/action items
+ * Extract remediation/action items from the content
+ * Only gets actual action items, not metadata
  */
 function extractRemediationActions(content) {
   const actions = [];
 
-  // Look for sections with action items (numbered lists, bullet points)
-  // Common patterns: "- [ ]", "- [x]", "1.", "* ", etc.
-  const actionLines = content.split('\n').filter(
-    line => /^[\s]*[-*•]\s*(?:\[[ x]\])?/.test(line) && line.length > 10
+  // Look for the PRIORITY ACTION PLAN section specifically
+  const actionPlanMatch = content.match(
+    /##\s*🎯\s*PRIORITY\s+ACTION\s+PLAN[\s\S]*?(?=\n## |\n---|\n$)/
   );
-
-  // Take first 5 action items
-  actionLines.slice(0, 5).forEach((line, idx) => {
-    const cleaned = line.replace(/^[\s]*[-*•]\s*(?:\[[ x]\])?\s*/, '').trim();
-    if (cleaned && !cleaned.match(/^[|#]/)) {
-      actions.push({
-        id: `action-${idx}`,
-        description: cleaned,
-        completed: line.includes('[x]')
-      });
+  
+  if (!actionPlanMatch) return null;
+  
+  const actionContent = actionPlanMatch[0];
+  const lines = actionContent.split('\n');
+  
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    
+    // Skip phase headers and empty lines
+    if (line.match(/^###|^##|^\s*$/) || line.length < 10) {
+      continue;
     }
-  });
+    
+    // Match checkbox items [ ] or [x]
+    const checkMatch = line.match(/^\s*[-*•]\s*(\[[\sx]\]\s+)?(.+)/);
+    if (checkMatch) {
+      const isChecked = line.includes('[x]') || line.includes('[X]');
+      const desc = checkMatch[2].trim();
+      
+      // Skip table rows
+      if (!desc.includes('|')) {
+        actions.push({
+          id: `action-${actions.length}`,
+          description: desc.slice(0, 150),
+          completed: isChecked
+        });
+        
+        if (actions.length >= 10) break; // Limit to 10 actions
+      }
+    }
+  }
 
   return actions.length > 0 ? actions : null;
 }

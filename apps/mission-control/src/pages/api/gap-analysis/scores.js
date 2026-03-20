@@ -15,24 +15,32 @@ export default function handler(req, res) {
 
   try {
     const workspacePath = '/Users/timothyryan/.openclaw/workspace';
-    const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
-    const dailyGapFile = path.join(workspacePath, `DAILY_GAP_ANALYSIS_${today}.md`);
     
     let parsed = null;
     let source = null;
     let lastUpdated = null;
 
-    // Try to load today's daily gap analysis
-    if (fs.existsSync(dailyGapFile)) {
+    // Try to find the most recent DAILY_GAP_ANALYSIS file
+    const files = fs.readdirSync(workspacePath)
+      .filter(f => f.match(/^DAILY_GAP_ANALYSIS_\d{4}-\d{2}-\d{2}\.md$/))
+      .sort()
+      .reverse();
+
+    if (files.length > 0) {
+      source = files[0];
+      const dailyGapFile = path.join(workspacePath, source);
       const content = fs.readFileSync(dailyGapFile, 'utf8');
       parsed = parseGapAnalysis(content);
-      source = `DAILY_GAP_ANALYSIS_${today}.md`;
       lastUpdated = new Date(fs.statSync(dailyGapFile).mtime).toISOString();
     }
 
+    // Extract date from source filename or use today
+    const dateMatch = source?.match(/DAILY_GAP_ANALYSIS_(\d{4}-\d{2}-\d{2})/);
+    const date = dateMatch ? dateMatch[1] : new Date().toISOString().split('T')[0];
+
     // Build the response
     const response = {
-      date: today,
+      date: date,
       source: source,
       lastUpdated: lastUpdated,
       overallHealth: parsed?.overallHealth || null,
