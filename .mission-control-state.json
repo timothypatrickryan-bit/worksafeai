@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-03-20T00:23:53.098Z",
+  "lastUpdate": "2026-03-20T00:24:54.048Z",
   "agents": {
     "laura": {
       "name": "Laura (Brand Strategy Manager)",
@@ -2684,7 +2684,7 @@
       "title": "WorkSafeAI: Quality Assurance & Testing",
       "description": "Execute comprehensive testing including unit tests, integration tests, and real-world safety scenario validation",
       "assignedTo": "velma",
-      "status": "executing",
+      "status": "completed",
       "projectId": "worksafeai",
       "priority": "high",
       "createdAt": "2026-03-06T09:00:00.000Z",
@@ -3234,7 +3234,7 @@
       "title": "Testing, Polish & Optimization",
       "description": "Component tests, E2E testing, performance profiling, battery optimization",
       "projectId": "project-1773878979812",
-      "status": "executing",
+      "status": "queued",
       "priority": 2,
       "assignedTo": "Chief",
       "progress": 0,
