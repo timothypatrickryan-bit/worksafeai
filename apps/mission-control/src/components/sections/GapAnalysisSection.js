@@ -6,10 +6,20 @@ export default function GapAnalysisSection({ state }) {
   const [expandedLane, setExpandedLane] = useState(null)
   const [selectedGrade, setSelectedGrade] = useState({})
   const [notes, setNotes] = useState({})
+  
+  // New state for auto-score features
+  const [autoScores, setAutoScores] = useState(null)
+  const [remediations, setRemediations] = useState(null)
+  const [scoresLoading, setScoresLoading] = useState(true)
+  const [remediationsLoading, setRemediationsLoading] = useState(true)
+  const [previousAssessment, setPreviousAssessment] = useState(null)
+  const [scoresTrends, setScoresTrends] = useState({})
 
   // Load assessment history on mount
   useEffect(() => {
     loadAssessmentHistory()
+    loadAutoScores()
+    loadRemediations()
     
     // Define global delete function on client side only
     if (typeof window !== 'undefined') {
@@ -32,6 +42,56 @@ export default function GapAnalysisSection({ state }) {
       }
     }
   }, [])
+
+  // Load auto-scores from API
+  const loadAutoScores = async () => {
+    setScoresLoading(true)
+    try {
+      const response = await fetch('/api/gap-analysis/scores')
+      const data = await response.json()
+      
+      if (data && data.swimlanes) {
+        setAutoScores(data)
+        setPreviousAssessment(data.previousAssessment)
+        
+        // Calculate trends
+        const trends = {}
+        if (data.previousAssessment && data.previousAssessment.overallScore) {
+          const prevScore = data.previousAssessment.overallScore
+          data.swimlanes.forEach(lane => {
+            if (lane.score) {
+              const diff = lane.score - prevScore
+              if (diff > 0.2) trends[lane.id] = '↗️'
+              else if (diff < -0.2) trends[lane.id] = '↘️'
+              else trends[lane.id] = '→'
+            }
+          })
+        }
+        setScoresTrends(trends)
+      }
+    } catch (err) {
+      console.error('Error loading auto-scores:', err)
+    } finally {
+      setScoresLoading(false)
+    }
+  }
+
+  // Load remediation history from API
+  const loadRemediations = async () => {
+    setRemediationsLoading(true)
+    try {
+      const response = await fetch('/api/gap-analysis/remediation')
+      const data = await response.json()
+      
+      if (data && data.remediations) {
+        setRemediations(data.remediations)
+      }
+    } catch (err) {
+      console.error('Error loading remediations:', err)
+    } finally {
+      setRemediationsLoading(false)
+    }
+  }
 
   // Mission Statement
   const mission = "An autonomous organization of AI agents that does work for me and produces value 24/7"
