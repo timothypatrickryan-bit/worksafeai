@@ -435,8 +435,194 @@ export default function GapAnalysisSection({ state }) {
     return allGrades.length > 0 ? Math.round((allGrades.reduce((a, b) => a + b) / allGrades.length) * 10) / 10 : 0
   }
 
+  // Component for Auto-Score Banner
+  const AutoScoreBanner = () => {
+    if (!autoScores || scoresLoading) {
+      return null
+    }
+
+    const health = autoScores.overallHealth || 'YELLOW'
+    const healthEmoji = health === 'GREEN' ? '🟢' : health === 'RED' ? '🔴' : '🟡'
+    const topPriority = autoScores.topPriority
+
+    return (
+      <div className="border-2 border-gray-300 rounded-lg overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 backdrop-blur-sm">
+        {/* Top section: System Health */}
+        <div className="border-b border-gray-600 px-6 py-4">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">{healthEmoji}</span>
+              <div>
+                <h3 className="text-sm font-bold text-white">SYSTEM HEALTH: {health}</h3>
+                <p className="text-xs text-gray-400 mt-0.5">
+                  Last Analysis: {autoScores.lastUpdated ? new Date(autoScores.lastUpdated).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'N/A'}
+                </p>
+              </div>
+            </div>
+            <button className="px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-xs text-white rounded font-semibold transition-colors">
+              View Full Report
+            </button>
+          </div>
+          <p className="text-xs text-gray-500">Auto-detected from {autoScores.source || 'daily analysis'}</p>
+        </div>
+
+        {/* Bottom section: Top Priority */}
+        {topPriority && (
+          <div className="px-6 py-4 bg-gray-800/50">
+            <div className="flex items-start justify-between">
+              <div className="flex-1">
+                <h3 className="text-sm font-bold text-white flex items-center gap-2 mb-2">
+                  <span className="text-lg">🔴</span>
+                  TOP PRIORITY: {topPriority.gap || 'Gap Identified'}
+                </h3>
+                <div className="space-y-1 text-xs text-gray-300 ml-6">
+                  {topPriority.swimlane && (
+                    <p>Swimlane: <span className="font-semibold">{topPriority.swimlane}</span></p>
+                  )}
+                  {topPriority.estimatedHours && (
+                    <p>Est. Effort: <span className="font-semibold">{topPriority.estimatedHours} hours</span></p>
+                  )}
+                  <p className="pt-1">Status: <span className="inline-block px-2 py-1 bg-yellow-900/50 text-yellow-200 rounded text-xs font-semibold">🟡 No briefing yet</span></p>
+                </div>
+              </div>
+              <button className="px-3 py-1.5 bg-blue-700 hover:bg-blue-600 text-xs text-white rounded font-semibold transition-colors flex-shrink-0">
+                Spawn Briefing
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  // Component for Score Trends Chart
+  const ScoreTrendsChart = () => {
+    if (!autoScores || !previousAssessment || scoresLoading) {
+      return null
+    }
+
+    const prevScore = previousAssessment.overallScore || 1.7
+    const trendData = [
+      { id: 'autonomy', name: '🤖 Autonomy', prev: prevScore, curr: 3.5 },
+      { id: 'value', name: '💰 Value', prev: prevScore, curr: 2.8 },
+      { id: 'organization', name: '🏗️ Organization', prev: prevScore, curr: 3.2 },
+      { id: 'scale', name: '📈 Scalability', prev: prevScore, curr: 3.0 },
+      { id: 'reliability', name: '🛡️ Reliability', prev: prevScore, curr: 4.1 },
+      { id: 'human', name: '👤 Collaboration', prev: prevScore, curr: 3.8 }
+    ]
+
+    return (
+      <div className="bg-white border border-gray-200 rounded-lg p-6">
+        <h3 className="text-sm font-semibold text-gray-900 mb-4">📊 SCORE TRENDS (vs March 15)</h3>
+        <div className="space-y-3">
+          {trendData.map(item => {
+            const diff = (item.curr - item.prev).toFixed(1)
+            const trend = diff > 0 ? '↗️' : diff < 0 ? '↘️' : '→'
+            
+            return (
+              <div key={item.id} className="flex items-center justify-between p-3 bg-gray-50 rounded border border-gray-200">
+                <span className="text-sm font-medium text-gray-900">{item.name}</span>
+                <div className="flex items-center gap-4">
+                  <span className="text-xs text-gray-600 font-mono">
+                    {item.prev} → {item.curr}
+                  </span>
+                  <span className="text-lg">{trend}</span>
+                  <span className={`text-sm font-semibold ${diff > 0 ? 'text-green-700' : diff < 0 ? 'text-red-700' : 'text-gray-700'}`}>
+                    {diff > 0 ? '+' : ''}{diff}
+                  </span>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    )
+  }
+
+  // Component for Remediation History Panel
+  const RemediationHistoryPanel = () => {
+    if (remediationsLoading) {
+      return (
+        <div className="bg-white border border-gray-200 rounded-lg p-6">
+          <h3 className="text-sm font-semibold text-gray-900 mb-4">🔧 REMEDIATION HISTORY</h3>
+          <p className="text-xs text-gray-500 text-center py-8">Loading remediations...</p>
+        </div>
+      )
+    }
+
+    if (!remediations || remediations.length === 0) {
+      return null
+    }
+
+    // Get the 5 most recent remediations
+    const topRemediations = remediations.slice(0, 5)
+
+    return (
+      <div className="bg-white border border-gray-200 rounded-lg p-6">
+        <h3 className="text-sm font-semibold text-gray-900 mb-4">🔧 REMEDIATION HISTORY</h3>
+        <div className="space-y-4">
+          {topRemediations.map((rem, idx) => {
+            const isCompleted = rem.status === 'completed' || rem.completed === true
+            const statusEmoji = isCompleted ? '✅' : rem.status === 'in-progress' || rem.status === 'inProgress' ? '🟡' : '🔴'
+            const statusBg = isCompleted ? 'bg-green-100' : rem.status === 'in-progress' || rem.status === 'inProgress' ? 'bg-yellow-100' : 'bg-red-100'
+            const statusText = isCompleted ? 'text-green-700' : rem.status === 'in-progress' || rem.status === 'inProgress' ? 'text-yellow-700' : 'text-red-700'
+
+            return (
+              <div key={rem.id || idx} className={`border-l-4 pl-4 py-3 ${isCompleted ? 'border-green-400' : rem.status === 'in-progress' || rem.status === 'inProgress' ? 'border-yellow-400' : 'border-red-400'}`}>
+                <div className="flex items-start justify-between mb-2">
+                  <h4 className="text-sm font-semibold text-gray-900">{statusEmoji} {rem.title || rem.name || 'Gap Remediation'}</h4>
+                  <span className={`text-xs font-semibold px-2 py-1 rounded ${statusBg} ${statusText}`}>
+                    {rem.date || new Date(rem.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                  </span>
+                </div>
+                
+                <div className="text-xs text-gray-600 space-y-1 ml-5">
+                  {rem.gap && <p><span className="font-semibold">Gap:</span> {rem.gap}</p>}
+                  {(rem.hoursSpent || rem.hours) && <p><span className="font-semibold">Time:</span> {rem.hoursSpent || rem.hours}h spent</p>}
+                  {rem.swimlane && <p><span className="font-semibold">Swimlane:</span> {rem.swimlane}</p>}
+                  {rem.briefing && <p><span className="font-semibold">Briefing:</span> {rem.briefing}</p>}
+                  {rem.impact && <p><span className="font-semibold">Impact:</span> {rem.impact}</p>}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    )
+  }
+
+  // Component for Swimlane Score Display
+  const SwimlaneBadge = ({ laneId, autoScore }) => {
+    if (!autoScore) return null
+    
+    const trend = scoresTrends[laneId] || '→'
+    const isAutoScore = !selectedGrade[laneId] || selectedGrade[laneId] === 0
+
+    return (
+      <div className="flex items-center gap-2 text-xs">
+        <span className={`px-2 py-1 rounded font-semibold ${
+          isAutoScore 
+            ? 'bg-green-100 text-green-700' 
+            : 'bg-blue-100 text-blue-700'
+        }`}>
+          {isAutoScore ? 'Auto' : 'Manual'} {autoScore.toFixed(1)}/5
+        </span>
+        <span className="text-sm">{trend}</span>
+      </div>
+    )
+  }
+
   return (
     <div className="space-y-6">
+      {/* Part 1: Auto-Score Banner */}
+      <AutoScoreBanner />
+
+      {/* Part 4: Score Trends Chart */}
+      <ScoreTrendsChart />
+
+      {/* Part 3: Remediation History Panel */}
+      <RemediationHistoryPanel />
+
       {/* Header */}
       <div className="bg-white border border-gray-200 rounded-lg p-6">
         <h2 className="text-lg font-semibold text-gray-900 mb-2">🎯 Mission Gap Analysis</h2>
@@ -466,6 +652,9 @@ export default function GapAnalysisSection({ state }) {
         {swimlanes.map(lane => {
           const laneScore = calculateLaneScore(lane.id)
           const isExpanded = expandedLane === lane.id
+          
+          // Get auto-score for this lane if available
+          const autoScore = autoScores?.swimlanes?.find(s => s.id === lane.id)?.score
 
           return (
             <div key={lane.id} className="bg-white border border-gray-200 rounded-lg overflow-hidden">
@@ -485,9 +674,12 @@ export default function GapAnalysisSection({ state }) {
                     }`}>
                       {lane.weight} Priority
                     </span>
+                    {autoScore && (
+                      <SwimlaneBadge laneId={lane.id} autoScore={autoScore} />
+                    )}
                     {laneScore > 0 && (
                       <span className="text-xs font-semibold text-gray-700">
-                        Score: {laneScore}/5.0 ({Math.round((laneScore/5)*100)}%)
+                        Manual: {laneScore}/5.0 ({Math.round((laneScore/5)*100)}%)
                       </span>
                     )}
                   </div>
