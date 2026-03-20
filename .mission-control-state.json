@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-03-20T01:35:34.283Z",
+  "lastUpdate": "2026-03-20T02:04:30.219Z",
   "agents": {
     "laura": {
       "name": "Laura (Brand Strategy Manager)",
@@ -143,8 +143,9 @@
       "to": "kelly",
       "type": "strategy-memo",
       "message": "Q2 positioning analysis for elevated children's apparel market",
-      "status": "ready-to-send",
-      "ttl": "2026-03-16T16:10:08.746Z"
+      "status": "expired",
+      "ttl": "2026-03-16T16:10:08.746Z",
+      "expiredReason": "WhatsApp not configured — no delivery channel available"
     },
     {
       "id": "inbox-1773592301366",
@@ -153,8 +154,9 @@
       "to": "kelly",
       "type": "strategy-memo",
       "message": "Q2 Brand Strategy Analysis: Premium positioning opportunities in elevated children's apparel market",
-      "status": "ready-to-send",
-      "ttl": "2026-03-16T16:31:41.366Z"
+      "status": "expired",
+      "ttl": "2026-03-16T16:31:41.366Z",
+      "expiredReason": "WhatsApp not configured — no delivery channel available"
     }
   ],
   "alerts": [
@@ -3455,26 +3457,6 @@
       "status": "completed",
       "priority": 3,
       "createdAt": "2026-03-20T00:15:53.839Z"
-    },
-    {
-      "id": "task-1773970555712",
-      "title": "Test Task",
-      "description": "",
-      "projectId": "project-1773878979812",
-      "status": "queued",
-      "priority": 2,
-      "assignedTo": null,
-      "briefing": null,
-      "progress": 0,
-      "createdAt": "2026-03-20T01:35:55.712Z",
-      "updatedAt": "2026-03-20T01:35:55.712Z",
-      "activity": [
-        {
-          "timestamp": "2026-03-20T01:35:55.712Z",
-          "action": "created",
-          "message": "Task created"
-        }
-      ]
     }
   ],
   "activity": [
