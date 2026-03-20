@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import styles from '../styles/UnifiedDashboard.module.css';
-import ProjectCreationModal from '../modals/ProjectCreationModal';
-import TaskCreationForm from '../modals/TaskCreationForm';
+import ProjectModal from '../modals/ProjectModal';
+import TaskModal from '../modals/TaskModal';
 
 /**
  * UNIFIED DASHBOARD SECTION - 3-LEVEL HIERARCHY
@@ -27,10 +27,13 @@ const UnifiedDashboardSection = ({ state, onApprove, onReject, onUpdateTask }) =
   const [selectedProjectId, setSelectedProjectId] = useState(null);
   const [selectedTaskId, setSelectedTaskId] = useState(null);
   const [activeTab, setActiveTab] = useState('active'); // active | completed | cancelled
+  const [needsRefresh, setNeedsRefresh] = useState(false);
   
   // Modal states
   const [showProjectModal, setShowProjectModal] = useState(false);
   const [showTaskModal, setShowTaskModal] = useState(false);
+  const [editingProject, setEditingProject] = useState(null);
+  const [editingTask, setEditingTask] = useState(null);
 
   // Handle approve task
   const handleApprove = async (taskId) => {
@@ -165,11 +168,19 @@ const UnifiedDashboardSection = ({ state, onApprove, onReject, onUpdateTask }) =
           </div>
         </div>
 
-        {/* Project Creation Modal */}
-        <ProjectCreationModal
+        {/* Project Modal */}
+        <ProjectModal
           isOpen={showProjectModal}
-          onClose={() => setShowProjectModal(false)}
-          onSuccess={handleProjectSuccess}
+          project={editingProject}
+          onClose={() => {
+            setShowProjectModal(false);
+            setEditingProject(null);
+          }}
+          onSuccess={(result) => {
+            handleProjectSuccess(result);
+            setNeedsRefresh(!needsRefresh);
+          }}
+          onDelete={() => setNeedsRefresh(!needsRefresh)}
         />
 
         {/* Summary Stats */}
@@ -300,6 +311,17 @@ const UnifiedDashboardSection = ({ state, onApprove, onReject, onUpdateTask }) =
                 >
                   View Details →
                 </button>
+                <button
+                  className={styles.editBtn}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setEditingProject(project);
+                    setShowProjectModal(true);
+                  }}
+                  title="Edit project"
+                >
+                  ✏️
+                </button>
               </div>
             </div>
           ))}
@@ -337,13 +359,21 @@ const UnifiedDashboardSection = ({ state, onApprove, onReject, onUpdateTask }) =
           </button>
         </div>
 
-        {/* Task Creation Modal */}
-        <TaskCreationForm
+        {/* Task Modal */}
+        <TaskModal
           isOpen={showTaskModal}
-          onClose={() => setShowTaskModal(false)}
-          onSuccess={handleTaskSuccess}
-          projectId={selectedProject.id}
-          teamMembers={[]} // Can be passed from parent if available
+          task={editingTask}
+          projects={state.projects || []}
+          team={state.team?.members || []}
+          onClose={() => {
+            setShowTaskModal(false);
+            setEditingTask(null);
+          }}
+          onSuccess={(result) => {
+            handleTaskSuccess(result);
+            setNeedsRefresh(!needsRefresh);
+          }}
+          onDelete={() => setNeedsRefresh(!needsRefresh)}
         />
 
         {/* Full Project Info + Orchestrator Plan */}

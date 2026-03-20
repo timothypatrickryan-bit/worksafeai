@@ -361,6 +361,22 @@
   background: #e1e8ed;
 }
 
+.editBtn {
+  padding: 10px 12px;
+  border: 1px solid #d0dae6;
+  border-radius: 6px;
+  background: #f0f4f9;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.editBtn:hover {
+  background: #e1e8ed;
+  border-color: #bbc7d6;
+}
+
 /* ========================================
    PROJECT DETAIL VIEW (LEVEL 2)
    ======================================== */
