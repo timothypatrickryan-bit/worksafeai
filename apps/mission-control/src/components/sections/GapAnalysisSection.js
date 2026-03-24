@@ -51,7 +51,18 @@ export default function GapAnalysisSection({ state }) {
       const stateData = await response.json()
       
       if (stateData && stateData.gapAnalysis) {
-        setAutoScores(stateData.gapAnalysis)
+        // Convert swimlanes object to array format
+        const swimlanesArray = Object.entries(stateData.gapAnalysis.swimlanes || {}).map(([id, data]) => ({
+          id,
+          ...data
+        }))
+        
+        const autoScoresData = {
+          ...stateData.gapAnalysis,
+          swimlanes: swimlanesArray
+        }
+        
+        setAutoScores(autoScoresData)
         setPreviousAssessment({ overallScore: 2.0 })
         
         // Calculate trends
