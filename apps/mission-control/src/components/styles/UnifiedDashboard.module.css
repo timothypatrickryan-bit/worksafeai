@@ -3,55 +3,59 @@
    ======================================== */
 
 .section {
-  padding: 24px;
+  padding: 40px;
   background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
-  border-radius: 12px;
+  border-radius: 16px;
   border: 1px solid #d1d5db;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .header {
-  margin-bottom: 28px;
+  margin-bottom: 48px;
 }
 
 .headerTop {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 16px;
+  gap: 24px;
 }
 
 .header h2 {
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 42px;
+  font-weight: 800;
   color: #374151;
-  margin: 0 0 8px 0;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.5px;
 }
 
 .header p {
-  font-size: 14px;
+  font-size: 16px;
   color: #6b7280;
   margin: 0;
+  line-height: 1.6;
 }
 
 .createProjectBtn,
 .createTaskBtn {
   flex-shrink: 0;
-  padding: 10px 16px;
+  padding: 14px 28px;
   background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 600;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(75, 85, 99, 0.2);
 }
 
 .createProjectBtn:hover,
 .createTaskBtn:hover {
-  box-shadow: 0 4px 12px rgba(75, 85, 99, 0.3);
-  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(75, 85, 99, 0.35);
+  transform: scale(1.02) translateY(-2px);
 }
 
 .createProjectBtn:active,
@@ -60,7 +64,7 @@
 }
 
 .projectMeta {
-  font-size: 13px;
+  font-size: 14px;
   color: #9ca3af;
   margin-top: 4px !important;
 }
@@ -70,11 +74,11 @@
   background: none;
   border: none;
   color: #4b5563;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
   padding: 0;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   transition: color 0.2s;
 }
 
@@ -96,27 +100,34 @@
 
 .stat {
   background: white;
-  padding: 16px;
-  border-radius: 8px;
+  padding: 28px 32px;
+  border-radius: 14px;
   border: 1px solid #d1d5db;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+}
+
+.stat:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .stat .label {
   display: block;
   font-size: 12px;
-  font-weight: 600;
-  color: #6b7280;
+  font-weight: 700;
+  color: #9ca3af;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 8px;
+  letter-spacing: 0.8px;
+  margin-bottom: 20px;
 }
 
 .stat .value {
   display: block;
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 36px;
+  font-weight: 800;
   color: #374151;
+  letter-spacing: -0.5px;
 }
 
 /* ========================================
@@ -131,16 +142,17 @@
 }
 
 .tab {
-  padding: 12px 16px;
+  padding: 14px 20px;
   background: none;
   border: none;
-  border-bottom: 3px solid transparent;
+  border-bottom: 4px solid transparent;
   color: #6b7280;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.25s ease;
   white-space: nowrap;
+  letter-spacing: -0.2px;
 }
 
 .tab:hover {
@@ -166,18 +178,18 @@
 
 .projectCard {
   background: white;
-  border-radius: 12px;
-  border: 2px solid #d1d5db;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
 
 .projectCard:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-  border-color: #d0dae6;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  transform: scale(1.01) translateY(-4px);
+  border-color: #d1d5db;
 }
 
 .projectCard.health-green {
@@ -196,21 +208,22 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   gap: 12px;
 }
 
 .cardHeader h3 {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 800;
   color: #374151;
-  margin: 0 0 4px 0;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
 }
 
 .statusLabel {
   display: inline-block;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   color: #6b7280;
   background: #f0f4f9;
   padding: 4px 8px;
@@ -223,23 +236,23 @@
 }
 
 .description {
-  font-size: 14px;
+  font-size: 15px;
   color: #6b7280;
-  margin: 0 0 12px 0;
-  line-height: 1.5;
+  margin: 0 0 20px 0;
+  line-height: 1.7;
 }
 
 /* Orchestrator Plan Highlight */
 .orchestratorHighlight {
   background: #f0f4f9;
   border: 1px solid #d0dae6;
-  border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 12px;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 .orchestratorHighlight h4 {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: #374151;
   margin: 0 0 8px 0;
@@ -280,9 +293,9 @@
 .progressText {
   display: block;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   color: #6b7280;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 }
 
 /* Task Summary */
@@ -291,9 +304,9 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin-bottom: 16px;
-  padding: 12px;
+  padding: 20px;
   background: #f8f9fa;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
 .taskCount {
@@ -335,9 +348,9 @@
   flex: 1;
   padding: 10px 12px;
   border: none;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 600;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -364,10 +377,10 @@
 .editBtn {
   padding: 10px 12px;
   border: 1px solid #d0dae6;
-  border-radius: 6px;
+  border-radius: 10px;
   background: #f0f4f9;
   color: #666;
-  font-size: 14px;
+  font-size: 15px;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -405,12 +418,12 @@
 .planCard {
   background: #f8f9fa;
   border: 1px solid #d1d5db;
-  border-radius: 8px;
-  padding: 16px;
+  border-radius: 12px;
+  padding: 20px;
 }
 
 .planCard h4 {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: #374151;
   margin: 0 0 8px 0;
@@ -419,7 +432,7 @@
 }
 
 .planCard p {
-  font-size: 13px;
+  font-size: 14px;
   color: #6b7280;
   margin: 0;
   line-height: 1.5;
@@ -432,7 +445,7 @@
 }
 
 .phasesList li {
-  font-size: 13px;
+  font-size: 14px;
   color: #6b7280;
   margin-bottom: 4px;
 }
@@ -444,7 +457,7 @@
 }
 
 .metricsList li {
-  font-size: 13px;
+  font-size: 14px;
   color: #6b7280;
   margin-bottom: 6px;
 }
@@ -472,7 +485,7 @@
   background: white;
   border: 1px solid #d1d5db;
   border-radius: 10px;
-  padding: 12px;
+  padding: 20px;
   min-height: 300px;
   display: flex;
   flex-direction: column;
@@ -482,13 +495,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   padding-bottom: 12px;
   border-bottom: 2px solid #d1d5db;
 }
 
 .columnHeader h4 {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   color: #374151;
   margin: 0;
@@ -500,7 +513,7 @@
   padding: 2px 8px;
   border-radius: 4px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .taskList {
@@ -513,7 +526,7 @@
 .taskItem {
   background: #f8f9fa;
   border: 1px solid #d1d5db;
-  border-radius: 6px;
+  border-radius: 10px;
   padding: 10px;
   cursor: pointer;
   transition: all 0.2s;
@@ -526,8 +539,8 @@
 }
 
 .taskItem h5 {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   color: #374151;
   margin: 0 0 6px 0;
 }
@@ -585,8 +598,8 @@
 .approvalItem {
   background: #f8f9fa;
   border: 1px solid #d1d5db;
-  border-radius: 8px;
-  padding: 12px;
+  border-radius: 12px;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -598,8 +611,8 @@
 }
 
 .approvalInfo h5 {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   color: #374151;
   margin: 0 0 4px 0;
 }
@@ -626,7 +639,7 @@
   border: none;
   border-radius: 4px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -661,7 +674,7 @@
   position: relative;
   height: 12px;
   background: #d1d5db;
-  border-radius: 6px;
+  border-radius: 10px;
   overflow: hidden;
   margin-bottom: 24px;
 }
@@ -733,19 +746,19 @@
 .detailSection {
   background: white;
   border: 1px solid #d1d5db;
-  border-radius: 8px;
-  padding: 16px;
+  border-radius: 12px;
+  padding: 20px;
 }
 
 .detailSection h4 {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   color: #374151;
   margin: 0 0 12px 0;
 }
 
 .field {
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 }
 
 .field:last-child {
@@ -763,7 +776,7 @@
 }
 
 .field p {
-  font-size: 14px;
+  font-size: 15px;
   color: #374151;
   margin: 0;
 }
@@ -775,7 +788,7 @@
 }
 
 .list li {
-  font-size: 14px;
+  font-size: 15px;
   color: #374151;
   margin-bottom: 8px;
   padding-left: 20px;
@@ -807,8 +820,8 @@
 
 .milestone {
   display: block;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   color: #374151;
   margin-bottom: 4px;
 }
@@ -821,15 +834,15 @@
 
 .activityLog {
   border: 1px solid #d1d5db;
-  border-radius: 8px;
+  border-radius: 12px;
   max-height: 300px;
   overflow-y: auto;
 }
 
 .activityItem {
-  padding: 12px;
+  padding: 20px;
   border-bottom: 1px solid #d1d5db;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .activityItem:last-child {
@@ -856,14 +869,14 @@
 .approvalPanel {
   background: linear-gradient(135deg, #f0f4f9 0%, #e6f2ff 100%);
   border: 2px solid #4b5563;
-  border-radius: 8px;
-  padding: 16px;
+  border-radius: 12px;
+  padding: 20px;
   position: sticky;
   top: 100px;
 }
 
 .approvalPanel h4 {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   color: #374151;
   margin: 0 0 8px 0;
@@ -885,9 +898,9 @@
 .btn {
   padding: 10px 12px;
   border: none;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 600;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -924,7 +937,7 @@
 }
 
 .empty p {
-  font-size: 14px;
+  font-size: 15px;
   margin: 0;
 }
 

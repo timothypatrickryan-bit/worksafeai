@@ -24,9 +24,9 @@
 .modalContent {
   background: linear-gradient(135deg, #1e3a5f 0%, #2c5aa0 100%);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  padding: 32px;
-  max-width: 600px;
+  border-radius: 20px;
+  padding: 48px;
+  max-width: 700px;
   width: 90%;
   max-height: 90vh;
   overflow-y: auto;
@@ -53,7 +53,7 @@
 }
 
 .modalHeader h2 {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 600;
   color: #ffffff;
   margin: 0;
@@ -62,7 +62,7 @@
 .closeButton {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 32px;
   cursor: pointer;
   color: rgba(255, 255, 255, 0.7);
   transition: color 0.2s;
@@ -229,8 +229,8 @@
 .confirmDialog {
   background: linear-gradient(135deg, #1e3a5f 0%, #2c5aa0 100%);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  padding: 32px;
+  border-radius: 20px;
+  padding: 48px;
   max-width: 400px;
   width: 90%;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
