@@ -104,14 +104,14 @@ export default function ActivitySection({ state }) {
   const colorMap = {
     yellow: 'bg-yellow-50 border-yellow-200',
     green: 'bg-green-50 border-green-200',
-    blue: 'bg-gray-100 border-blue-200',
+    blue: 'bg-blue-50 border-blue-200',
     red: 'bg-red-50 border-red-200',
   }
 
   const textColorMap = {
     yellow: 'text-yellow-700',
     green: 'text-green-700',
-    blue: 'text-slate-700',
+    blue: 'text-blue-700',
     red: 'text-red-700',
   }
 
@@ -141,7 +141,7 @@ export default function ActivitySection({ state }) {
           className={`px-3 py-1 text-xs font-medium rounded-sm transition-all ${
             refreshing
               ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-              : 'bg-gray-100 text-slate-700 hover:bg-blue-200'
+              : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
           }`}
         >
           {refreshing ? '⟳ Refreshing...' : '⟳ Refresh'}

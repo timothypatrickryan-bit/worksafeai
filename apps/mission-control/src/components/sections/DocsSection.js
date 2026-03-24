@@ -11,7 +11,7 @@ export default function DocsSection({ state }) {
 
   const categories = [
     { id: 'all', label: '📚 All Docs', color: 'bg-gray-100' },
-    { id: 'setup', label: '🔧 Setup Guides', color: 'bg-gray-100' },
+    { id: 'setup', label: '🔧 Setup Guides', color: 'bg-blue-100' },
     { id: 'architecture', label: '🏗️ Architecture', color: 'bg-purple-100' },
     { id: 'deployment', label: '🚀 Deployment', color: 'bg-green-100' },
     { id: 'api', label: '📡 API Docs', color: 'bg-orange-100' },
@@ -118,7 +118,7 @@ export default function DocsSection({ state }) {
             onClick={() => setSelectedCategory(cat.id)}
             className={`px-3 py-1 rounded-sm text-xs font-medium transition-all ${
               selectedCategory === cat.id
-                ? 'bg-slate-600 text-white shadow-sm'
+                ? 'bg-blue-600 text-white shadow-sm'
                 : `${cat.color} text-gray-700 hover:shadow-sm`
             }`}
           >
@@ -153,7 +153,7 @@ export default function DocsSection({ state }) {
                   onClick={() => setSelectedDoc(doc)}
                   className={`w-full text-left px-4 py-2 border-b border-gray-100 hover:bg-gray-50 transition-colors text-xs ${
                     selectedDoc?.filename === doc.filename
-                      ? 'bg-gray-100 border-l-2 border-l-blue-600'
+                      ? 'bg-blue-50 border-l-2 border-l-blue-600'
                       : ''
                   }`}
                 >
@@ -199,7 +199,7 @@ export default function DocsSection({ state }) {
                 <span className={`text-xs px-2 py-1 rounded-sm font-medium ${getCategoryColor(selectedDoc.category)}`}>
                   {getCategoryLabel(selectedDoc.category)}
                 </span>
-                <button className="text-xs bg-slate-600 text-white px-3 py-1 rounded-sm hover:bg-slate-700 transition-colors">
+                <button className="text-xs bg-blue-600 text-white px-3 py-1 rounded-sm hover:bg-blue-700 transition-colors">
                   View Full
                 </button>
               </div>

@@ -146,7 +146,7 @@ export default function AgentBriefingForm({ taskId, agentName, onSubmit, onCance
               <p className="text-xs font-semibold text-gray-700 uppercase">🎯 Milestones</p>
               <button
                 onClick={addMilestone}
-                className="text-xs bg-slate-600 text-white px-2 py-1 rounded hover:bg-slate-700"
+                className="text-xs bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700"
               >
                 + Add
               </button>

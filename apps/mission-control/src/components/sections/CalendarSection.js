@@ -13,7 +13,7 @@ export default function CalendarSection({ state }) {
       frequency: 'Every 30 minutes',
       pattern: '*/30 * * * *',
       nextRun: getNextHeartbeat(),
-      color: 'bg-gray-100 border-blue-300',
+      color: 'bg-blue-50 border-blue-300',
       icon: '💓',
     },
     {
@@ -230,7 +230,7 @@ export default function CalendarSection({ state }) {
                     minute: '2-digit',
                   })}
                 </p>
-                <p className="text-xs font-medium text-slate-600 mt-1">
+                <p className="text-xs font-medium text-blue-600 mt-1">
                   {getTimeUntil(task.nextRun)}
                 </p>
               </div>
@@ -252,7 +252,7 @@ export default function CalendarSection({ state }) {
                 key={i}
                 className={`text-center p-3 rounded-md border-2 transition-all ${
                   isToday
-                    ? 'bg-gray-100 border-blue-400 font-bold'
+                    ? 'bg-blue-100 border-blue-400 font-bold'
                     : isLinkedInDay
                     ? 'bg-purple-50 border-purple-300'
                     : 'bg-white border-gray-200'

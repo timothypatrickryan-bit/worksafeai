@@ -100,7 +100,7 @@ export default function ProjectsSection({ state }) {
   const statusColors = {
     production: 'bg-green-100 text-green-900 border-green-300',
     staging: 'bg-yellow-100 text-yellow-900 border-yellow-300',
-    development: 'bg-gray-100 text-gray-900 border-blue-300',
+    development: 'bg-blue-100 text-blue-900 border-blue-300',
   }
 
   return (
@@ -115,7 +115,7 @@ export default function ProjectsSection({ state }) {
         </div>
         <button
           onClick={() => setShowNewRequest(!showNewRequest)}
-          className="bg-slate-600 hover:bg-slate-700 text-white px-3 py-2 rounded-sm text-sm font-medium transition-colors"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-sm text-sm font-medium transition-colors"
         >
           {showNewRequest ? '✕ Cancel' : '+ New Request'}
         </button>
@@ -123,8 +123,8 @@ export default function ProjectsSection({ state }) {
 
       {/* New Request Form */}
       {showNewRequest && (
-        <div className="bg-gray-100 border-2 border-blue-200 rounded-md p-4 space-y-3">
-          <p className="text-xs font-semibold text-gray-900 uppercase">Submit Enhancement Request</p>
+        <div className="bg-blue-50 border-2 border-blue-200 rounded-md p-4 space-y-3">
+          <p className="text-xs font-semibold text-blue-900 uppercase">Submit Enhancement Request</p>
 
           <div>
             <label className="text-xs font-medium text-gray-700 block mb-1">Project *</label>
@@ -201,7 +201,7 @@ export default function ProjectsSection({ state }) {
             </button>
             <button
               onClick={handleSubmitRequest}
-              className="px-3 py-1 bg-slate-600 text-white rounded-sm text-sm font-medium hover:bg-slate-700 transition-colors"
+              className="px-3 py-1 bg-blue-600 text-white rounded-sm text-sm font-medium hover:bg-blue-700 transition-colors"
             >
               Submit
             </button>
@@ -290,7 +290,7 @@ export default function ProjectsSection({ state }) {
                       {project.team.map((member, idx) => (
                         <span
                           key={idx}
-                          className="bg-gray-100 border border-blue-300 px-2 py-1 rounded-sm text-xs text-gray-900"
+                          className="bg-blue-100 border border-blue-300 px-2 py-1 rounded-sm text-xs text-blue-900"
                         >
                           {member}
                         </span>
@@ -334,7 +334,7 @@ export default function ProjectsSection({ state }) {
                       setNewRequest({ ...newRequest, projectId: key })
                       setShowNewRequest(true)
                     }}
-                    className="text-xs bg-slate-600 text-white px-2 py-1 rounded-sm hover:bg-slate-700 transition-colors"
+                    className="text-xs bg-blue-600 text-white px-2 py-1 rounded-sm hover:bg-blue-700 transition-colors"
                   >
                     + Request Enhancement
                   </button>

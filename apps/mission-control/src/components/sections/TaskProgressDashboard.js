@@ -63,7 +63,7 @@ export default function TaskProgressDashboard() {
       case 'completed':
         return 'bg-green-100 text-green-800 border-green-300';
       case 'in-progress':
-        return 'bg-gray-100 text-blue-800 border-blue-300';
+        return 'bg-blue-100 text-blue-800 border-blue-300';
       case 'queued':
         return 'bg-yellow-100 text-yellow-800 border-yellow-300';
       default:
@@ -73,7 +73,7 @@ export default function TaskProgressDashboard() {
 
   const getProgressColor = (progress = 0) => {
     if (progress >= 75) return 'bg-green-500';
-    if (progress >= 50) return 'bg-gray-1000';
+    if (progress >= 50) return 'bg-blue-500';
     if (progress >= 25) return 'bg-yellow-500';
     return 'bg-orange-500';
   };
@@ -98,10 +98,10 @@ export default function TaskProgressDashboard() {
           <p className="text-2xl font-bold text-yellow-700 mt-2">{tasksByStatus.queued.length}</p>
           <p className="text-xs text-yellow-600 mt-1">Ready for briefing</p>
         </div>
-        <div className="bg-gray-100 border border-blue-200 rounded-lg p-4">
-          <p className="text-xs font-semibold text-gray-900 uppercase">In Progress</p>
-          <p className="text-2xl font-bold text-slate-700 mt-2">{tasksByStatus.inProgress.length}</p>
-          <p className="text-xs text-slate-600 mt-1">Actively executing</p>
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <p className="text-xs font-semibold text-blue-900 uppercase">In Progress</p>
+          <p className="text-2xl font-bold text-blue-700 mt-2">{tasksByStatus.inProgress.length}</p>
+          <p className="text-xs text-blue-600 mt-1">Actively executing</p>
         </div>
         <div className="bg-green-50 border border-green-200 rounded-lg p-4">
           <p className="text-xs font-semibold text-green-900 uppercase">Completed</p>
@@ -118,7 +118,7 @@ export default function TaskProgressDashboard() {
             onClick={() => setFilter(f)}
             className={`px-3 py-1 rounded text-sm font-medium transition ${
               filter === f
-                ? 'bg-slate-600 text-white'
+                ? 'bg-blue-600 text-white'
                 : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
             }`}
           >
@@ -156,7 +156,7 @@ export default function TaskProgressDashboard() {
           {(filter === 'all' || filter === 'in-progress') && tasksByStatus.inProgress.length > 0 && (
             <div>
               <h3 className="text-base font-bold text-gray-900 mb-3 flex items-center gap-2">
-                <span className="bg-gray-100 text-slate-700 px-2 py-1 rounded text-xs font-semibold">IN-PROGRESS</span>
+                <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-semibold">IN-PROGRESS</span>
                 <span className="text-gray-600 font-normal">Live execution ({tasksByStatus.inProgress.length})</span>
               </h3>
               <div className="grid grid-cols-1 gap-4">
@@ -244,11 +244,11 @@ function TaskCard({ task, agent, delegation, getStatusColor, getProgressColor })
 
       {/* Agent Assignment */}
       {agent && (
-        <div className="bg-gray-100 border border-blue-200 rounded p-2 mb-3">
-          <p className="text-xs font-semibold text-gray-900">👤 Assigned to: {agent.name}</p>
-          <p className="text-xs text-slate-700">{agent.title}</p>
+        <div className="bg-blue-50 border border-blue-200 rounded p-2 mb-3">
+          <p className="text-xs font-semibold text-blue-900">👤 Assigned to: {agent.name}</p>
+          <p className="text-xs text-blue-700">{agent.title}</p>
           {delegation && (
-            <p className="text-xs text-slate-600 mt-1">
+            <p className="text-xs text-blue-600 mt-1">
               <span className="font-semibold">Match Score:</span> {parseFloat(delegation.matchScore).toFixed(2)}/10
             </p>
           )}
@@ -264,7 +264,7 @@ function TaskCard({ task, agent, delegation, getStatusColor, getProgressColor })
           </div>
           <div className="w-full bg-gray-200 rounded-full h-3">
             <div
-              className={`h-3 rounded-full transition-all ${getProgressColor ? getProgressColor(task.progress || 0) : 'bg-gray-1000'}`}
+              className={`h-3 rounded-full transition-all ${getProgressColor ? getProgressColor(task.progress || 0) : 'bg-blue-500'}`}
               style={{ width: `${task.progress || 0}%` }}
             />
           </div>
