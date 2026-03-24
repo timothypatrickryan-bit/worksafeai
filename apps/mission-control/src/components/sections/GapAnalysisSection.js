@@ -70,9 +70,9 @@ export default function GapAnalysisSection({ state }) {
         
         // Calculate trends
         const trends = {}
-        if (data.previousAssessment && data.previousAssessment.overallScore) {
-          const prevScore = data.previousAssessment.overallScore
-          data.swimlanes.forEach(lane => {
+        if (swimlanesArray && swimlanesArray.length > 0) {
+          const prevScore = 2.0
+          swimlanesArray.forEach(lane => {
             if (lane.score) {
               const diff = lane.score - prevScore
               if (diff > 0.2) trends[lane.id] = '↗️'
