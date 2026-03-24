@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import styles from '../styles/GapAnalysis.module.css'
 import { useEffect } from 'react'
 
 export default function GapAnalysisSection({ state }) {
@@ -43,16 +43,16 @@ export default function GapAnalysisSection({ state }) {
     }
   }, [])
 
-  // Load auto-scores from API
+  // Load auto-scores from mission control state file
   const loadAutoScores = async () => {
     setScoresLoading(true)
     try {
-      const response = await fetch('/api/gap-analysis/scores')
-      const data = await response.json()
+      const response = await fetch('/api/mission-control/state')
+      const stateData = await response.json()
       
-      if (data && data.swimlanes) {
-        setAutoScores(data)
-        setPreviousAssessment(data.previousAssessment)
+      if (stateData && stateData.gapAnalysis) {
+        setAutoScores(stateData.gapAnalysis)
+        setPreviousAssessment({ overallScore: 2.0 })
         
         // Calculate trends
         const trends = {}
@@ -613,7 +613,7 @@ export default function GapAnalysisSection({ state }) {
   }
 
   return (
-    <div className="space-y-6">
+    <div className={styles.container}>
       {/* Part 1: Auto-Score Banner */}
       <AutoScoreBanner />
 
@@ -624,31 +624,31 @@ export default function GapAnalysisSection({ state }) {
       <RemediationHistoryPanel />
 
       {/* Header */}
-      <div className="bg-white border border-gray-200 rounded-lg p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-2">🎯 Mission Gap Analysis</h2>
-        <p className="text-sm text-gray-600 mb-4">
-          Assess progress toward: <span className="italic font-semibold">"{mission}"</span>
+      <div className={styles.header}>
+        <h2 className={styles.header}>🎯 Mission Gap Analysis</h2>
+        <p>
+          Assess progress toward: <span>"{mission}"</span>
         </p>
         
         {/* Overall Score */}
-        <div className="grid grid-cols-3 gap-4">
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 text-center">
-            <p className="text-3xl font-bold text-gray-900">{overallScore()}</p>
-            <p className="text-xs text-gray-600 mt-1">Overall Score</p>
+        <div className={styles.scoreGrid}>
+          <div className={styles.scoreCard}>
+            <p className={styles.scoreValue}>{overallScore()}</p>
+            <p className={styles.scoreLabel}>Overall Score</p>
           </div>
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 text-center">
-            <p className="text-3xl font-bold text-gray-900">{Object.keys(selectedGrade).filter(k => selectedGrade[k] > 0).length}</p>
-            <p className="text-xs text-gray-600 mt-1">Assessments Completed</p>
+          <div className={styles.scoreCard}>
+            <p className={styles.scoreValue}>{Object.keys(selectedGrade).filter(k => selectedGrade[k] > 0).length}</p>
+            <p className={styles.scoreLabel}>Assessments Completed</p>
           </div>
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 text-center">
-            <p className="text-3xl font-bold text-gray-900">{swimlanes.reduce((acc, l) => acc + l.assessments.length, 0)}</p>
-            <p className="text-xs text-gray-600 mt-1">Total Areas</p>
+          <div className={styles.scoreCard}>
+            <p className={styles.scoreValue}>{swimlanes.reduce((acc, l) => acc + l.assessments.length, 0)}</p>
+            <p className={styles.scoreLabel}>Total Areas</p>
           </div>
         </div>
       </div>
 
       {/* Swimlanes */}
-      <div className="space-y-4">
+      <div className={styles.swimlanesList}>
         {swimlanes.map(lane => {
           const laneScore = calculateLaneScore(lane.id)
           const isExpanded = expandedLane === lane.id
@@ -657,40 +657,36 @@ export default function GapAnalysisSection({ state }) {
           const autoScore = autoScores?.swimlanes?.find(s => s.id === lane.id)?.score
 
           return (
-            <div key={lane.id} className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+            <div key={lane.id} className={styles.swimlane}>
               {/* Lane Header */}
               <button
                 onClick={() => setExpandedLane(isExpanded ? null : lane.id)}
-                className="w-full px-6 py-4 hover:bg-gray-50 transition-colors flex items-center justify-between"
+                className={styles.swimlaneHeader}
               >
-                <div className="flex-1 text-left">
-                  <h3 className="font-semibold text-gray-900">{lane.name}</h3>
-                  <p className="text-xs text-gray-600 mt-1">{lane.description}</p>
-                  <div className="flex items-center gap-4 mt-2">
-                    <span className={`text-xs font-semibold px-2 py-1 rounded ${
-                      lane.weight === 'Critical' ? 'bg-red-100 text-red-700' :
-                      lane.weight === 'High' ? 'bg-orange-100 text-orange-700' :
-                      'bg-gray-100 text-slate-700'
-                    }`}>
+                <div className={styles.swimlaneHeaderContent}>
+                  <h3 className={styles.swimlaneName}>{lane.name}</h3>
+                  <p className={styles.swimlaneDescription}>{lane.description}</p>
+                  <div className={styles.swimlaneTags}>
+                    <span className={`${styles.swimlaneTag} ${styles[lane.weight.toLowerCase()]}`}>
                       {lane.weight} Priority
                     </span>
                     {autoScore && (
                       <SwimlaneBadge laneId={lane.id} autoScore={autoScore} />
                     )}
                     {laneScore > 0 && (
-                      <span className="text-xs font-semibold text-gray-700">
-                        Manual: {laneScore}/5.0 ({Math.round((laneScore/5)*100)}%)
+                      <span className={styles.swimlaneTag}>
+                        Manual: {laneScore}/5.0
                       </span>
                     )}
                   </div>
                 </div>
-                <div className="text-lg">{isExpanded ? '▼' : '▶'}</div>
+                <div className={styles.swimlaneIcon}>{isExpanded ? '▼' : '▶'}</div>
               </button>
 
               {/* Lane Content */}
               {isExpanded && (
-                <div className="border-t border-gray-200 px-6 py-4 bg-gray-50">
-                  <div className="space-y-3">
+                <div className={styles.swimlaneContent}>
+                  <div className={styles.assessmentsList}>
                     {lane.assessments.map(assessment => (
                       <AssessmentCard key={assessment.id} assessment={assessment} laneId={lane.id} />
                     ))}
