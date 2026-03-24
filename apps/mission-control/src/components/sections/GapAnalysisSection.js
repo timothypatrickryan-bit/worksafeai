@@ -625,40 +625,40 @@ export default function GapAnalysisSection({ state }) {
 
   return (
     <div className={styles.container}>
-      {/* Part 1: Auto-Score Banner */}
-      <AutoScoreBanner />
-
-      {/* Part 4: Score Trends Chart */}
-      <ScoreTrendsChart />
-
-      {/* Part 3: Remediation History Panel */}
-      <RemediationHistoryPanel />
-
-      {/* Header */}
+      {/* 1. Header & Mission */}
       <div className={styles.header}>
         <h2 className={styles.header}>🎯 Mission Gap Analysis</h2>
         <p>
           Assess progress toward: <span>"{mission}"</span>
         </p>
-        
-        {/* Overall Score */}
-        <div className={styles.scoreGrid}>
-          <div className={styles.scoreCard}>
-            <p className={styles.scoreValue}>{overallScore()}</p>
-            <p className={styles.scoreLabel}>Overall Score</p>
-          </div>
-          <div className={styles.scoreCard}>
-            <p className={styles.scoreValue}>{Object.keys(selectedGrade).filter(k => selectedGrade[k] > 0).length}</p>
-            <p className={styles.scoreLabel}>Assessments Completed</p>
-          </div>
-          <div className={styles.scoreCard}>
-            <p className={styles.scoreValue}>{swimlanes.reduce((acc, l) => acc + l.assessments.length, 0)}</p>
-            <p className={styles.scoreLabel}>Total Areas</p>
-          </div>
+      </div>
+
+      {/* 2. Overall Score */}
+      <div className={styles.scoreGrid}>
+        <div className={styles.scoreCard}>
+          <p className={styles.scoreValue}>{overallScore()}</p>
+          <p className={styles.scoreLabel}>Overall Score</p>
+        </div>
+        <div className={styles.scoreCard}>
+          <p className={styles.scoreValue}>{Object.keys(selectedGrade).filter(k => selectedGrade[k] > 0).length}</p>
+          <p className={styles.scoreLabel}>Assessments Completed</p>
+        </div>
+        <div className={styles.scoreCard}>
+          <p className={styles.scoreValue}>{swimlanes.reduce((acc, l) => acc + l.assessments.length, 0)}</p>
+          <p className={styles.scoreLabel}>Total Areas</p>
         </div>
       </div>
 
-      {/* Swimlanes */}
+      {/* 3. Auto-Score Banner */}
+      <AutoScoreBanner />
+
+      {/* 4. Score Trends Chart */}
+      <ScoreTrendsChart />
+
+      {/* 5. Remediation History Panel */}
+      <RemediationHistoryPanel />
+
+      {/* 6. Swimlanes */}
       <div className={styles.swimlanesList}>
         {swimlanes.map(lane => {
           const laneScore = calculateLaneScore(lane.id)
@@ -709,10 +709,10 @@ export default function GapAnalysisSection({ state }) {
         })}
       </div>
 
-      {/* Save & History */}
+      {/* 7. Save & History - Actions at Bottom */}
       <div className="space-y-4">
         {/* Save Assessment */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4">
+        <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-4">
           <p className="text-xs font-semibold text-gray-700 mb-3">💾 Save Current Assessment</p>
           <input
             type="text"
