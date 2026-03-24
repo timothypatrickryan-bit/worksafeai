@@ -56,6 +56,26 @@ export default function CalendarSection({ state }) {
       color: 'bg-purple-50 border-purple-300',
       icon: '📱',
     },
+    {
+      id: 'hyperscaler-update',
+      name: 'Hyperscaler Daily Briefing',
+      description: 'Research & email daily hyperscaler news',
+      frequency: 'Mon-Fri @ 8:00 AM EST',
+      pattern: '0 8 * * 1-5',
+      nextRun: getNextDailyWeekday(8),
+      color: 'bg-cyan-50 border-cyan-300',
+      icon: '🚀',
+    },
+    {
+      id: 'data-center-weekly',
+      name: 'Data Center Weekly Update',
+      description: 'Research & email market analysis',
+      frequency: 'Friday @ 9:00 AM EST',
+      pattern: '0 9 * * 5',
+      nextRun: getNextWeeklyAt(5, 9),
+      color: 'bg-orange-50 border-orange-300',
+      icon: '📊',
+    },
   ]
 
   useEffect(() => {
@@ -90,6 +110,23 @@ export default function CalendarSection({ state }) {
       }
       next.setDate(next.getDate() + 1)
     }
+    return next
+  }
+
+  function getNextDailyWeekday(hour) {
+    const now = new Date()
+    let next = new Date(now)
+    next.setHours(hour, 0, 0, 0)
+    
+    if (next <= now) {
+      next.setDate(next.getDate() + 1)
+    }
+    
+    // Skip weekends (0 = Sunday, 6 = Saturday)
+    while (next.getDay() === 0 || next.getDay() === 6) {
+      next.setDate(next.getDate() + 1)
+    }
+    
     return next
   }
 
