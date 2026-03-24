@@ -51,14 +51,17 @@ export default function GapAnalysisSection({ state }) {
       const stateData = await response.json()
       
       if (stateData && stateData.gapAnalysis) {
-        // Convert swimlanes object to array format
-        const swimlanesArray = Object.entries(stateData.gapAnalysis.swimlanes || {}).map(([id, data]) => ({
+        const gapAnalysis = stateData.gapAnalysis
+        const swimlanesObj = gapAnalysis.swimlanes
+        
+        // Convert swimlanes object to array format if it exists
+        const swimlanesArray = swimlanesObj ? Object.entries(swimlanesObj).map(([id, swimlaneData]) => ({
           id,
-          ...data
-        }))
+          ...swimlaneData
+        })) : []
         
         const autoScoresData = {
-          ...stateData.gapAnalysis,
+          ...gapAnalysis,
           swimlanes: swimlanesArray
         }
         
@@ -604,7 +607,7 @@ export default function GapAnalysisSection({ state }) {
 
   // Component for Swimlane Score Display
   const SwimlaneBadge = ({ laneId, autoScore }) => {
-    if (!autoScore) return null
+    if (!autoScore || typeof autoScore !== 'number') return null
     
     const trend = scoresTrends[laneId] || '→'
     const isAutoScore = !selectedGrade[laneId] || selectedGrade[laneId] === 0
