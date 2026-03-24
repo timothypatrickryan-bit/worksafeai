@@ -160,7 +160,7 @@ export default function TasksSection({ state, ws }) {
           isReview
             ? 'bg-yellow-50 border-yellow-200 hover:border-yellow-300 hover:shadow-md'
             : task.status === 'working'
-            ? 'bg-blue-50 border-blue-200 hover:border-blue-300 animate-pulse'
+            ? 'bg-gray-100 border-blue-200 hover:border-blue-300 animate-pulse'
             : task.status === 'complete'
             ? 'bg-green-50 border-green-200 hover:border-green-300'
             : 'bg-white border-gray-200 hover:border-gray-300 hover:shadow-sm'
@@ -174,7 +174,7 @@ export default function TasksSection({ state, ws }) {
             </div>
             <div className="text-xs text-gray-500 mt-0.5 flex items-center gap-1">
               <span className={`inline-block px-1.5 py-0.5 rounded text-xs font-medium ${
-                assignee.color === 'blue' ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-600'
+                assignee.color === 'blue' ? 'bg-gray-100 text-slate-700' : 'bg-gray-100 text-gray-600'
               }`}>
                 {assignee.name}
               </span>
@@ -269,7 +269,7 @@ export default function TasksSection({ state, ws }) {
     const getStatusColor = (status) => {
       switch (status) {
         case 'working':
-          return 'bg-blue-50 border-blue-200'
+          return 'bg-gray-100 border-blue-200'
         case 'complete':
           return 'bg-green-50 border-green-200'
         case 'idle':
@@ -282,7 +282,7 @@ export default function TasksSection({ state, ws }) {
     const getStatusBadgeColor = (status) => {
       switch (status) {
         case 'working':
-          return 'bg-blue-100 text-blue-700'
+          return 'bg-gray-100 text-slate-700'
         case 'complete':
           return 'bg-green-100 text-green-700'
         case 'idle':
@@ -382,7 +382,7 @@ export default function TasksSection({ state, ws }) {
         {!showNewTaskForm && (
           <button
             onClick={() => setShowNewTaskForm(true)}
-            className="px-3 py-1.5 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+            className="px-3 py-1.5 bg-slate-600 text-white text-sm font-semibold rounded-lg hover:bg-slate-700 transition-colors"
           >
             + New Task
           </button>
@@ -391,7 +391,7 @@ export default function TasksSection({ state, ws }) {
 
       {/* New Task Form */}
       {showNewTaskForm && (
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="bg-gray-100 border border-blue-200 rounded-lg p-4">
           <h3 className="font-semibold text-sm text-gray-900 mb-3">Create New Task</h3>
           <input
             type="text"
@@ -424,7 +424,7 @@ export default function TasksSection({ state, ws }) {
           <div className="flex gap-2">
             <button
               onClick={handleAddTask}
-              className="flex-1 px-3 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+              className="flex-1 px-3 py-2 bg-slate-600 text-white text-sm font-semibold rounded-lg hover:bg-slate-700 transition-colors"
             >
               Create Task
             </button>
@@ -457,7 +457,7 @@ export default function TasksSection({ state, ws }) {
                         column.color === 'yellow'
                           ? 'text-yellow-700'
                           : column.color === 'blue'
-                          ? 'text-blue-700'
+                          ? 'text-slate-700'
                           : column.color === 'green'
                           ? 'text-green-700'
                           : 'text-gray-600'

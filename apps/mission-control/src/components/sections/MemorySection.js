@@ -68,7 +68,7 @@ export default function MemorySection({ state }) {
           onClick={() => setActiveTab('daily')}
           className={`px-4 py-2 font-medium text-sm transition-colors ${
             activeTab === 'daily'
-              ? 'text-blue-600 border-b-2 border-blue-600'
+              ? 'text-slate-600 border-b-2 border-blue-600'
               : 'text-gray-600 hover:text-gray-900'
           }`}
         >
@@ -78,7 +78,7 @@ export default function MemorySection({ state }) {
           onClick={() => setActiveTab('longterm')}
           className={`px-4 py-2 font-medium text-sm transition-colors ${
             activeTab === 'longterm'
-              ? 'text-blue-600 border-b-2 border-blue-600'
+              ? 'text-slate-600 border-b-2 border-blue-600'
               : 'text-gray-600 hover:text-gray-900'
           }`}
         >
@@ -125,7 +125,7 @@ export default function MemorySection({ state }) {
                     onClick={() => setSelectedMemory(memory)}
                     className={`w-full text-left px-4 py-2 border-b border-gray-100 hover:bg-gray-50 transition-colors text-xs ${
                       selectedMemory?.date === memory.date
-                        ? 'bg-blue-50 border-l-2 border-l-blue-600'
+                        ? 'bg-gray-100 border-l-2 border-l-blue-600'
                         : ''
                     }`}
                   >

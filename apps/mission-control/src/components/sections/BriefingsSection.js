@@ -214,7 +214,7 @@ export default function BriefingsSection({ state, ws }) {
                 onClick={() => setSelectedBriefing(b)}
                 className={`w-full text-left p-3 rounded border transition ${
                   selectedBriefing?.id === b.id
-                    ? 'bg-blue-50 border-blue-300'
+                    ? 'bg-gray-100 border-blue-300'
                     : 'bg-white border-gray-200 hover:border-gray-300'
                 }`}
               >

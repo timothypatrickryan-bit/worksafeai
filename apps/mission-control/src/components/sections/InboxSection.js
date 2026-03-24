@@ -34,7 +34,7 @@ export default function InboxSection({ state }) {
             key={item.id} 
             className={`border rounded-md p-4 transition-all ${
               isReady
-                ? 'border-blue-200 bg-blue-50 hover:border-blue-300'
+                ? 'border-blue-200 bg-gray-100 hover:border-blue-300'
                 : 'border-gray-200 bg-white hover:border-gray-300'
             }`}
           >
@@ -54,7 +54,7 @@ export default function InboxSection({ state }) {
               <div className="flex items-center gap-2 ml-4 flex-shrink-0">
                 <span className={`text-xs font-semibold px-2 py-1 rounded-sm ${
                   isReady 
-                    ? 'bg-blue-200 text-blue-700' 
+                    ? 'bg-blue-200 text-slate-700' 
                     : 'bg-green-100 text-green-700'
                 }`}>
                   {item.status === 'ready-to-send' ? 'Ready' : 'Sent'}
@@ -64,7 +64,7 @@ export default function InboxSection({ state }) {
                   <button
                     onClick={() => handleSend(item.id)}
                     disabled={sending === item.id}
-                    className="px-3 py-1.5 bg-blue-600 text-white text-xs font-semibold rounded-sm hover:bg-blue-700 disabled:opacity-50 transition-colors"
+                    className="px-3 py-1.5 bg-slate-600 text-white text-xs font-semibold rounded-sm hover:bg-slate-700 disabled:opacity-50 transition-colors"
                   >
                     {sending === item.id ? '...' : 'Send'}
                   </button>

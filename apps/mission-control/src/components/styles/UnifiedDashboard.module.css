@@ -4,9 +4,9 @@
 
 .section {
   padding: 24px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #fafbfc 100%);
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
   border-radius: 12px;
-  border: 1px solid #e1e8ed;
+  border: 1px solid #d1d5db;
 }
 
 .header {
@@ -23,13 +23,13 @@
 .header h2 {
   font-size: 28px;
   font-weight: 700;
-  color: #1a2332;
+  color: #374151;
   margin: 0 0 8px 0;
 }
 
 .header p {
   font-size: 14px;
-  color: #7a8a99;
+  color: #6b7280;
   margin: 0;
 }
 
@@ -37,7 +37,7 @@
 .createTaskBtn {
   flex-shrink: 0;
   padding: 10px 16px;
-  background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%);
+  background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
   color: white;
   border: none;
   border-radius: 6px;
@@ -50,7 +50,7 @@
 
 .createProjectBtn:hover,
 .createTaskBtn:hover {
-  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
+  box-shadow: 0 4px 12px rgba(75, 85, 99, 0.3);
   transform: translateY(-1px);
 }
 
@@ -61,7 +61,7 @@
 
 .projectMeta {
   font-size: 13px;
-  color: #9ca8b3;
+  color: #9ca3af;
   margin-top: 4px !important;
 }
 
@@ -69,7 +69,7 @@
 .closeBtn {
   background: none;
   border: none;
-  color: #0066ff;
+  color: #4b5563;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -80,7 +80,7 @@
 
 .backBtn:hover,
 .closeBtn:hover {
-  color: #0052cc;
+  color: #374151;
 }
 
 /* ========================================
@@ -98,7 +98,7 @@
   background: white;
   padding: 16px;
   border-radius: 8px;
-  border: 1px solid #e1e8ed;
+  border: 1px solid #d1d5db;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -106,7 +106,7 @@
   display: block;
   font-size: 12px;
   font-weight: 600;
-  color: #7a8a99;
+  color: #6b7280;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 8px;
@@ -116,7 +116,7 @@
   display: block;
   font-size: 28px;
   font-weight: 700;
-  color: #1a2332;
+  color: #374151;
 }
 
 /* ========================================
@@ -127,7 +127,7 @@
   display: flex;
   gap: 8px;
   margin-bottom: 24px;
-  border-bottom: 1px solid #e1e8ed;
+  border-bottom: 1px solid #d1d5db;
 }
 
 .tab {
@@ -135,7 +135,7 @@
   background: none;
   border: none;
   border-bottom: 3px solid transparent;
-  color: #7a8a99;
+  color: #6b7280;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -144,13 +144,13 @@
 }
 
 .tab:hover {
-  color: #1a2332;
+  color: #374151;
   background: rgba(0, 102, 255, 0.05);
 }
 
 .tab.active {
-  color: #0066ff;
-  border-bottom-color: #0066ff;
+  color: #4b5563;
+  border-bottom-color: #4b5563;
 }
 
 /* ========================================
@@ -167,7 +167,7 @@
 .projectCard {
   background: white;
   border-radius: 12px;
-  border: 2px solid #e1e8ed;
+  border: 2px solid #d1d5db;
   padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
@@ -203,7 +203,7 @@
 .cardHeader h3 {
   font-size: 18px;
   font-weight: 700;
-  color: #1a2332;
+  color: #374151;
   margin: 0 0 4px 0;
 }
 
@@ -211,7 +211,7 @@
   display: inline-block;
   font-size: 12px;
   font-weight: 600;
-  color: #7a8a99;
+  color: #6b7280;
   background: #f0f4f9;
   padding: 4px 8px;
   border-radius: 4px;
@@ -224,7 +224,7 @@
 
 .description {
   font-size: 14px;
-  color: #7a8a99;
+  color: #6b7280;
   margin: 0 0 12px 0;
   line-height: 1.5;
 }
@@ -241,7 +241,7 @@
 .orchestratorHighlight h4 {
   font-size: 13px;
   font-weight: 700;
-  color: #1a2332;
+  color: #374151;
   margin: 0 0 8px 0;
 }
 
@@ -251,13 +251,13 @@
 }
 
 .planItem strong {
-  color: #1a2332;
+  color: #374151;
   display: block;
   margin-bottom: 2px;
 }
 
 .planItem p {
-  color: #7a8a99;
+  color: #6b7280;
   margin: 0;
   line-height: 1.4;
 }
@@ -265,7 +265,7 @@
 /* Progress Bar */
 .progressBar {
   height: 8px;
-  background: #e1e8ed;
+  background: #d1d5db;
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 6px;
@@ -273,7 +273,7 @@
 
 .progress {
   height: 100%;
-  background: linear-gradient(90deg, #0066ff 0%, #0052cc 100%);
+  background: linear-gradient(90deg, #4b5563 0%, #374151 100%);
   transition: width 0.5s ease;
 }
 
@@ -281,7 +281,7 @@
   display: block;
   font-size: 12px;
   font-weight: 600;
-  color: #7a8a99;
+  color: #6b7280;
   margin-bottom: 12px;
 }
 
@@ -302,7 +302,7 @@
 
 .taskCount .label {
   font-size: 11px;
-  color: #7a8a99;
+  color: #6b7280;
   text-transform: uppercase;
 }
 
@@ -312,7 +312,7 @@
   display: block;
   font-size: 20px;
   font-weight: 700;
-  color: #1a2332;
+  color: #374151;
   margin-bottom: 4px;
 }
 
@@ -343,22 +343,22 @@
 }
 
 .primaryBtn {
-  background: #0066ff;
+  background: #4b5563;
   color: white;
 }
 
 .primaryBtn:hover {
-  background: #0052cc;
+  background: #374151;
 }
 
 .secondaryBtn {
   background: #f0f4f9;
-  color: #0066ff;
+  color: #4b5563;
   border: 1px solid #d0dae6;
 }
 
 .secondaryBtn:hover {
-  background: #e1e8ed;
+  background: #d1d5db;
 }
 
 .editBtn {
@@ -373,7 +373,7 @@
 }
 
 .editBtn:hover {
-  background: #e1e8ed;
+  background: #d1d5db;
   border-color: #bbc7d6;
 }
 
@@ -383,7 +383,7 @@
 
 .projectInfoSection {
   background: white;
-  border: 1px solid #e1e8ed;
+  border: 1px solid #d1d5db;
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 24px;
@@ -392,7 +392,7 @@
 .projectInfoSection h3 {
   font-size: 16px;
   font-weight: 700;
-  color: #1a2332;
+  color: #374151;
   margin: 0 0 16px 0;
 }
 
@@ -404,7 +404,7 @@
 
 .planCard {
   background: #f8f9fa;
-  border: 1px solid #e1e8ed;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
   padding: 16px;
 }
@@ -412,7 +412,7 @@
 .planCard h4 {
   font-size: 13px;
   font-weight: 700;
-  color: #1a2332;
+  color: #374151;
   margin: 0 0 8px 0;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -420,7 +420,7 @@
 
 .planCard p {
   font-size: 13px;
-  color: #7a8a99;
+  color: #6b7280;
   margin: 0;
   line-height: 1.5;
 }
@@ -433,7 +433,7 @@
 
 .phasesList li {
   font-size: 13px;
-  color: #7a8a99;
+  color: #6b7280;
   margin-bottom: 4px;
 }
 
@@ -445,7 +445,7 @@
 
 .metricsList li {
   font-size: 13px;
-  color: #7a8a99;
+  color: #6b7280;
   margin-bottom: 6px;
 }
 
@@ -457,7 +457,7 @@
 .tasksSection h3 {
   font-size: 16px;
   font-weight: 700;
-  color: #1a2332;
+  color: #374151;
   margin: 0 0 16px 0;
 }
 
@@ -470,7 +470,7 @@
 
 .statusColumn {
   background: white;
-  border: 1px solid #e1e8ed;
+  border: 1px solid #d1d5db;
   border-radius: 10px;
   padding: 12px;
   min-height: 300px;
@@ -484,19 +484,19 @@
   align-items: center;
   margin-bottom: 12px;
   padding-bottom: 12px;
-  border-bottom: 2px solid #e1e8ed;
+  border-bottom: 2px solid #d1d5db;
 }
 
 .columnHeader h4 {
   font-size: 14px;
   font-weight: 700;
-  color: #1a2332;
+  color: #374151;
   margin: 0;
 }
 
 .count {
-  background: #e1e8ed;
-  color: #7a8a99;
+  background: #d1d5db;
+  color: #6b7280;
   padding: 2px 8px;
   border-radius: 4px;
   font-size: 12px;
@@ -512,7 +512,7 @@
 
 .taskItem {
   background: #f8f9fa;
-  border: 1px solid #e1e8ed;
+  border: 1px solid #d1d5db;
   border-radius: 6px;
   padding: 10px;
   cursor: pointer;
@@ -528,19 +528,19 @@
 .taskItem h5 {
   font-size: 13px;
   font-weight: 600;
-  color: #1a2332;
+  color: #374151;
   margin: 0 0 6px 0;
 }
 
 .taskMeta {
   font-size: 11px;
-  color: #7a8a99;
+  color: #6b7280;
   margin: 0;
 }
 
 .miniProgress {
   height: 4px;
-  background: #e1e8ed;
+  background: #d1d5db;
   border-radius: 2px;
   overflow: hidden;
   margin: 6px 0;
@@ -548,7 +548,7 @@
 
 .emptyColumn {
   font-size: 12px;
-  color: #9ca8b3;
+  color: #9ca3af;
   text-align: center;
   padding: 24px 0;
   margin: auto 0;
@@ -557,7 +557,7 @@
 /* Approvals Section */
 .approvalsSection {
   background: white;
-  border: 2px solid #0066ff;
+  border: 2px solid #4b5563;
   border-radius: 10px;
   padding: 20px;
   margin-top: 24px;
@@ -566,13 +566,13 @@
 .approvalsSection h3 {
   font-size: 16px;
   font-weight: 700;
-  color: #1a2332;
+  color: #374151;
   margin: 0 0 8px 0;
 }
 
 .approvalsCount {
   font-size: 12px;
-  color: #7a8a99;
+  color: #6b7280;
   margin: 0 0 16px 0;
 }
 
@@ -584,7 +584,7 @@
 
 .approvalItem {
   background: #f8f9fa;
-  border: 1px solid #e1e8ed;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
   padding: 12px;
   display: flex;
@@ -600,19 +600,19 @@
 .approvalInfo h5 {
   font-size: 13px;
   font-weight: 600;
-  color: #1a2332;
+  color: #374151;
   margin: 0 0 4px 0;
 }
 
 .approvalMeta {
   font-size: 11px;
-  color: #7a8a99;
+  color: #6b7280;
   margin: 0;
 }
 
 .approvalMeta .timeline {
   margin-left: 8px;
-  color: #0066ff;
+  color: #4b5563;
 }
 
 .approvalButtons {
@@ -660,7 +660,7 @@
 .taskProgressBar {
   position: relative;
   height: 12px;
-  background: #e1e8ed;
+  background: #d1d5db;
   border-radius: 6px;
   overflow: hidden;
   margin-bottom: 24px;
@@ -668,7 +668,7 @@
 
 .taskProgressBar .progress {
   height: 100%;
-  background: linear-gradient(90deg, #0066ff 0%, #0052cc 100%);
+  background: linear-gradient(90deg, #4b5563 0%, #374151 100%);
 }
 
 .progressPercent {
@@ -692,7 +692,7 @@
 
 .statusBadge.briefing {
   background: #f0f4f9;
-  color: #0066ff;
+  color: #4b5563;
 }
 
 .statusBadge.queued {
@@ -732,7 +732,7 @@
 
 .detailSection {
   background: white;
-  border: 1px solid #e1e8ed;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
   padding: 16px;
 }
@@ -740,7 +740,7 @@
 .detailSection h4 {
   font-size: 14px;
   font-weight: 700;
-  color: #1a2332;
+  color: #374151;
   margin: 0 0 12px 0;
 }
 
@@ -756,7 +756,7 @@
   display: block;
   font-size: 12px;
   font-weight: 700;
-  color: #7a8a99;
+  color: #6b7280;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 4px;
@@ -764,7 +764,7 @@
 
 .field p {
   font-size: 14px;
-  color: #1a2332;
+  color: #374151;
   margin: 0;
 }
 
@@ -776,7 +776,7 @@
 
 .list li {
   font-size: 14px;
-  color: #1a2332;
+  color: #374151;
   margin-bottom: 8px;
   padding-left: 20px;
   position: relative;
@@ -809,18 +809,18 @@
   display: block;
   font-size: 13px;
   font-weight: 600;
-  color: #1a2332;
+  color: #374151;
   margin-bottom: 4px;
 }
 
 .milestones p {
   font-size: 12px;
-  color: #7a8a99;
+  color: #6b7280;
   margin: 0;
 }
 
 .activityLog {
-  border: 1px solid #e1e8ed;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
   max-height: 300px;
   overflow-y: auto;
@@ -828,7 +828,7 @@
 
 .activityItem {
   padding: 12px;
-  border-bottom: 1px solid #e1e8ed;
+  border-bottom: 1px solid #d1d5db;
   font-size: 13px;
 }
 
@@ -839,13 +839,13 @@
 .time {
   display: block;
   font-size: 11px;
-  color: #7a8a99;
+  color: #6b7280;
   margin-bottom: 4px;
 }
 
 .activityItem p {
   margin: 0;
-  color: #1a2332;
+  color: #374151;
   line-height: 1.4;
 }
 
@@ -855,7 +855,7 @@
 
 .approvalPanel {
   background: linear-gradient(135deg, #f0f4f9 0%, #e6f2ff 100%);
-  border: 2px solid #0066ff;
+  border: 2px solid #4b5563;
   border-radius: 8px;
   padding: 16px;
   position: sticky;
@@ -865,13 +865,13 @@
 .approvalPanel h4 {
   font-size: 14px;
   font-weight: 700;
-  color: #1a2332;
+  color: #374151;
   margin: 0 0 8px 0;
 }
 
 .approvalDesc {
   font-size: 12px;
-  color: #7a8a99;
+  color: #6b7280;
   margin: 0 0 16px 0;
   line-height: 1.4;
 }
@@ -920,7 +920,7 @@
 .empty {
   text-align: center;
   padding: 48px 24px;
-  color: #7a8a99;
+  color: #6b7280;
 }
 
 .empty p {
@@ -938,7 +938,7 @@
   gap: 8px;
   margin-top: 24px;
   padding-top: 16px;
-  border-top: 1px solid #e1e8ed;
+  border-top: 1px solid #d1d5db;
 }
 
 /* ========================================
