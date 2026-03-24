@@ -4,7 +4,7 @@ const statusDot = {
   idle: 'bg-gray-400',
   working: 'bg-yellow-500',
   complete: 'bg-green-500',
-  scheduled: 'bg-blue-500',
+  scheduled: 'bg-gray-1000',
   reviewing: 'bg-purple-500',
 }
 
@@ -12,7 +12,7 @@ const statusText = {
   idle: 'text-gray-700',
   working: 'text-yellow-700',
   complete: 'text-green-700',
-  scheduled: 'text-blue-700',
+  scheduled: 'text-slate-700',
   reviewing: 'text-purple-700',
 }
 
@@ -20,7 +20,7 @@ const statusBg = {
   idle: 'bg-gray-50',
   working: 'bg-yellow-50',
   complete: 'bg-green-50',
-  scheduled: 'bg-blue-50',
+  scheduled: 'bg-gray-100',
   reviewing: 'bg-purple-50',
 }
 

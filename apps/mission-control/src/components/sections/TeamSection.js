@@ -143,7 +143,7 @@ export default function TeamSection({ state }) {
 
   const roleColors = {
     leader: 'bg-purple-50 border-purple-300',
-    agent: 'bg-blue-50 border-blue-300',
+    agent: 'bg-gray-100 border-blue-300',
     subagent: 'bg-cyan-50 border-cyan-300',
     tool: 'bg-orange-50 border-orange-300',
   }
@@ -327,7 +327,7 @@ export default function TeamSection({ state }) {
     <div className="space-y-6">
       {/* Mission Statement */}
       <div className="bg-gradient-to-r from-blue-50 to-purple-50 border-l-4 border-blue-600 p-4 rounded-sm">
-        <p className="text-xs font-semibold text-blue-900 uppercase tracking-wide mb-2">🎯 Mission</p>
+        <p className="text-xs font-semibold text-gray-900 uppercase tracking-wide mb-2">🎯 Mission</p>
         <p className="text-sm text-blue-800 leading-relaxed">
           {team.mission}
         </p>
@@ -337,7 +337,7 @@ export default function TeamSection({ state }) {
       <div className="flex justify-center">
         <button
           onClick={() => setShowCreateSubagent(!showCreateSubagent)}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-sm text-sm font-medium transition-colors"
+          className="bg-slate-600 hover:bg-slate-700 text-white px-4 py-2 rounded-sm text-sm font-medium transition-colors"
         >
           {showCreateSubagent ? '✕ Cancel' : '+ Create Subagent'}
         </button>

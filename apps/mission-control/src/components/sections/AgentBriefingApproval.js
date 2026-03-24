@@ -131,12 +131,12 @@ export default function AgentBriefingApproval({
               <div className="flex items-start gap-3">
                 <span className="text-xl mt-0.5">⏱️</span>
                 <div>
-                  <p className="text-xs font-semibold text-blue-900 uppercase tracking-wide">
+                  <p className="text-xs font-semibold text-gray-900 uppercase tracking-wide">
                     Timeline Overview
                   </p>
                   <p className="text-sm text-gray-800 mt-1 leading-relaxed">{timeline}</p>
                   {estimatedHours && (
-                    <p className="text-xs text-blue-700 mt-2">
+                    <p className="text-xs text-slate-700 mt-2">
                       📌 Estimated: <span className="font-semibold">{estimatedHours} hours</span>
                     </p>
                   )}
@@ -153,7 +153,7 @@ export default function AgentBriefingApproval({
                 <p className="text-sm font-bold text-gray-900 uppercase tracking-wide">
                   Deliverables
                 </p>
-                <span className="ml-auto px-2 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
+                <span className="ml-auto px-2 py-1 bg-gray-100 text-blue-800 text-xs font-semibold rounded-full">
                   {deliverables.length}
                 </span>
               </div>

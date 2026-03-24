@@ -60,7 +60,7 @@ export default function TaskDetailsPanel({ taskId, onClose }) {
             onClick={() => setActiveTab(tab)}
             className={`flex-1 py-2 px-3 text-xs font-medium border-b-2 transition ${
               activeTab === tab
-                ? 'border-blue-600 text-blue-600'
+                ? 'border-blue-600 text-slate-600'
                 : 'border-transparent text-gray-600 hover:text-gray-900'
             }`}
           >
@@ -85,12 +85,12 @@ export default function TaskDetailsPanel({ taskId, onClose }) {
 
             {/* Assigned Agent */}
             {agent && (
-              <div className="bg-blue-50 border border-blue-200 rounded p-3">
-                <p className="text-xs font-semibold text-blue-900 uppercase mb-2">Assigned To</p>
+              <div className="bg-gray-100 border border-blue-200 rounded p-3">
+                <p className="text-xs font-semibold text-gray-900 uppercase mb-2">Assigned To</p>
                 <div className="space-y-1">
-                  <p className="text-sm font-medium text-blue-900">{agent.name}</p>
-                  <p className="text-xs text-blue-700">{agent.title}</p>
-                  <p className="text-xs text-blue-600 mt-1">{agent.specialty}</p>
+                  <p className="text-sm font-medium text-gray-900">{agent.name}</p>
+                  <p className="text-xs text-slate-700">{agent.title}</p>
+                  <p className="text-xs text-slate-600 mt-1">{agent.specialty}</p>
                 </div>
               </div>
             )}
@@ -220,11 +220,11 @@ export default function TaskDetailsPanel({ taskId, onClose }) {
             <div>
               <div className="flex justify-between items-center mb-2">
                 <p className="text-xs font-semibold text-gray-700 uppercase">Progress</p>
-                <p className="text-sm font-bold text-blue-600">{taskData.progress || 0}%</p>
+                <p className="text-sm font-bold text-slate-600">{taskData.progress || 0}%</p>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
                 <div
-                  className="bg-blue-600 h-2 rounded-full transition-all"
+                  className="bg-slate-600 h-2 rounded-full transition-all"
                   style={{ width: `${taskData.progress || 0}%` }}
                 />
               </div>

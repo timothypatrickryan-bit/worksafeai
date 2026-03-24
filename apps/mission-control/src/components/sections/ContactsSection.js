@@ -14,8 +14,8 @@ const roleBadgeColors = {
   owner: 'bg-green-100 text-green-700',
   family: 'bg-pink-100 text-pink-700',
   friends: 'bg-purple-100 text-purple-700',
-  consultant: 'bg-blue-100 text-blue-700',
-  tool: 'bg-blue-100 text-blue-700',
+  consultant: 'bg-gray-100 text-slate-700',
+  tool: 'bg-gray-100 text-slate-700',
   platform: 'bg-yellow-100 text-yellow-700',
 }
 
@@ -178,12 +178,12 @@ export default function ContactsSection({ state }) {
       {!showAddForm ? (
         <button
           onClick={() => setShowAddForm(true)}
-          className="w-full px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors"
+          className="w-full px-4 py-2 bg-slate-600 text-white text-sm font-semibold rounded-md hover:bg-slate-700 transition-colors"
         >
           + Add New Contact
         </button>
       ) : (
-        <div className="bg-blue-50 border border-blue-200 rounded-md p-4 space-y-3">
+        <div className="bg-gray-100 border border-blue-200 rounded-md p-4 space-y-3">
           {/* Contact Details */}
           <div className="space-y-2">
             <label className="block text-xs font-medium text-gray-700">Contact ID *</label>
@@ -457,7 +457,7 @@ export default function ContactsSection({ state }) {
                           <div className="mt-2 flex gap-2">
                             <button
                               onClick={() => startEdit(key)}
-                              className="flex-1 px-3 py-1.5 bg-blue-100 text-blue-700 text-xs font-semibold rounded-sm hover:bg-blue-200 transition-colors"
+                              className="flex-1 px-3 py-1.5 bg-gray-100 text-slate-700 text-xs font-semibold rounded-sm hover:bg-blue-200 transition-colors"
                             >
                               Edit
                             </button>
@@ -484,7 +484,7 @@ export default function ContactsSection({ state }) {
 
                                 return (
                                   <div key={chKey} className="bg-gray-50 p-2 rounded text-sm">
-                                    <div className="font-medium text-blue-600">📞 {channel.name}</div>
+                                    <div className="font-medium text-slate-600">📞 {channel.name}</div>
                                     {detail && <div className="text-gray-600">{detail}</div>}
                                   </div>
                                 )

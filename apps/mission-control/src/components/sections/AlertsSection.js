@@ -9,13 +9,13 @@ const alertEmoji = {
 const alertColors = {
   critical: 'bg-red-50 border-l-red-400',
   warning: 'bg-yellow-50 border-l-yellow-400',
-  info: 'bg-blue-50 border-l-blue-400',
+  info: 'bg-gray-100 border-l-blue-400',
 }
 
 const alertTextColors = {
   critical: 'text-red-700',
   warning: 'text-yellow-700',
-  info: 'text-blue-700',
+  info: 'text-slate-700',
 }
 
 export default function AlertsSection({ state }) {

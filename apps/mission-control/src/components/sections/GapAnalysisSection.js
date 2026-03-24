@@ -350,7 +350,7 @@ export default function GapAnalysisSection({ state }) {
     { level: 1, label: 'Not Started', color: 'bg-red-100 border-red-300', textColor: 'text-red-900', description: 'No progress; not implemented' },
     { level: 2, label: 'Early Stage', color: 'bg-orange-100 border-orange-300', textColor: 'text-orange-900', description: 'Planning or just starting' },
     { level: 3, label: 'In Progress', color: 'bg-yellow-100 border-yellow-300', textColor: 'text-yellow-900', description: 'Partial implementation; still developing' },
-    { level: 4, label: 'Nearly Complete', color: 'bg-blue-100 border-blue-300', textColor: 'text-blue-900', description: 'Mostly working; minor refinements needed' },
+    { level: 4, label: 'Nearly Complete', color: 'bg-gray-100 border-blue-300', textColor: 'text-gray-900', description: 'Mostly working; minor refinements needed' },
     { level: 5, label: 'Fully Achieved', color: 'bg-green-100 border-green-300', textColor: 'text-green-900', description: 'Complete; exceeds target state' },
   ]
 
@@ -485,7 +485,7 @@ export default function GapAnalysisSection({ state }) {
                   <p className="pt-1">Status: <span className="inline-block px-2 py-1 bg-yellow-900/50 text-yellow-200 rounded text-xs font-semibold">🟡 No briefing yet</span></p>
                 </div>
               </div>
-              <button className="px-3 py-1.5 bg-blue-700 hover:bg-blue-600 text-xs text-white rounded font-semibold transition-colors flex-shrink-0">
+              <button className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-xs text-white rounded font-semibold transition-colors flex-shrink-0">
                 Spawn Briefing
               </button>
             </div>
@@ -603,7 +603,7 @@ export default function GapAnalysisSection({ state }) {
         <span className={`px-2 py-1 rounded font-semibold ${
           isAutoScore 
             ? 'bg-green-100 text-green-700' 
-            : 'bg-blue-100 text-blue-700'
+            : 'bg-gray-100 text-slate-700'
         }`}>
           {isAutoScore ? 'Auto' : 'Manual'} {autoScore.toFixed(1)}/5
         </span>
@@ -670,7 +670,7 @@ export default function GapAnalysisSection({ state }) {
                     <span className={`text-xs font-semibold px-2 py-1 rounded ${
                       lane.weight === 'Critical' ? 'bg-red-100 text-red-700' :
                       lane.weight === 'High' ? 'bg-orange-100 text-orange-700' :
-                      'bg-blue-100 text-blue-700'
+                      'bg-gray-100 text-slate-700'
                     }`}>
                       {lane.weight} Priority
                     </span>
