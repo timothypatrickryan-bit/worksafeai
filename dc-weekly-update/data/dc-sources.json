@@ -1,0 +1,143 @@
+{
+  "sources": [
+    {
+      "id": "colospace",
+      "name": "ColoSpace",
+      "url": "https://colospace.com",
+      "region": ["ny", "nj", "pa"],
+      "type": "industry_news",
+      "updateFreq": "daily"
+    },
+    {
+      "id": "datacenterdynamics",
+      "name": "DataCenterDynamics",
+      "url": "https://www.datacenterdynamics.com",
+      "region": ["ny", "nj", "pa"],
+      "type": "industry_news",
+      "updateFreq": "daily"
+    },
+    {
+      "id": "constructionpermits_ny",
+      "name": "NYC Department of Buildings",
+      "url": "https://a810-bisweb.nyc.gov/bisweb/QueryByKeyword",
+      "region": ["ny"],
+      "type": "permits",
+      "updateFreq": "daily"
+    },
+    {
+      "id": "redfin_ny",
+      "name": "Redfin - NY Commercial",
+      "url": "https://www.redfin.com",
+      "region": ["ny"],
+      "type": "real_estate",
+      "updateFreq": "daily"
+    },
+    {
+      "id": "zillow_nj",
+      "name": "Zillow - NJ Commercial",
+      "url": "https://www.zillow.com",
+      "region": ["nj"],
+      "type": "real_estate",
+      "updateFreq": "daily"
+    },
+    {
+      "id": "loopnet",
+      "name": "LoopNet (CoStar)",
+      "url": "https://www.loopnet.com",
+      "region": ["ny", "nj", "pa"],
+      "type": "real_estate",
+      "updateFreq": "daily"
+    },
+    {
+      "id": "upstate_ny_construction",
+      "name": "Upstate NY Business Journal",
+      "url": "https://www.bizjournals.com/albany/",
+      "region": ["ny"],
+      "type": "industry_news",
+      "updateFreq": "daily"
+    },
+    {
+      "id": "nj_tech_council",
+      "name": "NJ Tech Council",
+      "url": "https://www.njtechcouncil.org",
+      "region": ["nj"],
+      "type": "industry_news",
+      "updateFreq": "weekly"
+    },
+    {
+      "id": "pa_realtors",
+      "name": "Pennsylvania Association of Realtors",
+      "url": "https://www.parealtor.org",
+      "region": ["pa"],
+      "type": "real_estate",
+      "updateFreq": "weekly"
+    }
+  ],
+  "mockData": {
+    "insights": [
+      {
+        "date": "2026-03-20",
+        "type": "market_trend",
+        "region": "upstate_ny",
+        "title": "Hyperscaler Expansion in Rochester",
+        "description": "Major cloud provider securing 450,000 sqft in Monroe County for AI training infrastructure",
+        "source": "DataCenterDynamics",
+        "importance": "high"
+      },
+      {
+        "date": "2026-03-19",
+        "type": "project",
+        "region": "nj",
+        "title": "Equinix NJ5 Expansion Phase 2",
+        "description": "150MW power infrastructure approved; construction begins Q2 2026",
+        "source": "ColoSpace",
+        "importance": "high"
+      },
+      {
+        "date": "2026-03-18",
+        "type": "investment",
+        "region": "pa",
+        "title": "Digital Bridge Capital Commitment",
+        "description": "$2.3B committed to Pennsylvania data center ecosystem through 2028",
+        "source": "Real Estate Journal",
+        "importance": "high"
+      },
+      {
+        "date": "2026-03-17",
+        "type": "market_trend",
+        "region": "ny",
+        "title": "NYC Real Estate Market Heating Up",
+        "description": "Average commercial real estate costs up 8% for hyperscale-suitable properties",
+        "source": "CoStar LoopNet",
+        "importance": "medium"
+      },
+      {
+        "date": "2026-03-16",
+        "type": "competitive",
+        "region": "multi",
+        "title": "Regional Talent Competition Intensifies",
+        "description": "All three states competing for HVAC, electrical, and infrastructure engineers",
+        "source": "Upstate NY Business Journal",
+        "importance": "medium"
+      },
+      {
+        "date": "2026-03-15",
+        "type": "permit",
+        "region": "nj",
+        "title": "Permit Surge in Northern NJ",
+        "description": "Bergen County issued 23 construction permits for industrial/tech facilities in March alone",
+        "source": "NJ Dept of Labor",
+        "importance": "medium"
+      },
+      {
+        "date": "2026-03-14",
+        "type": "regulatory",
+        "region": "ny",
+        "title": "New Energy Efficiency Requirements",
+        "description": "New York introduces stricter cooling efficiency standards for data centers (effective 2027)",
+        "source": "NY DEC",
+        "importance": "high"
+      }
+    ]
+  }
+}

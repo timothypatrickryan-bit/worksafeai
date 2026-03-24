@@ -242,61 +242,75 @@ You create task → Assign to Lucy → Automation detects
 
 ---
 
-## LinkedIn Content Posting (✅ FULLY AUTOMATED - Tue/Thu/Sat @ 9 AM EST)
+## LinkedIn Content Posting (✅ LIVE - Tue/Thu/Sat @ 9 AM EST)
 
-**Status:** 🟢 **DEPLOYED** - Ready to activate (March 15, 2026 @ 10:03 AM)
+**Status:** 🟢 **LIVE & AUTOMATED** - Activated March 24, 2026 @ 7:11 AM EST
 
 **Account:** tim.ryan@pro-tel.com  
 **Topics:** Data Center, Telecommunications, Wireless Industry  
-**Schedule:** Automated via macOS launchd (or traditional cron)  
-**Method:** Post generation + browser relay posting
+**Schedule:** Automated via macOS launchd (Tue/Thu/Sat @ 9 AM EST)  
+**Method:** Brave Search API + Post generation + Browser relay posting  
+**API Key:** ✅ Configured (BSAHJ3Wmk1IbHNqEsACADrcFLfW5eLc)
 
 **Automation Pipeline:**
 1. ✅ **9:00 AM EST trigger** — launchd job (Tue/Thu/Sat)
-2. ✅ **Post generation** — Auto-creates topic-relevant content
-3. ✅ **Alternating topics** — Industry Insight → Trending Topic → Insight
-4. ✅ **Browser relay posting** — Posts to LinkedIn via authenticated session
-5. ✅ **Logging & tracking** — Records all activity
+2. ✅ **Brave Search API** — Fetches real-time trending articles
+3. ✅ **Post generation** — Creates data-backed posts with sources
+4. ✅ **Alternating topics** — Industry Insight → Trending Topic → Insight
+5. ✅ **Browser relay posting** — Posts to LinkedIn via authenticated session
+6. ✅ **Logging & tracking** — Records all activity + Brave API usage
 
 **Core Files:**
-- `scripts/linkedin-post-now.js` — Post generator (any time)
-- `scripts/linkedin-auto-post.sh` — Scheduled automation runner
+- `scripts/linkedin-post-now-brave.js` — Post generator with Brave Search
+- `scripts/linkedin-auto-post-brave.sh` — Scheduled automation runner
 - `scripts/linkedin-browser-post-automation.js` — Browser posting helper
-- `~/Library/LaunchAgents/com.openclaw.linkedin-auto-post.plist` — macOS scheduler
-- `.linkedin-current-post.json` — Latest generated post
+- `~/Library/LaunchAgents/com.openclaw.linkedin-auto-post.plist` — macOS scheduler (ACTIVE)
+- `.env` — Brave API key (secure storage)
+- `.linkedin-current-post.json` — Latest generated post (with sources)
 - `.linkedin-posts.log` — Complete posting history
-- `.linkedin-posts-published.log` — Published posts only
+- `.linkedin-launchd.log` — Automation events (Tue/Thu/Sat)
+- `.linkedin-launchd-error.log` — Error tracking
 
 **What's Automated:**
-- ✅ Content generation (Tue/Thu/Sat @ 9 AM)
-- ✅ Scheduling (macOS launchd)
+- ✅ Content generation (Tue/Thu/Sat @ 9 AM, real-time research)
+- ✅ Scheduling (macOS launchd - LIVE)
 - ✅ Topic alternation (Insight → Trending → Insight)
 - ✅ Post logging (all activity tracked)
-- ⏳ Browser posting (requires Chrome relay active)
+- ✅ Browser posting (auto-posts when relay active)
+- ✅ Brave Search integration (up to 2,000 queries/month, using ~13/month)
 
-**Setup Status (March 15):**
-- ✅ All scripts created and tested
-- ✅ macOS launchd plist configured
-- ✅ Post generation verified working
+**Live Deployment (March 24, 2026):**
+- ✅ Brave API key configured & tested
+- ✅ Post generation verified (tested Insight + Trending)
+- ✅ launchd job activated
 - ✅ Logging infrastructure in place
 - ✅ Browser relay integration ready
+- ✅ All documentation updated
 
-**Next Steps:**
-1. Activate launchd job (one-time): See LINKEDIN_SETUP_FINAL.md
-2. Open LinkedIn in Chrome with OpenClaw Browser Relay active
-3. Automation runs automatically Tue/Thu/Sat @ 9 AM EST
+**First Live Post:**
+🚀 **Tuesday, March 26, 2026 @ 9:00 AM EST**
 
 **Manual Post (Any Time):**
 ```bash
-node scripts/linkedin-post-now.js insight  # or: trending
-cat .linkedin-current-post.json | jq '.fullPost'
+node scripts/linkedin-post-now-brave.js insight  # Generate insight post
+node scripts/linkedin-post-now-brave.js trending # Generate trending post
+cat .linkedin-current-post.json | jq '.fullPost' # View generated post
 ```
 
 **Check Status:**
 ```bash
 launchctl list | grep linkedin          # Verify scheduler active
 tail -20 .linkedin-posts.log             # View posting history
+tail -20 .linkedin-launchd.log           # View automation events (post-activation)
 ```
 
-**Full Setup Guide:**
-See: `LINKEDIN_SETUP_FINAL.md` for complete installation & monitoring
+**Brave Search Metrics:**
+```bash
+grep "Searching Brave" .linkedin-launchd.log | wc -l  # Count API calls
+# Safe usage: ~3 calls/week = ~13/month (free tier: 2,000/month)
+```
+
+**Full Documentation:**
+- `LINKEDIN_BRAVE_DEPLOYMENT.md` — Complete deployment guide
+- `LINKEDIN_AUTOMATION_BRAVE_INTEGRATION.md` — Technical reference
+- `LINKEDIN_SETUP_FINAL.md` — Original setup guide

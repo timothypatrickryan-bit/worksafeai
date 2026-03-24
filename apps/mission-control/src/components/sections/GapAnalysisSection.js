@@ -1,6 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import { useEffect } from 'react'
+// Define swimlanes outside component so they're accessible in async functions
+const SWIMLANES_CONFIG = [
+  {
+    id: 'autonomy',
+    name: '🤖 Autonomy & Independence',
+  },
+  {
+    id: 'value',
+    name: '💰 Value Generation & Delivery',
+  },
+  {
+    id: 'organization',
+    name: '🏗️ Organization & Structure',
+  },
+  {
+    id: 'scale',
+    name: '📈 Scalability & Growth',
+  },
+  {
+    id: 'reliability',
+    name: '🛡️ Reliability & Resilience',
+  },
+  {
+    id: 'human',
+    name: '👤 Human-AI Collaboration',
+  },
+]
 
 export default function GapAnalysisSection({ state }) {
   const [expandedLane, setExpandedLane] = useState(null)
@@ -43,28 +69,63 @@ export default function GapAnalysisSection({ state }) {
     }
   }, [])
 
-  // Load auto-scores from API
+  // Load auto-scores from mission control state file via API
   const loadAutoScores = async () => {
     setScoresLoading(true)
     try {
-      const response = await fetch('/api/gap-analysis/scores')
-      const data = await response.json()
+      // Fetch the mission control state file
+      const response = await fetch('/api/mission-control/state')
+      const stateData = await response.json()
       
-      if (data && data.swimlanes) {
-        setAutoScores(data)
-        setPreviousAssessment(data.previousAssessment)
+      if (stateData && stateData.gapAnalysis) {
+        const gapData = stateData.gapAnalysis
         
-        // Calculate trends
+        // Transform state data into swimlanes format
+        const swimlanesWithScores = SWIMLANES_CONFIG.map(lane => {
+          const laneScores = gapData[lane.id]
+          return {
+            id: lane.id,
+            name: lane.name,
+            score: laneScores ? Object.values(laneScores).reduce((a, b) => a + b, 0) / Object.keys(laneScores).length : 0
+          }
+        })
+        
+        // Get previous assessment from gapRemediations
+        const prevRemediations = stateData.gapRemediations || []
+        const previousAssessment = prevRemediations.length > 0 ? {
+          timestamp: prevRemediations[prevRemediations.length - 1].timestamp,
+          overallScore: prevRemediations[prevRemediations.length - 1].scoreAfter || 3.0
+        } : null
+        
+        // Find highest impact gap (lowest score, critical priority)
+        const topPriorityGap = prevRemediations
+          .filter(r => r.status !== 'completed')
+          .sort((a, b) => a.scoreAfter - b.scoreAfter)[0]
+        
+        const autoScoresData = {
+          swimlanes: swimlanesWithScores,
+          previousAssessment: previousAssessment,
+          topPriority: topPriorityGap ? {
+            gap: topPriorityGap.gapIdentified,
+            swimlane: topPriorityGap.swimlane,
+            estimatedHours: topPriorityGap.estimatedHours || 2
+          } : null,
+          overallHealth: swimlanesWithScores.every(s => s.score >= 3.5) ? 'GREEN' : swimlanesWithScores.some(s => s.score < 2) ? 'RED' : 'YELLOW',
+          source: 'mission-control-state',
+          lastUpdated: gapData.lastUpdated || new Date().toISOString()
+        }
+        
+        setAutoScores(autoScoresData)
+        setPreviousAssessment(previousAssessment)
+        
+        // Calculate trends comparing current to previous
         const trends = {}
-        if (data.previousAssessment && data.previousAssessment.overallScore) {
-          const prevScore = data.previousAssessment.overallScore
-          data.swimlanes.forEach(lane => {
-            if (lane.score) {
-              const diff = lane.score - prevScore
-              if (diff > 0.2) trends[lane.id] = '↗️'
-              else if (diff < -0.2) trends[lane.id] = '↘️'
-              else trends[lane.id] = '→'
-            }
+        if (previousAssessment) {
+          swimlanesWithScores.forEach(lane => {
+            const diff = lane.score - previousAssessment.overallScore
+            if (diff > 0.2) trends[lane.id] = '↗️'
+            else if (diff < -0.2) trends[lane.id] = '↘️'
+            else trends[lane.id] = '→'
           })
         }
         setScoresTrends(trends)
@@ -76,15 +137,38 @@ export default function GapAnalysisSection({ state }) {
     }
   }
 
-  // Load remediation history from API
+  // Load remediation history from mission control state file
   const loadRemediations = async () => {
     setRemediationsLoading(true)
     try {
-      const response = await fetch('/api/gap-analysis/remediation')
-      const data = await response.json()
+      const response = await fetch('/api/mission-control/state')
+      const stateData = await response.json()
       
-      if (data && data.remediations) {
-        setRemediations(data.remediations)
+      if (stateData && stateData.gapRemediations) {
+        // Sort by timestamp descending (newest first)
+        const sorted = [...stateData.gapRemediations].sort((a, b) => 
+          new Date(b.timestamp) - new Date(a.timestamp)
+        )
+        
+        // Transform to UI format
+        const remediationsList = sorted.map(rem => ({
+          id: rem.id,
+          title: rem.gapIdentified,
+          name: rem.gapIdentified,
+          gap: rem.gapIdentified,
+          swimlane: rem.swimlane,
+          status: rem.status,
+          completed: rem.status === 'completed',
+          timestamp: rem.timestamp,
+          date: new Date(rem.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+          estimatedHours: rem.estimatedHours,
+          hoursSpent: rem.hoursSpent,
+          hours: rem.estimatedHours,
+          briefing: rem.briefingId || null,
+          impact: rem.scoreAfter ? `Score: ${rem.scoreAfter.toFixed(1)}/5` : null
+        }))
+        
+        setRemediations(remediationsList)
       }
     } catch (err) {
       console.error('Error loading remediations:', err)

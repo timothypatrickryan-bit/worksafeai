@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Job label (must be unique) -->
+    <key>Label</key>
+    <string>com.elevationai.hyperscaler-update</string>
+
+    <!-- Program to execute -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>-c</string>
+        <string>
+            # Daily briefing automation script
+            # Runs at 8:00 AM EST, Monday-Friday
+            
+            set -e
+            
+            # Define paths
+            PHASE3_DIR="/Users/timothyryan/.openclaw/workspace/projects/hyperscaler-update/phase3"
+            LOG_DIR="/Users/timothyryan/.openclaw/workspace/projects/hyperscaler-update/logs"
+            TIMESTAMP=$(date +%Y-%m-%d)
+            
+            # Create log directory if needed
+            mkdir -p "$LOG_DIR"
+            
+            # Log function
+            log_message() {
+                echo "[$(date +'%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_DIR/automation.log"
+            }
+            
+            log_message "=== HYPERSCALER BRIEFING AUTOMATION STARTED ==="
+            log_message "Date: $TIMESTAMP"
+            
+            # Step 1: Generate briefing
+            log_message "Step 1: Generating briefing..."
+            cd "$PHASE3_DIR"
+            node briefing-generator.js --date "$TIMESTAMP" >> "$LOG_DIR/generator-$TIMESTAMP.log" 2>&1
+            
+            if [ $? -eq 0 ]; then
+                log_message "✓ Briefing generated successfully"
+            else
+                log_message "✗ Briefing generation failed (see generator-$TIMESTAMP.log for details)"
+                exit 1
+            fi
+            
+            # Step 2: Send email
+            log_message "Step 2: Sending email..."
+            node email-delivery.js --date "$TIMESTAMP" >> "$LOG_DIR/delivery-$TIMESTAMP.log" 2>&1
+            
+            if [ $? -eq 0 ]; then
+                log_message "✓ Email sent successfully"
+            else
+                log_message "✗ Email delivery failed (see delivery-$TIMESTAMP.log for details)"
+                exit 1
+            fi
+            
+            log_message "=== HYPERSCALER BRIEFING AUTOMATION COMPLETED ==="
+        </string>
+    </array>
+
+    <!-- Run daily at 8:00 AM EST (13:00 UTC during EST, 14:00 UTC during EDT) -->
+    <!-- Note: macOS launchd uses local time, so we specify local time -->
+    <key>StartCalendarInterval</key>
+    <array>
+        <!-- Monday 8:00 AM -->
+        <dict>
+            <key>Weekday</key>
+            <integer>1</integer>
+            <key>Hour</key>
+            <integer>8</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+        <!-- Tuesday 8:00 AM -->
+        <dict>
+            <key>Weekday</key>
+            <integer>2</integer>
+            <key>Hour</key>
+            <integer>8</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+        <!-- Wednesday 8:00 AM -->
+        <dict>
+            <key>Weekday</key>
+            <integer>3</integer>
+            <key>Hour</key>
+            <integer>8</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+        <!-- Thursday 8:00 AM -->
+        <dict>
+            <key>Weekday</key>
+            <integer>4</integer>
+            <key>Hour</key>
+            <integer>8</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+        <!-- Friday 8:00 AM -->
+        <dict>
+            <key>Weekday</key>
+            <integer>5</integer>
+            <key>Hour</key>
+            <integer>8</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+    </array>
+
+    <!-- Standard output and error logging -->
+    <key>StandardOutPath</key>
+    <string>/Users/timothyryan/.openclaw/workspace/projects/hyperscaler-update/logs/launchd.stdout.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/timothyryan/.openclaw/workspace/projects/hyperscaler-update/logs/launchd.stderr.log</string>
+
+    <!-- Load behavior -->
+    <key>KeepAlive</key>
+    <false/>
+
+    <!-- Run even if not logged in (requires user LaunchAgent, not LaunchDaemon) -->
+    <key>RunAtLoad</key>
+    <false/>
+
+    <!-- Environment variables (optional, can set defaults if needed) -->
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>HOME</key>
+        <string>/Users/timothyryan</string>
+    </dict>
+
+    <!-- Job priority (normal) -->
+    <key>Nice</key>
+    <integer>0</integer>
+
+    <!-- Umask for file creation -->
+    <key>Umask</key>
+    <integer>0022</integer>
+
+</dict>
+</plist>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hyperscaler Update</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            padding: 24px 16px;
+        }
+        
+        .wrapper {
+            max-width: 680px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+        }
+
+        /* Premium Header */
+        .header {
+            background: linear-gradient(135deg, #0c1929 0%, #1a3d5c 50%, #2563eb 100%);
+            background-attachment: fixed;
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.6px;
+            line-height: 1.1;
+        }
+
+        .header-subtitle {
+            font-size: 16px;
+            font-weight: 400;
+            opacity: 0.85;
+            margin-bottom: 20px;
+        }
+
+        .header-date {
+            font-size: 13px;
+            font-weight: 600;
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+        }
+
+        /* Main Content */
+        .content {
+            padding: 48px 40px;
+        }
+
+        /* Intro Box */
+        .intro-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 6px solid #0284c7;
+            padding: 24px 28px;
+            border-radius: 10px;
+            margin-bottom: 48px;
+            position: relative;
+        }
+
+        .intro-section p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #0c4a6e;
+            font-weight: 500;
+        }
+
+        /* Section Titles */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 48px 0 28px 0;
+            padding-bottom: 16px;
+            border-bottom: 3px solid #2563eb;
+        }
+
+        .section-icon {
+            font-size: 24px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #0c1929;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        /* Story Cards - Premium Design */
+        .story-container {
+            margin-bottom: 24px;
+        }
+
+        .story-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 20px;
+        }
+
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.02) 0%, rgba(59, 130, 246, 0.02) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .story-card:hover {
+            border-color: #2563eb;
+            box-shadow: 0 12px 40px rgba(37, 99, 235, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .story-card:hover::before {
+            opacity: 1;
+        }
+
+        .story-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: #dbeafe;
+            position: relative;
+            z-index: 1;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .story-card.secondary .story-number {
+            color: #fed7aa;
+        }
+
+        .story-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .story-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .badge-featured {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            color: #991b1b;
+        }
+
+        .badge-secondary {
+            background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+            color: #92400e;
+        }
+
+        .story-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0c1929;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+
+        .story-card:hover .story-title {
+            color: #2563eb;
+        }
+
+        .story-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 12px;
+        }
+
+        .story-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .story-body {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #4b5563;
+            margin-bottom: 14px;
+            font-weight: 400;
+        }
+
+        .story-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .story-link:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+            transform: translateX(4px);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
+            border: 1px solid #e0e7ff;
+            border-radius: 12px;
+            padding: 32px;
+            margin: 48px 0;
+            text-align: center;
+        }
+
+        .stats-header {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0c1929;
+            margin-bottom: 4px;
+        }
+
+        .stats-subheader {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 16px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            border-color: #2563eb;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: #2563eb;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #0c1929 0%, #1a3d5c 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid #e0e7ff;
+        }
+
+        .footer-brand {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .footer-tagline {
+            font-size: 13px;
+            opacity: 0.8;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .footer-meta {
+            font-size: 11px;
+            opacity: 0.6;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .wrapper { border-radius: 12px; }
+            .content { padding: 32px 24px; }
+            .header { padding: 40px 24px; }
+            .header h1 { font-size: 32px; }
+            .story-card { grid-template-columns: 1fr; }
+            .story-number { text-align: left; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Premium Header -->
+        <div class="header">
+            <div class="header-content">
+                <div class="header-badge">📊 Daily Intelligence Brief</div>
+                <h1>Hyperscaler Update</h1>
+                <div class="header-subtitle">Infrastructure & Capex Intelligence</div>
+                <div class="header-date">{{DATE}}</div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Intro -->
+            <div class="intro-section">
+                <p>Your curated daily digest of hyperscaler infrastructure news, capex trends, and AI infrastructure developments. Stay ahead of market shifts shaping the data center industry.</p>
+            </div>
+
+            <!-- Featured Stories -->
+            <div class="featured-stories">
+                <div class="section-header">
+                    <span class="section-icon">🔴</span>
+                    <h2 class="section-title">Featured Stories</h2>
+                </div>
+
+                {{FEATURED_STORIES}}
+            </div>
+
+            <!-- Secondary Stories -->
+            <div class="secondary-stories">
+                <div class="section-header">
+                    <span class="section-icon">🟢</span>
+                    <h2 class="section-title">Also Worth Reading</h2>
+                </div>
+
+                {{SECONDARY_STORIES}}
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-section">
+                <div class="stats-header">Today's Briefing</div>
+                <div class="stats-subheader">Sources reviewed and analyzed</div>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-number">{{TOTAL_STORIES}}</div>
+                        <div class="stat-label">Stories</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">{{FEATURED_COUNT}}</div>
+                        <div class="stat-label">Featured</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">{{AVG_SCORE}}</div>
+                        <div class="stat-label">Avg Score</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-brand">Hyperscaler Update</div>
+            <div class="footer-tagline">
+                Your daily digest of infrastructure intelligence<br>
+                Curated for data center professionals and infrastructure strategists
+            </div>
+            <div class="footer-meta">
+                Generated: {{TIMESTAMP}} ET<br>
+                All sources are cited with direct links to original reporting
+            </div>
+        </div>
+    </div>
+</body>
+</html>

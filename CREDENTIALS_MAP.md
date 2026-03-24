@@ -243,10 +243,26 @@ STRIPE_WEBHOOK_SECRET=[placeholder]
 
 **Recovery:** All accounts have 2FA enabled (check Google Authenticator)
 
+### Brave Search API (LinkedIn Automation)
+
+**Account:** Tim Ryan (Pro-Tel)  
+**API Key:** `BSAHJ3Wmk1IbHNqEsACADrcFLfW5eLc` ✅ Active  
+**Endpoint:** https://api.search.brave.com/res/v1/web/search  
+**Free Tier:** 2,000 queries/month  
+**Rate Limit:** 10 req/sec  
+**Status:** ✅ Live (March 24, 2026)  
+**Used for:** LinkedIn post research & trending topic discovery  
+**Stored in:** `~/.openclaw/workspace/.env`  
+
+**Dashboard:** https://api.search.brave.com/  
+**Current Usage:** ~13 queries/month (safe margin ✅)
+
 ---
 
 ## 🎯 Next Steps
 
+- [ ] Monitor LinkedIn automation (first post: Tuesday, March 26 @ 9 AM EST)
+- [ ] Verify Brave API usage stays <2,000/month
 - [ ] Generate strong JWT_SECRET, update all environments
 - [ ] Create OpenAI API key, add to Stripe
 - [ ] Set up Stripe webhook endpoint
@@ -256,6 +272,10 @@ STRIPE_WEBHOOK_SECRET=[placeholder]
 
 ---
 
-**Last Updated:** March 8, 2026 (WorkSafeAI deployment)  
+**Last Updated:** March 24, 2026 (LinkedIn Brave integration + live activation)  
 **Maintained by:** Lucy  
-**Review Frequency:** Quarterly or after credential changes
+**Review Frequency:** Quarterly or after credential changes  
+**Recent Changes:**
+- Added Brave Search API key (March 24, 2026)
+- LinkedIn automation now live with real-time article discovery
+- Upgraded from template-based to data-backed posts

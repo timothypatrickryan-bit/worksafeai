@@ -1,0 +1,66 @@
+{
+  "spawns": [
+    {
+      "taskId": "task-dcwu-1-email-automation",
+      "taskTitle": "Email Automation Setup",
+      "agentId": "lucy",
+      "agentName": "Lucy",
+      "spawnedAt": "2026-03-22T20:25:25.493Z",
+      "status": "spawned",
+      "sessionKey": "spawn-task-dcwu-1-email-automation-1774211125493"
+    },
+    {
+      "taskId": "task-dcwu-2-research-framework",
+      "taskTitle": "Research Framework Setup",
+      "agentId": "scout",
+      "agentName": "Scout",
+      "spawnedAt": "2026-03-22T20:25:25.495Z",
+      "status": "spawned",
+      "sessionKey": "spawn-task-dcwu-2-research-framework-1774211125495"
+    },
+    {
+      "taskId": "task-dcwu-3-first-email",
+      "taskTitle": "First Email Draft & Delivery",
+      "agentId": "steven",
+      "agentName": "Steven",
+      "spawnedAt": "2026-03-22T20:25:25.497Z",
+      "status": "spawned",
+      "sessionKey": "spawn-task-dcwu-3-first-email-1774211125497"
+    }
+  ],
+  "history": [
+    {
+      "taskId": "task-dcwu-1-email-automation",
+      "taskTitle": "Email Automation Setup",
+      "agentId": "lucy",
+      "agentName": "Lucy",
+      "spawnedAt": "2026-03-22T20:25:25.493Z",
+      "status": "spawned",
+      "sessionKey": "spawn-task-dcwu-1-email-automation-1774211125493",
+      "timestamp": "2026-03-22T20:25:25.493Z",
+      "action": "spawn"
+    },
+    {
+      "taskId": "task-dcwu-2-research-framework",
+      "taskTitle": "Research Framework Setup",
+      "agentId": "scout",
+      "agentName": "Scout",
+      "spawnedAt": "2026-03-22T20:25:25.495Z",
+      "status": "spawned",
+      "sessionKey": "spawn-task-dcwu-2-research-framework-1774211125495",
+      "timestamp": "2026-03-22T20:25:25.495Z",
+      "action": "spawn"
+    },
+    {
+      "taskId": "task-dcwu-3-first-email",
+      "taskTitle": "First Email Draft & Delivery",
+      "agentId": "steven",
+      "agentName": "Steven",
+      "spawnedAt": "2026-03-22T20:25:25.497Z",
+      "status": "spawned",
+      "sessionKey": "spawn-task-dcwu-3-first-email-1774211125497",
+      "timestamp": "2026-03-22T20:25:25.497Z",
+      "action": "spawn"
+    }
+  ]
+}

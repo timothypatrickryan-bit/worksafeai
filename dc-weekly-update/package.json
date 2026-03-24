@@ -1,0 +1,31 @@
+{
+  "name": "dc-weekly-update",
+  "version": "1.0.0",
+  "description": "Professional data center market intelligence automation for NY/NJ/PA region",
+  "main": "scripts/dc-weekly-update.js",
+  "scripts": {
+    "generate": "node scripts/dc-weekly-update.js",
+    "generate:mock": "node scripts/dc-weekly-update.js --mock",
+    "test": "node scripts/dc-weekly-update.js --test --send",
+    "send": "node scripts/dc-weekly-update.js --send",
+    "send:test": "node scripts/dc-weekly-update.js --test --send",
+    "logs": "tail -f logs/*.log"
+  },
+  "keywords": [
+    "data-center",
+    "market-intelligence",
+    "automation",
+    "email",
+    "northeast"
+  ],
+  "author": "Tim Ryan",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "nodemailer": "^6.9.7"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

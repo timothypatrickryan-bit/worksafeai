@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.pro-tel.dc-weekly-update</string>
+
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/local/bin/node</string>
+		<string>/Users/timothyryan/.openclaw/workspace/dc-weekly-update/scripts/dc-weekly-update.js</string>
+		<string>--send</string>
+	</array>
+
+	<key>StartCalendarInterval</key>
+	<array>
+		<dict>
+			<key>Day</key>
+			<integer>5</integer>
+			<key>Hour</key>
+			<integer>9</integer>
+			<key>Minute</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+
+	<key>StandardOutPath</key>
+	<string>/Users/timothyryan/.openclaw/workspace/dc-weekly-update/logs/launchd-stdout.log</string>
+
+	<key>StandardErrorPath</key>
+	<string>/Users/timothyryan/.openclaw/workspace/dc-weekly-update/logs/launchd-stderr.log</string>
+
+	<key>WorkingDirectory</key>
+	<string>/Users/timothyryan/.openclaw/workspace/dc-weekly-update</string>
+
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+		<key>HOME</key>
+		<string>/Users/timothyryan</string>
+	</dict>
+
+	<key>RunAtLoad</key>
+	<false/>
+
+	<key>KeepAlive</key>
+	<false/>
+
+	<key>ProcessType</key>
+	<string>Background</string>
+
+	<key>Nice</key>
+	<integer>5</integer>
+</dict>
+</plist>
