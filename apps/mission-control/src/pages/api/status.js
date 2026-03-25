@@ -1,40 +1,24 @@
-import fs from 'fs';
-import path from 'path';
-
 /**
  * GET /api/status
- * Returns current Mission Control state (tasks, agents, projects, etc.)
+ * Returns the current status of the Mission Control application
  */
 export default function handler(req, res) {
+  // Only allow GET
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Method not allowed' })
+  }
+
   try {
-    // Read state from .mission-control-state.json
-    const stateFile = '/Users/timothyryan/.openclaw/workspace/.mission-control-state.json';
-    
-    if (!fs.existsSync(stateFile)) {
-      return res.status(404).json({ error: 'State file not found' });
-    }
-
-    const state = JSON.parse(fs.readFileSync(stateFile, 'utf8'));
-
-    // Return formatted response
     res.status(200).json({
-      status: 'ok',
+      online: true,
+      status: 'operational',
       timestamp: new Date().toISOString(),
-      tasks: state.tasks || [],
-      projects: state.projects || [],
-      agents: state.agents || [],
-      team: state.team || [],
-      inbox: state.inbox || [],
-      alerts: state.alerts || [],
-      contacts: state.contacts || {},
-      docs: state.docs || [],
-      memories: state.memories || {},
-      lastUpdate: state.lastUpdate,
-    });
+      uptime: process.uptime(),
+    })
   } catch (error) {
     res.status(500).json({
-      error: 'Failed to read status',
+      error: 'Failed to get status',
       message: error.message,
-    });
+    })
   }
 }

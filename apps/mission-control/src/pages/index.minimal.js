@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import SidebarMinimal from '../components/Sidebar.minimal'
 import DashboardMinimal from '../components/DashboardMinimal'
+import GapAnalysisMinimal from '../components/GapAnalysisMinimal'
 import useWebSocket from '../hooks/useWebSocket'
 import styles from './index.minimal.module.css'
 
@@ -52,7 +53,7 @@ export default function Home() {
               <DashboardMinimal state={state} ws={ws} />
             )}
             {currentSection === 'gap-analysis' && (
-              <div data-testid="gap-analysis-section">Gap Analysis coming soon...</div>
+              <GapAnalysisMinimal state={state} ws={ws} />
             )}
             {currentSection === 'team' && (
               <div data-testid="team-section">Team coming soon...</div>

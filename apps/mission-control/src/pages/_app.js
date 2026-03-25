@@ -1,4 +1,4 @@
-import React from 'react'
+/** @jsxImportSource react */
 import '../styles/globals.css'
 
 export default function App({ Component, pageProps }) {

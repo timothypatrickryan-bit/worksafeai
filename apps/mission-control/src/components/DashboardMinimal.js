@@ -34,7 +34,7 @@ export default function DashboardMinimal({ state, ws }) {
         
         // Calculate stats
         if (data.projects) {
-          const activeProjects = data.projects.filter(p => p.status === 'active')
+          const activeProjects = data.projects.filter(p => p.status === 'Active')
           const totalTasks = data.projects.reduce((sum, p) => sum + (p.taskCount || 0), 0)
           const avgCompletion = Math.round(
             data.projects.reduce((sum, p) => sum + (p.progress || 0), 0) / data.projects.length
