@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Control - Redesigned Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #2563eb;
+            --color-primary-hover: #1d4ed8;
+            --color-primary-dark: #1e40af;
+            
+            --color-bg-primary: #ffffff;
+            --color-bg-secondary: #f8fafc;
+            --color-bg-tertiary: #f1f5f9;
+            
+            --color-text-primary: #0f172a;
+            --color-text-secondary: #475569;
+            --color-text-tertiary: #94a3b8;
+            
+            --color-border: #e2e8f0;
+            --color-border-light: #f1f5f9;
+            
+            --color-success: #16a34a;
+            --color-warning: #ea580c;
+            --color-error: #dc2626;
+            
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 48px;
+            
+            --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.03), 0 1px 0 0 rgba(15, 23, 42, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.1), 0 2px 4px -1px rgba(15, 23, 42, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.1), 0 4px 6px -2px rgba(15, 23, 42, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 10px 10px -5px rgba(15, 23, 42, 0.04);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            grid-template-rows: 64px 1fr;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            grid-column: 1;
+            grid-row: 1 / -1;
+            background: var(--color-bg-primary);
+            border-right: 1px solid var(--color-border);
+            padding: var(--spacing-md);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm);
+        }
+
+        .sidebar-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .sidebar-logo-text {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            letter-spacing: -0.3px;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+            flex: 1;
+        }
+
+        .nav-item {
+            padding: var(--spacing-md);
+            border-radius: 10px;
+            background: transparent;
+            border: none;
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 150ms ease-out;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            white-space: nowrap;
+        }
+
+        .nav-item:hover {
+            background: var(--color-bg-tertiary);
+            color: var(--color-text-primary);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(29, 78, 216, 0.05) 100%);
+            color: var(--color-primary);
+            font-weight: 600;
+            border-left: 3px solid var(--color-primary);
+            padding-left: calc(var(--spacing-md) - 3px);
+        }
+
+        .nav-icon {
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-footer {
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--color-text-tertiary);
+            font-size: 12px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--color-success);
+            border-radius: 50%;
+        }
+
+        /* TOP NAV */
+        .topnav {
+            grid-column: 2;
+            grid-row: 1;
+            background: var(--color-bg-primary);
+            border-bottom: 1px solid var(--color-border);
+            padding: 0 var(--spacing-xl);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .topnav-title {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            color: var(--color-text-primary);
+        }
+
+        .topnav-subtitle {
+            font-size: 13px;
+            color: var(--color-text-tertiary);
+            margin-top: 2px;
+        }
+
+        .topnav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+
+        /* MAIN CONTENT */
+        .main {
+            grid-column: 2;
+            grid-row: 2;
+            overflow-y: auto;
+            background: var(--color-bg-secondary);
+        }
+
+        .content {
+            padding: var(--spacing-2xl);
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.6px;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-text-primary);
+        }
+
+        .page-description {
+            font-size: 15px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        /* STATS GRID */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .stat-card {
+            background: var(--color-bg-primary);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+            transition: all 200ms ease-out;
+            cursor: pointer;
+        }
+
+        .stat-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--color-text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -0.7px;
+            color: var(--color-text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .stat-change {
+            font-size: 13px;
+            color: var(--color-success);
+            font-weight: 600;
+        }
+
+        /* TABS */
+        .tabs {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-2xl);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .tab {
+            padding: var(--spacing-md) 0;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 150ms ease-out;
+            position: relative;
+        }
+
+        .tab:hover {
+            color: var(--color-text-primary);
+        }
+
+        .tab.active {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+        }
+
+        /* PROJECT GRID */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .project-card {
+            background: var(--color-bg-primary);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+            transition: all 200ms ease-out;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .project-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .project-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .project-status {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(22, 163, 74, 0.1);
+            color: var(--color-success);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .project-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: var(--spacing-sm);
+            letter-spacing: -0.3px;
+        }
+
+        .project-description {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.5;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--color-text-tertiary);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--color-border-light);
+        }
+
+        .progress-bar {
+            width: 60px;
+            height: 4px;
+            background: var(--color-bg-tertiary);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-primary) 0%, #1d4ed8 100%);
+            width: 72%;
+        }
+
+        /* BUTTONS */
+        .btn-primary {
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 150ms ease-out;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 150ms ease-out;
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-bg-tertiary);
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        /* EMPTY STATE */
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-2xl);
+            background: var(--color-bg-primary);
+            border: 2px dashed var(--color-border);
+            border-radius: 12px;
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: var(--spacing-md);
+            opacity: 0.5;
+        }
+
+        .empty-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .empty-description {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="sidebar-logo">
+                <div class="sidebar-logo-icon">⚙️</div>
+                <div class="sidebar-logo-text">Mission Control</div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <button class="nav-item active">
+                    <span class="nav-icon">🎯</span>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>Gap Analysis</span>
+                </button>
+                <button class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>Team</span>
+                </button>
+                <button class="nav-item">
+                    <span class="nav-icon">👤</span>
+                    <span>Contacts</span>
+                </button>
+                <button class="nav-item">
+                    <span class="nav-icon">📅</span>
+                    <span>Calendar</span>
+                </button>
+                <button class="nav-item">
+                    <span class="nav-icon">📔</span>
+                    <span>Memory</span>
+                </button>
+                <button class="nav-item">
+                    <span class="nav-icon">📚</span>
+                    <span>Docs</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="status-dot"></div>
+                <span>Connected</span>
+            </div>
+        </div>
+
+        <!-- TOP NAV -->
+        <div class="topnav">
+            <div>
+                <div class="topnav-title">Dashboard</div>
+                <div class="topnav-subtitle">Project overview and task management</div>
+            </div>
+            <div class="topnav-right">
+                <div class="status-badge">
+                    <div class="status-dot"></div>
+                    System Online
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main">
+            <div class="content">
+                <div class="page-header">
+                    <h1 class="page-title">Dashboard</h1>
+                    <p class="page-description">Manage your projects and track progress at a glance</p>
+                </div>
+
+                <!-- STATS -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Active Projects</div>
+                        <div class="stat-value">12</div>
+                        <div class="stat-change">↗ 3 this week</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Total Tasks</div>
+                        <div class="stat-value">47</div>
+                        <div class="stat-change">↗ 8 in progress</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Completion Rate</div>
+                        <div class="stat-value">68%</div>
+                        <div class="stat-change">↗ +4% vs last week</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Pending Approvals</div>
+                        <div class="stat-value">3</div>
+                        <div class="stat-change">Awaiting review</div>
+                    </div>
+                </div>
+
+                <!-- TABS -->
+                <div class="tabs">
+                    <button class="tab active">✨ Active Projects (12)</button>
+                    <button class="tab">✅ Completed Projects (24)</button>
+                    <button class="tab">❌ Cancelled Projects (2)</button>
+                </div>
+
+                <!-- PROJECTS GRID -->
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon">🚀</div>
+                            <div class="project-status">Active</div>
+                        </div>
+                        <div class="project-title">WorkSafeAI</div>
+                        <div class="project-description">Job Task Safety Analysis tool for construction industry</div>
+                        <div class="project-meta">
+                            <span>72% complete</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon">🤖</div>
+                            <div class="project-status">Active</div>
+                        </div>
+                        <div class="project-title">Mission Control</div>
+                        <div class="project-description">Complete visual redesign with improved UX and workflows</div>
+                        <div class="project-meta">
+                            <span>45% complete</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 45%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon">📊</div>
+                            <div class="project-status">Active</div>
+                        </div>
+                        <div class="project-title">Consensus</div>
+                        <div class="project-description">Product Review Aggregation and Analysis Platform</div>
+                        <div class="project-meta">
+                            <span>28% complete</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 28%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EMPTY STATE EXAMPLE -->
+                <div style="margin-top: var(--spacing-2xl);">
+                    <div class="empty-state">
+                        <div class="empty-icon">📭</div>
+                        <div class="empty-title">No additional projects</div>
+                        <div class="empty-description">You're viewing the first 3 active projects. Click "Create Project" to start a new one.</div>
+                        <button class="btn-primary">Create Project</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
