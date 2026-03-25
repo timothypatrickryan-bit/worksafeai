@@ -2,18 +2,8 @@
  * GET /api/gap-analysis/assessment - Get current gap assessment
  * POST /api/gap-analysis/assessment - Save new assessment
  */
-export default async function handler(req, res) {
+export default function handler(req, res) {
   if (req.method === 'GET') {
-    return handleGet(req, res)
-  } else if (req.method === 'POST') {
-    return handlePost(req, res)
-  } else {
-    return res.status(405).json({ error: 'Method not allowed' })
-  }
-}
-
-async function handleGet(req, res) {
-  try {
     // Demo assessment data
     const assessment = {
       id: 'current',
@@ -85,30 +75,17 @@ async function handleGet(req, res) {
       ],
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       ...assessment,
       timestamp: new Date().toISOString(),
     })
-  } catch (error) {
-    console.error('Error fetching assessment:', error)
-    res.status(500).json({
-      error: 'Failed to fetch assessment',
-      message: error.message,
-    })
-  }
-}
-
-async function handlePost(req, res) {
-  try {
+  } else if (req.method === 'POST') {
     const { scores, notes, timestamp } = req.body
 
     if (!scores || typeof scores !== 'object') {
       return res.status(400).json({ error: 'Invalid scores data' })
     }
-
-    // In a real app, save to database
-    // For now, just return success
 
     const savedAssessment = {
       id: `assessment-${Date.now()}`,
@@ -118,16 +95,12 @@ async function handlePost(req, res) {
       savedAt: new Date().toISOString(),
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: 'Assessment saved successfully',
       assessment: savedAssessment,
     })
-  } catch (error) {
-    console.error('Error saving assessment:', error)
-    res.status(500).json({
-      error: 'Failed to save assessment',
-      message: error.message,
-    })
+  } else {
+    return res.status(405).json({ error: 'Method not allowed' })
   }
 }
