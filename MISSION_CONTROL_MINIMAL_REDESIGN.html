@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Control - Minimal Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #0f172a;
+            --color-secondary: #475569;
+            --color-tertiary: #94a3b8;
+            --color-accent: #2563eb;
+            
+            --color-bg: #ffffff;
+            --color-bg-secondary: #fafbfc;
+            --color-border: #e2e8f0;
+            
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 48px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--color-bg-secondary);
+            color: var(--color-primary);
+            line-height: 1.5;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            grid-template-rows: 56px 1fr;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            grid-column: 1;
+            grid-row: 1 / -1;
+            background: var(--color-bg);
+            border-right: 1px solid var(--color-border);
+            padding: var(--spacing-lg) 0;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 0 var(--spacing-md);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--color-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-item {
+            padding: var(--spacing-sm) var(--spacing-md);
+            margin: 0 var(--spacing-md);
+            background: transparent;
+            border: none;
+            color: var(--color-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 150ms ease-out;
+            text-align: left;
+            border-left: 2px solid transparent;
+            padding-left: calc(var(--spacing-md) - 2px);
+        }
+
+        .nav-item:hover {
+            color: var(--color-primary);
+        }
+
+        .nav-item.active {
+            color: var(--color-accent);
+            border-left-color: var(--color-accent);
+        }
+
+        /* TOP NAV */
+        .topnav {
+            grid-column: 2;
+            grid-row: 1;
+            background: var(--color-bg);
+            border-bottom: 1px solid var(--color-border);
+            padding: 0 var(--spacing-xl);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .topnav-left h1 {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        .topnav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+        }
+
+        .status-indicator {
+            font-size: 12px;
+            color: var(--color-tertiary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: #16a34a;
+            border-radius: 50%;
+        }
+
+        /* MAIN */
+        .main {
+            grid-column: 2;
+            grid-row: 2;
+            background: var(--color-bg-secondary);
+            overflow-y: auto;
+        }
+
+        .content {
+            padding: var(--spacing-2xl);
+            max-width: 1400px;
+        }
+
+        .page-header {
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: -0.4px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .page-description {
+            font-size: 13px;
+            color: var(--color-secondary);
+        }
+
+        /* STATS */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .stat-card {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            padding: var(--spacing-lg);
+            border-radius: 4px;
+            transition: border-color 150ms ease-out;
+        }
+
+        .stat-card:hover {
+            border-color: var(--color-accent);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--color-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .stat-meta {
+            font-size: 12px;
+            color: var(--color-secondary);
+        }
+
+        /* SECTION HEADER */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: var(--spacing-md);
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        /* TABS */
+        .tabs {
+            display: flex;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .tab {
+            padding: var(--spacing-md) 0;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            color: var(--color-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 150ms ease-out;
+        }
+
+        .tab:hover {
+            color: var(--color-primary);
+        }
+
+        .tab.active {
+            color: var(--color-accent);
+            border-bottom-color: var(--color-accent);
+        }
+
+        /* PROJECT TABLE */
+        .projects-table {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 100px;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background: var(--color-bg-secondary);
+            border-bottom: 1px solid var(--color-border);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--color-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 100px;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-bottom: 1px solid var(--color-border);
+            align-items: center;
+            transition: background 150ms ease-out;
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .table-row:hover {
+            background: var(--color-bg-secondary);
+        }
+
+        .project-name {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--color-primary);
+        }
+
+        .project-status {
+            font-size: 12px;
+            color: var(--color-secondary);
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--color-border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--color-accent);
+        }
+
+        .progress-text {
+            font-size: 12px;
+            color: var(--color-secondary);
+            text-align: right;
+        }
+
+        /* BUTTONS */
+        .btn {
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: transparent;
+            border: 1px solid var(--color-border);
+            color: var(--color-secondary);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 150ms ease-out;
+        }
+
+        .btn:hover {
+            background: var(--color-bg-secondary);
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .btn-primary {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            border-color: #1d4ed8;
+        }
+
+        /* EMPTY STATE */
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-2xl);
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+        }
+
+        .empty-icon {
+            font-size: 32px;
+            margin-bottom: var(--spacing-md);
+            opacity: 0.3;
+        }
+
+        .empty-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .empty-text {
+            font-size: 12px;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="sidebar-header">Navigation</div>
+            <button class="nav-item active">Dashboard</button>
+            <button class="nav-item">Gap Analysis</button>
+            <button class="nav-item">Team</button>
+            <button class="nav-item">Contacts</button>
+            <button class="nav-item">Calendar</button>
+            <button class="nav-item">Memory</button>
+            <button class="nav-item">Docs</button>
+        </div>
+
+        <!-- TOP NAV -->
+        <div class="topnav">
+            <div class="topnav-left">
+                <h1>Dashboard</h1>
+            </div>
+            <div class="topnav-right">
+                <div class="status-indicator">
+                    <div class="status-dot"></div>
+                    <span>Online</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN -->
+        <div class="main">
+            <div class="content">
+                <div class="page-header">
+                    <h2 class="page-title">Projects</h2>
+                    <p class="page-description">Overview of all active projects and tasks</p>
+                </div>
+
+                <!-- STATS -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Active</div>
+                        <div class="stat-value">12</div>
+                        <div class="stat-meta">Projects</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Tasks</div>
+                        <div class="stat-value">47</div>
+                        <div class="stat-meta">In progress</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Completion</div>
+                        <div class="stat-value">68%</div>
+                        <div class="stat-meta">Overall rate</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Pending</div>
+                        <div class="stat-value">3</div>
+                        <div class="stat-meta">Approvals</div>
+                    </div>
+                </div>
+
+                <!-- SECTION -->
+                <div class="section-header">
+                    <h3 class="section-title">Active Projects</h3>
+                    <button class="btn btn-primary">New Project</button>
+                </div>
+
+                <!-- TABS -->
+                <div class="tabs">
+                    <button class="tab active">All (12)</button>
+                    <button class="tab">Completed (24)</button>
+                    <button class="tab">Archived (2)</button>
+                </div>
+
+                <!-- TABLE -->
+                <div class="projects-table">
+                    <div class="table-header">
+                        <div>Name</div>
+                        <div>Status</div>
+                        <div>Progress</div>
+                        <div>Action</div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="project-name">WorkSafeAI</div>
+                        <div class="project-status">In Progress</div>
+                        <div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 72%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-text">72%</div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="project-name">Mission Control</div>
+                        <div class="project-status">In Progress</div>
+                        <div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 45%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-text">45%</div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="project-name">Consensus</div>
+                        <div class="project-status">In Progress</div>
+                        <div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 28%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-text">28%</div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="project-name">LinkedIn Automation</div>
+                        <div class="project-status">Active</div>
+                        <div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-text">100%</div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="project-name">Hyperscaler Briefings</div>
+                        <div class="project-status">Active</div>
+                        <div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-text">100%</div>
+                    </div>
+                </div>
+
+                <!-- ANOTHER SECTION -->
+                <div style="margin-top: var(--spacing-2xl);">
+                    <div class="section-header">
+                        <h3 class="section-title">Recent Updates</h3>
+                    </div>
+
+                    <div class="projects-table">
+                        <div class="table-header">
+                            <div style="grid-column: 1 / 3;">Activity</div>
+                            <div>Time</div>
+                            <div>Status</div>
+                        </div>
+                        
+                        <div class="table-row" style="grid-template-columns: 2fr 1fr 1fr;">
+                            <div class="project-name">Mission Control redesign specs delivered</div>
+                            <div class="project-status">2 hours ago</div>
+                            <div class="project-status" style="color: #16a34a;">Complete</div>
+                        </div>
+
+                        <div class="table-row" style="grid-template-columns: 2fr 1fr 1fr;">
+                            <div class="project-name">LinkedIn post generated and published</div>
+                            <div class="project-status">5 hours ago</div>
+                            <div class="project-status" style="color: #16a34a;">Complete</div>
+                        </div>
+
+                        <div class="table-row" style="grid-template-columns: 2fr 1fr 1fr;">
+                            <div class="project-name">Gap Analysis assessment saved</div>
+                            <div class="project-status">1 day ago</div>
+                            <div class="project-status" style="color: #16a34a;">Complete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
