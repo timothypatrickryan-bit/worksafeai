@@ -7,6 +7,7 @@ import ContactsMinimal from '../components/ContactsMinimal'
 import CalendarMinimal from '../components/CalendarMinimal'
 import MemoryMinimal from '../components/MemoryMinimal'
 import DocsMinimal from '../components/DocsMinimal'
+import SkillsManagement from './SkillsManagement'
 import useWebSocket from '../hooks/useWebSocket'
 import styles from './index.module.css'
 
@@ -23,6 +24,7 @@ export default function Home() {
       'calendar': 'Calendar',
       'memory': 'Memory',
       'docs': 'Docs',
+      'skills': 'Skills Management',
     }
     return titles[section] || 'Dashboard'
   }
@@ -74,6 +76,9 @@ export default function Home() {
             )}
             {currentSection === 'docs' && (
               <DocsMinimal state={state} ws={ws} />
+            )}
+            {currentSection === 'skills' && (
+              <SkillsManagement state={state} ws={ws} />
             )}
           </div>
         </div>

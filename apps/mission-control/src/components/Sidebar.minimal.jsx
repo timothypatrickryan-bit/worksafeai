@@ -7,6 +7,7 @@ export default function SidebarMinimal({ currentSection, setCurrentSection, stat
     { id: 'calendar', label: '📅 Calendar' },
     { id: 'memory', label: '📔 Memory' },
     { id: 'docs', label: '📚 Docs' },
+    { id: 'skills', label: '⚙️ Skills' },
   ]
 
   return (
