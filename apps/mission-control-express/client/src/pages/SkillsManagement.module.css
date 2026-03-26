@@ -4,51 +4,25 @@
   margin: 0 auto;
 }
 
-.tabNav {
-  display: flex;
-  gap: 0;
-  margin-bottom: 2rem;
-  border-bottom: 2px solid #e5e7eb;
-}
-
-.tab {
-  padding: 1rem 1.5rem;
-  background: none;
-  border: none;
-  border-bottom: 3px solid transparent;
-  color: #6b7280;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-}
-
-.tab:hover {
-  color: #1f2937;
-}
-
-.activeTab {
-  color: #8b5cf6;
-  border-bottom-color: #8b5cf6;
-}
-
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 2rem;
+  gap: 2rem;
 }
 
 .header h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
   color: #1f2937;
 }
 
 .header p {
   color: #6b7280;
-  font-size: 1rem;
+  margin: 0.5rem 0 0 0;
+  font-size: 0.95rem;
 }
 
 .addButton {
@@ -60,47 +34,196 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .addButton:hover {
   box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+  transform: translateY(-2px);
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.skillCard {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.skillCard:hover {
+  border-color: #8b5cf6;
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.1);
+}
+
+.skillHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.skillHeader h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #1f2937;
+  word-break: break-word;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.badge-green {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge-blue {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.badge-gray {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.badge-yellow {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.description {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin: 0 0 1rem 0;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.meta {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.category {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background: #f3f4f6;
+  color: #4b5563;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.editButton,
+.deleteButton {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.editButton {
+  background: #e0e7ff;
+  color: #4338ca;
+}
+
+.editButton:hover {
+  background: #c7d2fe;
+}
+
+.deleteButton {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.deleteButton:hover {
+  background: #fecaca;
 }
 
 .modal {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 50;
-  padding: 1rem;
+  align-items: center;
+  z-index: 1000;
 }
 
 .modalContent {
   background: white;
   border-radius: 0.75rem;
   padding: 2rem;
-  max-width: 600px;
-  width: 100%;
-  border: 1px solid #e5e7eb;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .modalContent h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
+  margin: 0 0 1.5rem 0;
   color: #1f2937;
 }
 
 .formGroup {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .formGroup label {
   display: block;
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 0.5rem;
   color: #374151;
 }
@@ -109,11 +232,12 @@
 .formGroup textarea,
 .formGroup select {
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.75rem;
   border: 1px solid #d1d5db;
   border-radius: 0.375rem;
-  font-size: 0.875rem;
+  font-size: 0.95rem;
   font-family: inherit;
+  box-sizing: border-box;
 }
 
 .formGroup input:focus,
@@ -122,6 +246,10 @@
   outline: none;
   border-color: #8b5cf6;
   box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.formGroup textarea {
+  resize: vertical;
 }
 
 .formRow {
@@ -139,7 +267,7 @@
 .saveButton,
 .cancelButton {
   flex: 1;
-  padding: 0.5rem;
+  padding: 0.75rem;
   border: none;
   border-radius: 0.375rem;
   font-weight: 600;
@@ -153,12 +281,13 @@
 }
 
 .saveButton:hover {
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+  transform: translateY(-2px);
 }
 
 .cancelButton {
   background: #f3f4f6;
-  color: #374151;
+  color: #6b7280;
   border: 1px solid #d1d5db;
 }
 
@@ -166,272 +295,29 @@
   background: #e5e7eb;
 }
 
-.skillsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
-
-.skillCard {
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  transition: all 0.3s ease;
-}
-
-.skillCard:hover {
-  border-color: #8b5cf6;
-  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.1);
-}
-
-.skillHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1rem;
-}
-
-.skillHeader h3 {
-  font-size: 1.125rem;
-  font-weight: bold;
-  color: #1f2937;
-  margin: 0;
-}
-
-.badge {
-  padding: 0.25rem 0.75rem;
-  border-radius: 0.25rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.badge-green {
-  background: #dcfce7;
-  color: #166534;
-}
-
-.badge-blue {
-  background: #dbeafe;
-  color: #1e40af;
-}
-
-.badge-gray {
-  background: #f3f4f6;
-  color: #4b5563;
-}
-
-.badge-yellow {
-  background: #fef3c7;
-  color: #92400e;
-}
-
-.description {
-  font-size: 0.875rem;
-  color: #6b7280;
-  margin-bottom: 1rem;
-  line-height: 1.5;
-}
-
-.meta {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.category {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background: rgba(139, 92, 246, 0.1);
-  color: #8b5cf6;
-  border-radius: 0.25rem;
-  font-size: 0.75rem;
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.tag {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background: #f3f4f6;
-  color: #6b7280;
-  border-radius: 0.25rem;
-  font-size: 0.75rem;
-}
-
-.actions {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.editButton,
-.deleteButton {
-  flex: 1;
-  padding: 0.5rem;
-  border: none;
-  border-radius: 0.375rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.editButton {
-  background: rgba(59, 130, 246, 0.1);
-  color: #3b82f6;
-}
-
-.editButton:hover {
-  background: rgba(59, 130, 246, 0.2);
-}
-
-.deleteButton {
-  background: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
-}
-
-.deleteButton:hover {
-  background: rgba(239, 68, 68, 0.2);
-}
-
 .empty {
   text-align: center;
-  padding: 3rem;
-  color: #6b7280;
+  padding: 3rem 2rem;
+  color: #9ca3af;
+}
+
+.empty p {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
 }
 
 .empty button {
-  margin-top: 1rem;
   padding: 0.75rem 1.5rem;
-  background: #8b5cf6;
-  color: white;
-  border: none;
-  border-radius: 0.375rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.empty button:hover {
-  background: #7c3aed;
-}
-
-.discoverControls {
-  display: grid;
-  grid-template-columns: 1fr 200px;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.searchInput,
-.categorySelect {
-  padding: 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  font-size: 0.875rem;
-  font-family: inherit;
-}
-
-.searchInput:focus,
-.categorySelect:focus {
-  outline: none;
-  border-color: #8b5cf6;
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
-}
-
-.marketplaceCard {
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.marketplaceCard:hover {
-  border-color: #8b5cf6;
-  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.1);
-}
-
-.author {
-  font-size: 0.75rem;
-  color: #9ca3af;
-  margin: 0;
-  margin-top: 0.25rem;
-}
-
-.categoryTag {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background: rgba(139, 92, 246, 0.1);
-  color: #8b5cf6;
-  border-radius: 0.25rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: capitalize;
-}
-
-.stats {
-  font-size: 0.875rem;
-  color: #6b7280;
-  margin: 1rem 0;
-  padding: 0.75rem;
-  background: #f9fafb;
-  border-radius: 0.375rem;
-}
-
-.rating {
-  display: block;
-}
-
-.installButton {
-  flex: 1;
-  padding: 0.5rem;
   background: linear-gradient(135deg, #8b5cf6, #ec4899);
   color: white;
   border: none;
-  border-radius: 0.375rem;
+  border-radius: 0.5rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.installButton:hover {
+.empty button:hover {
   box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
   transform: translateY(-2px);
-}
-
-.learnMoreLink {
-  flex: 1;
-  padding: 0.5rem;
-  text-align: center;
-  color: #8b5cf6;
-  text-decoration: none;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  margin-left: 0.5rem;
-}
-
-.learnMoreLink:hover {
-  background: #f3f4f6;
-  border-color: #8b5cf6;
-}
-
-.installedBadge {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background: #dcfce7;
-  color: #166534;
-  border-radius: 0.25rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  margin-left: 0.5rem;
 }
