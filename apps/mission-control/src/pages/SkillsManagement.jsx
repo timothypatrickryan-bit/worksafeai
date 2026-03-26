@@ -1,9 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+
+const DEFAULT_SKILLS = [
+  {
+    id: 1,
+    name: 'linkedin-post-northeast-dc',
+    description: 'Generate Northeast data center market commentary posts',
+    category: 'automation',
+    status: 'active',
+    tags: ['linkedin', 'northeast', 'data-center', 'automation']
+  },
+  {
+    id: 2,
+    name: 'recraft-ai',
+    description: 'Image generation using Recraft.AI API',
+    category: 'media',
+    status: 'active',
+    tags: ['image', 'generation', 'recraft', 'media']
+  },
+  {
+    id: 3,
+    name: 'hyperscaler-daily-update',
+    description: 'Daily curated data center and fiber infrastructure news',
+    category: 'research',
+    status: 'active',
+    tags: ['hyperscaler', 'news', 'automation']
+  }
+];
 
 export default function SkillsManagement() {
-  const [skills, setSkills] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [skills, setSkills] = useState(DEFAULT_SKILLS);
   const [showForm, setShowForm] = useState(false);
   const [editingSkill, setEditingSkill] = useState(null);
   const [formData, setFormData] = useState({
@@ -13,52 +38,6 @@ export default function SkillsManagement() {
     status: 'active',
     tags: ''
   });
-
-  useEffect(() => {
-    fetchSkills();
-  }, []);
-
-  const fetchSkills = async () => {
-    try {
-      setLoading(true);
-      // Fetch skills data - can be from a local file or API
-      const response = await axios.get('/api/skills');
-      setSkills(response.data);
-    } catch (error) {
-      console.error('Failed to fetch skills:', error);
-      // Load from local data if API fails
-      setSkills(getDefaultSkills());
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const getDefaultSkills = () => [
-    {
-      id: 1,
-      name: 'linkedin-post-northeast-dc',
-      description: 'Generate Northeast data center market commentary posts',
-      category: 'automation',
-      status: 'active',
-      tags: ['linkedin', 'northeast', 'data-center', 'automation']
-    },
-    {
-      id: 2,
-      name: 'recraft-ai',
-      description: 'Image generation using Recraft.AI API',
-      category: 'media',
-      status: 'active',
-      tags: ['image', 'generation', 'recraft', 'media']
-    },
-    {
-      id: 3,
-      name: 'hyperscaler-daily-update',
-      description: 'Daily curated data center and fiber infrastructure news',
-      category: 'research',
-      status: 'active',
-      tags: ['hyperscaler', 'news', 'automation']
-    }
-  ];
 
   const handleAddSkill = () => {
     setEditingSkill(null);
@@ -84,30 +63,24 @@ export default function SkillsManagement() {
     setShowForm(true);
   };
 
-  const handleSaveSkill = async () => {
-    try {
-      const skillData = {
-        ...formData,
-        tags: formData.tags.split(',').map(t => t.trim()).filter(t => t)
+  const handleSaveSkill = () => {
+    const skillData = {
+      ...formData,
+      tags: formData.tags.split(',').map(t => t.trim()).filter(t => t)
+    };
+
+    if (editingSkill) {
+      const updated = skills.map(s => s.id === editingSkill.id ? { ...editingSkill, ...skillData } : s);
+      setSkills(updated);
+    } else {
+      const newSkill = {
+        id: Math.max(...skills.map(s => s.id), 0) + 1,
+        ...skillData
       };
-
-      if (editingSkill) {
-        // Update skill
-        const updated = skills.map(s => s.id === editingSkill.id ? { ...editingSkill, ...skillData } : s);
-        setSkills(updated);
-      } else {
-        // Add new skill
-        const newSkill = {
-          id: Math.max(...skills.map(s => s.id), 0) + 1,
-          ...skillData
-        };
-        setSkills([...skills, newSkill]);
-      }
-
-      setShowForm(false);
-    } catch (error) {
-      console.error('Failed to save skill:', error);
+      setSkills([...skills, newSkill]);
     }
+
+    setShowForm(false);
   };
 
   const handleDeleteSkill = (skillId) => {
@@ -126,12 +99,11 @@ export default function SkillsManagement() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-8">
-      {/* Header */}
       <div className="max-w-7xl mx-auto mb-8">
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-4xl font-bold text-white mb-2">Skills Management</h1>
-            <p className="text-purple-200">View, add, edit, and manage Lucy's capabilities</p>
+            <p className="text-purple-200">View, add, edit, and manage Lucy&apos;s capabilities</p>
           </div>
           <button
             onClick={handleAddSkill}
@@ -141,7 +113,6 @@ export default function SkillsManagement() {
           </button>
         </div>
 
-        {/* Form Modal */}
         {showForm && (
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
             <div className="bg-slate-800 rounded-xl p-8 max-w-2xl w-full border border-purple-500/30">
@@ -239,13 +210,8 @@ export default function SkillsManagement() {
         )}
       </div>
 
-      {/* Skills Grid */}
       <div className="max-w-7xl mx-auto">
-        {loading ? (
-          <div className="text-center py-12">
-            <p className="text-purple-200">Loading skills...</p>
-          </div>
-        ) : skills.length === 0 ? (
+        {skills.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-purple-200 mb-4">No skills found</p>
             <button
