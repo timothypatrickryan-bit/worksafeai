@@ -4,6 +4,34 @@
   margin: 0 auto;
 }
 
+.tabNav {
+  display: flex;
+  gap: 0;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.tab {
+  padding: 1rem 1.5rem;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: #6b7280;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.tab:hover {
+  color: #1f2937;
+}
+
+.activeTab {
+  color: #8b5cf6;
+  border-bottom-color: #8b5cf6;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -291,4 +319,119 @@
 
 .empty button:hover {
   background: #7c3aed;
+}
+
+.discoverControls {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.searchInput,
+.categorySelect {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+}
+
+.searchInput:focus,
+.categorySelect:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.marketplaceCard {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.marketplaceCard:hover {
+  border-color: #8b5cf6;
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.1);
+}
+
+.author {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin: 0;
+  margin-top: 0.25rem;
+}
+
+.categoryTag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.stats {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background: #f9fafb;
+  border-radius: 0.375rem;
+}
+
+.rating {
+  display: block;
+}
+
+.installButton {
+  flex: 1;
+  padding: 0.5rem;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.installButton:hover {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+  transform: translateY(-2px);
+}
+
+.learnMoreLink {
+  flex: 1;
+  padding: 0.5rem;
+  text-align: center;
+  color: #8b5cf6;
+  text-decoration: none;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-left: 0.5rem;
+}
+
+.learnMoreLink:hover {
+  background: #f3f4f6;
+  border-color: #8b5cf6;
+}
+
+.installedBadge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: #dcfce7;
+  color: #166534;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
 }
