@@ -511,3 +511,33 @@ grep "Searching Brave" .linkedin-launchd.log | wc -l  # Count API calls
 - `LINKEDIN_BRAVE_DEPLOYMENT.md` — Complete deployment guide
 - `LINKEDIN_AUTOMATION_BRAVE_INTEGRATION.md` — Technical reference
 - `LINKEDIN_SETUP_FINAL.md` — Original setup guide
+
+---
+
+## QC + Continuous Deployment Workflow (✅ ESTABLISHED - March 26, 2026)
+
+**Standard Process for ALL improvements to WorkSafeAI, Consensus, Mission Control:**
+
+1. **Agent completes work** (feature/fix implemented + tested locally)
+2. **Submit for QC** → Create QC briefing with test plan
+3. **Velma reviews** (execute QC checklist, verify in staging)
+4. **QC Pass** → Commit + Push to GitHub
+5. **Auto-Deploy** → GitHub Actions → Vercel (live in production)
+6. **Post-Deployment** → Smoke tests + close task
+
+**See:** `QC_DEPLOYMENT_WORKFLOW.md` for complete checklist + metrics
+
+**Responsibility:**
+- **Agents:** Code quality, local testing, QC submission
+- **Velma:** QC gating, staging verification, sign-off
+- **Lucy:** Enforce QC gate before commits/pushes
+- **GitHub/Vercel:** Auto-deploy when main branch updated
+
+**Target:** 30 minutes from QC submission to production live
+
+**Benefits:**
+- ✅ Zero broken production deployments
+- ✅ Continuous improvement delivery (not batched)
+- ✅ Full visibility into what's live
+- ✅ Measurable quality metrics
+- ✅ Fast, safe iteration cycle
