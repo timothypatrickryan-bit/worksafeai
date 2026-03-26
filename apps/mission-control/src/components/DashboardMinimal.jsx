@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import styles from './styles/DashboardMinimal.module.css'
 
 export default function DashboardMinimal({ state, ws }) {
+  const router = useRouter()
   const [projects, setProjects] = useState([])
   const [stats, setStats] = useState({
     active: 0,
@@ -54,11 +56,12 @@ export default function DashboardMinimal({ state, ws }) {
         setError(err.message)
         // Set demo data for testing
         setProjects([
-          { id: 1, name: 'WorkSafeAI', status: 'In Progress', progress: 72 },
-          { id: 2, name: 'Mission Control', status: 'In Progress', progress: 45 },
-          { id: 3, name: 'Consensus', status: 'In Progress', progress: 28 },
-          { id: 4, name: 'LinkedIn Automation', status: 'Active', progress: 100 },
-          { id: 5, name: 'Hyperscaler Briefings', status: 'Active', progress: 100 },
+          { id: 1, name: 'WorkSafeAI', status: 'In Progress', progress: 72, owner: 'Tim Ryan', team: 'Dev Team' },
+          { id: 2, name: 'Mission Control', status: 'In Progress', progress: 95, owner: 'Lucy', team: 'Platform' },
+          { id: 3, name: 'Consensus', status: 'In Progress', progress: 28, owner: 'Research Team', team: 'Data' },
+          { id: 4, name: 'LinkedIn Automation', status: 'Active', progress: 100, owner: 'Lucy', team: 'Marketing' },
+          { id: 5, name: 'Hyperscaler Briefings', status: 'Active', progress: 100, owner: 'Lucy', team: 'Marketing' },
+          { id: 6, name: 'Project Warp Speed', status: 'Active', progress: 15, owner: 'Tim Ryan', team: 'Strategy' },
         ])
         setStats({ active: 12, tasks: 47, completion: 68, pending: 3 })
       } finally {
@@ -174,7 +177,14 @@ export default function DashboardMinimal({ state, ws }) {
         ) : (
           filteredProjects.map((project) => (
             <div key={project.id} className={styles.tableRow} data-testid={`project-row-${project.id}`}>
-              <div className={styles.projectName}>{project.name}</div>
+              <div className={styles.projectName}>
+                <div style={{ fontSize: '15px', fontWeight: '700', color: '#0f172a' }}>
+                  {project.name}
+                </div>
+                <div style={{ fontSize: '12px', color: '#64748b', marginTop: '4px' }}>
+                  Owner: {project.owner}
+                </div>
+              </div>
               <div className={styles.projectStatus}>{project.status}</div>
               <div>
                 <div className={styles.progressBar}>
@@ -184,9 +194,49 @@ export default function DashboardMinimal({ state, ws }) {
                     data-testid={`progress-bar-${project.id}`}
                   ></div>
                 </div>
+                <div style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px' }}>
+                  {project.progress}%
+                </div>
               </div>
-              <div className={styles.progressText} data-testid={`progress-text-${project.id}`}>
-                {project.progress}%
+              <div style={{ display: 'flex', gap: '6px' }}>
+                <button
+                  onClick={() => router.push(`/projects/${project.id}`)}
+                  style={{
+                    padding: '6px 12px',
+                    fontSize: '12px',
+                    fontWeight: '700',
+                    background: '#0ea5e9',
+                    color: '#fff',
+                    border: 'none',
+                    borderRadius: '6px',
+                    cursor: 'pointer',
+                    transition: 'opacity 0.2s',
+                  }}
+                  onMouseOver={(e) => e.target.style.opacity = '0.8'}
+                  onMouseOut={(e) => e.target.style.opacity = '1'}
+                  data-testid={`btn-view-${project.id}`}
+                >
+                  View
+                </button>
+                <button
+                  onClick={() => router.push(`/projects/${project.id}/edit`)}
+                  style={{
+                    padding: '6px 12px',
+                    fontSize: '12px',
+                    fontWeight: '700',
+                    background: '#6b7280',
+                    color: '#fff',
+                    border: 'none',
+                    borderRadius: '6px',
+                    cursor: 'pointer',
+                    transition: 'opacity 0.2s',
+                  }}
+                  onMouseOver={(e) => e.target.style.opacity = '0.8'}
+                  onMouseOut={(e) => e.target.style.opacity = '1'}
+                  data-testid={`btn-edit-${project.id}`}
+                >
+                  Edit
+                </button>
               </div>
             </div>
           ))

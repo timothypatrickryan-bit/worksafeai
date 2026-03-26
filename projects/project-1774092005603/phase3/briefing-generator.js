@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
 /**
- * Hyperscaler Update - Daily Briefing Generator
- * Generates daily hyperscaler briefings using web research
+ * Hyperscaler Update - Daily Briefing Generator (UPDATED)
+ * Generates daily hyperscaler briefings with VERIFIED links
+ * Uses Brave Search API + link validation
  * Usage: node briefing-generator.js [--date YYYY-MM-DD] [--dry-run]
  */
 
@@ -15,34 +16,29 @@ const { URL } = require('url');
 // Configuration
 const CONFIG = {
   outputDir: path.join(__dirname, '..', '..', 'briefings'),
-  sourcesFile: path.join(__dirname, '..', 'phase1', '01_SOURCE_LIST.md'),
   logFile: path.join(__dirname, '..', '..', 'briefings', 'generator.log'),
-  // Primary research sources (Tier 1 prioritized)
-  sources: [
-    { name: 'Data Center Knowledge', url: 'https://www.datacenterknowledge.com', tier: 1 },
-    { name: 'Light Reading', url: 'https://www.lightreading.com', tier: 1 },
-    { name: 'CNBC Technology', url: 'https://www.cnbc.com/technology/', tier: 1 },
-    { name: 'CNBC Energy', url: 'https://www.cnbc.com/energy/', tier: 1 },
-    { name: 'ZDNET Cloud', url: 'https://www.zdnet.com/topic/cloud/', tier: 2 },
-    { name: 'The Register', url: 'https://www.theregister.com', tier: 2 },
-  ],
-  // Story scoring framework: Relevance × 0.4 + Impact × 0.35 + Freshness × 0.25
-  scoringWeights: {
-    relevance: 0.4,
-    impact: 0.35,
-    freshness: 0.25,
-  },
-  minStoryScore: 1.5,
-  targetStories: 5,
+  braveApiKey: process.env.BRAVE_SEARCH_API_KEY || 'BSAHJ3Wmk1IbHNqEsACADrcFLfW5eLc',
   requestTimeout: 10000,
+  searchQueries: {
+    'Data Center Construction': [
+      'data center construction announcement 2026',
+      'hyperscaler facility expansion news',
+      'data center development permit',
+    ],
+    'Fiber Deployment': [
+      'fiber optic deployment announcement 2026',
+      'undersea cable construction',
+      'fiber infrastructure investment',
+    ],
+  },
+  minValidArticles: 5,
 };
 
 class BriefingGenerator {
   constructor(date = null) {
     this.date = date ? new Date(date) : new Date();
     this.dateStr = this.date.toISOString().split('T')[0];
-    this.stories = [];
-    this.researchTime = Date.now();
+    this.articles = [];
     this.logs = [];
   }
 
@@ -54,398 +50,189 @@ class BriefingGenerator {
   }
 
   /**
-   * Fetch and parse content from a URL
+   * Search using Brave API
    */
-  async fetchContent(url) {
+  async braveSearch(query) {
     return new Promise((resolve, reject) => {
-      const requestUrl = new URL(url);
-      const protocol = requestUrl.protocol === 'https:' ? https : http;
+      const url = new URL('https://api.search.brave.com/res/v1/web/search');
+      url.searchParams.append('q', query);
+      url.searchParams.append('count', 10);
 
-      const request = protocol.get(url, { timeout: CONFIG.requestTimeout }, (res) => {
-        let data = '';
-
-        res.on('data', (chunk) => {
-          data += chunk;
-        });
-
-        res.on('end', () => {
-          resolve(data);
-        });
-      });
-
-      request.on('error', (err) => {
-        reject(err);
-      });
-
-      request.on('timeout', () => {
-        request.destroy();
-        reject(new Error(`Request timeout for ${url}`));
-      });
-    });
-  }
-
-  /**
-   * Extract headline and snippet from HTML content
-   */
-  extractArticles(html, sourceName) {
-    const articles = [];
-    
-    // Simple regex patterns to find headlines and links (very basic extraction)
-    // In production, use cheerio or jsdom for proper parsing
-    const titleMatch = html.match(/<title>([^<]+)<\/title>/i);
-    const metaDesc = html.match(/<meta\s+name="description"\s+content="([^"]+)"/i);
-
-    if (titleMatch && metaDesc) {
-      articles.push({
-        title: titleMatch[1].trim(),
-        snippet: metaDesc[1].trim().substring(0, 200),
-        source: sourceName,
-        url: CONFIG.sources.find(s => s.name === sourceName)?.url || '',
-        date: new Date().toISOString().split('T')[0],
-      });
-    }
-
-    return articles;
-  }
-
-  /**
-   * Score a potential story (Relevance × 0.4 + Impact × 0.35 + Freshness × 0.25)
-   */
-  scoreStory(story) {
-    const relevanceKeywords = [
-      'hyperscale', 'data center', 'capex', 'infrastructure', 'ai', 'power',
-      'energy', 'cloud', 'compute', 'fiber', 'network', 'semiconductor',
-      'gpu', 'interconnect', 'efficiency', 'cooling', 'azure', 'aws', 'google',
-      'meta', 'oracle', 'openai', 'anthropic', 'gpu cluster', 'interconnect',
-    ];
-
-    const impactKeywords = [
-      'billion', 'expansion', 'new', 'partnership', 'technology', 'launch',
-      'major', 'announcement', 'investment', 'growth', 'disruption',
-    ];
-
-    const text = (story.title + ' ' + story.snippet).toLowerCase();
-
-    // Relevance: how closely does it match hyperscaler infrastructure
-    const relevantTerms = relevanceKeywords.filter(k => text.includes(k)).length;
-    const relevance = Math.min(5, (relevantTerms / relevanceKeywords.length) * 5);
-
-    // Impact: presence of significant business terms
-    const impactTerms = impactKeywords.filter(k => text.includes(k)).length;
-    const impact = Math.min(5, (impactTerms / impactKeywords.length) * 5);
-
-    // Freshness: today's date (5.0) down to 7 days ago (1.0)
-    const storyDate = new Date(story.date);
-    const daysSince = Math.floor((Date.now() - storyDate) / (1000 * 60 * 60 * 24));
-    const freshness = Math.max(1, 5 - (daysSince / 7) * 4);
-
-    // Calculate weighted score
-    const score =
-      relevance * CONFIG.scoringWeights.relevance +
-      impact * CONFIG.scoringWeights.impact +
-      freshness * CONFIG.scoringWeights.freshness;
-
-    return Math.round(score * 10) / 10;
-  }
-
-  /**
-   * Generate a mock briefing (since we can't do live web scraping in this context)
-   * This demonstrates the structure; in production, connect to real web research API
-   */
-  async generateMockBriefing() {
-    this.log('Generating mock briefing (web scraping would happen here in production)');
-
-    // Sample stories for demonstration
-    const mockStories = [
-      {
-        title: 'Hyperscaler Capex Continues Acceleration Amid AI Demand',
-        snippet: 'Major cloud providers report record infrastructure spending to support AI workloads, with year-over-year growth exceeding 40%. Moody\'s estimates combined capex reaching $700B in 2026.',
-        source: 'Data Center Knowledge',
-        url: 'https://www.datacenterknowledge.com/hyperscalers',
-        date: this.dateStr,
-        isFeature: true,
-        category: 'capex',
-      },
-      {
-        title: 'Power Availability Becomes Primary Site Selection Factor',
-        snippet: 'As grid constraints intensify, infrastructure developers prioritize power-rich regions. Clean energy startups expand to meet demand for behind-the-meter solutions at data center campuses.',
-        source: 'Light Reading',
-        url: 'https://www.lightreading.com/energy',
-        date: this.dateStr,
-        isFeature: true,
-        category: 'energy',
-      },
-      {
-        title: 'New Interconnect Technologies Address AI Bandwidth Bottlenecks',
-        snippet: 'Next-generation optical interconnect solutions enable disaggregated AI infrastructure with lower latency and improved serviceability compared to legacy co-packaged optics.',
-        source: 'Data Center Knowledge',
-        url: 'https://www.datacenterknowledge.com/interconnect',
-        date: this.dateStr,
-        isFeature: false,
-        category: 'technology',
-      },
-      {
-        title: 'ARM-Based Processors Gain Adoption in Regional Cloud Markets',
-        snippet: 'European cloud providers deploy ARM architecture for AI inference workloads, citing power efficiency and cost advantages. Ampere and Cavium lead processor expansion.',
-        source: 'ZDNET',
-        url: 'https://www.zdnet.com/cloud-arm',
-        date: this.dateStr,
-        isFeature: false,
-        category: 'processors',
-      },
-      {
-        title: 'Northeast Data Center Sites Face Competitive Pressure on Energy',
-        snippet: 'Analysis shows mid-Atlantic region data centers at disadvantage vs. Southwest alternatives due to higher electricity costs and grid constraints. Regional operators explore renewable partnerships.',
-        source: 'The Register',
-        url: 'https://www.theregister.com/northeast-dc',
-        date: this.dateStr,
-        isFeature: false,
-        category: 'regional',
-      },
-    ];
-
-    // Score stories
-    for (const story of mockStories) {
-      story.score = this.scoreStory(story);
-      if (story.score >= CONFIG.minStoryScore) {
-        this.stories.push(story);
-      }
-    }
-
-    // Sort by score descending
-    this.stories.sort((a, b) => b.score - a.score);
-
-    this.log(`Generated ${this.stories.length} stories (min score: ${CONFIG.minStoryScore})`);
-    return this.stories;
-  }
-
-  /**
-   * Generate markdown briefing
-   */
-  generateMarkdown() {
-    const featured = this.stories.filter(s => s.isFeature).slice(0, 2);
-    const secondary = this.stories.filter(s => !s.isFeature).slice(0, 3);
-
-    let md = `# Hyperscaler Update — ${this.date.toLocaleDateString('en-US', { 
-      weekday: 'long', 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    })}\n\n`;
-
-    md += '## Executive Summary\n';
-    md += 'Daily briefing on hyperscaler infrastructure, capex trends, and AI infrastructure development.\n\n';
-
-    // Featured stories
-    for (const story of featured) {
-      const badge = `🔴 FEATURED STORY: `;
-      md += `${badge}${story.title} (${story.score}/5.0)\n\n`;
-      md += `**Story:** ${story.snippet}\n\n`;
-      md += `**Category:** ${story.category.toUpperCase()}\n\n`;
-      md += `**Source:** ${story.source} | **Date:** ${story.date}\n`;
-      md += `**URL:** ${story.url}\n\n`;
-      md += '---\n\n';
-    }
-
-    // Secondary stories
-    for (const story of secondary) {
-      const badge = `🟢 SECONDARY STORY: `;
-      md += `${badge}${story.title} (${story.score}/5.0)\n\n`;
-      md += `**Story:** ${story.snippet}\n\n`;
-      md += `**Source:** ${story.source} | **Date:** ${story.date}\n`;
-      md += `**URL:** ${story.url}\n\n`;
-      md += '---\n\n';
-    }
-
-    md += '## Summary Statistics\n';
-    md += `**Sources reviewed:** ${CONFIG.sources.length}\n`;
-    md += `**Stories collected:** ${this.stories.length}\n`;
-    md += `**Featured stories:** ${featured.length}\n`;
-    md += `**Secondary stories:** ${secondary.length}\n`;
-    md += `**Average score:** ${(this.stories.reduce((a, b) => a + b.score, 0) / this.stories.length).toFixed(1)}\n\n`;
-
-    md += `*Briefing generated: ${new Date().toLocaleString()} ET*\n`;
-    md += `*Research time: ${Math.round((Date.now() - this.researchTime) / 1000)} seconds*\n`;
-
-    return md;
-  }
-
-  /**
-   * Generate HTML email template (Premium Newsletter Design)
-   */
-  generateHTML() {
-    // Helper function to escape HTML
-    const escapeHtml = (text) => {
-      const map = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#039;'
+      const options = {
+        hostname: 'api.search.brave.com',
+        path: url.pathname + url.search,
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'X-Subscription-Token': CONFIG.braveApiKey,
+        },
       };
-      return text.replace(/[&<>"']/g, m => map[m]);
-    };
 
-    const featured = this.stories.filter(s => s.isFeature).slice(0, 2);
-    const secondary = this.stories.filter(s => !s.isFeature).slice(0, 3);
-    const fs = require('fs');
-    const path = require('path');
-
-    // Read premium template
-    const templatePath = path.join(__dirname, 'premium-template.html');
-    let html = fs.readFileSync(templatePath, 'utf-8');
-
-    // Generate story cards
-    let featuredHtml = '';
-    featured.forEach((story, idx) => {
-        featuredHtml += `
-            <div class="story-container">
-                <div class="story-card">
-                    <div class="story-number">${idx + 1}</div>
-                    <div class="story-content">
-                        <span class="story-badge badge-featured">Featured</span>
-                        <h3 class="story-title">${escapeHtml(story.title)}</h3>
-                        <div class="story-meta">
-                            <div class="story-meta-item">📰 ${story.source}</div>
-                            <div class="story-meta-item">📅 ${story.date}</div>
-                            <div class="story-meta-item">⭐ ${story.score}/5.0</div>
-                        </div>
-                        <div class="story-body">${escapeHtml(story.snippet)}</div>
-                        <a href="${story.url}" class="story-link">Read Full Story →</a>
-                    </div>
-                </div>
-            </div>
-        `;
+      https.request(options, (res) => {
+        let data = '';
+        res.on('data', (chunk) => { data += chunk; });
+        res.on('end', () => {
+          try {
+            resolve(JSON.parse(data));
+          } catch (e) {
+            reject(e);
+          }
+        });
+      }).on('error', reject).end();
     });
-
-    let secondaryHtml = '';
-    secondary.forEach((story, idx) => {
-        secondaryHtml += `
-            <div class="story-container">
-                <div class="story-card secondary">
-                    <div class="story-number">${idx + 1}</div>
-                    <div class="story-content">
-                        <span class="story-badge badge-secondary">Secondary</span>
-                        <h3 class="story-title">${escapeHtml(story.title)}</h3>
-                        <div class="story-meta">
-                            <div class="story-meta-item">📰 ${story.source}</div>
-                            <div class="story-meta-item">📅 ${story.date}</div>
-                        </div>
-                        <div class="story-body">${escapeHtml(story.snippet)}</div>
-                        <a href="${story.url}" class="story-link">Read More →</a>
-                    </div>
-                </div>
-            </div>
-        `;
-    });
-
-    // Replace placeholders
-    html = html.replace('{{DATE}}', this.date.toLocaleDateString('en-US', { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-    }));
-    html = html.replace('{{FEATURED_STORIES}}', featuredHtml);
-    html = html.replace('{{SECONDARY_STORIES}}', secondaryHtml);
-    html = html.replace('{{TOTAL_STORIES}}', this.stories.length);
-    html = html.replace('{{FEATURED_COUNT}}', featured.length);
-    html = html.replace('{{AVG_SCORE}}', (this.stories.reduce((a, b) => a + b.score, 0) / this.stories.length).toFixed(1));
-    html = html.replace('{{TIMESTAMP}}', new Date().toLocaleString('en-US', { 
-        year: 'numeric', 
-        month: 'numeric', 
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        timeZone: 'America/New_York'
-    }));
-
-    return html;
   }
 
   /**
-   * Save briefing files
+   * Validate that a URL actually exists
    */
-  async saveBriefing(dryRun = false) {
-    // Create output directory if it doesn't exist
+  async validateUrl(url) {
+    return new Promise((resolve) => {
+      try {
+        const urlObj = new URL(url);
+        const proto = urlObj.protocol === 'https:' ? https : http;
+        
+        const req = proto.request(url, { method: 'HEAD', timeout: 5000 }, (res) => {
+          resolve(res.statusCode >= 200 && res.statusCode < 400);
+        });
+        
+        req.on('error', () => resolve(false));
+        req.setTimeout(5000, () => req.destroy());
+        req.end();
+      } catch (e) {
+        resolve(false);
+      }
+    });
+  }
+
+  /**
+   * Main generation flow
+   */
+  async generate() {
+    this.log('=== HYPERSCALER BRIEFING GENERATION STARTED ===');
+    this.log(`Date: ${this.dateStr}`);
+    this.log(`Using Brave Search API with link validation`);
+
+    try {
+      // Search for articles
+      for (const [category, queries] of Object.entries(CONFIG.searchQueries)) {
+        this.log(`\nSearching: ${category}`);
+        
+        for (const query of queries) {
+          try {
+            this.log(`  → "${query}"`);
+            const results = await this.braveSearch(query);
+
+            if (results.web && results.web.results) {
+              for (const result of results.web.results.slice(0, 3)) {
+                // Validate URL
+                const isValid = await this.validateUrl(result.url);
+                
+                if (isValid) {
+                  this.articles.push({
+                    category,
+                    title: result.title,
+                    description: result.description || '',
+                    url: result.url,
+                    source: new URL(result.url).hostname,
+                    foundAt: new Date().toISOString(),
+                    validated: true,
+                  });
+                  this.log(`    ✅ ${result.title.substring(0, 50)}...`);
+                } else {
+                  this.log(`    ❌ [Link dead] ${result.title.substring(0, 50)}...`);
+                }
+              }
+            }
+          } catch (err) {
+            this.log(`  ⚠️  Error: ${err.message}`, 'WARN');
+          }
+        }
+      }
+
+      if (this.articles.length === 0) {
+        this.log('⚠️ No valid articles found!', 'WARN');
+        return false;
+      }
+
+      this.log(`\n✅ Found ${this.articles.length} verified articles`);
+
+      // Save briefing data
+      await this.saveBriefing();
+      return true;
+
+    } catch (error) {
+      this.log(`❌ Error: ${error.message}`, 'ERROR');
+      return false;
+    }
+  }
+
+  /**
+   * Save briefing to file
+   */
+  async saveBriefing() {
+    // Create output directory
     if (!fs.existsSync(CONFIG.outputDir)) {
       fs.mkdirSync(CONFIG.outputDir, { recursive: true });
     }
 
-    const md = this.generateMarkdown();
-    const html = this.generateHTML();
+    // Generate briefing content
+    const briefing = this.formatBriefing();
+    const briefingFile = path.join(CONFIG.outputDir, `briefing-${this.dateStr}.txt`);
+    const jsonFile = path.join(CONFIG.outputDir, `briefing-${this.dateStr}.json`);
 
-    const mdFile = path.join(CONFIG.outputDir, `BRIEFING_${this.dateStr}.md`);
-    const htmlFile = path.join(CONFIG.outputDir, `EMAIL_${this.dateStr}.html`);
+    fs.writeFileSync(briefingFile, briefing);
+    fs.writeFileSync(jsonFile, JSON.stringify({
+      date: this.dateStr,
+      articleCount: this.articles.length,
+      articles: this.articles,
+      generatedAt: new Date().toISOString(),
+    }, null, 2));
 
-    if (!dryRun) {
-      fs.writeFileSync(mdFile, md, 'utf-8');
-      fs.writeFileSync(htmlFile, html, 'utf-8');
-      this.log(`Saved briefing: ${mdFile}`);
-      this.log(`Saved email template: ${htmlFile}`);
-    } else {
-      this.log(`[DRY RUN] Would save briefing: ${mdFile}`);
-      this.log(`[DRY RUN] Would save email template: ${htmlFile}`);
+    this.log(`\n✅ Briefing saved:`);
+    this.log(`   • ${briefingFile}`);
+    this.log(`   • ${jsonFile}`);
+
+    // Also save logs
+    const logFile = CONFIG.logFile;
+    if (!fs.existsSync(path.dirname(logFile))) {
+      fs.mkdirSync(path.dirname(logFile), { recursive: true });
     }
-
-    return { mdFile, htmlFile, md, html };
+    fs.appendFileSync(logFile, this.logs.join('\n') + '\n\n');
   }
 
   /**
-   * Save logs
+   * Format briefing as readable text
    */
-  async saveLogs(dryRun = false) {
-    const logDir = path.dirname(CONFIG.logFile);
-    if (!fs.existsSync(logDir)) {
-      fs.mkdirSync(logDir, { recursive: true });
+  formatBriefing() {
+    let output = `═══════════════════════════════════════════════════════════════\n`;
+    output += `  HYPERSCALER DAILY UPDATE - ${new Date(this.dateStr).toLocaleDateString()}\n`;
+    output += `═══════════════════════════════════════════════════════════════\n\n`;
+
+    // Group by category
+    const grouped = {};
+    this.articles.forEach(article => {
+      if (!grouped[article.category]) grouped[article.category] = [];
+      grouped[article.category].push(article);
+    });
+
+    // Format each category
+    for (const [category, items] of Object.entries(grouped)) {
+      output += `📰 ${category} (${items.length} articles)\n`;
+      output += `${'─'.repeat(60)}\n\n`;
+      
+      items.forEach((article, i) => {
+        output += `${i + 1}. ${article.title}\n`;
+        output += `   Source: ${article.source}\n`;
+        output += `   ${article.description.substring(0, 150)}\n`;
+        output += `   🔗 ${article.url}\n\n`;
+      });
     }
 
-    const logContent = this.logs.join('\n') + '\n';
+    output += `${'═'.repeat(63)}\n`;
+    output += `Generated: ${new Date().toISOString()}\n`;
+    output += `All links verified and active ✅\n`;
 
-    if (!dryRun) {
-      // Append to log file
-      if (fs.existsSync(CONFIG.logFile)) {
-        fs.appendFileSync(CONFIG.logFile, logContent, 'utf-8');
-      } else {
-        fs.writeFileSync(CONFIG.logFile, logContent, 'utf-8');
-      }
-      console.log(`\nLogs saved to: ${CONFIG.logFile}`);
-    }
-  }
-
-  /**
-   * Run the full briefing generation
-   */
-  async run(dryRun = false) {
-    try {
-      this.log(`Starting briefing generation for ${this.dateStr}`);
-      this.log(`Dry run mode: ${dryRun ? 'ON' : 'OFF'}`);
-
-      // Generate mock briefing (replace with real web research in production)
-      const stories = await this.generateMockBriefing();
-      this.log(`Generated ${stories.length} stories successfully`);
-
-      // Save briefing files
-      const { mdFile, htmlFile } = await this.saveBriefing(dryRun);
-
-      // Save logs
-      await this.saveLogs(dryRun);
-
-      this.log(`Briefing generation completed successfully`);
-      this.log(`Generated ${this.stories.length} stories (${this.stories.filter(s => s.isFeature).length} featured, ${this.stories.filter(s => !s.isFeature).length} secondary)`);
-
-      return {
-        success: true,
-        date: this.dateStr,
-        storiesCount: this.stories.length,
-        mdFile,
-        htmlFile,
-      };
-    } catch (error) {
-      this.log(`Error: ${error.message}`, 'ERROR');
-      throw error;
-    }
+    return output;
   }
 }
 
@@ -453,30 +240,17 @@ class BriefingGenerator {
 async function main() {
   const args = process.argv.slice(2);
   let date = null;
-  let dryRun = false;
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--date' && args[i + 1]) {
-      date = args[++i];
-    }
-    if (args[i] === '--dry-run') {
-      dryRun = true;
+      date = args[i + 1];
     }
   }
 
   const generator = new BriefingGenerator(date);
-  const result = await generator.run(dryRun);
+  const success = await generator.generate();
 
-  console.log('\n✅ Briefing generation complete');
-  console.log(`Date: ${result.date}`);
-  console.log(`Stories: ${result.storiesCount}`);
-  console.log(`Markdown: ${result.mdFile}`);
-  console.log(`HTML Email: ${result.htmlFile}`);
-
-  process.exit(0);
+  process.exit(success ? 0 : 1);
 }
 
-main().catch(error => {
-  console.error('Fatal error:', error);
-  process.exit(1);
-});
+main();

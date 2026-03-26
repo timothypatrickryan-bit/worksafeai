@@ -1,0 +1,420 @@
+{
+  "project": "Project Warp Speed",
+  "description": "Pro-Tel growth acceleration in data center infrastructure",
+  "timeline": "6 months (March 25 - September 25, 2026)",
+  "status": "active",
+  "investment": "$650K",
+  "workstreams": [
+    {
+      "id": "warp-market-analysis",
+      "name": "Market Definition & Analysis",
+      "owner": "Strategic Research Team",
+      "deadline": "2026-04-15",
+      "status": "queued",
+      "priority": "high",
+      "tasks": [
+        {
+          "id": "warp-tam-analysis",
+          "title": "TAM Analysis - Northeast Data Center Infrastructure",
+          "description": "Calculate total addressable market for data center structured cabling in PA and Upstate NY",
+          "assigned_to": "Research Team",
+          "status": "queued",
+          "priority": "high",
+          "due": "2026-04-10",
+          "deliverable": "TAM report with market size estimates"
+        },
+        {
+          "id": "warp-competitor-mapping",
+          "title": "Competitor Mapping & Analysis",
+          "description": "Identify competitors in structured cabling/infrastructure space, analyze their positioning, pricing, capabilities",
+          "assigned_to": "Research Team",
+          "status": "queued",
+          "priority": "high",
+          "due": "2026-04-10",
+          "deliverable": "Competitor analysis matrix + positioning map"
+        },
+        {
+          "id": "warp-customer-segments",
+          "title": "Customer Segment Identification",
+          "description": "Map key customer types: hyperscalers, regional datacenters, colocation providers, enterprise",
+          "assigned_to": "Research Team",
+          "status": "queued",
+          "priority": "high",
+          "due": "2026-04-12",
+          "deliverable": "Segment analysis + buyer personas"
+        },
+        {
+          "id": "warp-growth-trends",
+          "title": "Growth Trends Analysis",
+          "description": "Research AI, edge computing, fiber expansion, 5G infrastructure trends affecting data center demand",
+          "assigned_to": "Research Team",
+          "status": "queued",
+          "priority": "high",
+          "due": "2026-04-12",
+          "deliverable": "Trends report + market opportunity assessment"
+        }
+      ]
+    },
+    {
+      "id": "warp-strategy",
+      "name": "Strategic Plan Development",
+      "owner": "Strategy Team",
+      "deadline": "2026-04-30",
+      "status": "queued",
+      "priority": "high",
+      "tasks": [
+        {
+          "id": "warp-swot",
+          "title": "SWOT Analysis (Pro-Tel)",
+          "description": "Comprehensive strengths, weaknesses, opportunities, threats analysis",
+          "assigned_to": "Leadership Team",
+          "status": "queued",
+          "priority": "high",
+          "due": "2026-04-20",
+          "deliverable": "SWOT matrix + strategic implications"
+        },
+        {
+          "id": "warp-positioning",
+          "title": "Market Positioning Strategy",
+          "description": "Define Pro-Tel's unique value proposition vs competitors in data center infrastructure",
+          "assigned_to": "Strategy Team",
+          "status": "queued",
+          "priority": "high",
+          "due": "2026-04-22",
+          "deliverable": "Positioning statement + brand promise"
+        },
+        {
+          "id": "warp-revenue-targets",
+          "title": "Revenue Targets & Growth Projections",
+          "description": "Set 6-month and 12-month revenue targets, growth rates, market share goals",
+          "assigned_to": "Finance + Sales",
+          "status": "queued",
+          "priority": "high",
+          "due": "2026-04-25",
+          "deliverable": "Revenue forecast + growth models"
+        },
+        {
+          "id": "warp-expansion-strategy",
+          "title": "Expansion Strategy (Geographic & Service)",
+          "description": "Define service offerings roadmap, geographic expansion priorities, partnership strategy",
+          "assigned_to": "Strategy Team",
+          "status": "queued",
+          "priority": "high",
+          "due": "2026-04-28",
+          "deliverable": "Expansion roadmap + timeline"
+        }
+      ]
+    },
+    {
+      "id": "warp-capabilities",
+      "name": "Internal Capabilities Assessment",
+      "owner": "Leadership Team",
+      "deadline": "2026-05-15",
+      "status": "queued",
+      "priority": "high",
+      "tasks": [
+        {
+          "id": "warp-capabilities-audit",
+          "title": "Current Capabilities Audit",
+          "description": "Technical, sales, delivery, infrastructure capabilities assessment",
+          "assigned_to": "Operations + Technical Leads",
+          "status": "queued",
+          "priority": "high",
+          "due": "2026-05-05",
+          "deliverable": "Capabilities matrix"
+        },
+        {
+          "id": "warp-skill-gap",
+          "title": "Team Skill Gap Analysis",
+          "description": "Identify skill gaps, training needs, hiring requirements",
+          "assigned_to": "HR + Leadership",
+          "status": "queued",
+          "priority": "high",
+          "due": "2026-05-08",
+          "deliverable": "Skill gap report + development plan"
+        },
+        {
+          "id": "warp-customer-satisfaction",
+          "title": "Customer Satisfaction Review",
+          "description": "Survey existing customers, analyze retention, NPS, feedback",
+          "assigned_to": "Sales + Delivery",
+          "status": "queued",
+          "priority": "medium",
+          "due": "2026-05-12",
+          "deliverable": "Customer satisfaction report + insights"
+        }
+      ]
+    },
+    {
+      "id": "warp-marketing",
+      "name": "Marketing Plan Development",
+      "owner": "Marketing Team",
+      "deadline": "2026-05-30",
+      "status": "queued",
+      "priority": "high",
+      "tasks": [
+        {
+          "id": "warp-brand-positioning",
+          "title": "Brand Positioning for Data Center Market",
+          "description": "Define brand messaging, value proposition, tone for infrastructure market",
+          "assigned_to": "Marketing",
+          "status": "queued",
+          "priority": "high",
+          "due": "2026-05-10",
+          "deliverable": "Brand guidelines + messaging framework"
+        },
+        {
+          "id": "warp-content-strategy",
+          "title": "Content & Thought Leadership Strategy",
+          "description": "Case studies, whitepapers, blog strategy, speaking opportunities",
+          "assigned_to": "Marketing + Tim",
+          "status": "queued",
+          "priority": "high",
+          "due": "2026-05-15",
+          "deliverable": "Content calendar (6 months)"
+        },
+        {
+          "id": "warp-digital-marketing",
+          "title": "Digital Marketing Plan (LinkedIn, Web, Email)",
+          "description": "LinkedIn strategy, website updates, email campaigns, SEO",
+          "assigned_to": "Marketing",
+          "status": "queued",
+          "priority": "high",
+          "due": "2026-05-20",
+          "deliverable": "Digital marketing roadmap + campaign calendar"
+        },
+        {
+          "id": "warp-event-strategy",
+          "title": "Event & Networking Strategy",
+          "description": "Industry conferences, networking events, sponsorships, webinars",
+          "assigned_to": "Marketing + Sales",
+          "status": "queued",
+          "priority": "medium",
+          "due": "2026-05-25",
+          "deliverable": "Event calendar + sponsorship plan"
+        }
+      ]
+    },
+    {
+      "id": "warp-bd",
+      "name": "Business Development Plan",
+      "owner": "Business Development Team",
+      "deadline": "2026-06-15",
+      "status": "queued",
+      "priority": "high",
+      "tasks": [
+        {
+          "id": "warp-target-accounts",
+          "title": "Target Account List Development",
+          "description": "Hyperscalers, regional datacenters, colocation providers - prioritized list",
+          "assigned_to": "Business Development",
+          "status": "queued",
+          "priority": "high",
+          "due": "2026-06-01",
+          "deliverable": "Target account list (50+ accounts) with contact info"
+        },
+        {
+          "id": "warp-sales-process",
+          "title": "Sales Process Optimization",
+          "description": "Streamline sales cycle, define buying process, create proposal templates",
+          "assigned_to": "Sales",
+          "status": "queued",
+          "priority": "high",
+          "due": "2026-06-05",
+          "deliverable": "Sales playbook + process documentation"
+        },
+        {
+          "id": "warp-partnerships",
+          "title": "Strategic Partnership Opportunities",
+          "description": "Complementary service providers, reseller channels, technology partners",
+          "assigned_to": "Business Development",
+          "status": "queued",
+          "priority": "high",
+          "due": "2026-06-10",
+          "deliverable": "Partnership strategy + target partner list"
+        },
+        {
+          "id": "warp-bd-targets",
+          "title": "BD Pipeline Targets & Metrics",
+          "description": "Define pipeline goals, win rate targets, deal size targets",
+          "assigned_to": "Sales + Finance",
+          "status": "queued",
+          "priority": "high",
+          "due": "2026-06-12",
+          "deliverable": "Sales metrics dashboard + KPI definitions"
+        }
+      ]
+    },
+    {
+      "id": "warp-hiring",
+      "name": "Talent Acquisition & Hiring",
+      "owner": "HR / Recruiting",
+      "deadline": "2026-09-30",
+      "status": "queued",
+      "priority": "high",
+      "tasks": [
+        {
+          "id": "warp-hiring-plan",
+          "title": "Hiring Plan & Job Descriptions",
+          "description": "Define roles: 2 account executives, 2 engineers, 1 marketing specialist, 1 ops manager",
+          "assigned_to": "HR + Leadership",
+          "status": "queued",
+          "priority": "critical",
+          "due": "2026-04-01",
+          "deliverable": "Job descriptions + hiring timeline"
+        },
+        {
+          "id": "warp-recruitment",
+          "title": "Recruitment & Candidate Sourcing",
+          "description": "Recruit, interview, and hire 6-8 new team members",
+          "assigned_to": "Recruiting",
+          "status": "queued",
+          "priority": "critical",
+          "due": "2026-08-31",
+          "deliverable": "6-8 qualified hires onboarded"
+        },
+        {
+          "id": "warp-onboarding",
+          "title": "Onboarding & Training Program",
+          "description": "Structured onboarding, training, mentoring for new hires",
+          "assigned_to": "HR + Managers",
+          "status": "queued",
+          "priority": "high",
+          "due": "2026-09-15",
+          "deliverable": "All new hires productive and trained"
+        }
+      ]
+    },
+    {
+      "id": "warp-tracking",
+      "name": "Progress Tracking & Recalibration",
+      "owner": "Tim Ryan (CEO)",
+      "deadline": "2026-09-25",
+      "status": "queued",
+      "priority": "high",
+      "tasks": [
+        {
+          "id": "warp-monthly-review",
+          "title": "Monthly Leadership Reviews (1st Thu of month)",
+          "description": "Progress against milestones, KPI review, market feedback, plan adjustments",
+          "assigned_to": "Tim Ryan (CEO)",
+          "status": "queued",
+          "priority": "high",
+          "due": "recurring",
+          "frequency": "Monthly (1st Thursday @ 9 AM EST)",
+          "deliverable": "Monthly status report + plan updates"
+        },
+        {
+          "id": "warp-kpi-tracking",
+          "title": "KPI Dashboard & Metrics",
+          "description": "Real-time tracking of market share, revenue, pipeline, team, brand metrics",
+          "assigned_to": "Finance + Marketing + Sales",
+          "status": "queued",
+          "priority": "high",
+          "due": "2026-04-01",
+          "deliverable": "KPI dashboard (live tracking)"
+        },
+        {
+          "id": "warp-quarterly-board",
+          "title": "Quarterly Board Reporting",
+          "description": "Executive summary of progress, wins, challenges, outlook",
+          "assigned_to": "Tim Ryan (CEO)",
+          "status": "queued",
+          "priority": "high",
+          "due": "recurring",
+          "frequency": "Quarterly (end of April, July, Oct)",
+          "deliverable": "Board presentation + materials"
+        }
+      ]
+    }
+  ],
+  "milestones": [
+    {
+      "date": "2026-03-25",
+      "milestone": "Project launch & kickoff briefing",
+      "status": "active"
+    },
+    {
+      "date": "2026-04-15",
+      "milestone": "Market analysis delivered",
+      "status": "pending"
+    },
+    {
+      "date": "2026-04-30",
+      "milestone": "Strategic plan finalized",
+      "status": "pending"
+    },
+    {
+      "date": "2026-05-15",
+      "milestone": "SWOT/capabilities assessment complete",
+      "status": "pending"
+    },
+    {
+      "date": "2026-05-30",
+      "milestone": "Marketing plan launched",
+      "status": "pending"
+    },
+    {
+      "date": "2026-06-15",
+      "milestone": "BD plan & sales playbook ready",
+      "status": "pending"
+    },
+    {
+      "date": "2026-06-30",
+      "milestone": "First wave of hires onboarded",
+      "status": "pending"
+    },
+    {
+      "date": "2026-07-01",
+      "milestone": "Full execution mode (campaigns live)",
+      "status": "pending"
+    },
+    {
+      "date": "2026-09-25",
+      "milestone": "6-month checkpoint & recalibration",
+      "status": "pending"
+    }
+  ],
+  "kpis": [
+    {
+      "metric": "Market Share Growth",
+      "target": "+15% in Northeast region",
+      "tracking": "Quarterly"
+    },
+    {
+      "metric": "Revenue Growth",
+      "target": "+30% YoY",
+      "tracking": "Monthly"
+    },
+    {
+      "metric": "Pipeline Value",
+      "target": "$5M+ qualified opportunities",
+      "tracking": "Monthly"
+    },
+    {
+      "metric": "New Customers",
+      "target": "12+ new customers",
+      "tracking": "Monthly"
+    },
+    {
+      "metric": "Team Growth",
+      "target": "+5-8 new employees",
+      "tracking": "Monthly"
+    },
+    {
+      "metric": "Win Rate Improvement",
+      "target": "+20% vs historical",
+      "tracking": "Quarterly"
+    },
+    {
+      "metric": "Brand Mentions",
+      "target": "40+ industry mentions/month",
+      "tracking": "Quarterly"
+    },
+    {
+      "metric": "Customer Acquisition Cost",
+      "target": "TBD (baseline current)",
+      "tracking": "Monthly"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "lastCheck": "2026-03-26T11:49:00.000Z",
+  "notifiedAdjustments": [
+    1774484229496,
+    1774484727164
+  ],
+  "acknowledgedAdjustments": [
+    1774484229496,
+    1774484727164
+  ],
+  "actionItems": [
+    {
+      "adjustmentId": 1774484229496,
+      "action": "Research Scout: Deep-dive Pro-Tel company profile",
+      "dueDate": "2026-03-28T23:59:59.000Z",
+      "priority": "high",
+      "assignedAgent": "Scout",
+      "status": "queued"
+    },
+    {
+      "adjustmentId": 1774484727164,
+      "action": "Research Scout: Top 3 Northeast DC/cabling competitor analysis",
+      "dueDate": "2026-03-26T23:59:59.000Z",
+      "priority": "critical",
+      "assignedAgent": "Scout",
+      "status": "queued"
+    }
+  ]
+}

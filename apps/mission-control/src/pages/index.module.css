@@ -1,22 +1,19 @@
 .layout {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  grid-template-rows: 56px 1fr;
+  display: flex;
   min-height: 100vh;
+  width: 100%;
 }
 
 .mainWrapper {
-  grid-column: 2;
-  grid-row: 1 / -1;
+  flex: 1;
   display: flex;
   flex-direction: column;
   background: #fafbfc;
+  overflow: hidden;
 }
 
 /* TOP NAVIGATION */
 .topnav {
-  grid-column: 2;
-  grid-row: 1;
   background: #ffffff;
   border-bottom: 1px solid #e2e8f0;
   padding: 0 32px;

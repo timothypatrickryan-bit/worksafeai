@@ -51,6 +51,16 @@ export default async function handler(req, res) {
         taskCount: 3,
         description: 'Automated daily briefings for data center industry',
       },
+      {
+        id: 6,
+        name: 'Project Warp Speed',
+        status: 'Active',
+        progress: 15,
+        taskCount: 35,
+        description: 'Pro-Tel growth acceleration - data center infrastructure market leadership (Northeast PA/Upstate NY)',
+        owner: 'Tim Ryan',
+        team: 'Strategy',
+      },
     ]
 
     res.status(200).json({

@@ -2,8 +2,13 @@ import { useState, useEffect } from 'react'
 import SidebarMinimal from '../components/Sidebar.minimal'
 import DashboardMinimal from '../components/DashboardMinimal'
 import GapAnalysisMinimal from '../components/GapAnalysisMinimal'
+import TeamMinimal from '../components/TeamMinimal'
+import ContactsMinimal from '../components/ContactsMinimal'
+import CalendarMinimal from '../components/CalendarMinimal'
+import MemoryMinimal from '../components/MemoryMinimal'
+import DocsMinimal from '../components/DocsMinimal'
 import useWebSocket from '../hooks/useWebSocket'
-import styles from './index.minimal.module.css'
+import styles from './index.module.css'
 
 export default function Home() {
   const [currentSection, setCurrentSection] = useState('unified-dashboard')
@@ -56,19 +61,19 @@ export default function Home() {
               <GapAnalysisMinimal state={state} ws={ws} />
             )}
             {currentSection === 'team' && (
-              <div data-testid="team-section">Team coming soon...</div>
+              <TeamMinimal state={state} ws={ws} />
             )}
             {currentSection === 'contacts' && (
-              <div data-testid="contacts-section">Contacts coming soon...</div>
+              <ContactsMinimal state={state} ws={ws} />
             )}
             {currentSection === 'calendar' && (
-              <div data-testid="calendar-section">Calendar coming soon...</div>
+              <CalendarMinimal state={state} ws={ws} />
             )}
             {currentSection === 'memory' && (
-              <div data-testid="memory-section">Memory coming soon...</div>
+              <MemoryMinimal state={state} ws={ws} />
             )}
             {currentSection === 'docs' && (
-              <div data-testid="docs-section">Docs coming soon...</div>
+              <DocsMinimal state={state} ws={ws} />
             )}
           </div>
         </div>

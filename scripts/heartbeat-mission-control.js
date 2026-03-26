@@ -17,6 +17,8 @@ const fs = require('fs');
 const path = require('path');
 const { runDelegationScan } = require('./heartbeat-delegation-scanner');
 const { TaskWorkflowExecutor } = require('./task-workflow-executor');
+const { processBriefings } = require('./briefing-monitor');
+const { checkAdjustments } = require('./adjustment-monitor');
 
 const WORKSPACE = path.join(__dirname, '..');
 const STATE_FILE = path.join(WORKSPACE, '.mission-control-state.json');
@@ -240,6 +242,18 @@ function main() {
   // Run delegation scan
   console.log('🔄 Running delegation scan...\n');
   runDelegationScan();
+
+  // Check for Tim's adjustment feedback
+  console.log('🔍 Checking for Tim\'s feedback...\n');
+  checkAdjustments().catch(err => {
+    console.error(`❌ Adjustment check error: ${err.message}`);
+  });
+
+  // Process briefings (auto-respond to Status Requests, queue Work Briefings)
+  console.log('📋 Processing briefings...\n');
+  processBriefings().catch(err => {
+    console.error(`❌ Briefing processing error: ${err.message}`);
+  });
 
   // ✅ UPDATE TIMESTAMP: Dashboard stays fresh
   state.lastUpdate = new Date().toISOString();

@@ -1,5 +1,22 @@
 # HEARTBEAT.md - Periodic Tasks
 
+## 📖 Agent Guides (READ THESE FIRST)
+
+**For all agents executing work on Tim's behalf:**
+
+- **MISSION_CONTROL_AGENT_GUIDE.md** — Complete system guide for all agents
+- **LUCY_OPERATIONAL_PLAYBOOK.md** — How Lucy operates day-to-day
+- **MISSION_CONTROL_QUICK_REF.md** — Quick lookup reference
+
+**Start new work?** Read these guides first. They explain:
+- How to create briefings
+- When to ask for approval
+- How to update task status
+- How to document decisions
+- How to handle blockers
+
+---
+
 ## 🚀 AUTOMATED JOBS (macOS launchd)
 
 **Both jobs now running automatically (every 30-60 minutes):**
@@ -239,6 +256,186 @@ You create task → Assign to Lucy → Automation detects
 - `scripts/mission-control.js` — CLI tool
 - `MISSION_CONTROL.md` — Architecture
 - `AGENT_COORDINATION.md` — How agents use it
+
+---
+
+## Hyperscaler Daily Update (✅ LIVE - Daily @ 7:00 AM EST)
+
+**Status:** 🟢 **LIVE & AUTOMATED** - Activated March 25, 2026 @ 2:53 PM EST
+
+**Purpose:** Curated data center construction & fiber deployment news with verified links
+
+**Account:** Tim Ryan (tim.ryan@pro-tel.com)  
+**Topics:**
+- Data center construction announcements
+- Hyperscaler facility expansion news
+- Fiber optic deployment announcements
+- Undersea cable construction
+- Fiber infrastructure investments
+- Broadband fiber expansion
+
+**Schedule:** Automated via macOS launchd (Daily @ 7:00 AM EST)  
+**Method:** Brave Search API + Link validation + Report generation  
+**API Key:** ✅ Configured (BSAHJ3Wmk1IbHNqEsACADrcFLfW5eLc)
+
+**Automation Pipeline:**
+1. ✅ **7:00 AM EST trigger** — launchd job (Daily)
+2. ✅ **Brave Search API** — Queries 8 specific search terms (data center + fiber)
+3. ✅ **Link Validation** — Tests each article URL (404 check)
+4. ✅ **Report Generation** — Creates curated report with verified links only
+5. ✅ **Output Files** — Saves to `.hyperscaler-daily-report.txt` and `.hyperscaler-daily-articles.json`
+
+**Core Files:**
+- `scripts/hyperscaler-daily-update.js` — Main script (fetches, validates, reports)
+- `scripts/install-hyperscaler-job.sh` — Installer script
+- `~/Library/LaunchAgents/com.openclaw.hyperscaler-daily.plist` — macOS scheduler (ACTIVE)
+- `.hyperscaler-daily-report.txt` — Latest report (human-readable)
+- `.hyperscaler-daily-articles.json` — Article data (machine-readable)
+- `.hyperscaler-daily.log` — Automation logs
+- `.hyperscaler-daily-error.log` — Error tracking
+
+**What's Automated:**
+- ✅ Content search (Daily @ 7 AM, Brave Search API)
+- ✅ Link validation (checks all URLs actually work)
+- ✅ Report generation (categorized by topic)
+- ✅ Scheduling (macOS launchd - LIVE)
+- ✅ Logging (all activity tracked, broken links noted)
+
+**Quality Control:**
+- Only verified links included (404 check)
+- Broken links logged and excluded
+- Multiple search queries per category
+- Real-time news + announcements focus
+- Links tested at generation time
+
+**Live Deployment (March 25, 2026):**
+- ✅ Brave API key configured & tested
+- ✅ Link validation implemented & working
+- ✅ launchd job activated
+- ✅ Logging infrastructure in place
+- ✅ First run: 18 verified articles (9 data center, 9 fiber)
+
+**Manual Run (Any Time):**
+```bash
+node scripts/hyperscaler-daily-update.js
+```
+
+**Check Status:**
+```bash
+launchctl list | grep hyperscaler         # Verify scheduler active
+tail -50 .hyperscaler-daily.log             # View automation events
+cat .hyperscaler-daily-report.txt          # View latest report
+```
+
+**Example Output:**
+```
+✅ Found 18 verified articles
+
+📰 Data Center Construction (9 articles)
+1. New Data Center Developments: March 2026
+   Source: datacenterknowledge.com
+   AVAIO Digital Partners announced $6B investment...
+   🔗 [verified link]
+
+📰 Fiber Deployment (9 articles)
+1. Nokia launches optical solutions for AI-era networks
+   Source: nokia.com
+   New fiber deployment for AI workloads...
+   🔗 [verified link]
+
+Generated: 2026-03-25T18:52:53Z
+All links verified and active ✅
+```
+
+---
+
+## Project Warp Speed - Pro-Tel Growth Acceleration (🚀 ACTIVE)
+
+**Status:** 🟢 **LAUNCHED** - March 25, 2026  
+**Timeline:** 6 months (Target completion: September 25, 2026)  
+**Investment:** $650K (Marketing, hiring, infrastructure)
+
+**Strategic Objective:**
+Accelerate Pro-Tel's growth by establishing market leadership in **Data Center Structured Cable and Infrastructure** across **Northeast region (PA & Upstate NY)**
+
+**Key Work Streams:**
+1. **Market Definition & Analysis** (Due April 15)
+   - TAM analysis for Northeast data center infrastructure
+   - Competitor mapping & customer segmentation
+   - Growth trends analysis (AI, edge, fiber)
+
+2. **Strategic Plan Development** (Due April 30)
+   - SWOT analysis & competitive positioning
+   - Revenue targets & expansion strategy
+   - Product/service portfolio alignment
+
+3. **Internal Capabilities Assessment** (Due May 15)
+   - Strengths/weaknesses evaluation
+   - Technical & team skill gaps
+   - Competitive positioning analysis
+
+4. **Marketing Plan Development** (Due May 30)
+   - Brand positioning for data center market
+   - Content strategy & thought leadership
+   - Digital + event marketing campaigns
+   - LinkedIn & industry publication strategy
+
+5. **Business Development Plan** (Due June 15)
+   - Target account list & sales strategy
+   - Partnership opportunities
+   - BD pipeline targets & sales playbook
+
+6. **Talent Acquisition** (Ongoing)
+   - Hire 5-8 new employees (sales, technical, operations)
+   - Team training & onboarding
+   - Culture building
+
+7. **Progress Tracking & Recalibration** (Monthly)
+   - 1st Thursday of month @ 9 AM EST reviews
+   - KPI tracking against targets
+   - Market feedback & plan adjustments
+   - Quarterly board reporting
+
+**KPI Targets (6-month):**
+- Market share: +15% in Northeast region
+- Revenue growth: +30% YoY
+- Pipeline: $5M+ qualified opportunities
+- New customers: 12+
+- Team: +5-8 new employees
+- Brand mentions: 40+ per month
+- Win rate improvement: +20%
+
+**Monthly Review Schedule:**
+- **1st Thursday of each month @ 9 AM EST**
+- Attendees: Tim Ryan (CEO), Sales, Marketing, Operations leads
+- Agenda: Progress, KPIs, market feedback, plan adjustments, risks
+
+**Files & Documentation:**
+- `PROJECT_WARP_SPEED.md` — Full project plan (this document)
+- `.mission-control-state.json` — Project tracking
+- `memory/warp-speed-updates.md` — Monthly progress logs
+- Marketing calendar & campaign tracking
+- BD pipeline + sales metrics
+
+**Critical Success Factors:**
+1. Deep market insight (PA/NY data center infrastructure)
+2. Team alignment & execution speed
+3. Continuous customer feedback loops
+4. Resource commitment & hiring
+5. Plan flexibility based on real-world results
+
+**Next Actions (Week 1):**
+- [ ] Establish market research team
+- [ ] Begin TAM analysis
+- [ ] Start competitive intelligence work
+- [ ] Initiate hiring for critical roles
+- [ ] Brief full company on Project Warp Speed
+
+**Risks & Mitigation:**
+- Slow hiring → Start recruiting immediately
+- Market shifts → Monthly recalibration reviews
+- Competitive response → Differentiate on service quality
+- Execution delays → Weekly task reviews
 
 ---
 

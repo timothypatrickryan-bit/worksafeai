@@ -1,0 +1,73 @@
+═══════════════════════════════════════════════════════════════
+  HYPERSCALER DAILY UPDATE - 3/25/2026
+═══════════════════════════════════════════════════════════════
+
+📰 Data Center Construction (6 articles)
+────────────────────────────────────────────────────────────
+
+1. New Data Center Developments: March 2026
+   Source: www.datacenterknowledge.com
+   <strong>AVAIO Digital Partners announced a multi-phase campus in Little Rock, Ark., beginning with a combined investment of $6 billion</strong>. As th
+   🔗 https://www.datacenterknowledge.com/data-center-construction/new-data-center-developments-march-2026
+
+2. New Data Center Developments: February 2026
+   Source: www.datacenterknowledge.com
+   OpenAI also said it has selected SB Energy to build and operate its 1.2 GW data center in Milam County, Texas. For its part, Meta announced an agreeme
+   🔗 https://www.datacenterknowledge.com/data-center-construction/new-data-center-developments-february-2026
+
+3. AI-First Hyperscalers: 2026’s Sprint Meets the Power Bottleneck
+   Source: www.datacenterknowledge.com
+   Fung noted that <strong>hyperscalers are now designing data centers optimized for large-scale AI workloads</strong>. “These deployments require tens o
+   🔗 https://www.datacenterknowledge.com/hyperscalers/hyperscalers-in-2026-what-s-next-for-the-world-s-largest-data-center-operators-
+
+4. Hyperscale Data Centers Hit 1,300 With AWS, Google, Microsoft Owning Over Half Of Global Capacity
+   Source: www.crn.com
+   <strong>Data centers operated by hyperscalers like Amazon, Microsoft and Google reach 1,300 facilities as data center capacity and funding increases i
+   🔗 https://www.crn.com/news/cloud/2025/hyperscale-data-centers-hit-1-300-with-aws-google-microsoft-leading-global-boom
+
+5. Permitting a Data Center: Step-by-Step Guide
+   Source: www.withpulley.com
+   Data center projects often require rezoning, permitting waivers, and special exemptions. The location of data centers compounds this problem. As devel
+   🔗 https://www.withpulley.com/resources/guide-to-permitting-a-data-center
+
+6. Accelerating Federal Permitting of Data Center Infrastructure – The White House
+   Source: www.whitehouse.gov
+   These plans include artificial intelligence (AI) data centers and infrastructure that powers them, including high‑voltage transmission lines and other
+   🔗 https://www.whitehouse.gov/presidential-actions/2025/07/accelerating-federal-permitting-of-data-center-infrastructure/
+
+📰 Fiber Deployment (6 articles)
+────────────────────────────────────────────────────────────
+
+1. OFC 2026: new launches round-up, part II
+   Source: optics.org
+   Moran Roth, VP Product Line Management ... scalability, and value to customers operating in fiber-limited environments.” <strong>The dual-laser QSFP28
+   🔗 https://optics.org/news/17/3/33
+
+2. Nokia launches suite of application‑optimized optical solutions for AI-era networks
+   Source: www.nokia.com
+   To address this challenge, Nokia ... deployments. This solution delivers a 40-fold increase in in-line amplifier density over today’s solutions or 160
+   🔗 https://www.nokia.com/newsroom/nokia-launches-suite-of-applicationoptimized-optical-solutions-for-ai-era-networks/
+
+3. Underwater Cable Installation - LS Power
+   Source: www.lspower.com
+   <strong>The cable is fed vertically down through the tool, along with the pipes for the pressurized water</strong>. The fluidized sediment then falls 
+   🔗 https://www.lspower.com/news/underwater-cable-installation/
+
+4. Underwater Cable Construction & Installation | Kokosing
+   Source: www.kokosing.biz
+   <strong>Kokosing has successfully installed three, 230 kV power transmission lines and two fiber optic lines in San Francisco Bay</strong>. A special 
+   🔗 https://www.kokosing.biz/our-expertise/marine/submarine-cable-installation/
+
+5. With Private Investment, Fiber Broadband Deployment Is Rising
+   Source: www.govtech.com
+   Fiber broadband infrastructure continues to be deployed across the nation, largely as <strong>capital investment projects by the private sector</stron
+   🔗 https://www.govtech.com/network/with-private-investment-fiber-broadband-deployment-is-rising
+
+6. Unit Economics of Fiber Optic Investments - Phoenix Strategy Group
+   Source: www.phoenixstrategy.group
+   Fiber optic investments are <strong>reshaping internet infrastructure by meeting growing demand for high-speed, reliable connections</strong>. This ar
+   🔗 https://www.phoenixstrategy.group/blog/unit-economics-of-fiber-optic-investments
+
+═══════════════════════════════════════════════════════════════
+Generated: 2026-03-26T12:00:20.157Z
+All links verified and active ✅
