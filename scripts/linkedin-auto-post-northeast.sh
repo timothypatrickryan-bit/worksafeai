@@ -34,12 +34,12 @@ case "$LAST_TYPE" in
     ;;
 esac
 
-echo "[$(date)] 🚀 LinkedIn Northeast DC/Fiber Commentary Auto-Post Starting" >> "$WORKSPACE/.linkedin-launchd.log"
+echo "[$(date)] 🚀 LinkedIn Northeast DC/Fiber Commentary + Image Auto-Post Starting" >> "$WORKSPACE/.linkedin-launchd.log"
 echo "[$(date)] 📝 Post Type: $POST_TYPE" >> "$WORKSPACE/.linkedin-launchd.log"
 
-# Generate post with Northeast DC/Fiber focus
+# Generate post WITH IMAGE using Recraft.AI
 cd "$WORKSPACE"
-node scripts/linkedin-post-northeast-dc.js "$POST_TYPE" 2>> "$WORKSPACE/.linkedin-launchd-error.log"
+node scripts/linkedin-post-with-image.js "$POST_TYPE" 2>> "$WORKSPACE/.linkedin-launchd-error.log"
 
 if [ $? -eq 0 ]; then
   echo "[$(date)] ✅ Northeast DC/Fiber post generated successfully" >> "$WORKSPACE/.linkedin-launchd.log"
