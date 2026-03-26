@@ -14,6 +14,7 @@ export default function App() {
     if (location.pathname === '/calendar') return 'Calendar';
     if (location.pathname === '/memory') return 'Memory';
     if (location.pathname === '/docs') return 'Docs';
+    if (location.pathname === '/skills') return 'Skills Management';
     return 'Dashboard';
   };
 

@@ -11,6 +11,7 @@ import Contacts from './pages/Contacts';
 import Calendar from './pages/Calendar';
 import Memory from './pages/Memory';
 import Docs from './pages/Docs';
+import SkillsManagement from './pages/SkillsManagement';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -27,6 +28,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="calendar" element={<Calendar />} />
           <Route path="memory" element={<Memory />} />
           <Route path="docs" element={<Docs />} />
+          <Route path="skills" element={<SkillsManagement />} />
         </Route>
       </Routes>
     </BrowserRouter>

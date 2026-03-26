@@ -8,6 +8,7 @@ const navItems = [
   { id: 'calendar', label: 'Calendar', icon: '📅', path: '/calendar' },
   { id: 'memory', label: 'Memory', icon: '📔', path: '/memory' },
   { id: 'docs', label: 'Docs', icon: '📚', path: '/docs' },
+  { id: 'skills', label: 'Skills', icon: '⚙️', path: '/skills' },
 ];
 
 export default function Sidebar({ currentPath }) {
