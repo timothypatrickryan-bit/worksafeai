@@ -27,6 +27,9 @@ const AUTONOMY_LOG = path.join(WORKSPACE, '.autonomy-log.txt');
 // Load gap remediation manager
 const gapManager = require('./gap-remediation-manager');
 
+// Load auto-router
+const autoRouter = require('./task-auto-router');
+
 function readState() {
   try {
     return JSON.parse(fs.readFileSync(STATE_FILE, 'utf8'));
@@ -202,6 +205,13 @@ function main() {
       queued.slice(0, 3).forEach(task => {
         log(`   ⏳ [P${task.priority || 'N/A'}] ${task.title}`);
       });
+      
+      // NEW: Auto-route queued tasks to best-fit agents
+      log(`🤖 Attempting auto-routing for queued tasks...`);
+      const routingResult = autoRouter.runAutoRouter();
+      if (routingResult) {
+        log(`✅ Auto-routing complete: ${routingResult.routed}/${routingResult.totalQueued} routed`);
+      }
     }
     
     // Check 4: Alert on stuck tasks (executing > 4 hours)

@@ -1,5 +1,18 @@
 # Lucy's Memory — Long-term Context
 
+## CRITICAL FIX: Hyperscaler Daily Update (March 27, 2026 @ 4:00 AM)
+
+**Issue:** Hyperscaler daily briefing script was failing due to incorrect Node.js HTTPS API usage.
+- **Root cause:** Used `https.head()` which doesn't exist (correct method: `https.request()` with `method: 'HEAD'`)  
+- **Also:** API response parsing was broken (expected `.web` directly, but Brave API returns `.web.results`, `.news.results`, etc.)
+- **Deadline:** Job needs to run at 7 AM EST (3 hours from heartbeat time)
+- **Action:** Fixed both issues, tested successfully with 25+ verified articles collected
+- **Status:** ✅ Fixed and verified working
+
+This prevents loss of Tim's daily hyperscaler market briefing.
+
+---
+
 ## Mission Statement
 **Goal:** Get Lucy (me) setup and prepared to create and compile Mac apps to run on Tim's machine. No specific app idea yet, but the infrastructure and knowledge base should be ready to guide decisions and execution when an idea lands.
 

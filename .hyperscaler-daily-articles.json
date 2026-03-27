@@ -1,4 +1,191 @@
 {
-  "articles": [],
-  "generated": "2026-03-26T11:06:33.354Z"
+  "articles": [
+    {
+      "title": "New Data Center Developments: March 2026",
+      "url": "https://www.datacenterknowledge.com/data-center-construction/new-data-center-developments-march-2026",
+      "description": "<strong>AVAIO Digital Partners announced a multi-phase campus in Little Rock, Ark., beginning with a combined investment of $6 billion</strong>. As the hub grows, AVAIO expects power demand to reach up to 1 GW.",
+      "published": "2 weeks ago"
+    },
+    {
+      "title": "New Data Center Developments: February 2026",
+      "url": "https://www.datacenterknowledge.com/data-center-construction/new-data-center-developments-february-2026",
+      "description": "OpenAI also said it has selected SB Energy to build and operate its 1.2 GW data center in Milam County, Texas. For its part, Meta announced an agreement with three nuclear power providers – TerraPower, Oklo, and Vistra – to secure up to 6.6 GW of energy over the next 20 years. The company will gain immediate access to power from three existing nuclear facilities in Ohio and Pennsylvania, while also supporting the construction of new modular nuclear plants expected to come online by 2032. Related:Hyperscalers in 2026: What’s Next for the World’s Biggest Data Center Operators?",
+      "published": "February 4, 2026"
+    },
+    {
+      "title": "Advancing Data Center Construction West 2026",
+      "url": "https://advancing-data-center-construction-west.com/",
+      "description": "That’s why <strong>Advancing Data Center Construction West returns in 2026</strong> as the definitive forum uniting 900+ pioneering decision-makers - from Hyperscalers, Colocators, Designers, Contractors, Policy-Makers and Utility firms across Washington through ...",
+      "published": null
+    },
+    {
+      "title": "El Paso Meta data center investment grows to $10 billion, bringing thousands of more jobs - KVIA",
+      "url": "https://kvia.com/news/top-stories/2026/03/26/meta-data-center-expansion/",
+      "description": "Meta broke ground back in October 2025 and with today&#x27;s announcement, <strong>the center&#x27;s capacity will grow to 1 gigawatt</strong>. The expansion also means an investment increase of $10 Billion and ore than 300 jobs created at completion of the center, said ...",
+      "published": "14 hours ago"
+    },
+    {
+      "title": "AI-First Hyperscalers: 2026’s Sprint Meets the Power Bottleneck",
+      "url": "https://www.datacenterknowledge.com/hyperscalers/hyperscalers-in-2026-what-s-next-for-the-world-s-largest-data-center-operators-",
+      "description": "Fung noted that <strong>hyperscalers are now designing data centers optimized for large-scale AI workloads</strong>. “These deployments require tens of gigawatts of aggregate power capacity over the next two to three years, reflecting both the scale and intensity ...",
+      "published": "2 weeks ago"
+    },
+    {
+      "title": "Hyperscale Data Centers Market 2026 Explosive Data Demand Fueling Infrastructure Expansion - Technology Today - EIN Presswire",
+      "url": "https://tech.einnews.com/pr_news/899968200/hyperscale-data-centers-market-2026-explosive-data-demand-fueling-infrastructure-expansion",
+      "description": "Increasing Adoption Of Artificial Intelligence And Generative AI Workloads - <strong>The increasing adoption of artificial intelligence and generative AI workloads as a major factor driving the expansion of the hyperscale data centers market by 2030</strong>.",
+      "published": "1 week ago"
+    },
+    {
+      "title": "Applied Digital Completes Development Loan Facility with Macquarie Group to Support New AI Factory Campuses :: Applied Digital Corporation (APLD)",
+      "url": "https://ir.applieddigital.com/news-events/press-releases/detail/139/applied-digital-completes-development-loan-facility-with",
+      "description": "“This development facility strengthens our ability to move quickly on high-quality sites while maintaining capital flexibility,” said Wes Cummins, Chairman and Chief Executive Officer of Applied Digital. “As demand for AI-optimized data center infrastructure continues to accelerate, this financing is intended to support our strategy of developing purpose-built campuses for hyperscale customers.”",
+      "published": null
+    },
+    {
+      "title": "Hyperscale Data Centers Hit 1,300 With AWS, Google, Microsoft Owning Over Half Of Global Capacity",
+      "url": "https://www.crn.com/news/cloud/2025/hyperscale-data-centers-hit-1-300-with-aws-google-microsoft-leading-global-boom",
+      "description": "<strong>Data centers operated by hyperscalers like Amazon, Microsoft and Google reach 1,300 facilities as data center capacity and funding increases in 2025</strong>.",
+      "published": null
+    },
+    {
+      "title": "Hyperscalers Sign White House Pledge to Fund Data Center Power, Grid Upgrades",
+      "url": "https://www.powermag.com/hyperscalers-sign-white-house-pledge-to-fund-data-center-power-grid-upgrades/",
+      "description": "Bloomberg reported Thursday that <strong>the company is planning to cut thousands of jobs across divisions as early as this month amid cash pressure from its AI infrastructure expansion</strong>. xAI. xAI, Elon Musk’s AI company, was represented at the White ...",
+      "published": "3 weeks ago"
+    },
+    {
+      "title": "Zoning, Permits, and Compliance: Breaking Down the Data Center Approval Process",
+      "url": "https://www.milrose.com/insights/data-center-approvals",
+      "description": "Streamline your data center project approvals by understanding zoning laws, permitting processes, and compliance standards. Learn strategies to avoid costly delays and keep your developments on track.",
+      "published": "June 12, 2025"
+    },
+    {
+      "title": "Permitting a Data Center: Step-by-Step Guide",
+      "url": "https://www.withpulley.com/resources/guide-to-permitting-a-data-center",
+      "description": "Data center projects often require rezoning, permitting waivers, and special exemptions. The location of data centers compounds this problem. As developers search the country for large parcels of land with necessary access to surplus grid power, they have increasingly focused on small, rural jurisdictions where similar infrastructure development is unprecedented.",
+      "published": null
+    },
+    {
+      "title": "Department of Environmental Quality : Tier 4 Streamlined Data Center Permit : Air Quality Permits : State of Oregon",
+      "url": "https://www.oregon.gov/deq/aq/aqpermits/pages/data-center-permit.aspx",
+      "description": "Cleaner Air Oregon Risk Assessment: DEQ developed a CAO Data Center Tool that conducts a risk assessment and produces annual and daily fuel limits based on stack and building heights, engine fuel usage and meteorology corresponding to a specific facility. This tool meets the criteria of a Level 2 Risk Assessment. Tier 4 Data Center Permit Template: DEQ created a data center permit template to standardize permit conditions for the data center facilities with Tier 4 compliant engines and to expedite permit drafting.",
+      "published": null
+    },
+    {
+      "title": "New Executive Order Promotes Development of Data Centers Supporting AI",
+      "url": "https://www.coxcastle.com/publication-new-executive-order-promotes-development-of-data-centers-supporting-ai",
+      "description": "Consistent with the Administration’s priorities, the order should facilitate development of AI data centers by streamlining the federal approval process and investing federal financial and real estate resources in data center development. The impact of the Order in California remains unclear, however, given the likelihood that State permitting processes will remain applicable to some components of data center developments.",
+      "published": null
+    },
+    {
+      "title": "Breaking Ground on Our New AI-Optimized Data Center in El Paso",
+      "url": "https://about.fb.com/news/2025/10/metas-new-ai-optimized-data-center-el-paso/",
+      "description": "We’re breaking ground on a new, <strong>a cutting-edge AI-focused data center in El Paso that can scale to a 1GW data center site</strong>.",
+      "published": "October 15, 2025"
+    },
+    {
+      "title": "Two Wildly Different Data Centers Reveal a ‘Fork in the Road’ on How to Meet Electricity Demand - Inside Climate News",
+      "url": "https://insideclimatenews.org/news/26032026/inside-clean-energy-midwest-data-center-power-plans/",
+      "description": "Energy Secretary Chris Wright speaks to reporters on March 20 following a groundbreaking for a data center and power plant being developed by SoftBank and SB Energy on federal property in <strong>Piketon, Ohio</strong>. Credit: Dan Gearino/Inside Climate News",
+      "published": "1 day ago"
+    },
+    {
+      "title": "Pa. lawmakers advance bill to give state additional oversight of new data center water use | PhillyVoice",
+      "url": "https://www.phillyvoice.com/pennsylvania-bill-oversight-new-data-center-water-use/",
+      "description": "Pennsylvania lawmakers advanced a bill Monday that would require <strong>data</strong> <strong>center</strong> developers to submit reports on expected water use to the state before beginning operation.",
+      "published": "3 days ago"
+    },
+    {
+      "title": "Vineland residents are protesting AI data center as concerns mount over emissions",
+      "url": "https://whyy.org/articles/data-center-artificial-intelligence-vineland-new-jersey/",
+      "description": "The project in South Jersey, already under construction, is being developed by DataOne for the Nebius Group as part of a $17 billion deal with Microsoft.",
+      "published": "1 day ago"
+    },
+    {
+      "title": "Nokia launches suite of application‑optimized optical solutions for AI-era networks",
+      "url": "https://www.nokia.com/newsroom/nokia-launches-suite-of-applicationoptimized-optical-solutions-for-ai-era-networks/",
+      "description": "To address this challenge, Nokia ... deployments. This solution delivers a 40-fold increase in in-line amplifier density over today’s solutions or 160 fiber pairs in a single rack. This enables them to expand capacity and services within their existing network footprint while reducing cost and operational complexity. Nokia’s new multi-rail optical line system will be available in the second half of 2026...",
+      "published": "2 weeks ago"
+    },
+    {
+      "title": "OFC 2026: new launches round-up, part II",
+      "url": "https://optics.org/news/17/3/33",
+      "description": "Moran Roth, VP Product Line Management ... scalability, and value to customers operating in fiber-limited environments.” <strong>The dual-laser QSFP28-DCO is generally available beginning in March 2026</strong>....",
+      "published": null
+    },
+    {
+      "title": "5 Trends Driving Fibre Optic Deployment in 2026 – Wray Castle",
+      "url": "https://wraycastle.com/blogs/knowledge-base/5-trends-driving-fibre-optic-deployment-in-2026",
+      "description": "Verizon expects up to $2 billion in tax savings directed toward network expansion, while <strong>AT&amp;T announced plans to accelerate fiber deployment to an additional 1 million locations annually starting in 2026</strong>.",
+      "published": "January 17, 2026"
+    },
+    {
+      "title": "The Vineyard Gazette - Martha's Vineyard News | Eversource Nears Finish Line for Undersea Cable Project",
+      "url": "https://vineyardgazette.com/news/2025/12/23/eversource-nears-finish-line-undersea-cable-project",
+      "description": "<strong>Construction on the two new electric transmission cables started in December 2023</strong> and the utility has said it is being done to catch up with the increasing energy peaks in the summer months.",
+      "published": null
+    },
+    {
+      "title": "Expert Comment: What does Meta’s undersea cable plan mean for geopolitics? | University of Oxford",
+      "url": "https://www.ox.ac.uk/news/2025-03-10-expert-comment-what-does-meta-s-undersea-cable-plan-mean-geopolitics",
+      "description": "Meta recently announced <strong>Project Waterworth</strong>, the company’s plan to connect the US, India, South Africa, Brazil and other regions via a 50,000km (31,000 mile) cable system. Professor Vili Lehdonvirta, Professor of Economic Sociology and Digital ...",
+      "published": null
+    },
+    {
+      "title": "Breaking Submarine Cable News & Analysis - SubTel Forum",
+      "url": "https://subtelforum.com/",
+      "description": "Providing the latest submarine cable news and insights.",
+      "published": "January 28, 2026"
+    },
+    {
+      "title": "Australia to Fund $120m for Three New Subsea Cables Linking PNG - Submarine Networks",
+      "url": "https://www.submarinenetworks.com/en/nv/insights/australia-to-fund-$120m-for-three-new-subsea-cables-linking-png",
+      "description": "According Reuters and various sources, <strong>the Australian government will fund a $120 million to construct three new subsea cables linking Papua New Guinea (PNG).</strong> Alphabet&#x27;s Google has been selected to lead the construction of this critical network upgrade.",
+      "published": null
+    },
+    {
+      "title": "SubCableNews: News for the submarine cable market",
+      "url": "https://subcablenews.com/",
+      "description": "<strong>Cable installation has started at the Windanker offshore wind farm</strong> ’ ...",
+      "published": "April 6, 2016"
+    },
+    {
+      "title": "With Private Investment, Fiber Broadband Deployment Is Rising",
+      "url": "https://www.govtech.com/network/with-private-investment-fiber-broadband-deployment-is-rising",
+      "description": "Fiber broadband infrastructure continues to be deployed across the nation, largely as <strong>capital investment projects by the private sector</strong>, and regardless of changes to federal funding.",
+      "published": "January 29, 2026"
+    },
+    {
+      "title": "Unit Economics of Fiber Optic Investments - Phoenix Strategy Group",
+      "url": "https://www.phoenixstrategy.group/blog/unit-economics-of-fiber-optic-investments",
+      "description": "Fiber optic investments are <strong>reshaping internet infrastructure by meeting growing demand for high-speed, reliable connections</strong>. This article breaks down the unit economics of fiber optic networks, focusing on costs, revenue models, and ROI benchmarks.",
+      "published": null
+    },
+    {
+      "title": "Fiber Optic Infrastructure: A Connection Is Made | KKR",
+      "url": "https://www.kkr.com/insights/fiber-optic-infrastructure",
+      "description": "One of our most recently announced investments tackles the “last mile” digital gap in the United States. KKR initially invested in Metronet, the fastest growing pure play fiber company in the country, in 2021 in a minority position. Metronet has since more than doubled its infrastructure footprint, passing 2 million homes and businesses across 17 states.",
+      "published": "October 30, 2025"
+    },
+    {
+      "title": "Deep fiber: The next internet battleground | Deloitte US",
+      "url": "https://www.deloitte.com/us/en/services/consulting/articles/communications-infrastructure-upgrade-deep-fiber-imperative.html",
+      "description": "A Deloitte Consulting analysis estimates that the United States requires an investment of <strong>$130–$150 billion</strong> in fiber infrastructure over the next five to seven years to adequately support broadband competition, rural coverage, and wireless ...",
+      "published": null
+    },
+    {
+      "title": "Fiber Broadband Association Reports Rapid Fiber Expansion Amid Rising Labor, Materials, Permitting Costs - Fiber Broadband Association",
+      "url": "https://fiberbroadband.org/2026/01/20/fiber-broadband-association-reports-rapid-fiber-expansion-amid-rising-labor-materials-permitting-costs/",
+      "description": "Fiber Broadband Association Reports Rapid Fiber Expansion Amid Rising Labor, Materials, Permitting Costs Annual Fiber Deployment Cost Report explores current fiber landscape and future expectations WASHINGTON, D.C.—(January 20, 2026)—The Fiber Broadband Association (FBA) today announced the results of its Fiber Deployment Cost Annual Report, conducted by Cartesian, that provides a comprehensive benchmark of the costs, challenges, and trends shaping fiber…",
+      "published": "January 16, 2026"
+    },
+    {
+      "title": "The Future of Fiber Deployment: 6 Trends Transforming the Industry | The Utility Expo",
+      "url": "https://www.theutilityexpo.com/news/the-future-of-fiber-deployment-6-trends-transformi",
+      "description": "<strong>By the end of 2026, all City of Holland residents are anticipated to have access to fiber broadband for $45 per month</strong>—accomplished without any federal funding. Pre-terminated fiber installations—essentially plug-and-play—eliminate the ...",
+      "published": null
+    }
+  ],
+  "generated": "2026-03-27T11:00:35.424Z"
 }

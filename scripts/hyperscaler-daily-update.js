@@ -73,12 +73,26 @@ async function searchBrave(query) {
       res.on('end', () => {
         try {
           const result = JSON.parse(data);
-          const articles = (result.web || []).map(item => ({
-            title: item.title,
-            url: item.url,
-            description: item.description,
-            published: item.meta_url?.match(/\d{4}-\d{2}-\d{2}/) ? item.meta_url.match(/\d{4}-\d{2}-\d{2}/)[0] : null,
-          })).filter(a => a.url);
+          // Brave API returns results in multiple sections: news, web, discussions, videos
+          const webResults = (result.web && result.web.results) || [];
+          const newsResults = (result.news && result.news.results) || [];
+          
+          const articles = []
+            .concat(
+              webResults.map(item => ({
+                title: item.title,
+                url: item.url,
+                description: item.description,
+                published: item.age || null,
+              })),
+              newsResults.map(item => ({
+                title: item.title,
+                url: item.url,
+                description: item.description,
+                published: item.age || null,
+              }))
+            )
+            .filter(a => a.url);
           resolve(articles);
         } catch (e) {
           logError(`Failed to parse Brave response for "${query}": ${e.message}`);
@@ -96,9 +110,11 @@ async function validateUrl(url) {
   return new Promise((resolve) => {
     try {
       const urlObj = new URL(url);
-      https.head(url, { timeout: 5000 }, (res) => {
+      const req = https.request(url, { method: 'HEAD', timeout: 5000 }, (res) => {
         resolve(res.statusCode < 400);
-      }).on('error', () => resolve(false));
+      });
+      req.on('error', () => resolve(false));
+      req.end();
     } catch (e) {
       resolve(false);
     }

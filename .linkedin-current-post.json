@@ -1,11 +1,19 @@
 {
   "type": "insight",
-  "angle": "Fiber Gold Rush",
-  "fullPost": "**FIBER GOLD RUSH**\n\nMarket reality: Fiber deployment in PA/NY accelerating—both hyperscaler interconnect and last-mile broadband. Major investments in undersea cables landing on Northeast coast.\n\nHere's what this means for infrastructure operators:\n• Fiber expertise is becoming a critical differentiator. Operators with fiber knowledge will be preferred partners.\n• Speed of deployment becomes competitive advantage\n• Operators who understand this market win\n\nThe question isn't whether this happens. It's whether you're ahead of it.\n\nWhat's your strategy for competing with national fiber operators?\n\n---\n— Tim Ryan, Pro-Tel",
-  "context": "Fiber deployment in PA/NY accelerating—both hyperscaler interconnect and last-mile broadband. Major investments in undersea cables landing on Northeast coast.",
-  "implication": "Fiber expertise is becoming a critical differentiator. Operators with fiber knowledge will be preferred partners.",
+  "angle": "Power Constraints",
+  "fullPost": "**POWER CONSTRAINTS**\n\nMarket reality: Northeast power grid already stressed. Data center power availability becoming a limiting factor for expansion in some PA/NY locations.\n\nHere's what this means for infrastructure operators:\n• Locations with power infrastructure solutions become premium. Creative power partnerships matter.\n• Speed of deployment becomes competitive advantage\n• Operators who understand this market win\n\nThe question isn't whether this happens. It's whether you're ahead of it.\n\nWhat's your power redundancy story to customers?\n\n---\n— Tim Ryan, Pro-Tel",
+  "context": "Northeast power grid already stressed. Data center power availability becoming a limiting factor for expansion in some PA/NY locations.",
+  "implication": "Locations with power infrastructure solutions become premium. Creative power partnerships matter.",
   "source": "Northeast Market Analysis",
   "sourceUrl": "https://protelinfrastructure.com",
-  "generatedAt": "2026-03-26T18:40:07.979Z",
+  "image": {
+    "url": "https://img.recraft.ai/wKOwl8KyiKcD59aJwWO1IyTr2qOispULNyoP0j0wZAQ/rs:fit:1024:1024:0/raw:1/plain/abs://external/images/8e3ba6f6-aa76-4581-acb2-bea293d6ce0d",
+    "prompt": "Power infrastructure, electrical distribution systems, backup generators, power management facility, industrial equipment, professional photography",
+    "revisedPrompt": null,
+    "localPath": "/Users/timothyryan/.openclaw/workspace/.linkedin-post-2026-03-26T22-12-58.jpg",
+    "status": "ready",
+    "error": null
+  },
+  "generatedAt": "2026-03-26T22:12:58.775Z",
   "status": "ready-to-post"
 }

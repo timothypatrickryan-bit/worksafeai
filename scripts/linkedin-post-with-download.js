@@ -269,7 +269,21 @@ async function generatePostWithImage() {
 
     // Generate post text
     const engagement = angle.engagementHooks[Math.floor(Math.random() * angle.engagementHooks.length)];
-    const post = generatePost(angle, article, engagement);
+    const post = `**${angle.name.toUpperCase()}**
+
+${article ? `Recent news: ${article.title}` : `Market reality: ${angle.context}`}
+
+Here's what this means for infrastructure operators:
+• ${angle.implication}
+• Speed of deployment becomes competitive advantage
+• Operators who understand this market win
+
+The question isn't whether this happens. It's whether you're ahead of it.
+
+${engagement}
+
+---
+— Tim Ryan, Pro-Tel`;
 
     // Save post data
     const postData = {
