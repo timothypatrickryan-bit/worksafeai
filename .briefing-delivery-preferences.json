@@ -1,0 +1,44 @@
+{
+  "briefings": {
+    "hyperscaler-daily": {
+      "name": "Hyperscaler Daily Update",
+      "enabled": true,
+      "delivery": {
+        "email": {
+          "enabled": true,
+          "address": "tim.ryan@pro-tel.com",
+          "format": "html-executive",
+          "subject": "Hyperscaler Daily Update - Data Center & Fiber Infrastructure"
+        },
+        "telegram": {
+          "enabled": false,
+          "address": null,
+          "format": null
+        }
+      },
+      "schedule": "Daily @ 7:00 AM EST",
+      "createdAt": "2026-03-27T13:25:00Z",
+      "updatedAt": "2026-03-27T13:25:00Z"
+    },
+    "linkedin-post": {
+      "name": "LinkedIn Auto-Post",
+      "enabled": true,
+      "delivery": {
+        "linkedin": {
+          "enabled": true,
+          "account": "tim.ryan@pro-tel.com",
+          "format": "social-media"
+        }
+      },
+      "schedule": "Tue/Thu/Sat @ 9:00 AM EST",
+      "createdAt": "2026-03-24T07:11:00Z",
+      "updatedAt": "2026-03-24T07:11:00Z"
+    }
+  },
+  "emailConfig": {
+    "sender": "lucy@elevationaiagents.com",
+    "senderName": "Lucy (AI Agent)",
+    "smtpProvider": "gmail",
+    "note": "Uses f5zothoi@gmail.com Gmail account for SMTP relay"
+  }
+}

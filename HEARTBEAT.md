@@ -261,11 +261,12 @@ You create task → Assign to Lucy → Automation detects
 
 ## Hyperscaler Daily Update (✅ LIVE - Daily @ 7:00 AM EST)
 
-**Status:** 🟢 **LIVE & AUTOMATED** - Activated March 25, 2026 @ 2:53 PM EST
+**Status:** 🟢 **LIVE & AUTOMATED** - Activated March 25, 2026 @ 2:53 PM EST | **Updated March 27, 2026** - Email delivery configured
 
 **Purpose:** Curated data center construction & fiber deployment news with verified links
 
-**Account:** Tim Ryan (tim.ryan@pro-tel.com)  
+**Account:** Tim Ryan  
+**Email Delivery:** ✅ tim.ryan@pro-tel.com (Executive HTML format) — *Updated 9:25 AM EST March 27*  
 **Topics:**
 - Data center construction announcements
 - Hyperscaler facility expansion news
@@ -275,8 +276,9 @@ You create task → Assign to Lucy → Automation detects
 - Broadband fiber expansion
 
 **Schedule:** Automated via macOS launchd (Daily @ 7:00 AM EST)  
-**Method:** Brave Search API + Link validation + Report generation  
-**API Key:** ✅ Configured (BSAHJ3Wmk1IbHNqEsACADrcFLfW5eLc)
+**Method:** Brave Search API + Link validation + HTML email generation + SMTP delivery  
+**API Key:** ✅ Configured (BSAHJ3Wmk1IbHNqEsACADrcFLfW5eLc)  
+**Email Config:** ✅ Gmail SMTP (f5zothoi@gmail.com) via lucy@elevationaiagents.com
 
 **Automation Pipeline:**
 1. ✅ **7:00 AM EST trigger** — launchd job (Daily)
@@ -438,79 +440,6 @@ Accelerate Pro-Tel's growth by establishing market leadership in **Data Center S
 - Execution delays → Weekly task reviews
 
 ---
-
-## LinkedIn Content Posting (✅ LIVE - Tue/Thu/Sat @ 9 AM EST)
-
-**Status:** 🟢 **LIVE & AUTOMATED** - Activated March 24, 2026 @ 7:11 AM EST
-
-**Account:** tim.ryan@pro-tel.com  
-**Topics:** Data Center, Telecommunications, Wireless Industry  
-**Schedule:** Automated via macOS launchd (Tue/Thu/Sat @ 9 AM EST)  
-**Method:** Brave Search API + Post generation + Browser relay posting  
-**API Key:** ✅ Configured (BSAHJ3Wmk1IbHNqEsACADrcFLfW5eLc)
-
-**Automation Pipeline:**
-1. ✅ **9:00 AM EST trigger** — launchd job (Tue/Thu/Sat)
-2. ✅ **Brave Search API** — Fetches real-time trending articles
-3. ✅ **Post generation** — Creates data-backed posts with sources
-4. ✅ **Alternating topics** — Industry Insight → Trending Topic → Insight
-5. ✅ **Browser relay posting** — Posts to LinkedIn via authenticated session
-6. ✅ **Logging & tracking** — Records all activity + Brave API usage
-
-**Core Files:**
-- `scripts/linkedin-post-now-brave.js` — Post generator with Brave Search
-- `scripts/linkedin-auto-post-brave.sh` — Scheduled automation runner
-- `scripts/linkedin-browser-post-automation.js` — Browser posting helper
-- `~/Library/LaunchAgents/com.openclaw.linkedin-auto-post.plist` — macOS scheduler (ACTIVE)
-- `.env` — Brave API key (secure storage)
-- `.linkedin-current-post.json` — Latest generated post (with sources)
-- `.linkedin-posts.log` — Complete posting history
-- `.linkedin-launchd.log` — Automation events (Tue/Thu/Sat)
-- `.linkedin-launchd-error.log` — Error tracking
-
-**What's Automated:**
-- ✅ Content generation (Tue/Thu/Sat @ 9 AM, real-time research)
-- ✅ Scheduling (macOS launchd - LIVE)
-- ✅ Topic alternation (Insight → Trending → Insight)
-- ✅ Post logging (all activity tracked)
-- ✅ Browser posting (auto-posts when relay active)
-- ✅ Brave Search integration (up to 2,000 queries/month, using ~13/month)
-
-**Live Deployment (March 24, 2026):**
-- ✅ Brave API key configured & tested
-- ✅ Post generation verified (tested Insight + Trending)
-- ✅ launchd job activated
-- ✅ Logging infrastructure in place
-- ✅ Browser relay integration ready
-- ✅ All documentation updated
-
-**First Live Post:**
-🚀 **Tuesday, March 26, 2026 @ 9:00 AM EST**
-
-**Manual Post (Any Time):**
-```bash
-node scripts/linkedin-post-now-brave.js insight  # Generate insight post
-node scripts/linkedin-post-now-brave.js trending # Generate trending post
-cat .linkedin-current-post.json | jq '.fullPost' # View generated post
-```
-
-**Check Status:**
-```bash
-launchctl list | grep linkedin          # Verify scheduler active
-tail -20 .linkedin-posts.log             # View posting history
-tail -20 .linkedin-launchd.log           # View automation events (post-activation)
-```
-
-**Brave Search Metrics:**
-```bash
-grep "Searching Brave" .linkedin-launchd.log | wc -l  # Count API calls
-# Safe usage: ~3 calls/week = ~13/month (free tier: 2,000/month)
-```
-
-**Full Documentation:**
-- `LINKEDIN_BRAVE_DEPLOYMENT.md` — Complete deployment guide
-- `LINKEDIN_AUTOMATION_BRAVE_INTEGRATION.md` — Technical reference
-- `LINKEDIN_SETUP_FINAL.md` — Original setup guide
 
 ---
 

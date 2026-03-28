@@ -30,6 +30,9 @@ const gapManager = require('./gap-remediation-manager');
 // Load auto-router
 const autoRouter = require('./task-auto-router');
 
+// Load work generator
+const { generateWorkItems } = require('./work-generator');
+
 function readState() {
   try {
     return JSON.parse(fs.readFileSync(STATE_FILE, 'utf8'));
@@ -229,7 +232,19 @@ function main() {
       });
     }
     
-    // Check 5: Gap remediation health
+    // Check 5: Work generation (every 6 hours)
+    // Simple check: only run work generation if queue is below threshold
+    if (queued.length < 3 && Math.random() < 0.167) { // ~10% of runs (1 in 6)
+      log(`🔄 Running work generation scan (queue below threshold)...`);
+      try {
+        generateWorkItems();
+        log(`✅ Work generation complete — queue refreshed`);
+      } catch (e) {
+        log(`⚠️ Work generation error: ${e.message}`);
+      }
+    }
+    
+    // Check 6: Gap remediation health
     reportGapHealth();
     
     // Summary

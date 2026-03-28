@@ -183,8 +183,21 @@ async function main() {
   fs.writeFileSync(REPORT_FILE, report);
   fs.writeFileSync(ARTICLES_FILE, JSON.stringify({ articles: allArticles, generated: new Date().toISOString() }, null, 2));
 
-  log(`\n💬 Report ready for Telegram delivery`);
-  log(`   Recipient: Tim (via @tryanz92 bot)`);
+  log(`\n📧 Report ready for email delivery`);
+  log(`   Recipient: tim.ryan@pro-tel.com`);
+  log(`   Format: Executive HTML`);
+  
+  // Call email sender script (separate process)
+  const { execSync } = require('child_process');
+  try {
+    execSync(`node ${path.join(WORKSPACE, 'scripts/hyperscaler-email-sender.js')}`, { 
+      stdio: 'inherit',
+      timeout: 30000 
+    });
+  } catch (emailErr) {
+    logError(`Email delivery failed: ${emailErr.message}`);
+  }
+  
   log(`\n✅ Hyperscaler Daily Update complete!`);
 }
 
