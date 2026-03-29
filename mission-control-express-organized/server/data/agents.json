@@ -8,7 +8,11 @@
     "status": "idle",
     "uptime": "99.2%",
     "taskCount": 145,
-    "updatedAt": "2026-03-29T14:39:32.771Z"
+    "updatedAt": "2026-03-29T16:53:04.299Z",
+    "assignedTasks": [
+      "1774803056250",
+      "1774803184283"
+    ]
   },
   {
     "id": "chief",
@@ -39,7 +43,11 @@
     "specialty": "UI/UX, React components",
     "status": "online",
     "uptime": "95.2%",
-    "taskCount": 89
+    "taskCount": 89,
+    "assignedTasks": [
+      "1774803115652"
+    ],
+    "updatedAt": "2026-03-29T16:51:55.672Z"
   },
   {
     "id": "jarvis",
@@ -100,5 +108,16 @@
     "status": "online",
     "uptime": "98.9%",
     "taskCount": 78
+  },
+  {
+    "id": "financial-advisor",
+    "name": "Financial Advisor",
+    "role": "Financial Planning & Advisory",
+    "avatar": "💰",
+    "specialty": "Financial analysis, investment strategy, wealth management",
+    "status": "online",
+    "uptime": "97.4%",
+    "taskCount": 12,
+    "updatedAt": "2026-03-29T18:15:00.000Z"
   }
 ]
