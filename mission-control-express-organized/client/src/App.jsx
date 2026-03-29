@@ -8,6 +8,7 @@ export default function App() {
   const getPageTitle = () => {
     if (location.pathname.includes('/edit')) return 'Edit Project';
     if (location.pathname.startsWith('/projects/')) return 'Project Details';
+    if (location.pathname === '/tasks') return 'Task Management';
     if (location.pathname === '/gap-analysis') return 'Gap Analysis';
     if (location.pathname === '/improvements') return 'Improvements Pipeline';
     if (location.pathname === '/team') return 'Team';
@@ -16,6 +17,7 @@ export default function App() {
     if (location.pathname === '/memory') return 'Memory';
     if (location.pathname === '/docs') return 'Docs';
     if (location.pathname === '/skills') return 'Skills Management';
+    if (location.pathname === '/briefing-queue') return 'Briefing Approval Queue';
     return 'Dashboard';
   };
 
