@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import projectMetadata from '../data/projectMetadata';
-import DocumentViewer from '../components/DocumentViewer';
 import TaskManagement from '../components/TaskManagement';
 
 const STATUS_OPTIONS = ['Active', 'In Progress', 'Paused', 'Completed', 'Archived'];
@@ -364,9 +363,6 @@ export default function ProjectDetail() {
         projectId={parseInt(id)}
         tasks={metadata?.sections?.find(s => s.tasks)?.tasks || []}
       />
-
-      {/* Documents Section */}
-      <DocumentViewer projectId={parseInt(id)} />
 
       {/* Action Buttons */}
       <div className="flex gap-3">
