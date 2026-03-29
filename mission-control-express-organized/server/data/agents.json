@@ -1,0 +1,104 @@
+[
+  {
+    "id": "lucy",
+    "name": "Lucy",
+    "role": "Lead AI Agent",
+    "avatar": "🍀",
+    "specialty": "Full-stack development, project management",
+    "status": "idle",
+    "uptime": "99.2%",
+    "taskCount": 145,
+    "updatedAt": "2026-03-29T14:39:32.771Z"
+  },
+  {
+    "id": "chief",
+    "name": "Chief",
+    "role": "Architecture & Design",
+    "avatar": "🏛️",
+    "specialty": "System architecture, design decisions",
+    "status": "offline",
+    "uptime": "98.5%",
+    "taskCount": 156,
+    "updatedAt": "2026-03-29T14:39:40.442Z"
+  },
+  {
+    "id": "velma",
+    "name": "Velma",
+    "role": "QA & Code Review",
+    "avatar": "🧪",
+    "specialty": "Test automation, quality assurance",
+    "status": "online",
+    "uptime": "98.7%",
+    "taskCount": 45
+  },
+  {
+    "id": "johnny",
+    "name": "Johnny",
+    "role": "Frontend Engineer",
+    "avatar": "✨",
+    "specialty": "UI/UX, React components",
+    "status": "online",
+    "uptime": "95.2%",
+    "taskCount": 89
+  },
+  {
+    "id": "jarvis",
+    "name": "Jarvis",
+    "role": "Backend Engineer",
+    "avatar": "⚙️",
+    "specialty": "API development, databases",
+    "status": "online",
+    "uptime": "97.1%",
+    "taskCount": 67
+  },
+  {
+    "id": "opus",
+    "name": "Opus",
+    "role": "Advanced Reasoning",
+    "avatar": "🧠",
+    "specialty": "Deep analysis, complex problem solving",
+    "status": "online",
+    "uptime": "99.5%",
+    "taskCount": 22
+  },
+  {
+    "id": "laura",
+    "name": "Laura",
+    "role": "Strategy & Brand",
+    "avatar": "📈",
+    "specialty": "Product strategy, business development",
+    "status": "online",
+    "uptime": "96.8%",
+    "taskCount": 35
+  },
+  {
+    "id": "scout",
+    "name": "Scout",
+    "role": "Research & Analysis",
+    "avatar": "🔍",
+    "specialty": "Market research, competitive analysis",
+    "status": "online",
+    "uptime": "96.1%",
+    "taskCount": 53
+  },
+  {
+    "id": "mark",
+    "name": "Mark",
+    "role": "Operations",
+    "avatar": "📋",
+    "specialty": "Project coordination, workflow management",
+    "status": "online",
+    "uptime": "97.3%",
+    "taskCount": 41
+  },
+  {
+    "id": "steven",
+    "name": "Steven",
+    "role": "DevOps & Infrastructure",
+    "avatar": "🔧",
+    "specialty": "Deployment, infrastructure, monitoring",
+    "status": "online",
+    "uptime": "98.9%",
+    "taskCount": 78
+  }
+]
