@@ -24,6 +24,9 @@ export default {
         danger: '#dc2626',
         critical: '#991b1b',
         neutral: '#f8fafc',
+        slate: {
+          900: '#0f172a',
+        },
         // New accent colors for depth
         accent: {
           cyan: '#06b6d4',
@@ -37,7 +40,7 @@ export default {
         'glass-lg': '0 20px 60px 0 rgba(31, 38, 135, 0.3)',
         'glass-sm': '0 4px 15px 0 rgba(31, 38, 135, 0.2)',
         'depth': '0 10px 40px -15px rgba(0, 0, 0, 0.3)',
-        'depth-lg': '0 20px 60px -20px rgba(0, 0, 0, 0.4)',
+        'depth-lg': '0 20px 60px -15px rgba(6, 182, 212, 0.3), 0 10px 40px -15px rgba(0, 0, 0, 0.4)',
       },
       backdropBlur: {
         'glass': 'blur(10px)',

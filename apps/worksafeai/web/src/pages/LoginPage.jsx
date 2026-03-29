@@ -56,6 +56,7 @@ export default function LoginPage() {
               <input
                 id="email"
                 type="email"
+                autoComplete="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
@@ -72,6 +73,7 @@ export default function LoginPage() {
               <input
                 id="password"
                 type="password"
+                autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
@@ -91,7 +93,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="group w-full relative overflow-hidden rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 py-3 px-4 font-semibold text-white transition-all duration-300 hover:shadow-depth disabled:opacity-50 disabled:cursor-not-allowed hover:from-blue-500 hover:to-cyan-400"
+              className="btn-login-signin group w-full relative overflow-hidden bg-gradient-to-r from-blue-600 to-cyan-500 text-white hover:shadow-depth-lg hover:from-blue-500 hover:to-cyan-400 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <div className="flex items-center justify-center gap-2">
                 {loading ? (
