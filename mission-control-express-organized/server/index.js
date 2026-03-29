@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+const { executeProject } = require('./lib/project-executor');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -225,7 +226,15 @@ app.post('/api/projects', (req, res) => {
   };
   projects.push(newProject);
   saveProjects(projects);
-  res.status(201).json({ success: true, project: newProject });
+
+  // Auto-execute the project (generate briefings and tasks)
+  const executionResult = executeProject(newProject);
+  
+  res.status(201).json({ 
+    success: true, 
+    project: newProject,
+    execution: executionResult,
+  });
 });
 
 // DELETE /api/projects/:id - delete project
