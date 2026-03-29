@@ -9,6 +9,7 @@ export default function Docs() {
   const [docContent, setDocContent] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [loadingDoc, setLoadingDoc] = useState(false);
+  const [currentCategory, setCurrentCategory] = useState(null);
   useEffect(() => {
     fetchDocuments();
   }, []);
@@ -63,9 +64,10 @@ export default function Docs() {
     return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
   };
 
-  const handleDocClick = async (doc) => {
+  const handleDocClick = async (doc, category) => {
     try {
       setLoadingDoc(true);
+      setCurrentCategory(category);
       const docPath = encodeURIComponent(doc.path || doc.id || doc.name);
       const res = await fetch(`/api/documents/file/${docPath}`);
       
@@ -160,6 +162,20 @@ export default function Docs() {
         </div>
       </div>
 
+      {/* Breadcrumb Navigation */}
+      {currentCategory && (
+        <div className="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded border border-gray-200">
+          <button
+            onClick={() => setCurrentCategory(null)}
+            className="text-sm text-blue-600 hover:text-blue-700 hover:underline"
+          >
+            📚 Documentation
+          </button>
+          <span className="text-gray-400">/</span>
+          <span className="text-sm font-semibold text-slate-900">{currentCategory}</span>
+        </div>
+      )}
+
       {/* Categories */}
       <div className="space-y-6">
         {categories.length === 0 ? (
@@ -177,7 +193,7 @@ export default function Docs() {
                 {category.docs && category.docs.map((doc) => (
                   <button
                     key={doc.path || doc.id || doc.name}
-                    onClick={() => handleDocClick(doc)}
+                    onClick={() => handleDocClick(doc, category.name)}
                     disabled={loadingDoc}
                     className="w-full bg-white rounded border border-gray-200 p-4 flex items-center justify-between hover:border-gray-300 hover:shadow-sm transition-all disabled:opacity-50 text-left"
                   >
