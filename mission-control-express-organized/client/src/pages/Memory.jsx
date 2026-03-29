@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 export default function Memory() {
   const [entries, setEntries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [expandedDate, setExpandedDate] = useState(null);
+  const [expandedEntry, setExpandedEntry] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
 
   useEffect(() => {
@@ -32,8 +34,9 @@ export default function Memory() {
           groupedByDate[dateKey] = [];
         }
         groupedByDate[dateKey].push({
-          time: entry.time || '00:00',
-          content: entry.content || ''
+          time: entry.timestamp || '00:00',
+          title: entry.title || 'Entry',
+          content: entry.text || ''
         });
       });
 
@@ -156,9 +159,46 @@ export default function Memory() {
               {expandedDate === day.date && (
                 <div className="divide-y divide-gray-100">
                   {day.entries.map((entry, i) => (
-                    <div key={i} className="px-4 py-3 flex gap-4">
-                      <div className="text-xs text-gray-400 font-mono w-16 shrink-0 pt-0.5">{entry.time}</div>
-                      <div className="text-sm text-gray-700">{entry.content}</div>
+                    <div key={i} className="border-b border-gray-100 last:border-b-0">
+                      <button
+                        onClick={() => setExpandedEntry(expandedEntry === `${day.date}-${i}` ? null : `${day.date}-${i}`)}
+                        className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors text-left"
+                      >
+                        <div className="flex-1 min-w-0">
+                          <div className="text-xs text-gray-400 font-mono mb-1">{entry.time}</div>
+                          <div className="text-sm font-semibold text-slate-900">{entry.title}</div>
+                        </div>
+                        <span className="text-gray-400 text-sm shrink-0 ml-2">
+                          {expandedEntry === `${day.date}-${i}` ? '▾' : '▸'}
+                        </span>
+                      </button>
+                      {expandedEntry === `${day.date}-${i}` && (
+                        <div className="px-4 py-3 bg-gray-50 border-t border-gray-100">
+                          <div className="prose prose-sm max-w-none text-gray-700">
+                            <ReactMarkdown
+                              components={{
+                                h1: ({node, ...props}) => <h1 className="text-lg font-bold mt-3 mb-2" {...props} />,
+                                h2: ({node, ...props}) => <h2 className="text-base font-bold mt-3 mb-2" {...props} />,
+                                h3: ({node, ...props}) => <h3 className="text-sm font-bold mt-2 mb-1" {...props} />,
+                                p: ({node, ...props}) => <p className="mb-2" {...props} />,
+                                ul: ({node, ...props}) => <ul className="list-disc list-inside mb-2 space-y-1" {...props} />,
+                                ol: ({node, ...props}) => <ol className="list-decimal list-inside mb-2 space-y-1" {...props} />,
+                                li: ({node, ...props}) => <li className="text-sm" {...props} />,
+                                code: ({node, inline, ...props}) => 
+                                  inline ? 
+                                    <code className="bg-gray-200 px-2 py-0.5 rounded text-xs font-mono" {...props} /> :
+                                    <code className="bg-gray-200 px-2 py-1 rounded text-xs font-mono block mb-2 overflow-x-auto" {...props} />,
+                                blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-gray-300 pl-4 italic text-gray-600 mb-2" {...props} />,
+                                table: ({node, ...props}) => <table className="border-collapse border border-gray-300 text-xs mb-2" {...props} />,
+                                th: ({node, ...props}) => <th className="border border-gray-300 px-2 py-1 bg-gray-100 font-bold" {...props} />,
+                                td: ({node, ...props}) => <td className="border border-gray-300 px-2 py-1" {...props} />,
+                              }}
+                            >
+                              {entry.content}
+                            </ReactMarkdown>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>

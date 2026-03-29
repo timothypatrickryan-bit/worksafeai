@@ -6,6 +6,8 @@ const { validateBody } = require('../middleware/validation');
 const { createJTSASchema, updateJTSASchema, addParticipantSchema } = require('../validation/schemas');
 const { checkJtsaMonthlyLimit } = require('../middleware/featureLimit');
 const aiService = require('../ai/anthropicService');
+const { cachedResponse, invalidateCompanyCache } = require('../middleware/cache');
+const cacheService = require('../services/cacheService');
 
 // POST /api/companies/:cid/jtsas - create standalone JTSA (no project required)
 router.post('/companies/:cid/jtsas',
@@ -109,6 +111,9 @@ router.post('/companies/:cid/jtsas',
           },
         });
 
+      // OPTIMIZATION: Invalidate JTSA list cache for this company
+      await invalidateCompanyCache(companyId);
+
       res.status(201).json({
         id: jtsa.id,
         projectNumber: jtsa.project_number,
@@ -130,9 +135,22 @@ router.post('/companies/:cid/jtsas',
 );
 
 // GET /api/companies/:cid/jtsas - list all JTSAs for company
+// OPTIMIZED: Cached responses for 5 minutes with automatic invalidation on create/update
 router.get('/companies/:cid/jtsas',
   authenticateToken,
   verifyCompanyAccess,
+  cachedResponse(
+    (req) => {
+      // Cache key includes company, status, and date filters
+      // Different filters = different cache entries
+      return cacheService.keys.jtsaList(
+        req.params.cid,
+        req.query.status,
+        req.query.date
+      );
+    },
+    cacheService.TTL.JTSA_LIST // 5 minute TTL
+  ),
   async (req, res) => {
     try {
       const supabase = req.app.locals.supabase;
@@ -321,6 +339,9 @@ router.patch('/jtsas/:id',
           details: updateData,
         });
 
+      // OPTIMIZATION: Invalidate JTSA list cache for this company
+      await invalidateCompanyCache(jtsa.company_id);
+
       res.json(updated);
     } catch (error) {
       console.error('JTSA update error:', error.message);
@@ -458,6 +479,9 @@ router.post('/jtsas/:id/complete',
           resource_type: 'jtsa',
           resource_id: req.params.id,
         });
+
+      // OPTIMIZATION: Invalidate JTSA list cache for this company
+      await invalidateCompanyCache(jtsa.company_id);
 
       res.json(updated);
     } catch (error) {

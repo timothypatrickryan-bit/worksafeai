@@ -1,0 +1,1027 @@
+{
+  "project": "Project Warp Speed - Hiring Plan",
+  "timeline": "12 months (April 2026 - March 2027)",
+  "totalBudget": {
+    "salaryAndBenefits": "$1,630,000 - $1,950,000",
+    "recruiting": "$150,000",
+    "onboarding": "$50,000",
+    "training": "$100,000",
+    "total": "$1,930,000 - $2,250,000"
+  },
+  "currentState": {
+    "headcount": 10,
+    "breakdown": {
+      "leadership": 2,
+      "sales": 3,
+      "technical": 2,
+      "operations": 1,
+      "field": 2
+    },
+    "revenue": "$30-50M estimated",
+    "marketShare": "<0.1% Northeast data center infrastructure"
+  },
+  "targetState": {
+    "headcount": 40,
+    "breakdown": {
+      "leadership": 3,
+      "sales": 8,
+      "technical": 6,
+      "operations": 4,
+      "marketing": 2,
+      "field": 17
+    },
+    "revenue": "$80-120M (2028 target)",
+    "marketShare": "2-3% Northeast (2028 target)"
+  },
+  "waves": [
+    {
+      "wave": 1,
+      "name": "Market Entry & Sales Foundation",
+      "startDate": "2026-04-01",
+      "endDate": "2026-06-30",
+      "duration": "3 months (recruiting) + 1 month onboarding",
+      "totalHeadcount": 8,
+      "focus": ["Sales leadership", "Market positioning", "Pipeline building"],
+      "budget": {
+        "salaryAndBenefits": "$420,000 - $550,000 (7 months)",
+        "recruiting": "$50,000",
+        "onboarding": "$20,000",
+        "training": "$30,000",
+        "total": "$520,000 - $650,000"
+      },
+      "criticalPath": [
+        "VP Sales recruited & offered (complete by March 15, start April 1)",
+        "Sales playbook drafted with VP Sales (April)",
+        "Account Executives recruited (April-May)",
+        "Sales operations infrastructure in place (April)",
+        "First deals in pipeline by May (target $1M+)"
+      ],
+      "roles": [
+        {
+          "roleId": "w1-r1",
+          "priority": "CRITICAL",
+          "function": "Sales Leadership",
+          "title": "VP of Sales",
+          "reportingTo": "CEO (Tim Ryan)",
+          "quantity": 1,
+          "experience": "15+ years enterprise infrastructure sales",
+          "background": [
+            "Enterprise sales (IT services, telecom, infrastructure)",
+            "$5M-50M+ deal experience",
+            "Team leadership (5-10+ AEs)",
+            "Growth from <$50M to $100M+ revenue"
+          ],
+          "keyResponsibilities": [
+            "Sales strategy & go-to-market",
+            "Sales team recruitment & leadership",
+            "Sales playbook development",
+            "Customer relationship management",
+            "Pipeline forecasting & analytics",
+            "Commission plan design"
+          ],
+          "requiredSkills": [
+            "Sales strategy",
+            "Team leadership",
+            "Deal negotiation",
+            "Pipeline management",
+            "Customer relationship building",
+            "Analytical (metrics, forecasting)"
+          ],
+          "preferredBackground": [
+            "Hyperscaler or large systems integrator",
+            "Infrastructure/datacenter market experience",
+            "SaaS or recurring revenue experience",
+            "Regional growth experience"
+          ],
+          "salaryBand": {
+            "base": "$150,000 - $180,000",
+            "bonus": "10-15% on revenue targets",
+            "equity": "If available (founder equity/options)"
+          },
+          "targetStartDate": "2026-04-15",
+          "recruitingStrategy": [
+            "Specialized infrastructure sales recruiter",
+            "Network with board/advisors for referrals",
+            "Target CommScope, Panduit, Equinix, Digital Realty sales leaders",
+            "Competitive package with upside",
+            "Reference checks critical (team culture fit)"
+          ],
+          "successMetrics30Days": [
+            "Sales team structure defined",
+            "Sales playbook drafted",
+            "5-10 prospects identified",
+            "Sales compensation plan designed"
+          ],
+          "successMetrics90Days": [
+            "2-3 AEs hired & ramping",
+            "Sales playbook documented & training complete",
+            "$1M-2M pipeline established",
+            "CRM configured & live",
+            "Weekly sales forecast running"
+          ],
+          "successMetrics180Days": [
+            "3-4 AEs productive & hitting quota",
+            "Sales team expanded (SDR if needed)",
+            "$2M-3M qualified pipeline",
+            "1-2 major contracts signed",
+            "Sales metrics dashboard live",
+            "Forecast accuracy 80%+"
+          ],
+          "timeToProductivity": "6-8 weeks",
+          "retentionRisk": "Medium (key person risk; needs equity/long-term incentive)",
+          "backupPlan": "Interim fractional VP Sales (3-6 months); promote strong AE if needed"
+        },
+        {
+          "roleId": "w1-r2",
+          "priority": "CRITICAL",
+          "function": "Sales",
+          "title": "Account Executive (Enterprise/Hyperscaler Focus)",
+          "reportingTo": "VP of Sales",
+          "quantity": 1,
+          "experience": "7-10 years enterprise infrastructure sales",
+          "background": [
+            "Enterprise sales infrastructure/IT",
+            "Complex RFP experience",
+            "$5M-20M+ deal closure",
+            "Multi-stakeholder account management"
+          ],
+          "keyResponsibilities": [
+            "Prospect identification & qualification",
+            "RFP response coordination",
+            "$5-20M deal closure",
+            "Customer relationship management",
+            "Pipeline development & forecasting"
+          ],
+          "territory": "Hyperscalers (Amazon, Microsoft, Google facilities in PA/NY)",
+          "salaryBand": {
+            "base": "$100,000 - $130,000",
+            "commission": "$30,000 - $50,000 OTE",
+            "totalOTE": "$130,000 - $180,000"
+          },
+          "targetStartDate": "2026-04-15",
+          "targetAnnualRevenue": "$5,000,000 - $10,000,000",
+          "successMetrics6Months": [
+            "$300,000-500,000 in signed contracts",
+            "$800,000-1,200,000 in pipeline",
+            "2-3 active deals",
+            "20-25% win rate",
+            "1-2 major reference customers"
+          ],
+          "timeToProductivity": "8-12 weeks"
+        },
+        {
+          "roleId": "w1-r3",
+          "priority": "CRITICAL",
+          "function": "Sales",
+          "title": "Account Executive (Regional/Colocation Focus)",
+          "reportingTo": "VP of Sales",
+          "quantity": 1,
+          "experience": "5-7 years regional/mid-market sales",
+          "background": [
+            "Infrastructure or colocation sales",
+            "Regional market knowledge (PA/NY preferred)",
+            "Mid-market facility sales",
+            "Territory building"
+          ],
+          "keyResponsibilities": [
+            "Regional market development",
+            "Colocation provider relationships",
+            "Regional DC expansion opportunities",
+            "Territory growth",
+            "Pipeline building"
+          ],
+          "territory": "Regional DCs & Colocation providers (50-200MW facilities)",
+          "salaryBand": {
+            "base": "$90,000 - $120,000",
+            "commission": "$30,000 - $50,000 OTE",
+            "totalOTE": "$120,000 - $170,000"
+          },
+          "targetStartDate": "2026-04-15",
+          "targetAnnualRevenue": "$4,000,000 - $7,000,000",
+          "successMetrics6Months": [
+            "$200,000-300,000 in signed contracts",
+            "$600,000-1,000,000 in pipeline",
+            "2-3 active colocation deals",
+            "20-25% win rate",
+            "3-5 customer relationships"
+          ],
+          "timeToProductivity": "8-12 weeks"
+        },
+        {
+          "roleId": "w1-r4",
+          "priority": "HIGH",
+          "function": "Sales Operations",
+          "title": "Sales Operations Manager",
+          "reportingTo": "VP of Sales",
+          "quantity": 1,
+          "experience": "5-7 years sales operations/enablement",
+          "background": [
+            "B2B sales operations (SaaS or infrastructure preferred)",
+            "CRM administration (Salesforce/HubSpot)",
+            "Sales process design",
+            "Analytics & reporting"
+          ],
+          "keyResponsibilities": [
+            "Sales process implementation",
+            "CRM configuration & management",
+            "Pipeline forecasting",
+            "Sales metrics & dashboards",
+            "Sales compensation administration"
+          ],
+          "salaryBand": {
+            "base": "$80,000 - $100,000"
+          },
+          "targetStartDate": "2026-04-15",
+          "successMetrics90Days": [
+            "CRM live & 90%+ adoption",
+            "Weekly pipeline report accurate",
+            "Sales forecast model functioning",
+            "Compensation plan documented"
+          ],
+          "timeToProductivity": "4-6 weeks"
+        },
+        {
+          "roleId": "w1-r5",
+          "priority": "HIGH",
+          "function": "Marketing",
+          "title": "Marketing Manager",
+          "reportingTo": "CEO (Tim Ryan)",
+          "quantity": 1,
+          "experience": "5-7 years B2B technology/infrastructure marketing",
+          "background": [
+            "B2B tech/infrastructure marketing",
+            "Content marketing & thought leadership",
+            "Digital marketing (LinkedIn, email, SEO)",
+            "Data center or telecom industry experience preferred"
+          ],
+          "keyResponsibilities": [
+            "B2B marketing strategy",
+            "Content development (case studies, whitepapers)",
+            "Digital marketing (LinkedIn, website, email)",
+            "Brand positioning & messaging",
+            "Lead generation campaigns",
+            "Industry event strategy"
+          ],
+          "salaryBand": {
+            "base": "$80,000 - $100,000"
+          },
+          "targetStartDate": "2026-04-15",
+          "successMetrics90Days": [
+            "Brand positioning live",
+            "Content calendar (6 months)",
+            "3-5 initial content pieces",
+            "LinkedIn strategy active",
+            "Website updated with new messaging",
+            "Lead generation tracking"
+          ],
+          "timeToProductivity": "4-6 weeks"
+        },
+        {
+          "roleId": "w1-r6",
+          "priority": "MEDIUM",
+          "function": "Sales Engineering",
+          "title": "Solutions Engineer",
+          "reportingTo": "VP of Sales",
+          "quantity": 1,
+          "experience": "7-10 years infrastructure engineering",
+          "background": [
+            "Infrastructure/datacenter engineering",
+            "Complex solutions design",
+            "RFP experience",
+            "Systems integration"
+          ],
+          "keyResponsibilities": [
+            "RFP technical response",
+            "Complex infrastructure design",
+            "Customer technical presentations",
+            "Design-build coordination",
+            "Post-sale technical enablement"
+          ],
+          "salaryBand": {
+            "base": "$110,000 - $140,000"
+          },
+          "targetStartDate": "2026-05-01",
+          "successMetrics90Days": [
+            "RFP process documented",
+            "Technical positioning materials created",
+            "5-10 RFPs supported with 90%+ quality"
+          ],
+          "timeToProductivity": "6-8 weeks"
+        },
+        {
+          "roleId": "w1-r7",
+          "priority": "MEDIUM",
+          "function": "Operations",
+          "title": "Operations Manager",
+          "reportingTo": "CEO (Tim Ryan)",
+          "quantity": 1,
+          "experience": "5-7 years project operations",
+          "background": [
+            "Construction/infrastructure operations",
+            "Project coordination",
+            "Metrics & dashboarding",
+            "Vendor management"
+          ],
+          "keyResponsibilities": [
+            "Project coordination & scheduling",
+            "Operational metrics",
+            "Vendor coordination",
+            "Safety & compliance",
+            "Finance support"
+          ],
+          "salaryBand": {
+            "base": "$75,000 - $95,000"
+          },
+          "targetStartDate": "2026-04-15",
+          "successMetrics90Days": [
+            "Operations metrics dashboard live",
+            "Project tracking system",
+            "Vendor scorecard system"
+          ],
+          "timeToProductivity": "3-4 weeks"
+        },
+        {
+          "roleId": "w1-r8",
+          "priority": "OPTIONAL",
+          "function": "Sales Development",
+          "title": "Sales Development Representative (SDR/BDR)",
+          "reportingTo": "VP of Sales",
+          "quantity": 1,
+          "experience": "2-4 years inside sales/BD",
+          "background": [
+            "Inside sales or business development",
+            "Outbound prospecting",
+            "B2B sales"
+          ],
+          "keyResponsibilities": [
+            "Prospect research & identification",
+            "Outbound lead generation",
+            "Lead qualification",
+            "Pipeline development"
+          ],
+          "salaryBand": {
+            "base": "$50,000 - $65,000",
+            "bonus": "$10,000 - $20,000 on targets"
+          },
+          "targetStartDate": "2026-05-01",
+          "successMetrics90Days": [
+            "50+ qualified leads per month",
+            "$300K+ pipeline influenced",
+            "30%+ meeting conversion"
+          ],
+          "timeToProductivity": "4-6 weeks",
+          "hireIf": "AEs confirm need for pipeline support; Wave 1 pipeline building slower than expected"
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "name": "Acceleration & Scale",
+      "startDate": "2026-07-01",
+      "endDate": "2026-09-30",
+      "duration": "3 months",
+      "totalHeadcount": 10,
+      "focus": ["Delivery scale", "Operations leadership", "Team consolidation"],
+      "budget": {
+        "salaryAndBenefits": "$410,000 - $615,000 (7 months)",
+        "recruiting": "$60,000",
+        "onboarding": "$20,000",
+        "training": "$40,000",
+        "total": "$530,000 - $735,000"
+      },
+      "criticalPath": [
+        "VP Operations recruited & offered (complete by June 1, start July 1)",
+        "Project managers & engineers recruited (June-July)",
+        "Operations processes documented (July)",
+        "Delivery capacity expanded 3-5x (August-September)",
+        "Finance & HR hired (August-September)"
+      ],
+      "roles": [
+        {
+          "roleId": "w2-r1",
+          "priority": "CRITICAL",
+          "function": "Operations Leadership",
+          "title": "VP of Operations / COO",
+          "reportingTo": "CEO (Tim Ryan)",
+          "quantity": 1,
+          "experience": "10-15 years operations/delivery leadership",
+          "background": [
+            "Operations/delivery leadership",
+            "Infrastructure/services company",
+            "Team scaling (10-50 people)",
+            "$10M-100M+ budget management",
+            "Process design & optimization"
+          ],
+          "keyResponsibilities": [
+            "Define delivery process & project management",
+            "Hire & manage operations team",
+            "Define operational metrics",
+            "Supply chain & vendor relationships",
+            "Safety, compliance, quality standards",
+            "Financial management & P&L",
+            "Strategic partnerships",
+            "Capacity planning & scalability"
+          ],
+          "salaryBand": {
+            "base": "$120,000 - $160,000",
+            "bonus": "10-15% on operational targets"
+          },
+          "targetStartDate": "2026-07-01",
+          "successMetrics90Days": [
+            "Operations team of 4-6 hired",
+            "PM methodology documented",
+            "Ops metrics dashboard live",
+            "Capacity model 3-5x current",
+            "Safety record maintained"
+          ],
+          "successMetrics180Days": [
+            "Cost per rack down 10-15%",
+            "Project margins 45-50%",
+            "Schedule adherence 95%+",
+            "Safety record zero incidents",
+            "Team capacity $50M+ project throughput"
+          ],
+          "timeToProductivity": "6-8 weeks"
+        },
+        {
+          "roleId": "w2-r2",
+          "priority": "HIGH",
+          "function": "Project Management",
+          "title": "Senior Project Manager",
+          "reportingTo": "VP of Operations",
+          "quantity": 2,
+          "experience": "7-10 years project management",
+          "background": [
+            "Infrastructure/datacenter PM",
+            "Large project experience ($5M-50M)",
+            "Multi-vendor coordination",
+            "PMP or equivalent"
+          ],
+          "keyResponsibilities": [
+            "Manage large infrastructure projects",
+            "Project planning, scheduling, budgeting",
+            "Vendor coordination",
+            "Risk management",
+            "Team coordination",
+            "Project close-out"
+          ],
+          "salaryBand": {
+            "base": "$90,000 - $110,000 each"
+          },
+          "targetStartDate": "2026-07-01",
+          "targetCapacity": "2-3 large projects per PM",
+          "successMetrics90Days": [
+            "2-3 large projects under management",
+            "Project margins within 5% forecast",
+            "Schedule adherence 95%+",
+            "Customer satisfaction 4.5+/5"
+          ],
+          "timeToProductivity": "4-6 weeks"
+        },
+        {
+          "roleId": "w2-r3",
+          "priority": "HIGH",
+          "function": "Engineering",
+          "title": "Senior Infrastructure Engineer",
+          "reportingTo": "VP of Operations",
+          "quantity": 2,
+          "experience": "10+ years infrastructure engineering",
+          "background": [
+            "Datacenter/hyperscale facility",
+            "High-density system design",
+            "Fiber optic expertise",
+            "Large project experience"
+          ],
+          "keyResponsibilities": [
+            "Infrastructure design for large projects",
+            "High-density cabling system design",
+            "AI-grade infrastructure specialization",
+            "Technical standards & best practices",
+            "Design documentation",
+            "Technical team leadership"
+          ],
+          "salaryBand": {
+            "base": "$110,000 - $140,000 each"
+          },
+          "targetStartDate": "2026-07-01",
+          "successMetrics90Days": [
+            "Design specifications for 5+ major projects",
+            "Design review process established",
+            "Technical standards documented",
+            "Zero design-related rework",
+            "Junior engineer mentoring started"
+          ],
+          "timeToProductivity": "6-8 weeks"
+        },
+        {
+          "roleId": "w2-r4",
+          "priority": "HIGH",
+          "function": "Finance",
+          "title": "Finance Manager / Controller",
+          "reportingTo": "VP of Operations",
+          "quantity": 1,
+          "experience": "5-7 years accounting/finance",
+          "background": [
+            "Project-based accounting",
+            "Cost accounting/job costing",
+            "Financial reporting & analysis"
+          ],
+          "keyResponsibilities": [
+            "Financial planning & forecasting",
+            "Project accounting & P&L",
+            "Labor cost tracking",
+            "Monthly financial reporting",
+            "Payroll & benefits",
+            "Tax & compliance"
+          ],
+          "salaryBand": {
+            "base": "$85,000 - $105,000"
+          },
+          "targetStartDate": "2026-07-15",
+          "successMetrics90Days": [
+            "Monthly close in 5 business days",
+            "Project P&L accuracy 5%",
+            "Cash flow forecast live",
+            "Monthly board reporting ready"
+          ],
+          "timeToProductivity": "4-6 weeks"
+        },
+        {
+          "roleId": "w2-r5",
+          "priority": "MEDIUM",
+          "function": "HR / Recruiting",
+          "title": "HR Manager / Recruiting",
+          "reportingTo": "VP of Operations",
+          "quantity": 1,
+          "experience": "3-5 years HR/recruiting",
+          "background": [
+            "Growing company experience",
+            "Technical recruiting preferred"
+          ],
+          "keyResponsibilities": [
+            "Recruiting & hiring coordination",
+            "Onboarding & training programs",
+            "HR policies & employee relations",
+            "Compensation & benefits",
+            "Culture building & engagement"
+          ],
+          "salaryBand": {
+            "base": "$70,000 - $90,000"
+          },
+          "targetStartDate": "2026-08-01",
+          "successMetrics90Days": [
+            "Wave 2 hiring on-time",
+            "Onboarding program 90%+ effective",
+            "Employee engagement 4+/5",
+            "Retention rate 85%+"
+          ],
+          "timeToProductivity": "3-4 weeks"
+        },
+        {
+          "roleId": "w2-r6",
+          "priority": "MEDIUM",
+          "function": "Supply Chain",
+          "title": "Procurement / Supply Chain Manager",
+          "reportingTo": "VP of Operations",
+          "quantity": 1,
+          "experience": "5-7 years procurement/supply chain",
+          "background": [
+            "Vendor management",
+            "Infrastructure/manufacturing purchasing"
+          ],
+          "keyResponsibilities": [
+            "Vendor selection & management",
+            "Purchase order management",
+            "Inventory management",
+            "Supplier relationships",
+            "Cost reduction initiatives",
+            "Supply chain risk management"
+          ],
+          "salaryBand": {
+            "base": "$80,000 - $100,000"
+          },
+          "targetStartDate": "2026-08-01",
+          "successMetrics90Days": [
+            "Vendor scorecard system live",
+            "Lead times down 10-15%",
+            "Cost per unit down 5-10%",
+            "Strategic partnerships established"
+          ],
+          "timeToProductivity": "4-6 weeks"
+        },
+        {
+          "roleId": "w2-r7",
+          "priority": "MEDIUM",
+          "function": "Field Operations",
+          "title": "Senior Field Technician / Lead",
+          "reportingTo": "VP of Operations",
+          "quantity": 2,
+          "experience": "5-7 years infrastructure installation",
+          "background": [
+            "High-density cabling experience",
+            "Fiber optic certification",
+            "Multiple certifications",
+            "Team lead experience"
+          ],
+          "keyResponsibilities": [
+            "Complex infrastructure installation",
+            "Technical troubleshooting & testing",
+            "Field team leadership",
+            "Quality assurance",
+            "Safety & compliance",
+            "Training apprentices"
+          ],
+          "salaryBand": {
+            "base": "$70,000 - $90,000 each"
+          },
+          "targetStartDate": "2026-08-01",
+          "successMetrics90Days": [
+            "Lead 2-3 project teams",
+            "Quality defect rate <1%",
+            "Safety incidents zero",
+            "Mentoring junior techs"
+          ],
+          "timeToProductivity": "2-3 weeks"
+        }
+      ]
+    },
+    {
+      "wave": 3,
+      "name": "Field Team & Support Scaling",
+      "startDate": "2026-10-01",
+      "endDate": "2027-03-31",
+      "duration": "6 months",
+      "totalHeadcount": 14,
+      "focus": ["Field technician scaling", "Support team maturation", "Operational excellence"],
+      "budget": {
+        "salaryAndBenefits": "$325,000 - $500,000 (6 months)",
+        "recruiting": "$40,000",
+        "onboarding": "$10,000",
+        "training": "$30,000",
+        "total": "$405,000 - $580,000"
+      },
+      "roles": [
+        {
+          "roleId": "w3-r1",
+          "priority": "HIGH",
+          "function": "Field Operations",
+          "title": "Installation Technician",
+          "reportingTo": "VP of Operations / Senior Field Lead",
+          "quantity": 8,
+          "experience": "3-5 years cabling installation",
+          "background": [
+            "Cabling & fiber optic certification",
+            "Physical capability",
+            "Team capability"
+          ],
+          "keyResponsibilities": [
+            "Field installation of cabling",
+            "Equipment termination & testing",
+            "Site preparation",
+            "Safety & compliance",
+            "Documentation & hand-off"
+          ],
+          "salaryBand": {
+            "base": "$55,000 - $75,000",
+            "union": "Likely union rates apply"
+          },
+          "targetStartDate": "2026-10-01 - 2027-01-01 (staggered)",
+          "successMetrics": [
+            "Quality defect <1%",
+            "Safety incidents zero",
+            "Schedule adherence 95%+",
+            "Customer satisfaction 4.5+/5"
+          ],
+          "timeToProductivity": "2-4 weeks (trained)"
+        },
+        {
+          "roleId": "w3-r2",
+          "priority": "MEDIUM",
+          "function": "Field Operations",
+          "title": "Technician Apprentice",
+          "reportingTo": "Senior Field Lead",
+          "quantity": 4,
+          "experience": "0-2 years, technical aptitude",
+          "background": [
+            "High school diploma",
+            "Technical aptitude",
+            "Physical capability",
+            "Willing to learn & certify"
+          ],
+          "keyResponsibilities": [
+            "Field assistance & support",
+            "Equipment staging",
+            "Testing & documentation",
+            "On-the-job training",
+            "Safety compliance"
+          ],
+          "salaryBand": {
+            "base": "$40,000 - $50,000",
+            "plus": "Benefits & training"
+          },
+          "targetStartDate": "2026-10-01 - 2027-02-01 (staggered)",
+          "successMetrics": [
+            "Earn cabling cert within 12mo",
+            "Safety incidents zero",
+            "Progress to Technician role"
+          ],
+          "timeToProductivity": "4-6 weeks"
+        },
+        {
+          "roleId": "w3-r3",
+          "priority": "MEDIUM",
+          "function": "Safety & Compliance",
+          "title": "Safety Officer / Compliance Manager",
+          "reportingTo": "VP of Operations",
+          "quantity": 1,
+          "experience": "3-5 years safety/compliance",
+          "background": [
+            "OSHA certification",
+            "Field construction/infrastructure",
+            "Safety program design"
+          ],
+          "keyResponsibilities": [
+            "Safety program development",
+            "OSHA compliance",
+            "Safety training & certifications",
+            "Incident investigation",
+            "Risk assessments",
+            "Safety metrics"
+          ],
+          "salaryBand": {
+            "base": "$65,000 - $85,000"
+          },
+          "targetStartDate": "2026-11-01",
+          "successMetrics": [
+            "Safety incidents zero",
+            "OSHA compliance 100%",
+            "Safety training 100%",
+            "Metrics dashboard live"
+          ],
+          "timeToProductivity": "2-3 weeks"
+        },
+        {
+          "roleId": "w3-r4",
+          "priority": "MEDIUM",
+          "function": "Operations Support",
+          "title": "Admin / Operations Support",
+          "reportingTo": "VP of Operations",
+          "quantity": 2,
+          "experience": "2-3 years administrative/operations",
+          "background": [
+            "Office management",
+            "Customer service",
+            "Administrative support"
+          ],
+          "keyResponsibilities": [
+            "Administrative support",
+            "Scheduling & coordination",
+            "Documentation & filing",
+            "Customer communication",
+            "Operations assistance"
+          ],
+          "salaryBand": {
+            "base": "$45,000 - $60,000 each"
+          },
+          "targetStartDate": "2026-11-01 - 2027-01-01",
+          "successMetrics": [
+            "Operations support smooth",
+            "Scheduling 95%+ accurate",
+            "Documentation organized",
+            "Customer communication responsive"
+          ],
+          "timeToProductivity": "2-3 weeks"
+        }
+      ]
+    }
+  ],
+  "hiringMetrics": {
+    "april2026": {
+      "targetHires": 5,
+      "roles": ["VP Sales", "AE (2)", "Sales Ops", "Operations Mgr"],
+      "priorityLevel": "CRITICAL",
+      "impact": "Sales function activation"
+    },
+    "may2026": {
+      "targetHires": 2,
+      "roles": ["Solutions Engineer", "Marketing Mgr", "SDR (optional)"],
+      "priorityLevel": "HIGH",
+      "impact": "Sales support & brand launch"
+    },
+    "june2026": {
+      "targetHires": 1,
+      "roles": ["Complete Wave 1; begin Wave 2 recruiting"],
+      "priorityLevel": "HIGH",
+      "impact": "Ops leadership recruitment"
+    },
+    "july2026": {
+      "targetHires": 3,
+      "roles": ["VP Operations", "Senior PM (2)"],
+      "priorityLevel": "CRITICAL",
+      "impact": "Delivery foundation"
+    },
+    "august2026": {
+      "targetHires": 4,
+      "roles": ["Senior Engineer (2)", "Finance Mgr", "HR Mgr", "Procurement"],
+      "priorityLevel": "HIGH",
+      "impact": "Operations scaling"
+    },
+    "september2026": {
+      "targetHires": 1,
+      "roles": ["Senior Field Tech (1-2)"],
+      "priorityLevel": "MEDIUM",
+      "impact": "Field leadership"
+    },
+    "october2026": {
+      "targetHires": 4,
+      "roles": ["Field Techs (3-4)", "Apprentices (1)"],
+      "priorityLevel": "MEDIUM",
+      "impact": "Field capacity"
+    },
+    "november2026": {
+      "targetHires": 3,
+      "roles": ["Safety Officer", "Admin Support (2)"],
+      "priorityLevel": "MEDIUM",
+      "impact": "Operations support"
+    },
+    "december2026": {
+      "targetHires": 2,
+      "roles": ["Field Techs (2)", "Apprentices (1)"],
+      "priorityLevel": "MEDIUM",
+      "impact": "Field capacity expansion"
+    },
+    "january2027": {
+      "targetHires": 2,
+      "roles": ["Field Techs (2)"],
+      "priorityLevel": "MEDIUM",
+      "impact": "Final field scaling"
+    },
+    "totalYear1": {
+      "headcount": 30,
+      "breakdown": {
+        "executives": 2,
+        "sales": 5,
+        "technical": 4,
+        "operations": 4,
+        "marketing": 1,
+        "finance": 1,
+        "hr": 1,
+        "field": 12
+      }
+    }
+  },
+  "hiringChannels": {
+    "executive": [
+      "Specialized executive recruiters (focus on infrastructure sales)",
+      "Board/advisor network (referrals)",
+      "Target competitor companies (CommScope, Panduit, Equinix, Digital Realty)",
+      "Competitive package (salary + equity + upside)"
+    ],
+    "senior": [
+      "Executive recruiter + network",
+      "LinkedIn recruiting",
+      "Competitor sourcing",
+      "Employee referral program ($5-10K bonus)"
+    ],
+    "midLevel": [
+      "LinkedIn recruiting",
+      "Indeed + job boards",
+      "Employee referral program",
+      "University recruiting (for entry-level engineers)"
+    ],
+    "field": [
+      "Union hiring halls (for certified technicians)",
+      "Apprenticeship programs (IBEW, industry associations)",
+      "Employee referral program",
+      "Local technical schools"
+    ]
+  },
+  "onboardingPlan": {
+    "week1": [
+      "Company history, mission, positioning",
+      "Org structure & team introductions",
+      "Systems training (CRM, email, tools)",
+      "Meet CEO & team leads",
+      "Review first 30-day objectives"
+    ],
+    "week2_3": [
+      "Role-specific training (sales playbook, operations methodology, etc.)",
+      "Customer/prospect interviews",
+      "System hands-on training",
+      "Shadowing existing employees"
+    ],
+    "week4": [
+      "First independent project/task",
+      "Feedback & coaching",
+      "First customer/team interaction",
+      "30-day review"
+    ],
+    "responsibility": "HR Manager (hired Wave 2) + direct managers"
+  },
+  "criticalSuccessFactors": [
+    "VP Sales hired & productive by April 15 (all sales success depends on this)",
+    "Sales playbook documented & tested by May 31",
+    "First major contract signed by July 31",
+    "Operations leadership (VP Ops) hired by July 1",
+    "Field team recruiting begins Sept 1 (6-month lead time for skilled techs)",
+    "Maintain <4-week time-to-fill for all critical roles",
+    "Retention rate 85%+ (low turnover indicates good hiring/culture)"
+  ],
+  "budgetPhasing": {
+    "q2_2026": {
+      "salaryAndBenefits": "$140,000 - $183,000",
+      "recruiting": "$50,000",
+      "onboarding": "$20,000",
+      "training": "$30,000",
+      "total": "$240,000 - $283,000"
+    },
+    "q3_2026": {
+      "salaryAndBenefits": "$175,000 - $238,000",
+      "recruiting": "$60,000",
+      "onboarding": "$20,000",
+      "training": "$40,000",
+      "total": "$295,000 - $358,000"
+    },
+    "q4_2026": {
+      "salaryAndBenefits": "$245,000 - $345,000",
+      "recruiting": "$40,000",
+      "onboarding": "$10,000",
+      "training": "$30,000",
+      "total": "$325,000 - $425,000"
+    },
+    "q1_2027": {
+      "salaryAndBenefits": "$175,000 - $195,000",
+      "recruiting": "$0 - $25,000",
+      "onboarding": "$0 - $10,000",
+      "training": "$0 - $15,000",
+      "total": "$175,000 - $245,000"
+    }
+  },
+  "riskMitigation": {
+    "recruitmentRisk": {
+      "risk": "Difficulty hiring key roles (VP Sales, Senior Engineers)",
+      "probability": "Medium",
+      "mitigation": [
+        "Start recruiting 4-6 weeks early",
+        "Offer equity/upside for key roles",
+        "Specialized recruiters + network",
+        "Willing to pay premium",
+        "Multi-channel sourcing"
+      ]
+    },
+    "scalingPain": {
+      "risk": "Team growth faster than culture/processes",
+      "probability": "High",
+      "mitigation": [
+        "Invest in structured onboarding",
+        "Define culture early",
+        "Regular team communication",
+        "Strong HR focus",
+        "Performance reviews & feedback"
+      ]
+    },
+    "marketRisk": {
+      "risk": "AI buildout slows; market contracts",
+      "probability": "Low-Medium",
+      "mitigation": [
+        "Diversify customer base",
+        "Monthly market reviews",
+        "Flexible cost structure",
+        "Build long-term contracts"
+      ]
+    },
+    "executionRisk": {
+      "risk": "Sales slower than expected",
+      "probability": "High",
+      "mitigation": [
+        "Weekly sales forecasting",
+        "Aggressive pipeline building",
+        "Multiple sales tracks",
+        "Early reference customers",
+        "Content + sales coordinated"
+      ]
+    }
+  },
+  "measurmentCheckpoints": {
+    "april30_2026": {
+      "target": "VP Sales, 2 AEs, Sales Ops hired; prospects engaged",
+      "metrics": ["3-5 active deals", "Sales playbook drafted", "VP Sales assessment"]
+    },
+    "june30_2026": {
+      "target": "Sales team productive; $1M+ pipeline; first contract",
+      "metrics": ["Pipeline forecast", "Deal status", "Customer testimonial"]
+    },
+    "august31_2026": {
+      "target": "Wave 1 complete; Wave 2 recruited; $2-3M pipeline",
+      "metrics": ["Hiring complete", "Ops metrics", "Project pipeline"]
+    },
+    "december31_2026": {
+      "target": "Year 1 revenue $35-45M; team 20-25; operations smooth",
+      "metrics": ["Year-end financials", "Team size", "Operational KPIs"]
+    },
+    "march31_2027": {
+      "target": "Team 40-50; revenue $60M+ annualized; market leadership",
+      "metrics": ["Annual plan achievement", "Pipeline", "Customer wins", "Market share"]
+    }
+  }
+}

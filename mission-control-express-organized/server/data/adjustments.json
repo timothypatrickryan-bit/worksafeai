@@ -1,0 +1,64 @@
+[
+  {
+    "id": 1774483482139,
+    "projectId": 6,
+    "type": "Status Change",
+    "task": "Market Analysis",
+    "action": "Changed to Complete",
+    "feedback": null,
+    "timestamp": "2026-03-26T00:04:42.139Z",
+    "acknowledgedBy": "Lucy",
+    "acknowledgmentTime": "2026-03-26T00:17:37.813Z",
+    "acknowledgmentNote": "Good job"
+  },
+  {
+    "id": 1774484100277,
+    "projectId": 6,
+    "type": "Feedback",
+    "task": "Project",
+    "action": "Focus on market analysis this week - we need updated numbers by Friday",
+    "feedback": null,
+    "timestamp": "2026-03-26T00:15:00.277Z",
+    "acknowledgedBy": "Lucy",
+    "acknowledgmentTime": "2026-03-26T00:15:02.397Z",
+    "acknowledgmentNote": "Understood. Prioritizing market research. Will have updated TAM and competitor analysis ready by Friday EOD."
+  },
+  {
+    "id": 1774484229496,
+    "projectId": 6,
+    "type": "Feedback",
+    "task": "Project",
+    "action": "Learn more about my company Professional Teleconcepts, LLC, Pro-Tel and incorporate into the project.",
+    "feedback": null,
+    "timestamp": "2026-03-26T00:17:09.496Z",
+    "acknowledgedBy": "Lucy",
+    "acknowledgmentTime": "2026-03-26T11:49:00.000Z",
+    "acknowledgmentNote": "Acknowledged. Creating Scout research task to deep-dive Pro-Tel company profile (services, expertise, market position). Will integrate findings into Project Warp Speed briefings by Friday. Priority: understand core competencies, customer base, geographic strength, pricing model."
+  },
+  {
+    "id": 1774484727164,
+    "projectId": 6,
+    "type": "Feedback",
+    "task": "Project",
+    "action": "Prioritize the competitive analysis. Need detailed comparison with top 3 competitors by Wednesday.",
+    "feedback": null,
+    "timestamp": "2026-03-26T00:25:27.164Z",
+    "acknowledgedBy": null,
+    "acknowledgmentTime": null,
+    "acknowledgmentNote": null
+  },
+  {
+    "id": 1774485179857,
+    "projectId": 5,
+    "type": "Feedback",
+    "task": "Project",
+    "action": "The briefing created yesterday was not very helpful.  The links didn't work.",
+    "feedback": null,
+    "timestamp": "2026-03-26T00:32:59.857Z",
+    "acknowledgedBy": null,
+    "acknowledgmentTime": null,
+    "acknowledgmentNote": null
+  }
+]: null
+  }
+]

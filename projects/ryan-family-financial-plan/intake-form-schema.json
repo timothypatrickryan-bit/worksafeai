@@ -1,0 +1,451 @@
+{
+  "formId": "ryan-family-financial-plan-intake",
+  "formName": "Ryan Family Financial Plan — Client Intake",
+  "projectId": "ryan-family-financial-plan",
+  "status": "active",
+  "createdAt": "2026-03-28T22:09:00Z",
+  "sections": [
+    {
+      "sectionId": "personal-info",
+      "sectionName": "Personal Information",
+      "description": "Basic household and employment information",
+      "order": 1,
+      "fields": [
+        {
+          "fieldId": "name",
+          "label": "Full Name",
+          "type": "text",
+          "required": true,
+          "placeholder": "Timothy Ryan",
+          "value": null
+        },
+        {
+          "fieldId": "email",
+          "label": "Email",
+          "type": "email",
+          "required": true,
+          "placeholder": "tim.ryan@pro-tel.com",
+          "value": null
+        },
+        {
+          "fieldId": "phone",
+          "label": "Phone Number",
+          "type": "tel",
+          "required": false,
+          "placeholder": "+1 (XXX) XXX-XXXX",
+          "value": null
+        },
+        {
+          "fieldId": "household-status",
+          "label": "Household Status",
+          "type": "select",
+          "required": true,
+          "options": ["Single", "Married/Domestic Partner", "Head of Household", "Other"],
+          "value": null
+        },
+        {
+          "fieldId": "dependents",
+          "label": "Number of Dependents",
+          "type": "number",
+          "required": false,
+          "min": 0,
+          "value": null
+        },
+        {
+          "fieldId": "employment-status",
+          "label": "Employment Status",
+          "type": "select",
+          "required": true,
+          "options": ["Employed", "Self-Employed", "Both", "Other"],
+          "value": null
+        }
+      ]
+    },
+    {
+      "sectionId": "income",
+      "sectionName": "Income & Employment",
+      "description": "Annual income and employment stability",
+      "order": 2,
+      "fields": [
+        {
+          "fieldId": "employer",
+          "label": "Current Employer/Business",
+          "type": "text",
+          "required": true,
+          "placeholder": "Pro-Tel (Professional Teleconcepts, LLC)",
+          "value": null
+        },
+        {
+          "fieldId": "annual-salary",
+          "label": "Annual Salary/Income ($)",
+          "type": "currency",
+          "required": true,
+          "placeholder": "0.00",
+          "value": null
+        },
+        {
+          "fieldId": "bonus-comp",
+          "label": "Annual Bonus/Variable Comp ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00",
+          "value": null
+        },
+        {
+          "fieldId": "other-income",
+          "label": "Other Income Sources ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00 (freelance, side business, investments, etc.)",
+          "value": null
+        },
+        {
+          "fieldId": "years-in-role",
+          "label": "Years in Current Role",
+          "type": "number",
+          "required": false,
+          "min": 0,
+          "value": null
+        },
+        {
+          "fieldId": "employment-stability",
+          "label": "Employment Stability",
+          "type": "select",
+          "required": false,
+          "options": ["Very Stable", "Stable", "Some Risk", "High Risk"],
+          "value": null
+        }
+      ]
+    },
+    {
+      "sectionId": "assets",
+      "sectionName": "Assets",
+      "description": "Bank accounts, investments, and property",
+      "order": 3,
+      "fields": [
+        {
+          "fieldId": "checking-balance",
+          "label": "Checking Account Balance ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00",
+          "value": null
+        },
+        {
+          "fieldId": "savings-balance",
+          "label": "Savings Account Balance ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00",
+          "value": null
+        },
+        {
+          "fieldId": "emergency-fund-target",
+          "label": "Emergency Fund Target ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00",
+          "value": null
+        },
+        {
+          "fieldId": "investments-401k",
+          "label": "401(k)/IRA Balance ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00",
+          "value": null
+        },
+        {
+          "fieldId": "brokerage-balance",
+          "label": "Brokerage Account Balance ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00",
+          "value": null
+        },
+        {
+          "fieldId": "real-estate-equity",
+          "label": "Real Estate Equity ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00",
+          "value": null
+        },
+        {
+          "fieldId": "business-equity",
+          "label": "Business Equity / Ownership ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00 (Pro-Tel or other)",
+          "value": null
+        },
+        {
+          "fieldId": "other-assets",
+          "label": "Other Assets ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00 (vehicles, collectibles, crypto, etc.)",
+          "value": null
+        }
+      ]
+    },
+    {
+      "sectionId": "debts",
+      "sectionName": "Debts & Liabilities",
+      "description": "All outstanding debts",
+      "order": 4,
+      "fields": [
+        {
+          "fieldId": "credit-card-balance",
+          "label": "Total Credit Card Debt ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00",
+          "value": null
+        },
+        {
+          "fieldId": "credit-card-rate",
+          "label": "Average Credit Card APR (%)",
+          "type": "number",
+          "required": false,
+          "placeholder": "0.00",
+          "step": 0.01,
+          "value": null
+        },
+        {
+          "fieldId": "mortgage-balance",
+          "label": "Mortgage Balance ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00",
+          "value": null
+        },
+        {
+          "fieldId": "mortgage-rate",
+          "label": "Mortgage Interest Rate (%)",
+          "type": "number",
+          "required": false,
+          "placeholder": "0.00",
+          "step": 0.01,
+          "value": null
+        },
+        {
+          "fieldId": "mortgage-payment",
+          "label": "Monthly Mortgage Payment ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00",
+          "value": null
+        },
+        {
+          "fieldId": "auto-loan-balance",
+          "label": "Auto Loan Balance ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00",
+          "value": null
+        },
+        {
+          "fieldId": "student-loan-balance",
+          "label": "Student Loan Balance ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00",
+          "value": null
+        },
+        {
+          "fieldId": "other-debt",
+          "label": "Other Debt ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00 (business loans, personal loans, etc.)",
+          "value": null
+        }
+      ]
+    },
+    {
+      "sectionId": "monthly-expenses",
+      "sectionName": "Monthly Expenses",
+      "description": "Recurring monthly spending",
+      "order": 5,
+      "fields": [
+        {
+          "fieldId": "housing-total",
+          "label": "Housing (Rent/Mortgage, utilities, insurance, maintenance) ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00",
+          "value": null
+        },
+        {
+          "fieldId": "transportation-total",
+          "label": "Transportation (Car, insurance, gas, maintenance) ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00",
+          "value": null
+        },
+        {
+          "fieldId": "food-total",
+          "label": "Food (Groceries + Dining out) ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00",
+          "value": null
+        },
+        {
+          "fieldId": "healthcare-total",
+          "label": "Healthcare (Insurance, medical, dental) ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00",
+          "value": null
+        },
+        {
+          "fieldId": "personal-lifestyle",
+          "label": "Personal & Lifestyle (Subscriptions, hobbies, gym, etc.) ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00",
+          "value": null
+        },
+        {
+          "fieldId": "family-dependents",
+          "label": "Family & Dependents (Childcare, education, support) ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00",
+          "value": null
+        },
+        {
+          "fieldId": "other-expenses",
+          "label": "Other Monthly Expenses ($)",
+          "type": "currency",
+          "required": false,
+          "placeholder": "0.00",
+          "value": null
+        }
+      ]
+    },
+    {
+      "sectionId": "financial-goals",
+      "sectionName": "Financial Goals",
+      "description": "What you want to achieve financially",
+      "order": 6,
+      "fields": [
+        {
+          "fieldId": "short-term-goals",
+          "label": "Short-term Goals (0-12 months)",
+          "type": "textarea",
+          "required": false,
+          "placeholder": "e.g., Build emergency fund, pay off credit card, save for vacation",
+          "value": null
+        },
+        {
+          "fieldId": "medium-term-goals",
+          "label": "Medium-term Goals (1-5 years)",
+          "type": "textarea",
+          "required": false,
+          "placeholder": "e.g., Home purchase, business investment, education",
+          "value": null
+        },
+        {
+          "fieldId": "long-term-goals",
+          "label": "Long-term Goals (5+ years)",
+          "type": "textarea",
+          "required": false,
+          "placeholder": "e.g., Retirement, generational wealth, business growth",
+          "value": null
+        },
+        {
+          "fieldId": "financial-concerns",
+          "label": "Financial Pain Points / Concerns",
+          "type": "textarea",
+          "required": false,
+          "placeholder": "What keeps you up at night about money?",
+          "value": null
+        }
+      ]
+    },
+    {
+      "sectionId": "risk-values",
+      "sectionName": "Risk Tolerance & Values",
+      "description": "Your approach to money",
+      "order": 7,
+      "fields": [
+        {
+          "fieldId": "risk-tolerance",
+          "label": "Investment Risk Tolerance",
+          "type": "select",
+          "required": false,
+          "options": ["Very Conservative", "Conservative", "Moderate", "Aggressive", "Very Aggressive"],
+          "value": null
+        },
+        {
+          "fieldId": "financial-values",
+          "label": "What matters most to you financially?",
+          "type": "select",
+          "required": false,
+          "options": ["Security", "Growth", "Freedom", "Giving/Philanthropy", "Legacy", "Mixed"],
+          "value": null
+        },
+        {
+          "fieldId": "constraints",
+          "label": "Any major constraints or concerns?",
+          "type": "textarea",
+          "required": false,
+          "placeholder": "e.g., Health issues, upcoming major expense, job change, family changes",
+          "value": null
+        }
+      ]
+    },
+    {
+      "sectionId": "summary",
+      "sectionName": "Summary",
+      "description": "Financial overview",
+      "order": 8,
+      "fields": [
+        {
+          "fieldId": "total-assets",
+          "label": "Total Assets (calculated) ($)",
+          "type": "currency",
+          "required": false,
+          "readonly": true,
+          "value": null
+        },
+        {
+          "fieldId": "total-debt",
+          "label": "Total Debt (calculated) ($)",
+          "type": "currency",
+          "required": false,
+          "readonly": true,
+          "value": null
+        },
+        {
+          "fieldId": "net-worth",
+          "label": "Net Worth = Assets - Debt (calculated) ($)",
+          "type": "currency",
+          "required": false,
+          "readonly": true,
+          "value": null
+        },
+        {
+          "fieldId": "monthly-expenses-total",
+          "label": "Total Monthly Expenses (calculated) ($)",
+          "type": "currency",
+          "required": false,
+          "readonly": true,
+          "value": null
+        }
+      ]
+    }
+  ],
+  "submissions": [],
+  "metadata": {
+    "advisor": "Maxwell Reid",
+    "client": "Timothy Ryan",
+    "description": "Comprehensive client intake for personal financial planning",
+    "estimatesAllowed": true,
+    "autoCalculateFields": ["total-assets", "total-debt", "net-worth", "monthly-expenses-total"]
+  }
+}

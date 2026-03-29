@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.openclaw.nightly-ai-research</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/local/bin/node</string>
+		<string>/Users/timothyryan/.openclaw/workspace/scripts/nightly-ai-research.js</string>
+	</array>
+	<key>StartCalendarInterval</key>
+	<dict>
+		<key>Hour</key>
+		<integer>23</integer>
+		<key>Minute</key>
+		<integer>45</integer>
+	</dict>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+		<key>BRAVE_API_KEY</key>
+		<string>BSAHJ3Wmk1IbHNqEsACADrcFLfW5eLc</string>
+		<key>HOME</key>
+		<string>/Users/timothyryan</string>
+	</dict>
+	<key>StandardOutPath</key>
+	<string>/Users/timothyryan/.openclaw/workspace/.nightly-research.log</string>
+	<key>StandardErrorPath</key>
+	<string>/Users/timothyryan/.openclaw/workspace/.nightly-research-error.log</string>
+	<key>RunAtLoad</key>
+	<false/>
+</dict>
+</plist>

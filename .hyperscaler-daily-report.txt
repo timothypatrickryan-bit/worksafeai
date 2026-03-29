@@ -1,15 +1,15 @@
 ═══════════════════════════════════════════════════════════════
-  HYPERSCALER DAILY UPDATE - 3/27/2026
+  HYPERSCALER DAILY UPDATE - 3/29/2026
 ═══════════════════════════════════════════════════════════════
 
-✅ Found 31 verified articles
+✅ Found 30 verified articles
 
 
-📰 Data Center Construction (17 articles)
+📰 Data Center Construction (16 articles)
 ────────────────────────────────────────────────────────
 
 1. New Data Center Developments: March 2026
-   Published: 2 weeks ago
+   Published: 3 weeks ago
    <strong>AVAIO Digital Partners announced a multi-phase campus in Little Rock, Ark., beginning with a combined investment...
    🔗 https://www.datacenterknowledge.com/data-center-construction/new-data-center-developments-march-2026
 
@@ -22,33 +22,33 @@
    That’s why <strong>Advancing Data Center Construction West returns in 2026</strong> as the definitive forum uniting 900+...
    🔗 https://advancing-data-center-construction-west.com/
 
-4. El Paso Meta data center investment grows to $10 billion, bringing thousands of more jobs - KVIA
-   Published: 14 hours ago
-   Meta broke ground back in October 2025 and with today&#x27;s announcement, <strong>the center&#x27;s capacity will grow ...
-   🔗 https://kvia.com/news/top-stories/2026/03/26/meta-data-center-expansion/
+4. Large data center may be heading to former computer chip facility in Colorado Springs
+   Published: 15 hours ago
+   <strong>The data center will be constructed inside a former Intel microchip manufacturing plant and will be approximatel...
+   🔗 https://gazette.com/2026/03/28/large-data-center-may-be-heading-to-former-computer-chip-facility-in-colorado-springs/
 
 5. AI-First Hyperscalers: 2026’s Sprint Meets the Power Bottleneck
    Published: 2 weeks ago
    Fung noted that <strong>hyperscalers are now designing data centers optimized for large-scale AI workloads</strong>. “Th...
    🔗 https://www.datacenterknowledge.com/hyperscalers/hyperscalers-in-2026-what-s-next-for-the-world-s-largest-data-center-operators-
 
-6. Hyperscale Data Centers Market 2026 Explosive Data Demand Fueling Infrastructure Expansion - Technology Today - EIN Presswire
+6. Applied Digital Completes Development Loan Facility with Macquarie Group to Support New AI Factory Campuses :: Applied Digital Corporation (APLD)
+   “This development facility strengthens our ability to move quickly on high-quality sites while maintaining capital flexi...
+   🔗 https://ir.applieddigital.com/news-events/press-releases/detail/139/applied-digital-completes-development-loan-facility-with
+
+7. Hyperscale Data Centers Market 2026 Explosive Data Demand Fueling Infrastructure Expansion - Technology Today - EIN Presswire
    Published: 1 week ago
    Increasing Adoption Of Artificial Intelligence And Generative AI Workloads - <strong>The increasing adoption of artifici...
    🔗 https://tech.einnews.com/pr_news/899968200/hyperscale-data-centers-market-2026-explosive-data-demand-fueling-infrastructure-expansion
 
-7. Applied Digital Completes Development Loan Facility with Macquarie Group to Support New AI Factory Campuses :: Applied Digital Corporation (APLD)
-   “This development facility strengthens our ability to move quickly on high-quality sites while maintaining capital flexi...
-   🔗 https://ir.applieddigital.com/news-events/press-releases/detail/139/applied-digital-completes-development-loan-facility-with
-
-8. Hyperscale Data Centers Hit 1,300 With AWS, Google, Microsoft Owning Over Half Of Global Capacity
-   <strong>Data centers operated by hyperscalers like Amazon, Microsoft and Google reach 1,300 facilities as data center ca...
-   🔗 https://www.crn.com/news/cloud/2025/hyperscale-data-centers-hit-1-300-with-aws-google-microsoft-leading-global-boom
-
-9. Hyperscalers Sign White House Pledge to Fund Data Center Power, Grid Upgrades
+8. Hyperscalers Sign White House Pledge to Fund Data Center Power, Grid Upgrades
    Published: 3 weeks ago
    Bloomberg reported Thursday that <strong>the company is planning to cut thousands of jobs across divisions as early as t...
    🔗 https://www.powermag.com/hyperscalers-sign-white-house-pledge-to-fund-data-center-power-grid-upgrades/
+
+9. Hyperscale Data Centers Hit 1,300 With AWS, Google, Microsoft Owning Over Half Of Global Capacity
+   <strong>Data centers operated by hyperscalers like Amazon, Microsoft and Google reach 1,300 facilities as data center ca...
+   🔗 https://www.crn.com/news/cloud/2025/hyperscale-data-centers-hit-1-300-with-aws-google-microsoft-leading-global-boom
 
 10. Zoning, Permits, and Compliance: Breaking Down the Data Center Approval Process
    Published: June 12, 2025
@@ -67,37 +67,32 @@
    Consistent with the Administration’s priorities, the order should facilitate development of AI data centers by streamlin...
    🔗 https://www.coxcastle.com/publication-new-executive-order-promotes-development-of-data-centers-supporting-ai
 
-14. Breaking Ground on Our New AI-Optimized Data Center in El Paso
-   Published: October 15, 2025
-   We’re breaking ground on a new, <strong>a cutting-edge AI-focused data center in El Paso that can scale to a 1GW data ce...
-   🔗 https://about.fb.com/news/2025/10/metas-new-ai-optimized-data-center-el-paso/
+14. March 2026 Data Center Report: Year Begins with Record Construction Starts
+   Published: 2 days ago
+   A historic milestone was reached for <strong>January 2026</strong> US data center construction starts, totaling $25.2 bi...
+   🔗 https://news.constructconnect.com/march-2026-data-center-report
 
-15. Two Wildly Different Data Centers Reveal a ‘Fork in the Road’ on How to Meet Electricity Demand - Inside Climate News
-   Published: 1 day ago
-   Energy Secretary Chris Wright speaks to reporters on March 20 following a groundbreaking for a data center and power pla...
-   🔗 https://insideclimatenews.org/news/26032026/inside-clean-energy-midwest-data-center-power-plans/
+15. Hong Kong breaks ground on largest data center, eyes use in 42 months-Xinhua
+   Published: 11 hours ago
+   HONG KONG, March 28 (Xinhua) -- <strong>The Range (Hong Kong) Sandy Ridge Data Facility Cluster</strong> broke ground on...
+   🔗 https://english.news.cn/20260329/e2728d64679d41eb8662d2e008feffa5/c.html
 
-16. Pa. lawmakers advance bill to give state additional oversight of new data center water use | PhillyVoice
+16. Meta boosts investment in West Texas AI data center by over sixfold to $10 billion
    Published: 3 days ago
-   Pennsylvania lawmakers advanced a bill Monday that would require <strong>data</strong> <strong>center</strong> developer...
-   🔗 https://www.phillyvoice.com/pennsylvania-bill-oversight-new-data-center-water-use/
-
-17. Vineland residents are protesting AI data center as concerns mount over emissions
-   Published: 1 day ago
-   The project in South Jersey, already under construction, is being developed by DataOne for the Nebius Group as part of a...
-   🔗 https://whyy.org/articles/data-center-artificial-intelligence-vineland-new-jersey/
+   <strong>Meta is building a 1GW AI data center in El Paso, Texas</strong>, shown here in March 2026, five months after gr...
+   🔗 https://www.cnbc.com/2026/03/26/meta-to-spend-10-billion-on-ai-data-center-in-el-paso-1gw-by-2028.html
 
 📰 Fiber Deployment (14 articles)
 ────────────────────────────────────────────────────────
 
-1. Nokia launches suite of application‑optimized optical solutions for AI-era networks
+1. OFC 2026: new launches round-up, part II
+   Moran Roth, VP Product Line Management ... scalability, and value to customers operating in fiber-limited environments.”...
+   🔗 https://optics.org/news/17/3/33
+
+2. Nokia launches suite of application‑optimized optical solutions for AI-era networks
    Published: 2 weeks ago
    To address this challenge, Nokia ... deployments. This solution delivers a 40-fold increase in in-line amplifier density...
    🔗 https://www.nokia.com/newsroom/nokia-launches-suite-of-applicationoptimized-optical-solutions-for-ai-era-networks/
-
-2. OFC 2026: new launches round-up, part II
-   Moran Roth, VP Product Line Management ... scalability, and value to customers operating in fiber-limited environments.”...
-   🔗 https://optics.org/news/17/3/33
 
 3. 5 Trends Driving Fibre Optic Deployment in 2026 – Wray Castle
    Published: January 17, 2026
@@ -150,9 +145,10 @@
    🔗 https://fiberbroadband.org/2026/01/20/fiber-broadband-association-reports-rapid-fiber-expansion-amid-rising-labor-materials-permitting-costs/
 
 14. The Future of Fiber Deployment: 6 Trends Transforming the Industry | The Utility Expo
+   Published: May 21, 2025
    <strong>By the end of 2026, all City of Holland residents are anticipated to have access to fiber broadband for $45 per ...
    🔗 https://www.theutilityexpo.com/news/the-future-of-fiber-deployment-6-trends-transformi
 
 
-Generated: 2026-03-27T11:00:35.423Z
+Generated: 2026-03-29T11:16:48.469Z
 All links verified and active ✅

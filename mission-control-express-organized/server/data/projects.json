@@ -1,0 +1,78 @@
+[
+  {
+    "id": 1,
+    "name": "WorkSafeAI",
+    "status": "In Progress",
+    "progress": 75,
+    "taskCount": 15,
+    "description": "Job Task Safety Analysis tool for construction industry",
+    "owner": "Tim Ryan",
+    "team": "Dev Team"
+  },
+  {
+    "id": 2,
+    "name": "Mission Control",
+    "status": "In Progress",
+    "progress": 45,
+    "taskCount": 12,
+    "description": "Complete visual redesign with improved UX and workflows",
+    "owner": "Lucy",
+    "team": "Platform"
+  },
+  {
+    "id": 3,
+    "name": "Consensus",
+    "status": "In Progress",
+    "progress": 28,
+    "taskCount": 8,
+    "description": "Product Review Aggregation and Analysis Platform",
+    "owner": "Research Team",
+    "team": "Data"
+  },
+  {
+    "id": 4,
+    "name": "LinkedIn Automation",
+    "status": "Active",
+    "progress": 100,
+    "taskCount": 5,
+    "description": "Automated LinkedIn content posting with Brave Search",
+    "owner": "Lucy",
+    "team": "Marketing"
+  },
+  {
+    "id": 5,
+    "name": "Hyperscaler Briefings",
+    "status": "Active",
+    "progress": 100,
+    "taskCount": 3,
+    "description": "Automated daily briefings for data center industry",
+    "owner": "Lucy",
+    "team": "Marketing"
+  },
+  {
+    "id": 6,
+    "name": "Project Warp Speed",
+    "status": "Active",
+    "progress": 15,
+    "taskCount": 35,
+    "description": "Pro-Tel growth acceleration - data center infrastructure market leadership (Northeast PA/Upstate NY)",
+    "owner": "Tim Ryan",
+    "team": "Strategy"
+  },
+  {
+    "id": 7,
+    "name": "Autonomous Improvements",
+    "status": "Active",
+    "progress": 15,
+    "taskCount": 3,
+    "description": "Self-improving AI system - nightly research + staged builds + auto-deploy",
+    "owner": "Lucy",
+    "team": "Autonomy",
+    "metrics": {
+      "researchScans": 1,
+      "stagedImprovements": 3,
+      "deployed": 1,
+      "nextRun": "2026-03-29 23:45 (nightly research)"
+    }
+  }
+]

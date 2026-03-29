@@ -1,0 +1,1011 @@
+{
+  "project": "Project Warp Speed - Pro-Tel Organizational Restructuring",
+  "prepared_date": "2026-03-28",
+  "deadline": "2026-04-02",
+  "document_type": "Hiring Plan & Organizational Design",
+  "executive_summary": {
+    "total_headcount_2026": "25-30 employees",
+    "total_headcount_2027": "35-40 employees",
+    "total_headcount_2028": "40-50 employees",
+    "total_investment_2026": "$2,600,000 - $2,800,000",
+    "projected_revenue_2026": "$25,000,000 - $35,000,000",
+    "projected_revenue_2028": "$80,000,000 - $120,000,000",
+    "hiring_phases": 4,
+    "critical_path_hire": "VP Sales & Business Development"
+  },
+  "organizational_structure": {
+    "current_state": {
+      "total_headcount": 10,
+      "structure": [
+        {
+          "position": "CEO/Founder",
+          "count": 1,
+          "person": "Tim Ryan"
+        },
+        {
+          "position": "Operations Manager",
+          "count": 1,
+          "reports_to": "CEO"
+        },
+        {
+          "position": "Technical Lead / Head of Delivery",
+          "count": 1,
+          "reports_to": "CEO"
+        },
+        {
+          "position": "Senior Field Engineer",
+          "count": 2,
+          "reports_to": "Technical Lead"
+        },
+        {
+          "position": "Installation Technicians",
+          "count": 3,
+          "reports_to": "Technical Lead"
+        },
+        {
+          "position": "Project Coordinator",
+          "count": 1,
+          "reports_to": "Operations Manager"
+        },
+        {
+          "position": "Sales/Business Development (if present)",
+          "count": 1,
+          "reports_to": "CEO"
+        }
+      ]
+    },
+    "target_state_2028": {
+      "total_headcount": 45,
+      "leadership": {
+        "ceo": 1,
+        "vp_sales": 1,
+        "vp_technical_delivery": 1,
+        "vp_business_development": 1,
+        "vp_marketing": 1,
+        "vp_finance_operations": 1,
+        "chief_customer_success": 1
+      }
+    }
+  },
+  "hiring_plan": {
+    "phase_1": {
+      "name": "Sales & Delivery Foundation",
+      "timeline": "April-May 2026",
+      "duration_weeks": 4,
+      "hires": 4,
+      "total_investment": "$750,000",
+      "positions": [
+        {
+          "position_id": "hire_001",
+          "job_title": "VP Sales & Business Development",
+          "rank": "CRITICAL - HIRE FIRST",
+          "count": 1,
+          "reports_to": "CEO",
+          "start_date": "2026-05-01",
+          "salary": "$200,000",
+          "bonus_percentage": 10,
+          "equity_grant": "1.0-1.5%",
+          "target_start": "2026-04-20",
+          "recruiting_timeline": {
+            "job_posting": "2026-03-28",
+            "initial_screening": "2026-04-05",
+            "interviews": "2026-04-12",
+            "offer_extended": "2026-04-20",
+            "start_date": "2026-05-01"
+          },
+          "recruiting_approach": [
+            "Executive search firm (parallel with internal recruiting)",
+            "LinkedIn recruiter (direct outreach to hyperscaler sales leaders)",
+            "Network referrals (Tim's contacts, board network)",
+            "Target 3-5 candidates by April 10",
+            "Final 2-3 candidates interviewed April 12-15"
+          ],
+          "key_requirements": [
+            "8+ years B2B enterprise sales",
+            "3+ years in sales leadership role",
+            "Hyperscaler or Tier-1 enterprise experience (Amazon, Microsoft, Google, Meta)",
+            "100%+ quota attainment history",
+            "Sales process design and implementation expertise",
+            "Team building and coaching capability"
+          ],
+          "success_metrics": {
+            "30_days": [
+              "Sales team plan documented",
+              "Salesforce configured and team trained",
+              "Initial 5-10 prospect conversations",
+              "Sales process framework defined"
+            ],
+            "90_days": [
+              "2-3 AEs hired and onboarding",
+              "1 SDR hired",
+              "$15-20M pipeline established",
+              "First 2-3 proposals submitted"
+            ],
+            "180_days": [
+              "Full sales team operational (3 AEs, 1-2 SDRs, 1 Sales Ops)",
+              "$30-40M qualified pipeline",
+              "1-2 major deals in advanced negotiation",
+              "First contract closed ($5-10M target)"
+            ]
+          },
+          "compensation_breakdown": {
+            "base_salary": "$200,000",
+            "bonus_target": "$20,000",
+            "benefits_estimate": "$40,000",
+            "equity_annual_value": "$50,000-75,000",
+            "total_comp_year_1": "$310,000-335,000",
+            "notes": "Top of market rate to attract experienced leader. Uncapped bonus potential."
+          }
+        },
+        {
+          "position_id": "hire_002",
+          "job_title": "Program Manager - Hyperscale Infrastructure Projects",
+          "rank": "CRITICAL - HIRE SECOND (PARALLEL WITH VP SALES)",
+          "count": 1,
+          "reports_to": "CEO (initially); VP Technical Delivery (future)",
+          "start_date": "2026-05-01",
+          "salary": "$150,000",
+          "bonus_percentage": 10,
+          "recruiting_timeline": {
+            "job_posting": "2026-03-28",
+            "initial_screening": "2026-04-05",
+            "interviews": "2026-04-15",
+            "offer_extended": "2026-04-22",
+            "start_date": "2026-05-01"
+          },
+          "key_requirements": [
+            "8+ years project management",
+            "Experience managing $50M+ infrastructure projects",
+            "Design-build integration expertise",
+            "Vendor management (power, cooling, fiber, security)",
+            "Critical path scheduling and risk management",
+            "Data center or infrastructure project background"
+          ],
+          "success_metrics": {
+            "30_days": [
+              "Current project roadmap created",
+              "Resource planning initiated",
+              "Vendor relationships assessed"
+            ],
+            "90_days": [
+              "Project management system (Asana/Jira) configured",
+              "2-3 projects under active management",
+              "Vendor integration plan documented"
+            ],
+            "180_days": [
+              "2-3 major projects delivered on schedule",
+              "Customer satisfaction > 90%",
+              "Resource utilization > 85%"
+            ]
+          },
+          "compensation_breakdown": {
+            "base_salary": "$150,000",
+            "bonus_target": "$15,000",
+            "benefits_estimate": "$35,000",
+            "total_comp_year_1": "$200,000"
+          }
+        },
+        {
+          "position_id": "hire_003",
+          "job_title": "Senior Infrastructure Engineer - AI & High-Density Data Centers",
+          "rank": "HIGH - HIRE SECOND",
+          "count": 1,
+          "reports_to": "Technical Lead / VP Technical Delivery",
+          "start_date": "2026-05-15",
+          "salary": "$160,000",
+          "bonus_percentage": 10,
+          "recruiting_timeline": {
+            "job_posting": "2026-03-28",
+            "initial_screening": "2026-04-10",
+            "interviews": "2026-04-20",
+            "offer_extended": "2026-05-01",
+            "start_date": "2026-05-15"
+          },
+          "key_requirements": [
+            "10+ years data center infrastructure design",
+            "3+ years with 100G+ fiber, modular cabling systems",
+            "Hyperscale facility or large colocation experience",
+            "Singlemode fiber expertise (ANSI/TIA standards)",
+            "CAD design tools (AutoCAD, Visio)",
+            "Power and cooling integration knowledge"
+          ],
+          "success_metrics": {
+            "30_days": [
+              "Technical standards documentation started",
+              "Hyperscaler requirements assessment"
+            ],
+            "90_days": [
+              "Design guide and standards published",
+              "2-3 major designs led",
+              "Junior engineer mentoring program started"
+            ],
+            "180_days": [
+              "4-5 major designs delivered",
+              "Team capability doubled (2-3 engineers mentored)",
+              "Zero rework rate target (< 2%)"
+            ]
+          },
+          "compensation_breakdown": {
+            "base_salary": "$160,000",
+            "bonus_target": "$16,000",
+            "benefits_estimate": "$35,000",
+            "total_comp_year_1": "$211,000"
+          }
+        },
+        {
+          "position_id": "hire_004",
+          "job_title": "Sales Development Rep",
+          "rank": "HIGH - HIRE SECOND",
+          "count": 1,
+          "reports_to": "VP Sales",
+          "start_date": "2026-05-15",
+          "salary": "$65,000",
+          "bonus_percentage": 25,
+          "recruiting_timeline": {
+            "job_posting": "2026-04-15",
+            "initial_screening": "2026-04-20",
+            "interviews": "2026-04-28",
+            "offer_extended": "2026-05-05",
+            "start_date": "2026-05-15"
+          },
+          "key_requirements": [
+            "2-3 years B2B sales development or inside sales",
+            "Strong cold calling and email prospecting skills",
+            "CRM discipline (Salesforce preferred)",
+            "Ability to qualify opportunities and book meetings",
+            "High rejection tolerance, persistence",
+            "Infrastructure or technology company background (preferred)"
+          ],
+          "success_metrics": {
+            "30_days": [
+              "Salesforce trained and comfortable",
+              "First prospecting campaigns launched"
+            ],
+            "90_days": [
+              "5-10 qualified meetings per week",
+              "3-5 opportunities per AE per month",
+              "30%+ conversion rate"
+            ],
+            "180_days": [
+              "8-10 qualified meetings per week (goal: 12+)",
+              "4-6 opportunities per AE per month",
+              "CRM data accuracy > 95%"
+            ]
+          },
+          "compensation_breakdown": {
+            "base_salary": "$65,000",
+            "bonus_target": "$20,000",
+            "benefits_estimate": "$20,000",
+            "total_comp_year_1": "$105,000"
+          }
+        }
+      ],
+      "total_investment_breakdown": {
+        "salaries": "$575,000",
+        "benefits": "$130,000",
+        "recruiting_costs": "$45,000",
+        "total": "$750,000"
+      }
+    },
+    "phase_2": {
+      "name": "Sales Team Completion & Scaling",
+      "timeline": "June-July 2026",
+      "duration_weeks": 8,
+      "hires": 3,
+      "total_investment": "$500,000",
+      "positions": [
+        {
+          "position_id": "hire_005",
+          "job_title": "Account Executive - Hyperscaler Infrastructure",
+          "rank": "HIGH",
+          "count": 2,
+          "reports_to": "VP Sales",
+          "start_date": "2026-06-01",
+          "salary": "$120,000",
+          "commission_percentage": "20-25%",
+          "recruiting_timeline": {
+            "job_posting": "2026-05-01",
+            "interviews": "2026-05-20",
+            "offer_extended": "2026-05-28",
+            "start_date": "2026-06-01"
+          },
+          "key_requirements": [
+            "5+ years enterprise B2B sales",
+            "Hyperscaler or Tier-1 tech company experience",
+            "Closed $5-25M deals",
+            "Technical acumen (can engage engineers, architects)",
+            "Multi-level relationship building",
+            "Sales discipline and CRM usage"
+          ],
+          "success_metrics": {
+            "30_days": [
+              "Territory plan defined",
+              "5-10 prospect accounts identified"
+            ],
+            "90_days": [
+              "$5-10M individual pipeline",
+              "2-3 qualified opportunities",
+              "First proposal submitted"
+            ],
+            "180_days": [
+              "$15-20M pipeline",
+              "1-2 closed deals",
+              "3-5 active opportunities",
+              "2-3 new relationships developed"
+            ]
+          },
+          "compensation_breakdown": {
+            "base_salary": "$120,000",
+            "commission_annual_target": "$60,000-100,000",
+            "benefits_estimate": "$30,000",
+            "total_comp_year_1": "$210,000-250,000"
+          }
+        },
+        {
+          "position_id": "hire_006",
+          "job_title": "Sales Operations Manager",
+          "rank": "MEDIUM",
+          "count": 1,
+          "reports_to": "VP Sales",
+          "start_date": "2026-07-01",
+          "salary": "$90,000",
+          "bonus_percentage": 10,
+          "recruiting_timeline": {
+            "job_posting": "2026-05-15",
+            "interviews": "2026-06-10",
+            "offer_extended": "2026-06-20",
+            "start_date": "2026-07-01"
+          },
+          "key_requirements": [
+            "3-5 years sales operations experience",
+            "Salesforce expertise and configuration",
+            "Sales process design and documentation",
+            "Analytical skills, pipeline analysis",
+            "Ability to drive sales methodology adoption"
+          ],
+          "success_metrics": {
+            "30_days": [
+              "Salesforce administration role established",
+              "Sales reporting dashboard created"
+            ],
+            "90_days": [
+              "Weekly pipeline reporting automated",
+              "Sales metrics dashboard live",
+              "Monthly forecasting process documented"
+            ],
+            "180_days": [
+              "Full Salesforce optimization",
+              "Custom reports and automation",
+              "Sales process training delivered"
+            ]
+          },
+          "compensation_breakdown": {
+            "base_salary": "$90,000",
+            "bonus_target": "$9,000",
+            "benefits_estimate": "$25,000",
+            "total_comp_year_1": "$124,000"
+          }
+        }
+      ],
+      "total_investment_breakdown": {
+        "salaries": "$330,000",
+        "benefits": "$85,000",
+        "recruiting_costs": "$85,000",
+        "total": "$500,000"
+      }
+    },
+    "phase_3": {
+      "name": "Delivery Scaling & Technical Expansion",
+      "timeline": "August-September 2026",
+      "duration_weeks": 8,
+      "hires": "6-8",
+      "total_investment": "$750,000",
+      "positions": [
+        {
+          "position_id": "hire_007",
+          "job_title": "Program Manager - Regional & Edge Projects",
+          "rank": "HIGH",
+          "count": 1,
+          "reports_to": "VP Technical Delivery",
+          "start_date": "2026-08-01",
+          "salary": "$145,000",
+          "bonus_percentage": 10
+        },
+        {
+          "position_id": "hire_008",
+          "job_title": "Infrastructure Engineer",
+          "rank": "HIGH",
+          "count": 2,
+          "reports_to": "Senior Infrastructure Engineer",
+          "start_date": "2026-08-15",
+          "salary": "$120,000",
+          "bonus_percentage": 8
+        },
+        {
+          "position_id": "hire_009",
+          "job_title": "Quality Assurance & Testing Lead",
+          "rank": "MEDIUM",
+          "count": 1,
+          "reports_to": "VP Technical Delivery",
+          "start_date": "2026-08-15",
+          "salary": "$110,000",
+          "bonus_percentage": 10
+        },
+        {
+          "position_id": "hire_010",
+          "job_title": "Installation Team Lead",
+          "rank": "HIGH",
+          "count": 1,
+          "reports_to": "VP Technical Delivery",
+          "start_date": "2026-09-01",
+          "salary": "$95,000",
+          "bonus_percentage": 10
+        },
+        {
+          "position_id": "hire_011",
+          "job_title": "Field Installation Technicians",
+          "rank": "HIGH",
+          "count": "3-4",
+          "reports_to": "Installation Team Lead",
+          "start_date": "2026-09-15",
+          "salary": "$65,000-75,000",
+          "notes": "Can hire contract/temporary initially; convert to full-time as capacity scales"
+        }
+      ]
+    },
+    "phase_4": {
+      "name": "Support Functions & Operations",
+      "timeline": "October-November 2026",
+      "duration_weeks": 8,
+      "hires": "3-4",
+      "total_investment": "$500,000",
+      "positions": [
+        {
+          "position_id": "hire_012",
+          "job_title": "Customer Success Manager",
+          "rank": "HIGH",
+          "count": 1,
+          "reports_to": "Chief Customer Success Officer (or CEO initially)",
+          "start_date": "2026-10-01",
+          "salary": "$110,000",
+          "bonus_percentage": 15
+        },
+        {
+          "position_id": "hire_013",
+          "job_title": "Marketing Specialist",
+          "rank": "MEDIUM",
+          "count": 1,
+          "reports_to": "VP Marketing",
+          "start_date": "2026-10-15",
+          "salary": "$90,000",
+          "bonus_percentage": 10
+        },
+        {
+          "position_id": "hire_014",
+          "job_title": "Operations Manager / Finance Lead",
+          "rank": "MEDIUM",
+          "count": 1,
+          "reports_to": "VP Finance & Operations",
+          "start_date": "2026-11-01",
+          "salary": "$100,000",
+          "bonus_percentage": 10
+        },
+        {
+          "position_id": "hire_015",
+          "job_title": "HR / Recruiting Manager",
+          "rank": "LOW-MEDIUM",
+          "count": 1,
+          "reports_to": "VP Finance & Operations",
+          "start_date": "2026-11-15",
+          "salary": "$85,000",
+          "bonus_percentage": 8
+        }
+      ]
+    }
+  },
+  "detailed_hire_profiles": {
+    "vp_sales_business_development": {
+      "position_id": "hire_001",
+      "job_title": "VP Sales & Business Development",
+      "hire_urgency": "CRITICAL - HIRE FIRST",
+      "reporting_structure": "Direct to CEO",
+      "team_size": "Will manage 2-3 account executives, 1-2 SDRs, 1 Sales Operations Manager",
+      "salary_range": "$180,000 - $220,000",
+      "recommended_offer": "$200,000 base",
+      "bonus_structure": "10% of base (performance-based on quota attainment)",
+      "equity": "1.0-1.5% option grant, 4-year vest",
+      "benefits": "$40,000/year (health, 401K, car allowance)",
+      "total_cost_year_1": "$310,000 - $335,000",
+      "experience_requirements": {
+        "sales_leadership": "8+ years in B2B enterprise sales; 3+ years in VP or director sales leadership",
+        "hyperscaler_experience": "Sold to Amazon, Microsoft, Google, Meta, Apple, or comparable Fortune 500",
+        "quota_performance": "Consistent 100%+ quota attainment",
+        "team_building": "Has hired, trained, and managed 3-5 person sales team",
+        "sales_methodology": "Expertise in Sandler, Challenger Sale, MEDDIC, or similar",
+        "deal_size": "Closed $5-25M enterprise deals"
+      },
+      "key_competencies": {
+        "strategic_sales_planning": "Expert level - can develop multi-year sales strategy",
+        "pipeline_management": "Expert level - manage $5-10M+ pipeline",
+        "team_leadership": "Expert level - build and scale sales teams",
+        "negotiation": "Expert level - close large, complex deals",
+        "forecasting": "Expert level - >90% forecast accuracy",
+        "market_analysis": "Intermediate - understand competitive landscape",
+        "technical_acumen": "Intermediate - can engage with technical buyers"
+      },
+      "primary_accountabilities": [
+        "Build sales organization from scratch (3-4 direct reports)",
+        "Establish sales methodology and pipeline discipline",
+        "Generate $30-50M qualified pipeline",
+        "Close $25-35M revenue in 2026",
+        "Hire and coach account executives",
+        "Manage hyperscaler relationships (with VP Business Development)",
+        "Define pricing, proposal templates, sales processes",
+        "Monthly forecasting and revenue reporting"
+      ],
+      "first_90_days_plan": [
+        "Week 1-2: Onboarding, learn business, meet team, understand current pipeline",
+        "Week 2-3: Develop sales strategy with VP Sales and CEO",
+        "Week 3-4: Identify and interview AE candidates",
+        "Week 4-8: Hire first Account Executive",
+        "Week 8-12: Build sales process, CRM implementation, hire SDR and Ops person",
+        "Day 90: Team in place, first pipeline meetings, $15-20M pipeline identified"
+      ],
+      "success_metrics": {
+        "month_1": [
+          "Sales strategy documented and approved",
+          "Salesforce configured with processes",
+          "AE candidates identified and interviewed",
+          "Initial 5-10 prospect conversations"
+        ],
+        "month_3": [
+          "Sales team hired (2-3 AEs, 1 SDR, ops person hired or hiring)",
+          "Sales process fully documented and team trained",
+          "$15-20M qualified pipeline established",
+          "First 2-3 major proposals submitted"
+        ],
+        "month_6": [
+          "Full sales team operational and performing",
+          "$30-40M qualified pipeline",
+          "1-2 major deals in advanced stages",
+          "First hyperscaler or large regional contract closed",
+          "Team satisfaction and retention 90%+"
+        ]
+      },
+      "interview_questions": [
+        "Walk me through the largest deal you personally closed. What was the entire sales cycle?",
+        "Describe your approach to building a sales team from scratch. How would you scale from 1 to 3-5 people?",
+        "What's your first 90-day plan in a new VP Sales role? What would you prioritize?",
+        "Give me an example of a long sales cycle (12+ months). How did you stay engaged?",
+        "How would you differentiate Pro-Tel from competitors like CommScope, Panduit, Corning in the market?",
+        "What's your approach to pipeline management and forecasting accuracy?"
+      ],
+      "red_flags": [
+        "No hyperscaler experience (critical for credibility)",
+        "Inconsistent quota attainment (<90% in most years)",
+        "High turnover on sales teams (inability to build/retain)",
+        "No experience with complex/enterprise sales",
+        "Overly aggressive on timeline (need realistic 18-24 month ramp)"
+      ],
+      "reference_check_focus": [
+        "Quota attainment consistency",
+        "Sales team building and retention",
+        "Ability to work with technical product",
+        "Relationship building at executive level",
+        "Performance in startup/scaling environment"
+      ],
+      "recruiting_strategy": {
+        "primary_channels": [
+          "Executive search firm (focus on VP Sales experience, infrastructure companies)",
+          "LinkedIn recruiter (direct outreach to hyperscaler sales leaders, VP level)",
+          "Network referrals (Tim's board, investor network, hyperscaler contacts)",
+          "Industry events (speaking panels, networking)"
+        ],
+        "target_companies": [
+          "Amazon (AWS infrastructure sales)",
+          "Microsoft (Azure infrastructure)",
+          "Google Cloud",
+          "Meta infrastructure",
+          "CommScope, Panduit, Corning (infrastructure vendors)",
+          "Digital Realty, Equinix, Cogent (colocation/data center operators)"
+        ],
+        "sourcing_timeline": {
+          "week_1": "Post job, engage recruiter, network outreach (50+ people reached)",
+          "week_2": "Initial screening 5-10 candidates",
+          "week_3": "Phone interviews 3-5 candidates",
+          "week_4": "In-person interviews, final 2-3 candidates",
+          "week_5": "Offer extended to top candidate, negotiation",
+          "week_6": "Offer acceptance, background check, start date locked"
+        },
+        "cost_estimate": "$50,000 - $75,000 (includes search firm, recruiting support)"
+      }
+    },
+    "account_executive_hyperscaler": {
+      "position_id": "hire_005",
+      "job_title": "Account Executive - Hyperscaler Infrastructure",
+      "count": 2,
+      "hire_urgency": "HIGH - HIRE SECOND (parallel with sales team completion)",
+      "reporting_structure": "Direct to VP Sales",
+      "salary_range": "$100,000 - $150,000",
+      "recommended_offer": "$120,000 base",
+      "commission_structure": "20-25% of deal value (uncapped)",
+      "example_earnings": {
+        "10M_deal": "$200,000-250,000 commission",
+        "5M_deal": "$100,000-125,000 commission",
+        "avg_2_deals_per_year": "$100,000-250,000 annual commission"
+      },
+      "benefits": "$30,000/year (health, 401K, car allowance)",
+      "total_cost_year_1": "$210,000-250,000 (base + modest commission)",
+      "experience_requirements": {
+        "b2b_sales": "5+ years enterprise B2B sales",
+        "deal_size": "Closed $5-25M contracts",
+        "hyperscaler_background": "Amazon, Microsoft, Google, Meta, Apple, or tier-1 tech",
+        "technical_engagement": "Can engage with engineers, architects, infrastructure teams",
+        "relationship_building": "Multi-level relationships (procurement, technical, finance)",
+        "sales_discipline": "CRM usage, forecasting, sales process adherence",
+        "quota_achievement": ">90% quota attainment history"
+      },
+      "primary_accountabilities": [
+        "Own hyperscaler account relationships and territory",
+        "Generate $15-20M annual pipeline",
+        "Close $10-20M annual revenue target",
+        "Manage 3-5 active opportunities in pipeline",
+        "Build and maintain relationships with VP/Director-level stakeholders",
+        "Submit 1-2 major proposals per quarter",
+        "Provide accurate monthly forecasting",
+        "Collaborate with delivery/technical team on customer needs"
+      ],
+      "success_metrics": {
+        "month_1": [
+          "Territory plan completed",
+          "5-10 hyperscaler accounts identified",
+          "First prospect meetings scheduled"
+        ],
+        "month_3": [
+          "$5-10M individual pipeline",
+          "2-3 qualified opportunities",
+          "First major proposal submitted"
+        ],
+        "month_6": [
+          "$15-20M pipeline",
+          "1-2 deals in negotiation",
+          "3-5 active opportunities"
+        ],
+        "month_12": [
+          "First deal closed ($5-10M+)",
+          "$20-30M pipeline for next year",
+          "Quota achievement >100%"
+        ]
+      }
+    },
+    "program_manager_hyperscale": {
+      "position_id": "hire_002",
+      "job_title": "Program Manager - Hyperscale Infrastructure Projects",
+      "hire_urgency": "CRITICAL - HIRE SECOND (parallel with VP Sales)",
+      "reporting_structure": "Direct to CEO initially; VP Technical Delivery (future)",
+      "salary_range": "$130,000 - $180,000",
+      "recommended_offer": "$150,000 base",
+      "bonus_structure": "10% of base (performance-based on project delivery, quality)",
+      "benefits": "$35,000/year",
+      "total_cost_year_1": "$200,000",
+      "experience_requirements": {
+        "project_management": "8+ years managing infrastructure/construction projects",
+        "project_scale": "Experience managing $50M+ projects",
+        "design_build": "Design-build integration expertise",
+        "vendor_management": "Complex vendor coordination (power, cooling, fiber, security)",
+        "scheduling": "Critical path analysis, Primavera or MS Project",
+        "infrastructure": "Data center, colocation, or infrastructure operations background"
+      },
+      "key_certifications": [
+        "PMP (Project Management Professional) - preferred",
+        "PRINCE2 - preferred",
+        "Agile/Scrum - nice to have"
+      ],
+      "primary_accountabilities": [
+        "Lead delivery of major hyperscaler infrastructure projects ($50-200M contracts)",
+        "Manage multi-team coordination (design, installation, vendors)",
+        "Own critical path, budget, resource allocation, risk management",
+        "Coordinate with power, cooling, fiber, security vendors",
+        "Ensure on-time, on-budget delivery",
+        "Manage project documentation and lessons learned",
+        "Customer relationship management throughout delivery",
+        "Post-installation optimization and handoff to operations"
+      ],
+      "success_metrics": {
+        "month_1": [
+          "Current project roadmap created",
+          "Resource plan documented",
+          "Vendor assessment completed"
+        ],
+        "month_3": [
+          "Project management system (Asana/Jira) implemented",
+          "2-3 projects under active management",
+          "Vendor integration plan documented",
+          "Weekly team meetings established"
+        ],
+        "month_6": [
+          "2-3 major projects delivered on schedule",
+          "Customer satisfaction > 90%",
+          "Resource utilization > 85%",
+          "Budget variance < 5%"
+        ]
+      }
+    },
+    "senior_infrastructure_engineer": {
+      "position_id": "hire_003",
+      "job_title": "Senior Infrastructure Engineer - AI & High-Density Data Centers",
+      "hire_urgency": "HIGH - HIRE SECOND",
+      "reporting_structure": "Direct to Technical Lead / VP Technical Delivery",
+      "salary_range": "$140,000 - $200,000",
+      "recommended_offer": "$160,000 base",
+      "bonus_structure": "10% of base (performance-based on design quality, innovation)",
+      "benefits": "$35,000/year",
+      "total_cost_year_1": "$211,000",
+      "experience_requirements": {
+        "data_center_design": "10+ years designing data center infrastructure",
+        "hyperscale_experience": "3+ years at hyperscaler or large colocation operator",
+        "high_density_ai": "Experience with 100G+ fiber, modular cabling, high-density racks",
+        "fiber_expertise": "Deep knowledge of singlemode fiber, standards, termination, testing",
+        "cad_tools": "AutoCAD, Visio, or similar design tools",
+        "power_cooling": "Understanding of power and cooling system integration",
+        "network_architecture": "Fiber topology design, network automation (SD-LAN) knowledge"
+      },
+      "key_certifications": [
+        "CCNA/CCNP - preferred",
+        "ANSI/TIA-606 (Structured Cabling Certification) - preferred",
+        "Data center professional certifications - nice to have"
+      ],
+      "primary_accountabilities": [
+        "Lead technical design for major hyperscaler infrastructure projects ($50M+)",
+        "Specify components, architecture, integration approach",
+        "Create technical design documentation and bill of materials (BOM)",
+        "Coordinate with power, cooling, network teams",
+        "Establish technical standards and best practices for Pro-Tel",
+        "Mentor junior engineers (2-3 direct or indirect reports)",
+        "Ensure designs meet hyperscaler requirements and standards",
+        "Innovation - develop new design approaches, AI-ready packages"
+      ],
+      "success_metrics": {
+        "month_1": [
+          "Technical standards documentation started",
+          "Hyperscaler requirements assessment",
+          "Design guide outline created"
+        ],
+        "month_3": [
+          "Design guide and standards published",
+          "2-3 major designs led",
+          "Junior engineer mentoring program started"
+        ],
+        "month_6": [
+          "4-5 major designs delivered",
+          "Team capability doubled (2-3 engineers mentored)",
+          "Rework rate < 2%",
+          "Customer satisfaction on designs > 95%"
+        ]
+      }
+    }
+  },
+  "hiring_timeline_summary": {
+    "april_2026": {
+      "target_hires": ["VP Sales", "Program Manager", "Sr. Infrastructure Engineer candidates"],
+      "key_milestones": [
+        "Job specs finalized (Apr 1-4)",
+        "Recruiters engaged (Apr 1-5)",
+        "Candidate interviews begin (Apr 10-15)",
+        "Offers extended (Apr 18-22)",
+        "Start dates locked (May 1)"
+      ]
+    },
+    "may_2026": {
+      "target_hires": ["VP Sales (start)", "Program Manager (start)", "Sr. Engineer (start)", "SDR"],
+      "milestones": [
+        "VP Sales + Program Manager onboarding",
+        "Senior Engineer interviews and hiring",
+        "SDR position posted and recruiting",
+        "Salesforce implementation begins"
+      ]
+    },
+    "june_2026": {
+      "target_hires": ["Account Executive 1", "Account Executive 2"],
+      "milestones": [
+        "AE #1 and #2 start",
+        "Sales process documented",
+        "First major prospects identified"
+      ]
+    },
+    "july_2026": {
+      "target_hires": ["Sales Operations Manager"],
+      "milestones": [
+        "Sales Ops Manager starts",
+        "Salesforce fully configured",
+        "Sales team at 4-5 people"
+      ]
+    },
+    "august_september_2026": {
+      "target_hires": ["Program Mgr #2", "Engineer #2", "QA Lead", "Installation Team Lead", "Technicians (3-4)"],
+      "milestones": [
+        "Installation capacity scales 3-5x",
+        "Quality assurance process established",
+        "Second project in active delivery"
+      ]
+    },
+    "october_november_2026": {
+      "target_hires": ["CSM", "Marketing Specialist", "Ops/Finance Manager", "HR Manager"],
+      "milestones": [
+        "Support functions operational",
+        "All systems (HR, Finance, Marketing) live",
+        "Total headcount: 30-35"
+      ]
+    },
+    "december_2026": {
+      "milestone": "Full restructured organization operational; ready for 2027 acceleration"
+    }
+  },
+  "budget_summary": {
+    "total_2026_investment": "$2,500,000 - $2,800,000",
+    "breakdown_by_phase": {
+      "phase_1_april_may": {
+        "salaries": "$575,000",
+        "benefits": "$130,000",
+        "recruiting": "$45,000",
+        "subtotal": "$750,000"
+      },
+      "phase_2_june_july": {
+        "salaries": "$330,000",
+        "benefits": "$85,000",
+        "recruiting": "$85,000",
+        "subtotal": "$500,000"
+      },
+      "phase_3_august_september": {
+        "salaries": "$570,000",
+        "benefits": "$150,000",
+        "recruiting": "$30,000",
+        "subtotal": "$750,000"
+      },
+      "phase_4_october_november": {
+        "salaries": "$385,000",
+        "benefits": "$100,000",
+        "recruiting": "$15,000",
+        "subtotal": "$500,000"
+      }
+    },
+    "additional_investment": {
+      "salesforce_implementation": "$25,000 - $35,000",
+      "project_management_tools_asana_jira": "$15,000 - $20,000",
+      "hr_system_adp_bamboohr": "$10,000 - $15,000",
+      "training_onboarding": "$50,000 - $75,000",
+      "recruiting_tools_linkedin_dice": "$15,000 - $20,000",
+      "subtotal": "$115,000 - $165,000"
+    },
+    "grand_total": "$2,615,000 - $2,965,000",
+    "notes": [
+      "Salaries include base compensation only",
+      "Benefits calculated at 25-30% of salary (health, 401K, payroll taxes, insurance)",
+      "Recruiting costs include search firm fees, LinkedIn credits, job board postings, referral bonuses",
+      "Commission payouts to Account Executives are incremental (not included in budget above)",
+      "Does not include office equipment, facilities expansion, or working capital needs"
+    ]
+  },
+  "expected_financial_impact": {
+    "year_1_revenue": {
+      "conservative_estimate": "$25,000,000 - $35,000,000",
+      "optimistic_estimate": "$35,000,000 - $45,000,000"
+    },
+    "gross_margin": {
+      "estimate": "45-50%",
+      "dollars": "$11,250,000 - $22,500,000"
+    },
+    "net_investment_impact": {
+      "gross_profit": "$11,250,000 - $22,500,000",
+      "less_investment": "-$2,800,000",
+      "net_positive": "+$8,450,000 - $19,700,000"
+    },
+    "roi": {
+      "year_1": "3-7x return on investment",
+      "breakeven": "4-6 months"
+    },
+    "2028_projection": {
+      "revenue": "$80,000,000 - $120,000,000",
+      "gross_margin_50_percent": "$40,000,000 - $60,000,000",
+      "implied_valuation_at_6x_ebitda": "$150,000,000 - $200,000,000+"
+    }
+  },
+  "critical_path_dependencies": [
+    "VP Sales hire MUST happen by May 1 - all other hiring depends on VP Sales leadership",
+    "Program Manager start must be by May 1 - ensures delivery capability for sales agreements",
+    "Salesforce implementation MUST be complete by May 15 - no sales process without it",
+    "First AEs must be hired by June 15 - need 3-month ramp before closing major deals",
+    "First major contract closure must happen by Q4 2026 - validates model and builds credibility"
+  ],
+  "success_definition_6_months": {
+    "team": "25-30 employees hired and productive",
+    "sales": "$30-40M pipeline; 2-3 major deals in advanced stages",
+    "delivery": "2-3 projects on-time and on-budget",
+    "market": "5-10 hyperscaler/regional relationships established",
+    "financial": "$25-35M revenue run rate; positive unit economics confirmed"
+  },
+  "risks_and_mitigation": {
+    "risk_1_hiring_delays": {
+      "risk": "VP Sales hire takes 90+ days (competitive market)",
+      "probability": "Medium",
+      "impact": "Entire growth plan delayed 2-3 months",
+      "mitigation": [
+        "Start recruiting immediately (before approval)",
+        "Use hybrid approach: search firm + network + LinkedIn",
+        "Be willing to pay top of market ($220K+ if needed)",
+        "Consider interim SVP Sales (consultant) for 3 months"
+      ]
+    },
+    "risk_2_sales_underperformance": {
+      "risk": "AEs don't hit pipeline targets; first deals don't close until 2027",
+      "probability": "Medium",
+      "impact": "Revenue targets miss by 20-30%",
+      "mitigation": [
+        "Hire experienced AEs (5+ years, with references)",
+        "VP Sales must be actively coaching deals (not hands-off)",
+        "Focus on mid-market colocation (6-12 month cycles) early",
+        "Establish clear pipeline targets and weekly reviews"
+      ]
+    },
+    "risk_3_delivery_failure": {
+      "risk": "Major project cost overruns, delays, or quality issues",
+      "probability": "Medium",
+      "impact": "Reputation damage, customer loss",
+      "mitigation": [
+        "Hire Program Manager FIRST (before taking major contracts)",
+        "Implement rigorous project management (Asana/Jira + weekly reviews)",
+        "Build partnerships with experienced subcontractors",
+        "Start with smaller projects to build processes"
+      ]
+    },
+    "risk_4_hiring_at_scale": {
+      "risk": "Unable to hire 17-19 people in 8 months",
+      "probability": "Medium-High",
+      "impact": "Grows slower; misses market window",
+      "mitigation": [
+        "Start recruiting 3 months early",
+        "Use referral bonus program ($3-5K per hire)",
+        "Consider contract/temporary staffing initially",
+        "Build employer brand (content, thought leadership)"
+      ]
+    }
+  },
+  "next_steps_immediate": [
+    {
+      "action": "Approve hiring plan and budget",
+      "owner": "Tim Ryan",
+      "timeline": "This week (Mar 28 - Apr 4)",
+      "deliverable": "Budget approval + go-ahead to recruit"
+    },
+    {
+      "action": "Finalize VP Sales job description and compensation package",
+      "owner": "Tim Ryan + Finance",
+      "timeline": "Apr 1-4",
+      "deliverable": "Approved JD + offer terms"
+    },
+    {
+      "action": "Engage executive search firm + LinkedIn recruiter",
+      "owner": "Tim or HR",
+      "timeline": "Apr 1-5",
+      "deliverable": "Recruiting partnership + outreach plan"
+    },
+    {
+      "action": "Begin network outreach for VP Sales candidates",
+      "owner": "Tim",
+      "timeline": "Immediate (ongoing)",
+      "deliverable": "5-10 candidate conversations by Apr 5"
+    },
+    {
+      "action": "Schedule first interviews",
+      "owner": "Tim + Recruiting",
+      "timeline": "Apr 10-15",
+      "deliverable": "Interview schedule for 3-5 candidates"
+    },
+    {
+      "action": "Extend offer and negotiate start date",
+      "owner": "Tim",
+      "timeline": "Apr 18-22",
+      "deliverable": "Signed offer, May 1 start date locked"
+    }
+  ]
+}

@@ -26,10 +26,12 @@ export default function Docs() {
         return;
       }
 
-      // Convert object to array if needed
-      const catArray = Array.isArray(fetchedCategories) 
-        ? fetchedCategories 
-        : Object.values(fetchedCategories);
+      // Convert object to array of category objects with name and docs
+      const catArray = Object.entries(fetchedCategories).map(([name, docs]) => ({
+        name,
+        icon: getCategoryIcon(name),
+        docs: docs || []
+      }));
       
       setCategories(catArray);
       setError(null);
@@ -42,10 +44,29 @@ export default function Docs() {
     }
   };
 
+  const getCategoryIcon = (name) => {
+    const icons = {
+      'Projects': '📦',
+      'Architecture': '🏗️',
+      'Operations': '⚙️',
+      'Research': '🔍',
+      'Agents': '🤖',
+      'Other': '📄'
+    };
+    return icons[name] || '📄';
+  };
+
+  const formatFileSize = (bytes) => {
+    if (!bytes) return '';
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  };
+
   const handleDocClick = async (doc) => {
     try {
       setLoadingDoc(true);
-      const docPath = doc.path || doc.title;
+      const docPath = encodeURIComponent(doc.path || doc.id || doc.name);
       const res = await fetch(`/api/documents/file/${docPath}`);
       
       if (!res.ok) {
@@ -155,17 +176,17 @@ export default function Docs() {
               <div className="grid grid-cols-1 gap-3">
                 {category.docs && category.docs.map((doc) => (
                   <button
-                    key={doc.path || doc.title}
+                    key={doc.path || doc.id || doc.name}
                     onClick={() => handleDocClick(doc)}
                     disabled={loadingDoc}
                     className="w-full bg-white rounded border border-gray-200 p-4 flex items-center justify-between hover:border-gray-300 hover:shadow-sm transition-all disabled:opacity-50 text-left"
                   >
                     <div className="flex-1 min-w-0">
-                      <div className="text-sm font-bold text-slate-900">{doc.title}</div>
-                      <div className="text-xs text-gray-500 mt-0.5 truncate">{doc.description}</div>
+                      <div className="text-sm font-bold text-slate-900">{doc.name || doc.title}</div>
+                      <div className="text-xs text-gray-500 mt-0.5 truncate">{doc.description || 'No description'}</div>
                     </div>
-                    <div className="text-xs text-gray-400 shrink-0 ml-4 whitespace-nowrap">
-                      {doc.sizeHuman && <div>{doc.sizeHuman}</div>}
+                    <div className="text-xs text-gray-400 shrink-0 ml-4 whitespace-nowrap flex flex-col items-end gap-1">
+                      {doc.size && <div>{formatFileSize(doc.size)}</div>}
                       {doc.modified && <div>{new Date(doc.modified).toLocaleDateString()}</div>}
                     </div>
                   </button>

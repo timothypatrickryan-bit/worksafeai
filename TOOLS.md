@@ -96,3 +96,55 @@ Emails sent through WorkSafeAI, Consensus, and other apps will appear as coming 
 ---
 
 Add whatever helps you do your job. This is your cheat sheet.
+
+---
+
+## Mission Control Dashboard
+
+**Official name for the project dashboard application**
+
+### Quick Reference
+
+- **Type:** Express + React/Vite application
+- **Location:** `/Users/timothyryan/.openclaw/workspace/mission-control-express-organized/`
+- **Ports:** 3001 (API), 5173 (dev UI), 3001 (prod UI)
+- **Start:** `cd mission-control-express-organized && npm run dev`
+- **Documentation:** START_HERE.md in the project folder
+
+### Projects Tracked
+1. WorkSafeAI (75% complete)
+2. Mission Control (this app itself)
+3. Consensus
+4. LinkedIn Automation
+5. Hyperscaler Briefings
+6. Project Warp Speed
+
+### Quick Commands
+
+```bash
+# Development
+npm run dev              # Start API + UI (hot reload)
+
+# Production
+npm start               # Build + run on 3001
+npm run build           # Build only
+
+# API Calls
+curl http://localhost:3001/api/projects
+curl http://localhost:3001/api/projects/1
+```
+
+### Key Files
+- `server/index.js` — Express API
+- `client/src/App.jsx` — React root
+- `server/data/projects.json` — Project state (persistent)
+- `client/src/pages/` — 11 route pages
+
+### Documentation
+- START_HERE.md — Quick start (5 min)
+- STRUCTURE.md — Folder structure
+- FILE_TREE.txt — Visual tree
+- INVENTORY.md — Complete listing
+
+**Reference:** See MEMORY.md for full technical details
+

@@ -6,11 +6,16 @@
       "type": "research",
       "complexity": 6,
       "priority": 1,
-      "status": "assigned",
+      "status": "complete",
       "estimatedHours": 5,
       "assignedAgent": "scout",
       "autoRoutedAt": "2026-03-27T13:01:42.706Z",
-      "routingReason": "Primary agent: scout (score: 7.5)"
+      "routingReason": "Primary agent: scout (score: 7.5)",
+      "startedAt": "2026-03-29T13:03:52.060Z",
+      "agent": "scout",
+      "sessionKey": "agent:main:subagent:aa20e572-2eb3-45de-b4d8-119cd0238e46",
+      "completedAt": "2026-03-29T13:06:24.827Z",
+      "result": "Successfully delivered comprehensive competitive market analysis for Pro-Tel"
     },
     {
       "id": "task-2",
@@ -18,11 +23,16 @@
       "type": "feature-implementation",
       "complexity": 4,
       "priority": 2,
-      "status": "assigned",
+      "status": "complete",
       "estimatedHours": 1.5,
       "assignedAgent": "johnny",
       "autoRoutedAt": "2026-03-27T13:01:42.706Z",
-      "routingReason": "Primary agent: johnny (score: 7.2)"
+      "routingReason": "Primary agent: johnny (score: 7.2)",
+      "startedAt": "2026-03-29T13:06:52.717Z",
+      "agent": "johnny",
+      "sessionKey": "agent:main:subagent:bbc4ee00-3f74-463c-97f1-bf782d6db635",
+      "completedAt": "2026-03-29T13:09:20.635Z",
+      "result": "Login button styling fixed and deployed to production"
     },
     {
       "id": "task-3",
@@ -30,11 +40,16 @@
       "type": "code-review",
       "complexity": 7,
       "priority": 2,
-      "status": "assigned",
+      "status": "complete",
       "estimatedHours": 2,
       "assignedAgent": "velma",
       "autoRoutedAt": "2026-03-27T13:01:42.706Z",
-      "routingReason": "Primary agent: velma (score: 7.6)"
+      "routingReason": "Primary agent: velma (score: 7.6)",
+      "startedAt": "2026-03-29T13:09:40.461Z",
+      "agent": "velma",
+      "sessionKey": "agent:main:subagent:2ffadcaa-54db-42c5-b506-98943578112c",
+      "completedAt": "2026-03-29T13:11:21.757Z",
+      "result": "Stripe integration code review completed - 4 critical issues found, staging-ready with fixes needed for production"
     },
     {
       "id": "task-4",
@@ -42,11 +57,16 @@
       "type": "architecture-design",
       "complexity": 8,
       "priority": 1,
-      "status": "assigned",
+      "status": "complete",
       "estimatedHours": 4,
       "assignedAgent": "chief",
       "autoRoutedAt": "2026-03-27T13:01:42.706Z",
-      "routingReason": "Primary agent: chief (score: 7.3)"
+      "routingReason": "Primary agent: chief (score: 7.3)",
+      "startedAt": "2026-03-29T13:11:41.967Z",
+      "agent": "chief",
+      "sessionKey": "agent:main:subagent:b300ea2d-ffb1-4766-89bf-7db9ef2e2e32",
+      "completedAt": "2026-03-29T13:17:20.395Z",
+      "result": "iOS screens designed and built - 3 screens, 5 components, complete design system"
     },
     {
       "id": "task-5",
@@ -54,11 +74,16 @@
       "type": "complex-problem",
       "complexity": 9,
       "priority": 1,
-      "status": "assigned",
+      "status": "complete",
       "estimatedHours": 6,
       "assignedAgent": "opus",
       "autoRoutedAt": "2026-03-27T13:01:42.707Z",
-      "routingReason": "Primary agent: opus (score: 9.9)"
+      "routingReason": "Primary agent: opus (score: 9.9)",
+      "startedAt": "2026-03-29T13:12:02.468Z",
+      "agent": "opus",
+      "sessionKey": "agent:main:subagent:086d4293-e510-4041-b138-5c0956bdec01",
+      "completedAt": "2026-03-29T13:14:36.061Z",
+      "result": "API performance optimization completed - query optimization and field selection implemented"
     }
   ],
   "agents": {
@@ -87,5 +112,29 @@
       "currentTasks": 0
     }
   },
-  "lastUpdate": "2026-03-28T13:02:18.148Z"
+  "lastUpdate": "2026-03-29T15:43:36.663Z",
+  "projects": [
+    {
+      "id": "ryan-family-financial-plan",
+      "name": "Ryan Family Financial Plan",
+      "status": "intake-in-progress",
+      "owner": "Maxwell Reid",
+      "client": "Timothy Ryan",
+      "created": "2026-03-28T21:49:00Z",
+      "description": "Comprehensive personal financial planning for the Ryan family",
+      "intake_form": "/Users/timothyryan/.openclaw/workspace/projects/ryan-family-financial-plan/intake-form.md",
+      "forms": [
+        {
+          "formId": "ryan-family-financial-plan-intake",
+          "formName": "Client Intake Form",
+          "status": "active",
+          "createdAt": "2026-03-28T22:09:00Z",
+          "submissions": 0,
+          "sections": 8,
+          "requiredFields": 6,
+          "handler": "scripts/intake-form-handler.js"
+        }
+      ]
+    }
+  ]
 }
