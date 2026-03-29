@@ -8,6 +8,16 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState('all');
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [createLoading, setCreateLoading] = useState(false);
+  const [createError, setCreateError] = useState(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    owner: 'Lucy',
+    timeline: '',
+    goals: '',
+  });
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -42,6 +52,38 @@ export default function Dashboard() {
     if (activeTab === 'archived') return status === 'archived';
     return true;
   });
+
+  const handleCreateProject = async (e) => {
+    e.preventDefault();
+    if (!formData.name.trim()) {
+      setCreateError('Project name is required');
+      return;
+    }
+
+    try {
+      setCreateLoading(true);
+      setCreateError(null);
+      const res = await fetch('/api/projects', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Failed to create project');
+      }
+
+      const data = await res.json();
+      setProjects([...projects, data.project]);
+      setFormData({ name: '', description: '', owner: 'Lucy', timeline: '', goals: '' });
+      setShowCreateModal(false);
+      setCreateLoading(false);
+    } catch (err) {
+      setCreateError(err.message);
+      setCreateLoading(false);
+    }
+  };
 
   const recentUpdates = [
     { id: 1, activity: 'Mission Control redesign specs delivered', time: '2 hours ago', status: 'Complete' },
@@ -83,6 +125,12 @@ export default function Dashboard() {
       {/* Section Header */}
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-bold text-slate-900">Active Projects</h3>
+        <button
+          onClick={() => setShowCreateModal(true)}
+          className="px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded hover:bg-blue-600 transition-colors"
+        >
+          + New Project
+        </button>
       </div>
 
       {/* Tabs */}
@@ -194,6 +242,130 @@ export default function Dashboard() {
           ))}
         </div>
       </div>
+
+      {/* Create Project Modal */}
+      {showCreateModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-lg max-w-md w-full mx-4">
+            {/* Header */}
+            <div className="px-6 py-4 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-slate-900">Create New Project</h2>
+              <p className="text-sm text-gray-500 mt-1">
+                Define a new project. It will be executed with all normal routines and schedules.
+              </p>
+            </div>
+
+            {/* Form */}
+            <form onSubmit={handleCreateProject} className="p-6 space-y-4">
+              {createError && (
+                <div className="bg-red-50 border border-red-200 text-red-800 px-3 py-2 rounded text-sm">
+                  {createError}
+                </div>
+              )}
+
+              {/* Project Name */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">
+                  Project Name *
+                </label>
+                <input
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  placeholder="e.g., Q2 Infrastructure Upgrade"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                />
+              </div>
+
+              {/* Description */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">
+                  Description
+                </label>
+                <textarea
+                  value={formData.description}
+                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                  placeholder="What is this project about? Goals and context..."
+                  rows="3"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                />
+              </div>
+
+              {/* Owner */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">
+                  Owner
+                </label>
+                <select
+                  value={formData.owner}
+                  onChange={(e) => setFormData({ ...formData, owner: e.target.value })}
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
+                >
+                  <option>Lucy</option>
+                  <option>Chief</option>
+                  <option>Velma</option>
+                  <option>Johnny</option>
+                  <option>Jarvis</option>
+                  <option>Opus</option>
+                  <option>Scout</option>
+                  <option>Mark</option>
+                  <option>Steven</option>
+                </select>
+              </div>
+
+              {/* Timeline */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">
+                  Timeline
+                </label>
+                <input
+                  type="text"
+                  value={formData.timeline}
+                  onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+                  placeholder="e.g., 2 weeks, March 29 - April 15"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                />
+              </div>
+
+              {/* Goals */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">
+                  Goals/Success Criteria
+                </label>
+                <textarea
+                  value={formData.goals}
+                  onChange={(e) => setFormData({ ...formData, goals: e.target.value })}
+                  placeholder="What does success look like? Measurable outcomes..."
+                  rows="2"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                />
+              </div>
+
+              {/* Buttons */}
+              <div className="flex gap-3 pt-4 border-t border-gray-200">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowCreateModal(false);
+                    setCreateError(null);
+                    setFormData({ name: '', description: '', owner: 'Lucy', timeline: '', goals: '' });
+                  }}
+                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 text-sm font-semibold rounded hover:bg-gray-50 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={createLoading}
+                  className="flex-1 px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded hover:bg-blue-600 disabled:bg-gray-400 transition-colors"
+                >
+                  {createLoading ? 'Creating...' : 'Create Project'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
