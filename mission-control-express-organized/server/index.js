@@ -378,17 +378,29 @@ app.get('/api/briefings', (req, res) => {
 
 // POST /api/briefings - create briefing
 app.post('/api/briefings', (req, res) => {
-  const { type, title, description, actionRequired } = req.body;
+  const { type, title, description, actionRequired, level } = req.body;
   if (!type || !title) return res.status(400).json({ error: 'type and title required' });
+
+  // Determine if this needs approval based on autonomy level
+  // Level 1-2: Auto-execute (status: 'auto-executing')
+  // Level 3: Execute + notify (status: 'executing')
+  // Level 4: Needs approval (status: 'awaiting-approval')
+  let status = 'awaiting-approval';
+  if (level === 1 || level === 2) {
+    status = 'auto-executing';
+  } else if (level === 3) {
+    status = 'executing';
+  }
 
   const briefing = {
     id: Date.now(),
-    status: 'awaiting-approval',
+    status: status,
     agent: 'Lucy',
     type: String(type).substring(0, 50),
     title: String(title).substring(0, 200),
     description: String(description).substring(0, 1000),
     actionRequired: String(actionRequired).substring(0, 50),
+    level: level || 4, // Default to Level 4 (needs approval) if not specified
     userFeedback: null,
     timestamp: new Date().toISOString(),
   };
@@ -415,6 +427,28 @@ app.put('/api/briefings/:id', (req, res) => {
   if (actionRequired) briefings[idx].actionRequired = String(actionRequired).substring(0, 50);
   
   briefings[idx].updatedAt = new Date().toISOString();
+  saveBriefings(briefings);
+  
+  res.json({ success: true, briefing: briefings[idx] });
+});
+
+// PATCH /api/briefings/:id - approve or reject briefing
+app.patch('/api/briefings/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  if (isNaN(id)) return res.status(400).json({ error: 'Invalid briefing ID' });
+
+  const briefings = loadBriefings();
+  const idx = briefings.findIndex(b => b.id === id);
+  if (idx === -1) return res.status(404).json({ error: 'Briefing not found' });
+
+  const { status, reason } = req.body;
+  if (!status) return res.status(400).json({ error: 'Status is required' });
+
+  briefings[idx].status = String(status).substring(0, 50);
+  briefings[idx].reviewedAt = new Date().toISOString();
+  briefings[idx].reviewedBy = 'Tim Ryan';
+  if (reason) briefings[idx].reason = String(reason).substring(0, 500);
+  
   saveBriefings(briefings);
   
   res.json({ success: true, briefing: briefings[idx] });
@@ -759,6 +793,190 @@ app.delete('/api/agents/:id', (req, res) => {
       return res.status(404).json({ error: 'Agent not found' });
     }
     res.json({ success: true, deleted });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// --- Tasks API ---
+const TASKS_FILE = path.join(path.dirname(STATE_FILE), 'tasks.json');
+
+function loadTasks() {
+  try {
+    if (fs.existsSync(TASKS_FILE)) {
+      return JSON.parse(fs.readFileSync(TASKS_FILE, 'utf8'));
+    }
+  } catch (e) {
+    console.error('Failed to load tasks:', e.message);
+  }
+  return [];
+}
+
+function saveTasks(tasks) {
+  try {
+    const dir = path.dirname(TASKS_FILE);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    const tmpFile = TASKS_FILE + '.tmp';
+    fs.writeFileSync(tmpFile, JSON.stringify(tasks, null, 2));
+    fs.renameSync(tmpFile, TASKS_FILE);
+  } catch (e) {
+    console.error('Failed to save tasks:', e.message);
+    throw new Error('Failed to persist tasks');
+  }
+}
+
+// GET /api/tasks - list all tasks
+app.get('/api/tasks', (req, res) => {
+  try {
+    const tasks = loadTasks();
+    res.json({ success: true, tasks, count: tasks.length });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// POST /api/tasks - create new task
+app.post('/api/tasks', (req, res) => {
+  try {
+    const { name, description, priority, estimatedHours, dueDate, assignedTo } = req.body;
+    
+    if (!name || !assignedTo) {
+      return res.status(400).json({ error: 'name and assignedTo are required' });
+    }
+
+    const tasks = loadTasks();
+    const task = {
+      id: Date.now().toString(),
+      name: String(name).substring(0, 200),
+      description: description ? String(description).substring(0, 1000) : '',
+      priority: priority || 'Medium',
+      estimatedHours: estimatedHours || 2,
+      dueDate: dueDate || null,
+      assignedTo: String(assignedTo).substring(0, 50),
+      status: 'pending',
+      createdAt: new Date().toISOString(),
+      completedAt: null,
+    };
+
+    tasks.push(task);
+    saveTasks(tasks);
+
+    res.status(201).json({ success: true, task });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// GET /api/tasks/:id - get specific task
+app.get('/api/tasks/:id', (req, res) => {
+  try {
+    const tasks = loadTasks();
+    const task = tasks.find(t => t.id === req.params.id);
+    
+    if (!task) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
+
+    res.json({ success: true, task });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// PUT /api/tasks/:id - update task
+app.put('/api/tasks/:id', (req, res) => {
+  try {
+    const tasks = loadTasks();
+    const idx = tasks.findIndex(t => t.id === req.params.id);
+    
+    if (idx === -1) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
+
+    const { status, priority, estimatedHours, description, completedAt } = req.body;
+    
+    if (status) tasks[idx].status = String(status).substring(0, 50);
+    if (priority) tasks[idx].priority = String(priority).substring(0, 50);
+    if (estimatedHours !== undefined) tasks[idx].estimatedHours = estimatedHours;
+    if (description) tasks[idx].description = String(description).substring(0, 1000);
+    if (completedAt) tasks[idx].completedAt = completedAt;
+
+    tasks[idx].updatedAt = new Date().toISOString();
+    saveTasks(tasks);
+
+    res.json({ success: true, task: tasks[idx] });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// DELETE /api/tasks/:id - delete task
+app.delete('/api/tasks/:id', (req, res) => {
+  try {
+    const tasks = loadTasks();
+    const idx = tasks.findIndex(t => t.id === req.params.id);
+    
+    if (idx === -1) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
+
+    const deleted = tasks.splice(idx, 1)[0];
+    saveTasks(tasks);
+
+    res.json({ success: true, deleted });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// PATCH /api/agents/:id/assign - assign task to agent
+app.patch('/api/agents/:id/assign', (req, res) => {
+  try {
+    const { taskId } = req.body;
+    if (!taskId) {
+      return res.status(400).json({ error: 'taskId is required' });
+    }
+
+    const agent = agentRegistry.get(req.params.id);
+    if (!agent) {
+      return res.status(404).json({ error: 'Agent not found' });
+    }
+
+    // Update task status to assigned
+    const tasks = loadTasks();
+    const task = tasks.find(t => t.id === taskId);
+    
+    if (task) {
+      task.status = 'assigned';
+      task.updatedAt = new Date().toISOString();
+      saveTasks(tasks);
+    }
+
+    // Update agent with task assignment
+    if (!agent.assignedTasks) {
+      agent.assignedTasks = [];
+    }
+    agent.assignedTasks.push(taskId);
+    agentRegistry.update(req.params.id, { assignedTasks: agent.assignedTasks });
+
+    res.json({ success: true, agent, task });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// GET /api/agents/:id/tasks - get tasks assigned to agent
+app.get('/api/agents/:id/tasks', (req, res) => {
+  try {
+    const agent = agentRegistry.get(req.params.id);
+    if (!agent) {
+      return res.status(404).json({ error: 'Agent not found' });
+    }
+
+    const tasks = loadTasks();
+    const agentTasks = tasks.filter(t => t.assignedTo === req.params.id);
+
+    res.json({ success: true, agent, tasks: agentTasks, count: agentTasks.length });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
