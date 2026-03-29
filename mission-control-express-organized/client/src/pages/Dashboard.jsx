@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AgentBriefing from '../components/AgentBriefing';
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -172,16 +171,6 @@ export default function Dashboard() {
             </div>
           ))
         )}
-      </div>
-
-      {/* Agent Briefing System */}
-      <div className="bg-white rounded border border-gray-200 overflow-hidden">
-        <div className="bg-gray-100 px-4 py-3 border-b border-gray-200">
-          <h2 className="text-sm font-bold text-gray-900">🤖 Lucy's Briefings & Feedback</h2>
-        </div>
-        <div className="p-4">
-          <AgentBriefing />
-        </div>
       </div>
 
       {/* Recent Updates */}
