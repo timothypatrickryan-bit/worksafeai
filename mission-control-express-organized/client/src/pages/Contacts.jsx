@@ -9,11 +9,27 @@ const contacts = [
 
 export default function Contacts() {
   const [search, setSearch] = useState('');
-  const filtered = contacts.filter(c =>
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [newContact, setNewContact] = useState({ name: '', email: '', role: '', company: '', tags: '' });
+  const [allContacts, setAllContacts] = useState(contacts);
+
+  const filtered = allContacts.filter(c =>
     c.name.toLowerCase().includes(search.toLowerCase()) ||
     c.email.toLowerCase().includes(search.toLowerCase()) ||
     c.role.toLowerCase().includes(search.toLowerCase())
   );
+
+  const handleAddContact = () => {
+    if (newContact.name && newContact.email) {
+      setAllContacts([...allContacts, {
+        id: Math.max(...allContacts.map(c => c.id), 0) + 1,
+        ...newContact,
+        tags: newContact.tags ? newContact.tags.split(',').map(t => t.trim()) : [],
+      }]);
+      setNewContact({ name: '', email: '', role: '', company: '', tags: '' });
+      setShowAddModal(false);
+    }
+  };
 
   return (
     <div className="max-w-6xl mx-auto space-y-8">
@@ -23,7 +39,10 @@ export default function Contacts() {
           <h2 className="text-2xl font-bold text-slate-900">Contacts</h2>
           <p className="text-sm text-gray-500 mt-1">Contact information and directory</p>
         </div>
-        <button className="px-4 py-2 text-sm font-bold bg-sky-500 text-white rounded hover:bg-sky-600 transition-colors">
+        <button 
+          onClick={() => setShowAddModal(true)}
+          className="px-4 py-2 text-sm font-bold bg-sky-500 text-white rounded hover:bg-sky-600 transition-colors"
+        >
           + Add Contact
         </button>
       </div>
@@ -66,6 +85,83 @@ export default function Contacts() {
           ))
         )}
       </div>
+
+      {/* Add Contact Modal */}
+      {showAddModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-lg max-w-md w-full mx-4">
+            <div className="px-6 py-4 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-slate-900">Add Contact</h2>
+            </div>
+            <div className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Name *</label>
+                <input
+                  type="text"
+                  value={newContact.name}
+                  onChange={(e) => setNewContact({...newContact, name: e.target.value})}
+                  placeholder="e.g., John Doe"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Email *</label>
+                <input
+                  type="email"
+                  value={newContact.email}
+                  onChange={(e) => setNewContact({...newContact, email: e.target.value})}
+                  placeholder="john@example.com"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Role</label>
+                <input
+                  type="text"
+                  value={newContact.role}
+                  onChange={(e) => setNewContact({...newContact, role: e.target.value})}
+                  placeholder="e.g., Developer"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Company</label>
+                <input
+                  type="text"
+                  value={newContact.company}
+                  onChange={(e) => setNewContact({...newContact, company: e.target.value})}
+                  placeholder="e.g., Acme Corp"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Tags (comma-separated)</label>
+                <input
+                  type="text"
+                  value={newContact.tags}
+                  onChange={(e) => setNewContact({...newContact, tags: e.target.value})}
+                  placeholder="e.g., Team, Admin"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                />
+              </div>
+              <div className="flex gap-3 pt-4 border-t border-gray-200">
+                <button
+                  onClick={() => setShowAddModal(false)}
+                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 text-sm font-semibold rounded hover:bg-gray-50 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleAddContact}
+                  className="flex-1 px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded hover:bg-blue-600 transition-colors"
+                >
+                  Add Contact
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

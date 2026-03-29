@@ -21,7 +21,25 @@ const statusColors = {
   'Next Week': 'bg-gray-50 text-gray-500',
 };
 
+import { useState } from 'react';
+
 export default function Calendar() {
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [allEvents, setAllEvents] = useState(events);
+  const [newEvent, setNewEvent] = useState({ title: '', date: '', time: '', duration: '', type: 'Meeting' });
+
+  const handleAddEvent = () => {
+    if (newEvent.title && newEvent.date && newEvent.time) {
+      setAllEvents([...allEvents, {
+        id: Math.max(...allEvents.map(e => e.id), 0) + 1,
+        ...newEvent,
+        status: 'Upcoming',
+      }]);
+      setNewEvent({ title: '', date: '', time: '', duration: '', type: 'Meeting' });
+      setShowAddModal(false);
+    }
+  };
+
   return (
     <div className="max-w-6xl mx-auto space-y-8">
       {/* Header */}
@@ -30,7 +48,10 @@ export default function Calendar() {
           <h2 className="text-2xl font-bold text-slate-900">Calendar</h2>
           <p className="text-sm text-gray-500 mt-1">Upcoming events and schedule</p>
         </div>
-        <button className="px-4 py-2 text-sm font-bold bg-sky-500 text-white rounded hover:bg-sky-600 transition-colors">
+        <button 
+          onClick={() => setShowAddModal(true)}
+          className="px-4 py-2 text-sm font-bold bg-sky-500 text-white rounded hover:bg-sky-600 transition-colors"
+        >
           + New Event
         </button>
       </div>
@@ -61,7 +82,7 @@ export default function Calendar() {
 
       {/* Events List */}
       <div className="space-y-3">
-        {events.map((event) => (
+        {allEvents.map((event) => (
           <div key={event.id} className="bg-white rounded border border-gray-200 p-4 flex items-center gap-4 hover:border-gray-300 transition-colors">
             <div className="w-14 text-center shrink-0">
               <div className="text-xs text-gray-500 font-semibold">{event.date.split(',')[0].split(' ')[0]}</div>
@@ -77,6 +98,86 @@ export default function Calendar() {
           </div>
         ))}
       </div>
+
+      {/* Add Event Modal */}
+      {showAddModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-lg max-w-md w-full mx-4">
+            <div className="px-6 py-4 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-slate-900">Add Event</h2>
+            </div>
+            <div className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Event Title *</label>
+                <input
+                  type="text"
+                  value={newEvent.title}
+                  onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
+                  placeholder="e.g., Team Meeting"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Date *</label>
+                <input
+                  type="text"
+                  value={newEvent.date}
+                  onChange={(e) => setNewEvent({...newEvent, date: e.target.value})}
+                  placeholder="e.g., Mar 30, 2026"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Time *</label>
+                <input
+                  type="text"
+                  value={newEvent.time}
+                  onChange={(e) => setNewEvent({...newEvent, time: e.target.value})}
+                  placeholder="e.g., 2:00 PM"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Duration</label>
+                <input
+                  type="text"
+                  value={newEvent.duration}
+                  onChange={(e) => setNewEvent({...newEvent, duration: e.target.value})}
+                  placeholder="e.g., 1h"
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Type</label>
+                <select
+                  value={newEvent.type}
+                  onChange={(e) => setNewEvent({...newEvent, type: e.target.value})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
+                >
+                  <option>Meeting</option>
+                  <option>Deployment</option>
+                  <option>Review</option>
+                  <option>Report</option>
+                </select>
+              </div>
+              <div className="flex gap-3 pt-4 border-t border-gray-200">
+                <button
+                  onClick={() => setShowAddModal(false)}
+                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 text-sm font-semibold rounded hover:bg-gray-50 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleAddEvent}
+                  className="flex-1 px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded hover:bg-blue-600 transition-colors"
+                >
+                  Add Event
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

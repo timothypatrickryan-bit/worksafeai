@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
+import TaskDelegationModal from '../components/TaskDelegationModal';
 
 export default function Team() {
   const [agents, setAgents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [refreshingStatus, setRefreshingStatus] = useState(false);
+  const [showDelegationModal, setShowDelegationModal] = useState(false);
+  const [selectedAgentForTask, setSelectedAgentForTask] = useState(null);
 
   useEffect(() => {
     fetchAgents();
@@ -31,8 +34,9 @@ export default function Team() {
       const agentsWithDefaults = fetchedAgents.map((agent, idx) => ({
         ...agent,
         id: agent.id || idx + 1,
-        tasks: agent.tasks || Math.floor(Math.random() * 100) + 20,
+        taskCount: agent.taskCount || Math.floor(Math.random() * 100) + 20,
         uptime: agent.uptime || (95 + Math.random() * 5).toFixed(1) + '%',
+        assignedTasks: agent.assignedTasks || [],
       }));
 
       setAgents(agentsWithDefaults);
@@ -81,7 +85,31 @@ export default function Team() {
   };
 
   const online = agents.filter(a => a.status === 'Online').length;
-  const totalTasks = agents.reduce((sum, a) => sum + (a.tasks || 0), 0);
+  const totalTasks = agents.reduce((sum, a) => sum + (a.taskCount || 0), 0);
+
+  const handleDelegateTask = (agentId) => {
+    setSelectedAgentForTask(agentId);
+    setShowDelegationModal(true);
+  };
+
+  const handleTaskCreated = (task) => {
+    // Update agent's task count and assigned tasks
+    setAgents(prev => prev.map(agent => {
+      if (agent.id === task.assignedTo) {
+        return {
+          ...agent,
+          taskCount: (agent.taskCount || 0) + 1,
+          assignedTasks: [...(agent.assignedTasks || []), task.id],
+        };
+      }
+      return agent;
+    }));
+  };
+
+  const handleOpenModalWithAgent = (agentId) => {
+    setSelectedAgentForTask(agentId);
+    setShowDelegationModal(true);
+  };
 
   if (loading) {
     return (
@@ -146,7 +174,7 @@ export default function Team() {
           <div className="text-2xl font-bold text-green-600 mt-1">{online}</div>
         </div>
         <div className="bg-white rounded border border-gray-200 p-4">
-          <div className="text-xs text-gray-500 font-semibold uppercase">Total Tasks Completed</div>
+          <div className="text-xs text-gray-500 font-semibold uppercase">Total Active Tasks</div>
           <div className="text-2xl font-bold text-slate-900 mt-1">{totalTasks}</div>
         </div>
       </div>
@@ -168,9 +196,15 @@ export default function Team() {
                 <div className="text-xs text-gray-500 mt-0.5">{agent.role}</div>
                 <div className="text-xs text-gray-400 mt-2">{agent.specialty}</div>
                 <div className="flex gap-4 mt-3 text-xs text-gray-500">
-                  <span><strong className="text-slate-700">{agent.tasks}</strong> tasks</span>
+                  <span><strong className="text-slate-700">{agent.taskCount || 0}</strong> tasks</span>
                   <span><strong className="text-slate-700">{agent.uptime}</strong> uptime</span>
                 </div>
+                <button
+                  onClick={() => handleOpenModalWithAgent(agent.id)}
+                  className="mt-3 px-3 py-1.5 text-xs font-semibold text-white bg-blue-600 rounded hover:bg-blue-700 transition"
+                >
+                  📋 Delegate Task
+                </button>
               </div>
             </div>
           </div>
@@ -266,13 +300,24 @@ export default function Team() {
         <div className="text-xs text-blue-700 space-y-1">
           <p>To delegate work to any agent:</p>
           <ol className="list-decimal list-inside space-y-1 ml-2">
-            <li>Create a Work Briefing with task details</li>
-            <li>Specify the agent in the briefing</li>
-            <li>Lucy will route the work to the right team member</li>
+            <li>Click the "Delegate Task" button on any agent card</li>
+            <li>Fill in the task details (name, description, priority, deadline)</li>
+            <li>The agent will be assigned the task immediately</li>
             <li>Agent executes, reports results</li>
           </ol>
         </div>
       </div>
+
+      {/* Task Delegation Modal */}
+      {showDelegationModal && (
+        <TaskDelegationModal
+          isOpen={showDelegationModal}
+          onClose={() => setShowDelegationModal(false)}
+          agents={agents}
+          selectedAgentId={selectedAgentForTask}
+          onTaskCreated={handleTaskCreated}
+        />
+      )}
     </div>
   );
 }
