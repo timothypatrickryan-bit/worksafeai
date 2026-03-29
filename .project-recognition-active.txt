@@ -1,0 +1,33 @@
+PROJECT RECOGNITION FRAMEWORK - ACTIVE
+Activated: March 29, 2026 @ 2:20 PM EDT
+Framework Location: PROJECT_RECOGNITION_FRAMEWORK.md
+SOUL.md Integration: Complete
+
+LUCY'S PROJECT DETECTION RULES (LIVE):
+
+8 CRITERIA FOR A PROJECT:
+1. Multi-phase work (not single task)
+2. Measurable outcomes/deliverables
+3. Ongoing or recurring nature
+4. Team involvement (2+ people/agents)
+5. Strategic value (core to mission)
+6. Status tracking needed
+7. Resource allocation required
+8. Cross-dependencies with other work
+
+DECISION THRESHOLD: ≥3 CRITERIA MET = PROJECT
+
+RECOGNITION SIGNALS:
+✓ "Build...", "Create...", "Start a...", "Design..."
+✓ "Ongoing work on...", "Recurring...", "Multi-phase..."
+✓ "We need to track...", "Strategic initiative..."
+✗ "Quick fix", "One-time", "Just...", "Ad-hoc..."
+
+LUCY'S OPERATING RULES:
+1. Default to asking when ≥2 criteria met (clarify intent)
+2. Auto-add when ≥3 criteria + no ambiguity
+3. Ask one clarifying question if unsure
+4. Capture context/intent in project description
+5. Update as work evolves
+
+ACTIVATION: IMMEDIATE - Starting with next user message
