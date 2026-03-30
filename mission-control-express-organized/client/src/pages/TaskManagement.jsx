@@ -55,15 +55,20 @@ export default function TaskManagement() {
     try {
       setUpdatingId(taskId);
       const res = await fetch(`/api/tasks/${taskId}`, {
-        method: 'PATCH',
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),
       });
-      if (!res.ok) throw new Error('Failed to update task');
-      const updated = await res.json();
-      setTasks(tasks.map(t => t.id === taskId ? updated.task : t));
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.error || 'Failed to update task');
+      }
+      const data = await res.json();
+      setTasks(tasks.map(t => t.id === taskId ? data.task : t));
+      setError(null);
     } catch (err) {
-      setError(err.message);
+      console.error('Task update error:', err);
+      setError(`Failed to update task: ${err.message}`);
     } finally {
       setUpdatingId(null);
     }
