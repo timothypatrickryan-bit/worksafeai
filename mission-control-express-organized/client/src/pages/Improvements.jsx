@@ -4,6 +4,7 @@ export default function Improvements() {
   const [pipeline, setPipeline] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [expandedDeployments, setExpandedDeployments] = useState(false);
 
   useEffect(() => {
     const fetchImprovements = async () => {
@@ -20,6 +21,7 @@ export default function Improvements() {
         setLoading(false);
       }
     };
+    
     fetchImprovements();
   }, []);
 
@@ -217,25 +219,74 @@ export default function Improvements() {
         )}
       </div>
 
-      {/* Build Logs */}
-      <div className="space-y-3">
-        <h3 className="text-lg font-bold text-slate-900">Recent Deployments</h3>
-        <div className="bg-white rounded border border-gray-200 overflow-hidden">
-          <div className="px-4 py-4 border-b border-gray-100">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-sm font-bold text-slate-900">Deployment #1</div>
-                <div className="text-xs text-gray-500 mt-1">2026-03-29 @ 4:04 AM</div>
-              </div>
-              <div className="text-right">
-                <span className="inline-block px-2 py-1 text-xs font-semibold bg-green-100 text-green-700 rounded">
-                  1/1 Deployed
-                </span>
-              </div>
-            </div>
+      {/* Recent Deployments - Autonomous Pipeline Only - Expandable */}
+      {deployed && deployed.length > 0 && (
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <h3 className="text-lg font-bold text-slate-900">Recent Deployments (Autonomous Pipeline)</h3>
+            <button
+              onClick={() => setExpandedDeployments(!expandedDeployments)}
+              className="text-sm text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-1"
+            >
+              {expandedDeployments ? '▼ Collapse' : '▶ Expand'} ({deployed.length})
+            </button>
           </div>
+          
+          {!expandedDeployments && deployed.length > 0 && (
+            // Collapsed view - show first 2
+            <div className="bg-white rounded border border-gray-200 overflow-hidden">
+              <div className="grid grid-cols-3 gap-4 px-4 py-3 bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-500 uppercase">
+                <div>Improvement</div>
+                <div>Deployed</div>
+                <div>Status</div>
+              </div>
+              {deployed.slice(0, 2).map((item) => (
+                <div
+                  key={item.id}
+                  className="grid grid-cols-3 gap-4 px-4 py-3 border-b border-gray-100 items-center last:border-b-0"
+                >
+                  <div className="text-sm font-medium text-slate-900">{item.title}</div>
+                  <div className="text-sm text-gray-500">{formatDate(item.deployedAt)}</div>
+                  <div>
+                    <span className="inline-block px-2 py-0.5 text-xs font-semibold rounded bg-green-100 text-green-700">
+                      ✅ Monitoring
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {expandedDeployments && deployed.length > 0 && (
+            // Expanded view - show all with full details
+            <div className="bg-white rounded border border-gray-200 overflow-hidden">
+              <div className="grid grid-cols-4 gap-4 px-4 py-3 bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-500 uppercase">
+                <div>Improvement</div>
+                <div>Area</div>
+                <div>Deployed</div>
+                <div>Details</div>
+              </div>
+              {deployed.map((item) => (
+                <div
+                  key={item.id}
+                  className="border-b border-gray-100 hover:bg-gray-50 transition-colors last:border-b-0"
+                >
+                  <div className="grid grid-cols-4 gap-4 px-4 py-4 items-start">
+                    <div className="text-sm font-bold text-slate-900">{item.title}</div>
+                    <div className="text-xs text-gray-600">{item.area || 'Self-Improvement'}</div>
+                    <div className="text-sm text-gray-500">{formatDate(item.deployedAt)}</div>
+                    <div className="text-xs text-gray-600 leading-relaxed">
+                      <span className="inline-block px-2 py-0.5 text-xs font-semibold rounded bg-green-100 text-green-700 mb-2">
+                        ✅ Monitoring until {formatDate(item.monitoringUntil)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-      </div>
+      )}
 
       {/* Metrics Summary */}
       <div className="grid grid-cols-3 gap-4">
