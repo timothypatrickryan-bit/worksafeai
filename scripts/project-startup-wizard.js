@@ -204,20 +204,37 @@ function calculateDuration(phases) {
     'ongoing': null,
   };
   
-  // Sum up hours, accounting for parallel execution
-  // Phases with same agent run sequentially, different agents run in parallel
-  // So divide by number of unique agents for parallel phases
-  let total = 0;
-  let parallelFactor = 1;
+  // Group phases by agent to detect parallelization
+  const agentPhases = {};
+  let maxConcurrentHours = 0;
+  let totalHours = 0;
   
   for (const phase of phases) {
     const dur = durationMap[phase.duration];
     if (dur !== null) {
-      total += dur / parallelFactor;
+      totalHours += dur;
+      if (!agentPhases[phase.agent]) {
+        agentPhases[phase.agent] = [];
+      }
+      agentPhases[phase.agent].push(dur);
     }
   }
   
-  return total;
+  // Calculate max concurrent work (backend + frontend can run parallel)
+  // Most phases run sequentially, but some marked as parallel
+  const hasBackendFrontendParallel = phases.some(p => p.briefing && p.briefing.includes('parallel'));
+  
+  if (hasBackendFrontendParallel && totalHours > 24) {
+    // If backend (12h) + frontend (12h) are parallel, they take 12h max instead of 24h
+    maxConcurrentHours = Math.ceil(totalHours / 2);
+  } else {
+    maxConcurrentHours = totalHours;
+  }
+  
+  // Convert hours to days (working 8h/day)
+  const estimatedDays = Math.ceil(maxConcurrentHours / 8);
+  
+  return estimatedDays;
 }
 
 // Helper: Extract unique agents
