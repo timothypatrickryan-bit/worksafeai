@@ -21,14 +21,17 @@ export default function TaskManagement() {
     try {
       setLoading(true);
       const res = await fetch('/api/tasks');
-      if (!res.ok) throw new Error('Failed to fetch tasks');
+      if (!res.ok) {
+        throw new Error(`API returned ${res.status}: ${res.statusText}`);
+      }
       const data = await res.json();
-      setTasks(data.tasks || []);
+      setTasks(data.tasks || data || []);
       setError(null);
     } catch (err) {
-      setError(err.message);
-      // Mock data fallback
-      setTasks(mockTasks);
+      console.error('Task fetch error:', err);
+      setError(`Failed to load tasks: ${err.message}. Using sample data.`);
+      // Use mock data fallback
+      setTasks(mockTasks || []);
     } finally {
       setLoading(false);
     }
@@ -37,13 +40,14 @@ export default function TaskManagement() {
   const fetchAgents = async () => {
     try {
       const res = await fetch('/api/agents');
-      if (res.ok) {
-        const data = await res.json();
-        setAgents(data.agents || []);
+      if (!res.ok) {
+        throw new Error(`API returned ${res.status}`);
       }
+      const data = await res.json();
+      setAgents(data.agents || data || []);
     } catch (err) {
       console.error('Failed to fetch agents:', err);
-      setAgents(mockAgents);
+      setAgents(mockAgents || []);
     }
   };
 
