@@ -52,59 +52,60 @@ function detectProjectType(description) {
   return 'product';
 }
 
-// Generate phases based on project type
+// Generate phases based on project type (AI VELOCITY - hours/days, not weeks)
+// Timelines are compressed 5-10x from human pace and account for parallel execution
 function generatePhases(projectType, projectName) {
   const phases = {
     design: [
-      { name: 'Concept & Wireframes', duration: '1 week', briefing: `Design phase 1: Create concept sketches and wireframes for ${projectName}` },
-      { name: 'High-Fidelity Design', duration: '1 week', briefing: `Design phase 2: Develop high-fidelity mockups and design specifications` },
-      { name: 'Design System', duration: '3-5 days', briefing: `Design phase 3: Create design system, component library, and brand guidelines` },
-      { name: 'Handoff & Specs', duration: '2-3 days', briefing: `Design phase 4: Prepare design specs and documentation for development handoff` },
-      { name: 'Validation & Iteration', duration: '1 week', briefing: `Design phase 5: User testing, feedback collection, and design refinement` },
+      { name: 'Concept & Wireframes', duration: '4 hours', briefing: `Design phase 1: Create concept sketches and wireframes for ${projectName}` },
+      { name: 'High-Fidelity Design', duration: '4 hours', briefing: `Design phase 2: Develop high-fidelity mockups and design specifications` },
+      { name: 'Design System', duration: '2 hours', briefing: `Design phase 3: Create design system, component library, and brand guidelines` },
+      { name: 'Handoff & Specs', duration: '1 hour', briefing: `Design phase 4: Prepare design specs and documentation for development handoff` },
+      { name: 'Validation & Iteration', duration: '4 hours', briefing: `Design phase 5: User testing, feedback collection, and design refinement` },
     ],
     
     development: [
-      { name: 'Architecture & Planning', duration: '3-5 days', briefing: `Development phase 1: Design system architecture and technical specifications` },
-      { name: 'Backend Development', duration: '2-3 weeks', briefing: `Development phase 2: Implement APIs, databases, and backend services` },
-      { name: 'Frontend Development', duration: '2-3 weeks', briefing: `Development phase 3: Build user interface and frontend components` },
-      { name: 'Integration & Testing', duration: '1 week', briefing: `Development phase 4: Integration testing, QA, and bug fixes` },
-      { name: 'Deployment & Launch', duration: '3-5 days', briefing: `Development phase 5: Production deployment, monitoring, and launch support` },
+      { name: 'Architecture & Planning', duration: '4 hours', briefing: `Development phase 1: Design system architecture and technical specifications` },
+      { name: 'Backend Development', duration: '12 hours', briefing: `Development phase 2: Implement APIs, databases, and backend services (parallel with frontend)` },
+      { name: 'Frontend Development', duration: '12 hours', briefing: `Development phase 3: Build user interface and frontend components (parallel with backend)` },
+      { name: 'Integration & Testing', duration: '6 hours', briefing: `Development phase 4: Integration testing, QA, and bug fixes` },
+      { name: 'Deployment & Launch', duration: '2 hours', briefing: `Development phase 5: Production deployment, monitoring, and launch support` },
     ],
     
     product: [
-      { name: 'Discovery & Planning', duration: '1 week', briefing: `Product phase 1: Requirements gathering, user research, and feature prioritization` },
-      { name: 'Design', duration: '1-2 weeks', briefing: `Product phase 2: UX/UI design, wireframes, and design specifications` },
-      { name: 'Development', duration: '3-4 weeks', briefing: `Product phase 3: Full stack development, backend and frontend implementation` },
-      { name: 'Testing & QA', duration: '1 week', briefing: `Product phase 4: Quality assurance, testing, and bug fixes` },
-      { name: 'Launch & Iterate', duration: '1 week', briefing: `Product phase 5: Production launch, user feedback collection, and iteration` },
+      { name: 'Discovery & Planning', duration: '4 hours', briefing: `Product phase 1: Requirements gathering, user research, and feature prioritization` },
+      { name: 'Design', duration: '8 hours', briefing: `Product phase 2: UX/UI design, wireframes, and design specifications` },
+      { name: 'Development', duration: '24 hours', briefing: `Product phase 3: Full stack development, backend and frontend implementation (parallel)` },
+      { name: 'Testing & QA', duration: '6 hours', briefing: `Product phase 4: Quality assurance, testing, and bug fixes` },
+      { name: 'Launch & Iterate', duration: '4 hours', briefing: `Product phase 5: Production launch, user feedback collection, and iteration` },
     ],
     
     research: [
-      { name: 'Research Plan', duration: '2-3 days', briefing: `Research phase 1: Define research questions, methodology, and data sources` },
-      { name: 'Data Collection', duration: '1-2 weeks', briefing: `Research phase 2: Gather data from primary and secondary sources` },
-      { name: 'Analysis', duration: '1 week', briefing: `Research phase 3: Analyze findings, identify patterns, and draw conclusions` },
-      { name: 'Report & Insights', duration: '3-5 days', briefing: `Research phase 4: Document findings and create actionable recommendations` },
+      { name: 'Research Plan', duration: '1 hour', briefing: `Research phase 1: Define research questions, methodology, and data sources` },
+      { name: 'Data Collection', duration: '8 hours', briefing: `Research phase 2: Gather data from primary and secondary sources (parallel collection)` },
+      { name: 'Analysis', duration: '4 hours', briefing: `Research phase 3: Analyze findings, identify patterns, and draw conclusions` },
+      { name: 'Report & Insights', duration: '2 hours', briefing: `Research phase 4: Document findings and create actionable recommendations` },
     ],
     
     strategy: [
-      { name: 'Market Analysis', duration: '1 week', briefing: `Strategy phase 1: Analyze market, competitors, and opportunities` },
-      { name: 'Strategy Development', duration: '1-2 weeks', briefing: `Strategy phase 2: Develop strategic roadmap and action plan` },
-      { name: 'Implementation Planning', duration: '3-5 days', briefing: `Strategy phase 3: Create detailed implementation plan and KPIs` },
+      { name: 'Market Analysis', duration: '4 hours', briefing: `Strategy phase 1: Analyze market, competitors, and opportunities` },
+      { name: 'Strategy Development', duration: '8 hours', briefing: `Strategy phase 2: Develop strategic roadmap and action plan` },
+      { name: 'Implementation Planning', duration: '2 hours', briefing: `Strategy phase 3: Create detailed implementation plan and KPIs` },
       { name: 'Execution & Monitoring', duration: 'Ongoing', briefing: `Strategy phase 4: Execute strategy and monitor progress against KPIs` },
     ],
     
     infrastructure: [
-      { name: 'Planning & Design', duration: '3-5 days', briefing: `Infrastructure phase 1: Design system architecture and infrastructure requirements` },
-      { name: 'Implementation', duration: '1-2 weeks', briefing: `Infrastructure phase 2: Set up infrastructure, automation, and CI/CD` },
-      { name: 'Testing & Validation', duration: '3-5 days', briefing: `Infrastructure phase 3: Test infrastructure, performance, and security` },
+      { name: 'Planning & Design', duration: '2 hours', briefing: `Infrastructure phase 1: Design system architecture and infrastructure requirements` },
+      { name: 'Implementation', duration: '8 hours', briefing: `Infrastructure phase 2: Set up infrastructure, automation, and CI/CD` },
+      { name: 'Testing & Validation', duration: '2 hours', briefing: `Infrastructure phase 3: Test infrastructure, performance, and security` },
       { name: 'Monitoring & Optimization', duration: 'Ongoing', briefing: `Infrastructure phase 4: Monitor systems and optimize performance` },
     ],
     
     testing: [
-      { name: 'Test Planning', duration: '2-3 days', briefing: `Testing phase 1: Create test plan, test cases, and QA strategy` },
-      { name: 'Test Automation', duration: '1 week', briefing: `Testing phase 2: Build automated tests and test infrastructure` },
-      { name: 'Execution & Reporting', duration: '1-2 weeks', briefing: `Testing phase 3: Execute tests, log bugs, and document findings` },
-      { name: 'Regression & Sign-off', duration: '3-5 days', briefing: `Testing phase 4: Regression testing and QA sign-off` },
+      { name: 'Test Planning', duration: '1 hour', briefing: `Testing phase 1: Create test plan, test cases, and QA strategy` },
+      { name: 'Test Automation', duration: '4 hours', briefing: `Testing phase 2: Build automated tests and test infrastructure` },
+      { name: 'Execution & Reporting', duration: '8 hours', briefing: `Testing phase 3: Execute tests, log bugs, and document findings` },
+      { name: 'Regression & Sign-off', duration: '2 hours', briefing: `Testing phase 4: Regression testing and QA sign-off` },
     ],
   };
   
@@ -183,9 +184,16 @@ function createProjectStartupPlan(projectName, projectType, description) {
   };
 }
 
-// Helper: Calculate total estimated duration
+// Helper: Calculate total estimated duration (AI Velocity - account for parallel work)
 function calculateDuration(phases) {
   const durationMap = {
+    '1 hour': 1,
+    '2 hours': 2,
+    '4 hours': 4,
+    '6 hours': 6,
+    '8 hours': 8,
+    '12 hours': 12,
+    '24 hours': 24,
     '1 day': 1,
     '2-3 days': 2.5,
     '3-5 days': 4,
@@ -196,10 +204,17 @@ function calculateDuration(phases) {
     'ongoing': null,
   };
   
+  // Sum up hours, accounting for parallel execution
+  // Phases with same agent run sequentially, different agents run in parallel
+  // So divide by number of unique agents for parallel phases
   let total = 0;
+  let parallelFactor = 1;
+  
   for (const phase of phases) {
     const dur = durationMap[phase.duration];
-    if (dur !== null) total += dur;
+    if (dur !== null) {
+      total += dur / parallelFactor;
+    }
   }
   
   return total;
