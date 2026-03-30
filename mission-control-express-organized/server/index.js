@@ -443,16 +443,17 @@ app.put('/api/briefings/:id', (req, res) => {
 
 // PATCH /api/briefings/:id - approve or reject briefing
 app.patch('/api/briefings/:id', (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = parseFloat(req.params.id);
   if (isNaN(id)) return res.status(400).json({ error: 'Invalid briefing ID' });
 
   const briefings = loadBriefings();
-  const idx = briefings.findIndex(b => b.id === id);
+  const idx = briefings.findIndex(b => parseFloat(b.id) === id);
   if (idx === -1) return res.status(404).json({ error: 'Briefing not found' });
 
   const { status, reason } = req.body;
   if (!status) return res.status(400).json({ error: 'Status is required' });
 
+  const previousStatus = briefings[idx].status;
   briefings[idx].status = String(status).substring(0, 50);
   briefings[idx].reviewedAt = new Date().toISOString();
   briefings[idx].reviewedBy = 'Tim Ryan';
@@ -460,7 +461,48 @@ app.patch('/api/briefings/:id', (req, res) => {
   
   saveBriefings(briefings);
   
-  res.json({ success: true, briefing: briefings[idx] });
+  const updatedBriefing = briefings[idx];
+  let createdTask = null;
+
+  // Auto-create task if briefing is approved/auto-executing and no task exists yet
+  if ((status === 'approved' || status === 'auto-executing') && previousStatus !== 'approved' && previousStatus !== 'auto-executing') {
+    try {
+      const tasks = loadTasks();
+      
+      // Check if task already exists for this briefing
+      const existingTask = tasks.find(t => t.briefingId === updatedBriefing.id);
+      if (!existingTask) {
+        // Create new task from briefing
+        const newTask = {
+          id: Date.now().toString(),
+          name: updatedBriefing.title,
+          description: updatedBriefing.description || `Task for: ${updatedBriefing.title}`,
+          priority: updatedBriefing.level === 'critical' ? 'Critical' : 'High',
+          estimatedHours: 4, // Default estimate
+          dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 1 week out
+          assignedTo: (updatedBriefing.agent || 'lucy').toLowerCase(),
+          status: 'queued',
+          briefingId: updatedBriefing.id,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+          completedAt: null,
+        };
+        
+        tasks.push(newTask);
+        saveTasks(tasks);
+        createdTask = newTask;
+      }
+    } catch (err) {
+      console.error('Failed to create task from briefing:', err.message);
+      // Don't fail the briefing update if task creation fails
+    }
+  }
+  
+  res.json({ 
+    success: true, 
+    briefing: updatedBriefing,
+    taskCreated: createdTask ? { id: createdTask.id, name: createdTask.name, status: 'queued' } : null
+  });
 });
 
 // DELETE /api/briefings/:id - delete briefing
