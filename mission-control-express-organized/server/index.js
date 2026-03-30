@@ -206,7 +206,7 @@ app.put('/api/projects/:id', (req, res) => {
   res.json({ success: true, project: projects[idx] });
 });
 
-// POST /api/projects - create project
+// POST /api/projects - create project with auto-generated briefings & tasks
 app.post('/api/projects', (req, res) => {
   if (!req.body.name || typeof req.body.name !== 'string' || req.body.name.trim().length === 0) {
     return res.status(400).json({ error: 'Project name is required' });
@@ -227,12 +227,62 @@ app.post('/api/projects', (req, res) => {
   projects.push(newProject);
   saveProjects(projects);
 
-  // Auto-execute the project (generate briefings and tasks)
+  // Auto-generate briefings and tasks using project startup wizard
+  let generatedBriefings = [];
+  try {
+    const { createProjectStartupPlan } = require('./../../scripts/project-startup-wizard.js');
+    const plan = createProjectStartupPlan(
+      newProject.name,
+      req.body.projectType || 'product',
+      newProject.description || ''
+    );
+    
+    // Create briefings from plan
+    const briefings = loadBriefings();
+    plan.briefings.forEach((briefing) => {
+      briefing.projectId = newProject.id;
+      briefings.push(briefing);
+    });
+    saveBriefings(briefings);
+    
+    // Create initial task for first phase
+    const tasks = loadTasks();
+    if (plan.briefings.length > 0) {
+      const firstPhaseBriefing = plan.briefings[0];
+      const initialTask = {
+        id: Date.now().toString(),
+        name: firstPhaseBriefing.title,
+        description: firstPhaseBriefing.description,
+        priority: 'High',
+        estimatedHours: 40,
+        dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+        assignedTo: firstPhaseBriefing.agent.toLowerCase(),
+        status: 'queued',
+        briefingId: firstPhaseBriefing.id,
+        projectId: newProject.id,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        completedAt: null,
+      };
+      tasks.push(initialTask);
+      saveTasks(tasks);
+    }
+    
+    generatedBriefings = plan.briefings;
+    newProject.taskCount = plan.briefings.length;
+    saveProjects(projects);
+  } catch (err) {
+    console.error('Failed to auto-generate briefings:', err.message);
+  }
+
+  // Auto-execute the project
   const executionResult = executeProject(newProject);
   
   res.status(201).json({ 
     success: true, 
     project: newProject,
+    generatedBriefings: generatedBriefings.length,
+    briefings: generatedBriefings,
     execution: executionResult,
   });
 });
