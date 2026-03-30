@@ -20,6 +20,8 @@ export default function ProjectDetail() {
   const [error, setError] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [briefings, setBriefings] = useState([]);
+  const [tasks, setTasks] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -45,6 +47,34 @@ export default function ProjectDetail() {
           team: data.project.team || '',
         });
         setError(null);
+        
+        // Fetch briefings related to this project
+        try {
+          const briefRes = await fetch('/api/briefings');
+          if (briefRes.ok) {
+            const briefData = await briefRes.json();
+            const projectBriefings = (briefData.briefings || briefData || []).filter(b => 
+              b.title && b.title.includes(data.project.name)
+            );
+            setBriefings(projectBriefings);
+          }
+        } catch (err) {
+          console.error('Failed to fetch briefings:', err);
+        }
+        
+        // Fetch tasks related to this project
+        try {
+          const taskRes = await fetch('/api/tasks');
+          if (taskRes.ok) {
+            const taskData = await taskRes.json();
+            const projectTasks = (taskData.tasks || taskData || []).filter(t =>
+              t.description && t.description.includes(data.project.name)
+            );
+            setTasks(projectTasks);
+          }
+        } catch (err) {
+          console.error('Failed to fetch tasks:', err);
+        }
       } catch (err) {
         setError(err.message);
       } finally {
@@ -355,6 +385,64 @@ export default function ProjectDetail() {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Live Briefings & Tasks from API */}
+      {briefings.length > 0 && (
+        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
+            <h2 className="text-sm font-bold text-gray-900">📋 Active Briefings</h2>
+          </div>
+          <div className="p-6 space-y-3">
+            {briefings.map((b) => (
+              <div key={b.id} className="flex items-start justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                <div className="flex-1">
+                  <div className="text-sm font-semibold text-gray-900">{b.title}</div>
+                  <div className="text-xs text-gray-600 mt-1">Agent: {b.agent || 'Unassigned'}</div>
+                </div>
+                <span className={`px-2 py-1 rounded text-xs font-semibold ${
+                  b.status === 'approved' ? 'bg-green-100 text-green-800' :
+                  b.status === 'auto-executing' ? 'bg-blue-100 text-blue-800' :
+                  'bg-yellow-100 text-yellow-800'
+                }`}>
+                  {b.status || 'pending'}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {tasks.length > 0 && (
+        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
+            <h2 className="text-sm font-bold text-gray-900">✅ Related Tasks</h2>
+          </div>
+          <div className="p-6 space-y-3">
+            {tasks.map((t) => (
+              <div key={t.id} className="flex items-start justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                <div className="flex-1">
+                  <div className="text-sm font-semibold text-gray-900">{t.name}</div>
+                  <div className="text-xs text-gray-600 mt-1">Assigned to: {t.assignedTo || 'Unassigned'}</div>
+                </div>
+                <span className={`px-2 py-1 rounded text-xs font-semibold ${
+                  t.status === 'complete' ? 'bg-green-100 text-green-800' :
+                  t.status === 'in-progress' ? 'bg-blue-100 text-blue-800' :
+                  'bg-gray-100 text-gray-800'
+                }`}>
+                  {t.status || 'pending'}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {briefings.length === 0 && tasks.length === 0 && (
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+          <p className="text-sm text-blue-800">💡 <strong>No briefings or tasks yet.</strong></p>
+          <p className="text-xs text-blue-700 mt-1">Create briefings to kickstart work on this project.</p>
         </div>
       )}
 

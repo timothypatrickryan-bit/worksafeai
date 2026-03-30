@@ -1,5 +1,5 @@
 ═══════════════════════════════════════════════════════════════
-  HYPERSCALER DAILY UPDATE - 3/29/2026
+  HYPERSCALER DAILY UPDATE - 3/30/2026
 ═══════════════════════════════════════════════════════════════
 
 ✅ Found 30 verified articles
@@ -22,10 +22,9 @@
    That’s why <strong>Advancing Data Center Construction West returns in 2026</strong> as the definitive forum uniting 900+...
    🔗 https://advancing-data-center-construction-west.com/
 
-4. Large data center may be heading to former computer chip facility in Colorado Springs
-   Published: 15 hours ago
-   <strong>The data center will be constructed inside a former Intel microchip manufacturing plant and will be approximatel...
-   🔗 https://gazette.com/2026/03/28/large-data-center-may-be-heading-to-former-computer-chip-facility-in-colorado-springs/
+4. Data Center Outlook: Half of 2026 Pipeline May Not Materialize
+   We’re tracking 190GW across 777 large data centers and AI factories (&gt;50MW) announced since 2024. <strong>At least 16...
+   🔗 https://www.sightlineclimate.com/research/data-center-outlook
 
 5. AI-First Hyperscalers: 2026’s Sprint Meets the Power Bottleneck
    Published: 2 weeks ago
@@ -67,20 +66,20 @@
    Consistent with the Administration’s priorities, the order should facilitate development of AI data centers by streamlin...
    🔗 https://www.coxcastle.com/publication-new-executive-order-promotes-development-of-data-centers-supporting-ai
 
-14. March 2026 Data Center Report: Year Begins with Record Construction Starts
-   Published: 2 days ago
+14. Breaking Ground on Our New AI-Optimized Data Center in El Paso
+   Published: October 15, 2025
+   We’re breaking ground on a new, <strong>a cutting-edge AI-focused data center in El Paso that can scale to a 1GW data ce...
+   🔗 https://about.fb.com/news/2025/10/metas-new-ai-optimized-data-center-el-paso/
+
+15. March 2026 Data Center Report: Year Begins with Record Construction Starts
+   Published: 3 days ago
    A historic milestone was reached for <strong>January 2026</strong> US data center construction starts, totaling $25.2 bi...
    🔗 https://news.constructconnect.com/march-2026-data-center-report
 
-15. Hong Kong breaks ground on largest data center, eyes use in 42 months-Xinhua
-   Published: 11 hours ago
-   HONG KONG, March 28 (Xinhua) -- <strong>The Range (Hong Kong) Sandy Ridge Data Facility Cluster</strong> broke ground on...
-   🔗 https://english.news.cn/20260329/e2728d64679d41eb8662d2e008feffa5/c.html
-
-16. Meta boosts investment in West Texas AI data center by over sixfold to $10 billion
-   Published: 3 days ago
-   <strong>Meta is building a 1GW AI data center in El Paso, Texas</strong>, shown here in March 2026, five months after gr...
-   🔗 https://www.cnbc.com/2026/03/26/meta-to-spend-10-billion-on-ai-data-center-in-el-paso-1gw-by-2028.html
+16. 5GW Data Center Buildout Requires Novel Engineering - IEEE Spectrum
+   Published: 5 days ago
+   <strong>Meta&#x27;s 5GW data center Hyperion</strong> exemplifies the land, power, cooling, networking and workforce req...
+   🔗 https://spectrum.ieee.org/5gw-data-center
 
 📰 Fiber Deployment (14 articles)
 ────────────────────────────────────────────────────────
@@ -107,19 +106,20 @@
    Meta recently announced <strong>Project Waterworth</strong>, the company’s plan to connect the US, India, South Africa, ...
    🔗 https://www.ox.ac.uk/news/2025-03-10-expert-comment-what-does-meta-s-undersea-cable-plan-mean-geopolitics
 
-6. Breaking Submarine Cable News & Analysis - SubTel Forum
+6. SubCableNews: News for the submarine cable market
+   Published: April 6, 2016
+   <strong>Cable installation has started at the Windanker offshore wind farm</strong> ’ ......
+   🔗 https://subcablenews.com/
+
+7. Breaking Submarine Cable News & Analysis - SubTel Forum
    Published: January 28, 2026
    Providing the latest submarine cable news and insights....
    🔗 https://subtelforum.com/
 
-7. Australia to Fund $120m for Three New Subsea Cables Linking PNG - Submarine Networks
+8. Australia to Fund $120m for Three New Subsea Cables Linking PNG - Submarine Networks
+   Published: December 27, 2025
    According Reuters and various sources, <strong>the Australian government will fund a $120 million to construct three new...
    🔗 https://www.submarinenetworks.com/en/nv/insights/australia-to-fund-$120m-for-three-new-subsea-cables-linking-png
-
-8. SubCableNews: News for the submarine cable market
-   Published: April 6, 2016
-   <strong>Cable installation has started at the Windanker offshore wind farm</strong> ’ ......
-   🔗 https://subcablenews.com/
 
 9. With Private Investment, Fiber Broadband Deployment Is Rising
    Published: January 29, 2026
@@ -150,5 +150,5 @@
    🔗 https://www.theutilityexpo.com/news/the-future-of-fiber-deployment-6-trends-transformi
 
 
-Generated: 2026-03-29T11:16:48.469Z
+Generated: 2026-03-30T11:00:46.712Z
 All links verified and active ✅

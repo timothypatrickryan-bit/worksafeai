@@ -158,6 +158,40 @@ const projectMetadata = {
       },
     ],
   },
+  8: {
+    // Home Builder Helper
+    sections: [
+      {
+        title: 'Project Overview',
+        metrics: [
+          { label: 'Phase', value: 'Design', trend: 'In Progress' },
+          { label: 'Design Briefings', value: '5', trend: 'Ready to execute' },
+          { label: 'Target Launch', value: 'Q2 2026', trend: '6-8 weeks' },
+          { label: 'Team Size', value: '1-2', trend: 'Design + Dev' },
+        ],
+      },
+      {
+        title: 'Design Phase Tasks',
+        items: [
+          { name: 'Concept & Wireframes', date: 'Week 1', status: '⏳ Queued' },
+          { name: 'High-fidelity Design', date: 'Week 2', status: '⏳ Queued' },
+          { name: 'Design System', date: 'Week 2-3', status: '⏳ Queued' },
+          { name: 'Handoff & Specs', date: 'Week 3', status: '⏳ Queued' },
+          { name: 'Validation & Iteration', date: 'Week 4', status: '⏳ Queued' },
+        ],
+      },
+      {
+        title: 'Key Features',
+        items: [
+          { name: 'Upload Design Plans', date: 'Core', status: '✨ Planned' },
+          { name: 'Building Intake Form', date: 'Core', status: '✨ Planned' },
+          { name: 'Timeline Management', date: 'Core', status: '✨ Planned' },
+          { name: 'Decision Tracking', date: 'Core', status: '✨ Planned' },
+          { name: 'Phase 2: Design Phase Tools', date: 'Future', status: '🔵 Backlog' },
+        ],
+      },
+    ],
+  },
 };
 
 export default projectMetadata;

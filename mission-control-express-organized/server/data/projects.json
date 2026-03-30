@@ -1,68 +1,74 @@
 [
   {
     "id": 1,
-    "name": "WorkSafeAI",
-    "status": "In Progress",
-    "progress": 75,
+    "name": "WorkSafeAI Updated",
+    "status": "Completed",
+    "progress": 100,
     "taskCount": 15,
     "description": "Job Task Safety Analysis tool for construction industry",
     "owner": "Tim Ryan",
-    "team": "Dev Team"
+    "team": "Dev Team",
+    "updatedAt": "2026-03-29T16:53:23.744Z"
   },
   {
     "id": 2,
-    "name": "Mission Control",
-    "status": "In Progress",
-    "progress": 45,
+    "name": "Mission Control - Updated Name",
+    "status": "Active",
+    "progress": 50,
     "taskCount": 12,
     "description": "Complete visual redesign with improved UX and workflows",
-    "owner": "Lucy",
-    "team": "Platform"
+    "owner": "Lucy Admin",
+    "team": "Platform Team",
+    "updatedAt": "2026-03-29T16:52:00.572Z"
   },
   {
     "id": 3,
     "name": "Consensus",
     "status": "In Progress",
-    "progress": 28,
+    "progress": 85,
     "taskCount": 8,
     "description": "Product Review Aggregation and Analysis Platform",
     "owner": "Research Team",
-    "team": "Data"
+    "team": "Data",
+    "updatedAt": "2026-03-29T16:53:23.756Z"
   },
   {
     "id": 4,
-    "name": "LinkedIn Automation",
-    "status": "Active",
-    "progress": 100,
+    "name": "Test Project - Full Update",
+    "status": "In Progress",
+    "progress": 42,
     "taskCount": 5,
-    "description": "Automated LinkedIn content posting with Brave Search",
-    "owner": "Lucy",
-    "team": "Marketing"
+    "description": "Testing all fields",
+    "owner": "Test Owner",
+    "team": "Test Team",
+    "updatedAt": "2026-03-29T16:54:14.563Z"
   },
   {
     "id": 5,
-    "name": "Hyperscaler Briefings",
+    "name": "Updated Hyperscaler",
     "status": "Active",
     "progress": 100,
     "taskCount": 3,
-    "description": "Automated daily briefings for data center industry",
+    "description": "New description for hyperscaler briefings",
     "owner": "Lucy",
-    "team": "Marketing"
+    "team": "Marketing",
+    "updatedAt": "2026-03-29T16:53:23.776Z"
   },
   {
     "id": 6,
     "name": "Project Warp Speed",
     "status": "Active",
-    "progress": 15,
+    "progress": 99,
     "taskCount": 35,
     "description": "Pro-Tel growth acceleration - data center infrastructure market leadership (Northeast PA/Upstate NY)",
     "owner": "Tim Ryan",
-    "team": "Strategy"
+    "team": "Strategy",
+    "updatedAt": "2026-03-29T16:54:14.590Z"
   },
   {
     "id": 7,
     "name": "Autonomous Improvements",
-    "status": "Active",
+    "status": "Archived",
     "progress": 15,
     "taskCount": 3,
     "description": "Self-improving AI system - nightly research + staged builds + auto-deploy",
@@ -73,6 +79,17 @@
       "stagedImprovements": 3,
       "deployed": 1,
       "nextRun": "2026-03-29 23:45 (nightly research)"
-    }
+    },
+    "updatedAt": "2026-03-29T16:54:14.644Z"
+  },
+  {
+    "id": 8,
+    "status": "Active",
+    "progress": 0,
+    "taskCount": 0,
+    "name": "Home Builder Helper",
+    "description": "A web app for homeowner to use when building a new house.  Building a new house comes with a million decisions I would like an app that will help the homeowner keep the building organized and keep the build on schedule.\n\nAllow the homeowner to upload the design plans and/or create a new house intake form that will ask a number of clarifying questions about the new home to be built.\n\nThe helper can be split into two phases the building or the physical construction and then the design phase.",
+    "owner": "Lucy",
+    "createdAt": "2026-03-29T21:08:39.163Z"
   }
 ]

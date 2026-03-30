@@ -1,1 +1,52 @@
-[]
+[
+  {
+    "id": 1774818519165.7297,
+    "status": "auto-executing",
+    "agent": "Lucy",
+    "type": "Task Briefing",
+    "title": "Home Builder Helper: Concept & wireframes",
+    "description": "Project: Home Builder Helper\nTask: Concept & wireframes\nDetails: Create design concepts and wireframes\nTimeline: TBD\nOwner: Lucy\n\nGoals: See project details\n\nThis is a Level 2 task for \"Home Builder Helper\".\n✅ Execute immediately.",
+    "level": 2,
+    "timestamp": "2026-03-29T21:08:39.165Z"
+  },
+  {
+    "id": 1774818519165.5515,
+    "status": "auto-executing",
+    "agent": "Lucy",
+    "type": "Task Briefing",
+    "title": "Home Builder Helper: High-fidelity design",
+    "description": "Project: Home Builder Helper\nTask: High-fidelity design\nDetails: Develop high-fidelity mockups\nTimeline: TBD\nOwner: Lucy\n\nGoals: See project details\n\nThis is a Level 2 task for \"Home Builder Helper\".\n✅ Execute immediately.",
+    "level": 2,
+    "timestamp": "2026-03-29T21:08:39.165Z"
+  },
+  {
+    "id": 1774818519165.696,
+    "status": "auto-executing",
+    "agent": "Lucy",
+    "type": "Task Briefing",
+    "title": "Home Builder Helper: Design system",
+    "description": "Project: Home Builder Helper\nTask: Design system\nDetails: Create design system and components\nTimeline: TBD\nOwner: Lucy\n\nGoals: See project details\n\nThis is a Level 2 task for \"Home Builder Helper\".\n✅ Execute immediately.",
+    "level": 2,
+    "timestamp": "2026-03-29T21:08:39.165Z"
+  },
+  {
+    "id": 1774818519165.403,
+    "status": "auto-executing",
+    "agent": "Lucy",
+    "type": "Task Briefing",
+    "title": "Home Builder Helper: Handoff & specs",
+    "description": "Project: Home Builder Helper\nTask: Handoff & specs\nDetails: Prepare specs for development\nTimeline: TBD\nOwner: Lucy\n\nGoals: See project details\n\nThis is a Level 2 task for \"Home Builder Helper\".\n✅ Execute immediately.",
+    "level": 2,
+    "timestamp": "2026-03-29T21:08:39.165Z"
+  },
+  {
+    "id": 1774818519165.5442,
+    "status": "auto-executing",
+    "agent": "Lucy",
+    "type": "Task Briefing",
+    "title": "Home Builder Helper: Validation & iteration",
+    "description": "Project: Home Builder Helper\nTask: Validation & iteration\nDetails: Test with users and iterate\nTimeline: TBD\nOwner: Lucy\n\nGoals: See project details\n\nThis is a Level 2 task for \"Home Builder Helper\".\n✅ Execute immediately.",
+    "level": 2,
+    "timestamp": "2026-03-29T21:08:39.165Z"
+  }
+]

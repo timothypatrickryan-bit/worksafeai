@@ -1,0 +1,78 @@
+═══════════════════════════════════════════════════════════════
+  HYPERSCALER DAILY UPDATE - 3/29/2026
+═══════════════════════════════════════════════════════════════
+
+📰 Data Center Construction (7 articles)
+────────────────────────────────────────────────────────────
+
+1. New Data Center Developments: March 2026
+   Source: www.datacenterknowledge.com
+   <strong>AVAIO Digital Partners announced a multi-phase campus in Little Rock, Ark., beginning with a combined investment of $6 billion</strong>. As th
+   🔗 https://www.datacenterknowledge.com/data-center-construction/new-data-center-developments-march-2026
+
+2. New Data Center Developments: February 2026
+   Source: www.datacenterknowledge.com
+   OpenAI also said it has selected SB Energy to build and operate its 1.2 GW data center in Milam County, Texas. For its part, Meta announced an agreeme
+   🔗 https://www.datacenterknowledge.com/data-center-construction/new-data-center-developments-february-2026
+
+3. AI-First Hyperscalers: 2026’s Sprint Meets the Power Bottleneck
+   Source: www.datacenterknowledge.com
+   Fung noted that <strong>hyperscalers are now designing data centers optimized for large-scale AI workloads</strong>. “These deployments require tens o
+   🔗 https://www.datacenterknowledge.com/hyperscalers/hyperscalers-in-2026-what-s-next-for-the-world-s-largest-data-center-operators-
+
+4. Applied Digital Completes Development Loan Facility with Macquarie Group to Support New AI Factory Campuses :: Applied Digital Corporation (APLD)
+   Source: ir.applieddigital.com
+   “This development facility strengthens our ability to move quickly on high-quality sites while maintaining capital flexibility,” said Wes Cummins, Cha
+   🔗 https://ir.applieddigital.com/news-events/press-releases/detail/139/applied-digital-completes-development-loan-facility-with
+
+5. Hyperscale Data Centers Market 2026 Explosive Data Demand Fueling Infrastructure Expansion - Technology Today - EIN Presswire
+   Source: tech.einnews.com
+   Increasing Adoption Of Artificial Intelligence And Generative AI Workloads - <strong>The increasing adoption of artificial intelligence and generative
+   🔗 https://tech.einnews.com/pr_news/899968200/hyperscale-data-centers-market-2026-explosive-data-demand-fueling-infrastructure-expansion
+
+6. Permitting a Data Center: Step-by-Step Guide
+   Source: www.withpulley.com
+   Data center projects often require rezoning, permitting waivers, and special exemptions. The location of data centers compounds this problem. As devel
+   🔗 https://www.withpulley.com/resources/guide-to-permitting-a-data-center
+
+7. Accelerating Federal Permitting of Data Center Infrastructure – The White House
+   Source: www.whitehouse.gov
+   These plans include artificial intelligence (AI) data centers and infrastructure that powers them, including high‑voltage transmission lines and other
+   🔗 https://www.whitehouse.gov/presidential-actions/2025/07/accelerating-federal-permitting-of-data-center-infrastructure/
+
+📰 Fiber Deployment (6 articles)
+────────────────────────────────────────────────────────────
+
+1. OFC 2026: new launches round-up, part II
+   Source: optics.org
+   Moran Roth, VP Product Line Management ... scalability, and value to customers operating in fiber-limited environments.” <strong>The dual-laser QSFP28
+   🔗 https://optics.org/news/17/3/33
+
+2. Nokia launches suite of application‑optimized optical solutions for AI-era networks
+   Source: www.nokia.com
+   To address this challenge, Nokia ... deployments. This solution delivers a 40-fold increase in in-line amplifier density over today’s solutions or 160
+   🔗 https://www.nokia.com/newsroom/nokia-launches-suite-of-applicationoptimized-optical-solutions-for-ai-era-networks/
+
+3. Underwater Cable Installation - LS Power
+   Source: www.lspower.com
+   <strong>The cable is fed vertically down through the tool, along with the pipes for the pressurized water</strong>. The fluidized sediment then falls 
+   🔗 https://www.lspower.com/news/underwater-cable-installation/
+
+4. Submarine Cable FAQs
+   Source: www2.telegeography.com
+   Of course, considerable care is taken to ensure cables follow the safest path to avoid fault zones, fishing zones, anchoring areas, and other dangers.
+   🔗 https://www2.telegeography.com/submarine-cable-faqs-frequently-asked-questions
+
+5. With Private Investment, Fiber Broadband Deployment Is Rising
+   Source: www.govtech.com
+   Fiber broadband infrastructure continues to be deployed across the nation, largely as <strong>capital investment projects by the private sector</stron
+   🔗 https://www.govtech.com/network/with-private-investment-fiber-broadband-deployment-is-rising
+
+6. Unit Economics of Fiber Optic Investments - Phoenix Strategy Group
+   Source: www.phoenixstrategy.group
+   Fiber optic investments are <strong>reshaping internet infrastructure by meeting growing demand for high-speed, reliable connections</strong>. This ar
+   🔗 https://www.phoenixstrategy.group/blog/unit-economics-of-fiber-optic-investments
+
+═══════════════════════════════════════════════════════════════
+Generated: 2026-03-30T12:00:38.255Z
+All links verified and active ✅

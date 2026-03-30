@@ -33,9 +33,10 @@
     "estimatedHours": 2,
     "dueDate": "2026-03-30",
     "assignedTo": "opus",
-    "status": "pending",
+    "status": "in-progress",
     "createdAt": "2026-03-29T16:52:31.341Z",
-    "completedAt": null
+    "completedAt": null,
+    "updatedAt": "2026-03-30T16:23:39.991Z"
   },
   {
     "id": "1774803184283",
@@ -45,10 +46,10 @@
     "estimatedHours": 5,
     "dueDate": "2026-03-30",
     "assignedTo": "lucy",
-    "status": "assigned",
+    "status": "in-progress",
     "createdAt": "2026-03-29T16:53:04.283Z",
     "completedAt": null,
-    "updatedAt": "2026-03-29T16:53:04.299Z"
+    "updatedAt": "2026-03-30T16:23:46.610Z"
   },
   {
     "id": "17748873898619ufqhfbud",
