@@ -385,9 +385,54 @@ app.get('/api/briefings', (req, res) => {
   res.json({ briefings });
 });
 
+// Smart agent routing based on task type (delegation matrix)
+function routeToAgent(type, title) {
+  const t = String(type).toLowerCase();
+  const titleLower = String(title).toLowerCase();
+  
+  // Design tasks → Johnny (Frontend Engineer)
+  if (t.includes('design') || t.includes('ui') || t.includes('wireframe') || t.includes('mockup') || 
+      titleLower.includes('design') || titleLower.includes('ui') || titleLower.includes('wireframe')) {
+    return 'johnny';
+  }
+  
+  // Backend/API/Database tasks → Jarvis (Backend Engineer)
+  if (t.includes('api') || t.includes('backend') || t.includes('database') || t.includes('endpoint') ||
+      titleLower.includes('api') || titleLower.includes('backend') || titleLower.includes('database')) {
+    return 'jarvis';
+  }
+  
+  // Testing/QA tasks → Velma
+  if (t.includes('test') || t.includes('qa') || t.includes('review') ||
+      titleLower.includes('test') || titleLower.includes('qa')) {
+    return 'velma';
+  }
+  
+  // Architecture/Complex → Chief
+  if (t.includes('architecture') || t.includes('system') || t.includes('infra') ||
+      titleLower.includes('architecture') || titleLower.includes('system')) {
+    return 'chief';
+  }
+  
+  // Research tasks → Scout
+  if (t.includes('research') || t.includes('analysis') || t.includes('market') ||
+      titleLower.includes('research') || titleLower.includes('analysis')) {
+    return 'scout';
+  }
+  
+  // Strategy/Business → Laura
+  if (t.includes('strategy') || t.includes('business') || t.includes('planning') ||
+      titleLower.includes('strategy') || titleLower.includes('business')) {
+    return 'laura';
+  }
+  
+  // Default to Lucy for orchestration/general
+  return 'lucy';
+}
+
 // POST /api/briefings - create briefing
 app.post('/api/briefings', (req, res) => {
-  const { type, title, description, actionRequired, level } = req.body;
+  const { type, title, description, actionRequired, level, agent } = req.body;
   if (!type || !title) return res.status(400).json({ error: 'type and title required' });
 
   // Determine if this needs approval based on autonomy level
@@ -401,10 +446,13 @@ app.post('/api/briefings', (req, res) => {
     status = 'executing';
   }
 
+  // Route to appropriate agent using delegation matrix
+  const assignedAgent = agent || routeToAgent(type, title);
+
   const briefing = {
     id: Date.now(),
     status: status,
-    agent: 'Lucy',
+    agent: assignedAgent,
     type: String(type).substring(0, 50),
     title: String(title).substring(0, 200),
     description: String(description).substring(0, 1000),
@@ -472,6 +520,9 @@ app.patch('/api/briefings/:id', (req, res) => {
       // Check if task already exists for this briefing
       const existingTask = tasks.find(t => t.briefingId === updatedBriefing.id);
       if (!existingTask) {
+        // Route to appropriate agent using delegation matrix
+        const assignedAgent = updatedBriefing.agent || routeToAgent(updatedBriefing.type, updatedBriefing.title);
+        
         // Create new task from briefing
         const newTask = {
           id: Date.now().toString(),
@@ -480,7 +531,7 @@ app.patch('/api/briefings/:id', (req, res) => {
           priority: updatedBriefing.level === 'critical' ? 'Critical' : 'High',
           estimatedHours: 4, // Default estimate
           dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 1 week out
-          assignedTo: (updatedBriefing.agent || 'lucy').toLowerCase(),
+          assignedTo: assignedAgent.toLowerCase(),
           status: 'queued',
           briefingId: updatedBriefing.id,
           createdAt: new Date().toISOString(),
