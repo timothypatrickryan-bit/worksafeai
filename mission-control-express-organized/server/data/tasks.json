@@ -36,7 +36,7 @@
     "status": "in-progress",
     "createdAt": "2026-03-29T16:52:31.341Z",
     "completedAt": null,
-    "updatedAt": "2026-03-30T16:23:39.991Z"
+    "updatedAt": "2026-03-30T23:55:22.218Z"
   },
   {
     "id": "1774803184283",
@@ -59,11 +59,11 @@
     "estimatedHours": 4,
     "dueDate": "2026-04-06",
     "assignedTo": "lucy",
-    "status": "queued",
+    "status": "complete",
     "briefingId": 1774818519165.7297,
     "createdAt": "2026-03-30T16:16:29.861Z",
-    "updatedAt": "2026-03-30T16:16:29.861Z",
-    "completedAt": null
+    "updatedAt": "2026-03-31T00:25:43.227Z",
+    "completedAt": "2026-03-31T00:45:47.695Z"
   },
   {
     "id": "17748873898619fl96p1qb",
@@ -73,10 +73,10 @@
     "estimatedHours": 4,
     "dueDate": "2026-04-06",
     "assignedTo": "lucy",
-    "status": "queued",
+    "status": "executing",
     "briefingId": 1774818519165.5515,
     "createdAt": "2026-03-30T16:16:29.861Z",
-    "updatedAt": "2026-03-30T16:16:29.861Z",
+    "updatedAt": "2026-03-31T00:19:49.396Z",
     "completedAt": null
   },
   {
@@ -87,10 +87,10 @@
     "estimatedHours": 4,
     "dueDate": "2026-04-06",
     "assignedTo": "lucy",
-    "status": "queued",
+    "status": "executing",
     "briefingId": 1774818519165.696,
     "createdAt": "2026-03-30T16:16:29.861Z",
-    "updatedAt": "2026-03-30T16:16:29.861Z",
+    "updatedAt": "2026-03-31T00:19:49.397Z",
     "completedAt": null
   },
   {
@@ -101,10 +101,10 @@
     "estimatedHours": 4,
     "dueDate": "2026-04-06",
     "assignedTo": "lucy",
-    "status": "queued",
+    "status": "executing",
     "briefingId": 1774818519165.403,
     "createdAt": "2026-03-30T16:16:29.861Z",
-    "updatedAt": "2026-03-30T16:16:29.861Z",
+    "updatedAt": "2026-03-31T00:19:49.397Z",
     "completedAt": null
   },
   {
@@ -115,10 +115,40 @@
     "estimatedHours": 4,
     "dueDate": "2026-04-06",
     "assignedTo": "lucy",
-    "status": "queued",
+    "status": "executing",
     "briefingId": 1774818519165.5442,
     "createdAt": "2026-03-30T16:16:29.862Z",
-    "updatedAt": "2026-03-30T16:16:29.862Z",
+    "updatedAt": "2026-03-31T00:19:49.397Z",
+    "completedAt": null
+  },
+  {
+    "id": "1774888743175",
+    "name": "Test: Collaboration Features: Architecture & Planning",
+    "description": "Development phase 1: Design system architecture and technical specifications",
+    "priority": "High",
+    "estimatedHours": 40,
+    "dueDate": "2026-04-06",
+    "assignedTo": "johnny",
+    "status": "executing",
+    "briefingId": 1774888743174,
+    "projectId": 9,
+    "createdAt": "2026-03-30T16:39:03.175Z",
+    "updatedAt": "2026-03-31T00:19:49.397Z",
+    "completedAt": null
+  },
+  {
+    "id": "1774898595135",
+    "name": "Home Builder Helper: Discovery & Planning",
+    "description": "Product phase 1: Requirements gathering, user research, and feature prioritization",
+    "priority": "High",
+    "estimatedHours": 40,
+    "dueDate": "2026-04-06",
+    "assignedTo": "johnny",
+    "status": "executing",
+    "briefingId": 1774898595135,
+    "projectId": 8,
+    "createdAt": "2026-03-30T19:23:15.136Z",
+    "updatedAt": "2026-03-31T00:19:49.397Z",
     "completedAt": null
   }
 ]

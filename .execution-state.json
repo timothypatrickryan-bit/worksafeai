@@ -1,0 +1,44 @@
+{
+  "17748873898619ufqhfbud": {
+    "startedAt": "2026-03-31T00:19:49.396Z",
+    "agent": "Lucy",
+    "briefingId": 1774818519165.7297,
+    "status": "executing"
+  },
+  "17748873898619fl96p1qb": {
+    "startedAt": "2026-03-31T00:19:49.396Z",
+    "agent": "Lucy",
+    "briefingId": 1774818519165.5515,
+    "status": "executing"
+  },
+  "1774887389861trgykfgl1": {
+    "startedAt": "2026-03-31T00:19:49.397Z",
+    "agent": "Lucy",
+    "briefingId": 1774818519165.696,
+    "status": "executing"
+  },
+  "1774887389861l617ovqw3": {
+    "startedAt": "2026-03-31T00:19:49.397Z",
+    "agent": "Lucy",
+    "briefingId": 1774818519165.403,
+    "status": "executing"
+  },
+  "1774887389862yitvf0xzl": {
+    "startedAt": "2026-03-31T00:19:49.397Z",
+    "agent": "Lucy",
+    "briefingId": 1774818519165.5442,
+    "status": "executing"
+  },
+  "1774888743175": {
+    "startedAt": "2026-03-31T00:19:49.397Z",
+    "agent": "johnny",
+    "briefingId": 1774888743174,
+    "status": "executing"
+  },
+  "1774898595135": {
+    "startedAt": "2026-03-31T00:19:49.397Z",
+    "agent": "johnny",
+    "briefingId": 1774898595135,
+    "status": "executing"
+  }
+}

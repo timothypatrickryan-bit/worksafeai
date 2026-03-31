@@ -86,10 +86,20 @@
     "id": 8,
     "status": "Active",
     "progress": 0,
-    "taskCount": 0,
+    "taskCount": 5,
     "name": "Home Builder Helper",
     "description": "A web app for homeowner to use when building a new house.  Building a new house comes with a million decisions I would like an app that will help the homeowner keep the building organized and keep the build on schedule.\n\nAllow the homeowner to upload the design plans and/or create a new house intake form that will ask a number of clarifying questions about the new home to be built.\n\nThe helper can be split into two phases the building or the physical construction and then the design phase.",
     "owner": "Lucy",
     "createdAt": "2026-03-29T21:08:39.163Z"
+  },
+  {
+    "id": 9,
+    "status": "Active",
+    "progress": 0,
+    "taskCount": 5,
+    "name": "Test: Collaboration Features",
+    "description": "Build real-time collaboration system with WebSockets and shared document editing",
+    "owner": "Lucy",
+    "createdAt": "2026-03-30T16:39:03.170Z"
   }
 ]

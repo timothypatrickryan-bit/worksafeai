@@ -95,6 +95,22 @@ Emails sent through WorkSafeAI, Consensus, and other apps will appear as coming 
 
 ---
 
+## 🧠 Model Configuration (Updated March 30, 2026)
+
+**Model Hierarchy:**
+1. **Primary (Default):** minimax/MiniMax-M2.5 — Balanced reasoning + efficiency
+2. **Secondary (Fallback):** anthropic/claude-haiku-4-5 — Fast, lightweight responses
+3. **Premium (On-Demand):** anthropic/claude-opus-4-6 — Deep analysis, code reviews (~$1/use)
+4. **Standard:** anthropic/claude-sonnet-4-6 — Design, architecture decisions
+
+**When to Switch Models:**
+- Use Haiku if MiniMax is slow or over-capacity
+- Use Opus for critical code reviews, security audits, complex reasoning
+- Use Sonnet for standard architecture/design decisions
+- Stay on MiniMax for daily work (best balance)
+
+---
+
 Add whatever helps you do your job. This is your cheat sheet.
 
 ---

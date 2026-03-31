@@ -124,10 +124,16 @@ export default function TaskManagement() {
 
   const getOverdueStatus = (dueDate, status) => {
     if (status === 'complete') return null;
+    // Parse date and compare only the date part, not the time
     const due = new Date(dueDate);
     const now = new Date();
-    if (due < now) return '🔴 OVERDUE';
-    if (due - now < 86400000) return '🟡 Due today';
+    
+    // Set both to midnight to compare dates only
+    const dueDate_Only = new Date(due.getFullYear(), due.getMonth(), due.getDate());
+    const now_Only = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    
+    if (dueDate_Only < now_Only) return '🔴 OVERDUE';
+    if (dueDate_Only.getTime() === now_Only.getTime()) return '🟡 Due today';
     return null;
   };
 
