@@ -1,5 +1,11 @@
 #!/usr/bin/env node
 
+// GLOBAL SAFETY: Kill entire process after 5 minutes (prevents zombie processes)
+setTimeout(() => {
+  console.error(`[${new Date().toISOString()}] ❌ GLOBAL TIMEOUT: Script exceeded 5 minutes. Force exiting.`);
+  process.exit(1);
+}, 5 * 60 * 1000);
+
 /**
  * Hyperscaler Daily Update - Curated News on Data Center & Fiber Infrastructure
  * 
@@ -22,19 +28,51 @@ const ARTICLES_FILE = path.join(WORKSPACE, '.hyperscaler-daily-articles.json');
 
 const API_KEY = process.env.BRAVE_API_KEY || 'BSAHJ3Wmk1IbHNqEsACADrcFLfW5eLc';
 
-// Search queries for data center and fiber topics
+// Search queries optimized for Pro-Tel: Northeast Data Center Structured Cabling
 const SEARCH_QUERIES = {
-  'Data Center Construction': [
-    'data center construction announcement 2026',
-    'hyperscaler facility expansion news',
-    'data center development permit filing',
-    'new data center groundbreaking',
+  'Northeast Data Center Infrastructure Projects': [
+    'data center infrastructure Pennsylvania 2026',
+    'data center construction New York Northeast',
+    'hyperscaler facility Northeast Pennsylvania Upstate NY',
+    'data center expansion Pennsylvania New York',
   ],
-  'Fiber Deployment': [
-    'fiber optic deployment announcement 2026',
-    'undersea cable construction news',
-    'fiber infrastructure investment',
-    'broadband fiber expansion',
+  'Structured Cabling & Fiber Networks': [
+    'structured cabling data center installation 2026',
+    'fiber optic cabling infrastructure Northeast',
+    'high-density cabling systems data center',
+    'low-voltage cabling distribution data center',
+  ],
+  'Network Infrastructure Contractors & RFPs': [
+    'data center infrastructure contractor Northeast',
+    'cabling installation RFP Pennsylvania',
+    'network infrastructure projects New York',
+    'cable contractor data center opportunities',
+  ],
+  'Undersea & Regional Fiber Routes': [
+    'fiber optic cable landing Pennsylvania',
+    'undersea cable Northeast corridor',
+    'trans-Atlantic cable routes Northeast',
+    'regional fiber backbone deployment',
+  ],
+  'Edge Data Centers & Colocation': [
+    'edge data center Pennsylvania',
+    'colocation facility Northeast announcement',
+    'regional data center development',
+    'tier 4 data center Northeast',
+  ],
+  'Cabling Standards & Compliance': [
+    'data center cabling standards 2026',
+    'fiber optic infrastructure compliance requirements',
+    'structured cabling certification courses',
+  ],
+  'Telecom & Infrastructure Investment': [
+    'telecom infrastructure investment Pennsylvania',
+    'broadband infrastructure funding Northeast',
+    '5G infrastructure deployment Pennsylvania',
+  ],
+  'Vendor Partnerships & Supplier News': [
+    'data center cabling vendors partnerships',
+    'fiber optic equipment suppliers Northeast',
   ],
 };
 
@@ -65,9 +103,10 @@ async function searchBrave(query) {
         'Accept': 'application/json',
         'X-Subscription-Token': API_KEY,
       },
+      timeout: 15000, // 15 second timeout for API request
     };
 
-    https.get(url, options, (res) => {
+    const req = https.get(url, options, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
@@ -99,22 +138,46 @@ async function searchBrave(query) {
           resolve([]);
         }
       });
-    }).on('error', (err) => {
+    });
+    
+    req.on('error', (err) => {
       logError(`Network error searching "${query}": ${err.message}`);
       resolve([]);
     });
+    
+    req.on('timeout', () => {
+      logError(`Request timeout for "${query}" (15s exceeded)`);
+      req.destroy();
+      resolve([]);
+    });
+    
+    // Hard fallback: force resolve after 20 seconds no matter what
+    setTimeout(() => {
+      req.destroy();
+      resolve([]);
+    }, 20000);
   });
 }
 
 async function validateUrl(url) {
   return new Promise((resolve) => {
     try {
-      const urlObj = new URL(url);
-      const req = https.request(url, { method: 'HEAD', timeout: 5000 }, (res) => {
+      new URL(url); // Validate URL format
+      const req = https.request(url, { method: 'HEAD' }, (res) => {
         resolve(res.statusCode < 400);
       });
+      req.setTimeout(5000, () => {
+        req.destroy();
+        resolve(false);
+      });
       req.on('error', () => resolve(false));
+      req.on('timeout', () => {
+        req.destroy();
+        resolve(false);
+      });
       req.end();
+      // Fallback: force resolve after 6 seconds no matter what
+      setTimeout(() => resolve(false), 6000);
     } catch (e) {
       resolve(false);
     }
