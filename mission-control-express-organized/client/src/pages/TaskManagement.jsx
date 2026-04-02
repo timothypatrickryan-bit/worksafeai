@@ -29,9 +29,8 @@ export default function TaskManagement() {
       setError(null);
     } catch (err) {
       console.error('Task fetch error:', err);
-      setError(`Failed to load tasks: ${err.message}. Using sample data.`);
-      // Use mock data fallback
-      setTasks(mockTasks || []);
+      setError(`Failed to load tasks: ${err.message}`);
+      setTasks([]);
     } finally {
       setLoading(false);
     }
@@ -47,7 +46,7 @@ export default function TaskManagement() {
       setAgents(data.agents || data || []);
     } catch (err) {
       console.error('Failed to fetch agents:', err);
-      setAgents(mockAgents || []);
+      setAgents([]);
     }
   };
 
@@ -362,74 +361,3 @@ export default function TaskManagement() {
   );
 }
 
-// Mock data
-const mockAgents = [
-  { id: 'lucy', name: 'Lucy' },
-  { id: 'chief', name: 'Chief' },
-  { id: 'velma', name: 'Velma' },
-  { id: 'johnny', name: 'Johnny' },
-  { id: 'jarvis', name: 'Jarvis' },
-];
-
-const mockTasks = [
-  {
-    id: 1,
-    title: 'Fix Dashboard Navigation',
-    status: 'in-progress',
-    priority: 'high',
-    agent: 'lucy',
-    dueDate: '2026-03-30',
-    progress: 75,
-    description: 'Resolve sidebar button clicks not working properly',
-    blockers: null,
-    executionNotes: 'Identified root cause: modal state not wired correctly',
-  },
-  {
-    id: 2,
-    title: 'WorkSafeAI QA Testing',
-    status: 'queued',
-    priority: 'high',
-    agent: 'velma',
-    dueDate: '2026-03-31',
-    progress: 0,
-    description: 'Complete QA checklist for production release',
-    blockers: 'Awaiting latest build from staging',
-    executionNotes: null,
-  },
-  {
-    id: 3,
-    title: 'Consensus API Optimization',
-    status: 'complete',
-    priority: 'medium',
-    agent: 'jarvis',
-    dueDate: '2026-03-29',
-    progress: 100,
-    description: 'Improve search response time and reduce latency',
-    blockers: null,
-    executionNotes: 'Query optimized - reduced from 2.3s to 450ms',
-  },
-  {
-    id: 4,
-    title: 'LinkedIn Post Generation',
-    status: 'queued',
-    priority: 'low',
-    agent: 'lucy',
-    dueDate: '2026-03-31',
-    progress: 0,
-    description: 'Generate weekly LinkedIn posts for data center market',
-    blockers: null,
-    executionNotes: null,
-  },
-  {
-    id: 5,
-    title: 'Fix Project Creation Modal',
-    status: 'blocked',
-    priority: 'high',
-    agent: 'chief',
-    dueDate: '2026-03-29',
-    progress: 40,
-    description: 'Modal not opening on project creation button click',
-    blockers: 'Waiting for response from Design on modal spec updates',
-    executionNotes: 'UI ready, need design confirmation on layout',
-  },
-];
