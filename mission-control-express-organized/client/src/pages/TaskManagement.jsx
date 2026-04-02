@@ -15,6 +15,9 @@ export default function TaskManagement() {
   useEffect(() => {
     fetchTasks();
     fetchAgents();
+    // Auto-refresh tasks every 5 seconds to show real-time updates
+    const interval = setInterval(fetchTasks, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   const fetchTasks = async () => {
