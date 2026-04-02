@@ -78,7 +78,7 @@ export default function TaskManagement() {
 
   // Filter and sort
   const filtered = tasks.filter(t => {
-    if (filterAgent !== 'all' && t.agent !== filterAgent) return false;
+    if (filterAgent !== 'all' && t.assignedTo !== filterAgent) return false;
     if (filterStatus !== 'all' && t.status !== filterStatus) return false;
     if (filterPriority !== 'all' && t.priority !== filterPriority) return false;
     return true;
@@ -289,7 +289,7 @@ export default function TaskManagement() {
                     </div>
                     <h3 className="font-semibold text-slate-900 truncate">{task.title}</h3>
                     <div className="flex items-center gap-4 mt-1">
-                      <span className="text-xs text-gray-600">👤 {task.agent || 'Unassigned'}</span>
+                      <span className="text-xs text-gray-600">👤 {task.assignedTo || 'Unassigned'}</span>
                       <span className="text-xs text-gray-600">📅 Due: {formatDate(task.dueDate)}</span>
                       {task.blockers && (
                         <span className="text-xs text-red-600 font-bold">🚫 Blocked: {task.blockers}</span>
