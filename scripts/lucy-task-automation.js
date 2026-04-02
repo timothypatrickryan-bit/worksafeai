@@ -206,17 +206,46 @@ function analyzeTask(task, executionTeam) {
   return plan;
 }
 
+// Process briefings with auto-executing or queued status
+function processBriefings() {
+  try {
+    const briefingsFile = path.join(WORKSPACE, 'mission-control-express-organized/server/data/briefings.json');
+    if (!fs.existsSync(briefingsFile)) return [];
+    
+    const briefings = JSON.parse(fs.readFileSync(briefingsFile, 'utf8'));
+    const toProcess = briefings.filter(b => 
+      b.status === 'auto-executing' || (b.status === 'queued' && !b.executionStarted)
+    );
+    
+    return toProcess;
+  } catch (err) {
+    log(`⚠️  Briefing processing error: ${err.message}`);
+    return [];
+  }
+}
+
 // Main automation function
 function processLucyTasks() {
   const state = readState();
   
-  // Find tasks assigned to Lucy that are in 'queued' state
+  // FIRST: Process briefings (new priority)
+  const briefingsToProcess = processBriefings();
+  if (briefingsToProcess.length > 0) {
+    log(`\n📬 Processing ${briefingsToProcess.length} briefing(s)...`);
+    // Note: In full implementation, would spawn agents here
+    // For now, log for visibility
+    briefingsToProcess.forEach(b => {
+      log(`   ⚡ ${b.status.toUpperCase()}: ${b.title}`);
+    });
+  }
+  
+  // THEN: Find tasks assigned to Lucy that are in 'queued' state
   const lucyTasks = (state.tasks || []).filter(
     t => t.assignedTo === 'lucy' && (t.status === 'queued' || t.status === 'pending')
   );
   
-  if (lucyTasks.length === 0) {
-    log('✅ No Lucy tasks to process');
+  if (lucyTasks.length === 0 && briefingsToProcess.length === 0) {
+    log('✅ No tasks or briefings to process');
     return;
   }
   

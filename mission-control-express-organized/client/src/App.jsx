@@ -6,10 +6,10 @@ export default function App() {
 
   // Determine active section from path
   const getPageTitle = () => {
+    if (location.pathname.includes('/kpi')) return 'Warp Speed KPI Dashboard';
     if (location.pathname.includes('/edit')) return 'Edit Project';
     if (location.pathname.startsWith('/projects/')) return 'Project Details';
     if (location.pathname === '/tasks') return 'Task Management';
-    if (location.pathname === '/gap-analysis') return 'Gap Analysis';
     if (location.pathname === '/improvements') return 'Improvements Pipeline';
     if (location.pathname === '/team') return 'Team';
     if (location.pathname === '/contacts') return 'Contacts';

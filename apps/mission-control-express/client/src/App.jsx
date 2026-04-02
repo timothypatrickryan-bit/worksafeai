@@ -8,7 +8,6 @@ export default function App() {
   const getPageTitle = () => {
     if (location.pathname.includes('/edit')) return 'Edit Project';
     if (location.pathname.startsWith('/projects/')) return 'Project Details';
-    if (location.pathname === '/gap-analysis') return 'Gap Analysis';
     if (location.pathname === '/team') return 'Team';
     if (location.pathname === '/contacts') return 'Contacts';
     if (location.pathname === '/calendar') return 'Calendar';

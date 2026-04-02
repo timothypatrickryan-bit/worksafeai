@@ -1,6 +1,23 @@
-# TOOLS.md - Local Notes
+# TOOLS.md - Local Notes & Critical Rules
 
 Skills define _how_ tools work. This file is for _your_ specifics — the stuff that's unique to your setup.
+
+## 🔒 CRITICAL RULE: Verify Before Claiming Completion (April 1, 2026)
+
+**NEVER claim work is complete without verifying it actually exists.**
+
+When you report completion:
+1. **Execute the work** (not just plan or report)
+2. **Verify it exists** (check file, run command, grep -r, etc.)
+3. **Confirm no broken references** (scan codebase, test)
+4. **Report with evidence** (show verification output)
+
+**Wrong:** "✅ File deleted and removed from code"  
+**Right:** "✅ File deleted. Verified: grep -r 'oldname' returns 0 results"
+
+This rule is absolute and overrides everything else. When in doubt, audit.
+
+---
 
 ## What Goes Here
 

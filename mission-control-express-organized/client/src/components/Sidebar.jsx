@@ -4,7 +4,6 @@ const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: '🏠', path: '/' },
   { id: 'tasks', label: 'Tasks', icon: '📋', path: '/tasks' },
   { id: 'briefing-queue', label: 'Briefings', icon: '📬', path: '/briefing-queue' },
-  { id: 'gap-analysis', label: 'Gap Analysis', icon: '📊', path: '/gap-analysis' },
   { id: 'improvements', label: 'Improvements', icon: '🤖', path: '/improvements' },
   { id: 'team', label: 'Team', icon: '👥', path: '/team' },
   { id: 'contacts', label: 'Contacts', icon: '👤', path: '/contacts' },

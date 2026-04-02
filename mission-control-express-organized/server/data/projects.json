@@ -2,24 +2,24 @@
   {
     "id": 1,
     "name": "WorkSafeAI Updated",
-    "status": "Completed",
-    "progress": 100,
+    "status": "In Progress",
+    "progress": 85,
     "taskCount": 15,
-    "description": "Job Task Safety Analysis tool for construction industry",
+    "description": "Job Task Safety Analysis tool for construction industry. Core app live, iOS Phase 2 in development.",
     "owner": "Tim Ryan",
     "team": "Dev Team",
-    "updatedAt": "2026-03-29T16:53:23.744Z"
+    "updatedAt": "2026-04-02T13:00:00.000Z"
   },
   {
     "id": 2,
     "name": "Mission Control - Updated Name",
-    "status": "Active",
-    "progress": 50,
+    "status": "Completed",
+    "progress": 100,
     "taskCount": 12,
-    "description": "Complete visual redesign with improved UX and workflows",
+    "description": "Autonomous project orchestration dashboard. Fully operational with real-time execution tracking.",
     "owner": "Lucy Admin",
     "team": "Platform Team",
-    "updatedAt": "2026-03-29T16:52:00.572Z"
+    "updatedAt": "2026-04-02T13:00:00.000Z"
   },
   {
     "id": 3,
@@ -58,12 +58,12 @@
     "id": 6,
     "name": "Project Warp Speed",
     "status": "Active",
-    "progress": 99,
+    "progress": 15,
     "taskCount": 35,
-    "description": "Pro-Tel growth acceleration - data center infrastructure market leadership (Northeast PA/Upstate NY)",
+    "description": "Pro-Tel growth acceleration - data center infrastructure market leadership (Northeast PA/Upstate NY). Market analysis complete, strategy execution phase underway.",
     "owner": "Tim Ryan",
     "team": "Strategy",
-    "updatedAt": "2026-03-29T16:54:14.590Z"
+    "updatedAt": "2026-04-02T13:00:00.000Z"
   },
   {
     "id": 7,
@@ -85,12 +85,13 @@
   {
     "id": 8,
     "status": "Active",
-    "progress": 0,
+    "progress": 25,
     "taskCount": 5,
     "name": "Home Builder Helper",
-    "description": "A web app for homeowner to use when building a new house.  Building a new house comes with a million decisions I would like an app that will help the homeowner keep the building organized and keep the build on schedule.\n\nAllow the homeowner to upload the design plans and/or create a new house intake form that will ask a number of clarifying questions about the new home to be built.\n\nThe helper can be split into two phases the building or the physical construction and then the design phase.",
+    "description": "A web app for homeowners building a new house. Helps organize decisions, track schedule, and manage the construction + design phases.\n\n**Phase 1: Discovery & Planning ✅ COMPLETE**\n- 5 user personas defined\n- User journey mapped (4 phases)\n- 20 features prioritized (10 for MVP)\n- Tech stack: React Native + Supabase + Vercel\n- Timeline: 4 weeks to MVP\n\n**Phase 2: Design (🔄 EXECUTING)**\n- High-fidelity mockups (Johnny)\n- Design system + components\n- Handoff specs for development",
     "owner": "Lucy",
-    "createdAt": "2026-03-29T21:08:39.163Z"
+    "createdAt": "2026-03-29T21:08:39.163Z",
+    "updatedAt": "2026-04-01T13:25:31.849Z"
   },
   {
     "id": 9,

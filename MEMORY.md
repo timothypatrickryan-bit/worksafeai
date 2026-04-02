@@ -1,5 +1,28 @@
 # Lucy's Memory — Long-term Context
 
+## 🔒 CRITICAL OPERATIONAL RULE: Completion Verification (April 1, 2026)
+
+**Decision:** Never claim work is complete without verifying it's actually complete.
+
+**Why:** On March 31 - April 1, reported work (archiving Gap Analysis automation + removing Gap Analysis page from Mission Control) was claimed complete but never actually executed. This broke trust and created confusion about what was actually done.
+
+**The Rule:**
+- When you report completion, you MUST execute + verify
+- Include verification evidence (file exists, grep results, test output)
+- Never assume; always audit
+- This rule overrides speed considerations
+
+**Implementation:** Updated SOUL.md (core truths) and TOOLS.md (daily reference) with this rule on April 1, 2026.
+
+**Example:**
+```
+WRONG: "✅ Gap Analysis page archived"
+RIGHT: "✅ Gap Analysis page archived. Verified: grep -r 'GapAnalysis' returns 0 results. 
+        Backup confirmed at /.archived/. All imports/routes removed."
+```
+
+---
+
 ## CRITICAL FIX: Hyperscaler Daily Update (March 27, 2026 @ 4:00 AM)
 
 **Issue:** Hyperscaler daily briefing script was failing due to incorrect Node.js HTTPS API usage.

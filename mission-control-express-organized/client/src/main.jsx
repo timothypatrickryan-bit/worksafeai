@@ -6,7 +6,6 @@ import Dashboard from './pages/Dashboard';
 import TaskManagement from './pages/TaskManagement';
 import ProjectDetail from './pages/ProjectDetail';
 import ProjectEdit from './pages/ProjectEdit';
-import GapAnalysis from './pages/GapAnalysis';
 import Team from './pages/Team';
 import Contacts from './pages/Contacts';
 import Calendar from './pages/Calendar';
@@ -15,6 +14,7 @@ import Docs from './pages/Docs';
 import SkillsManagement from './pages/SkillsManagement';
 import Improvements from './pages/Improvements';
 import BriefingQueue from './pages/BriefingQueue';
+import WarpSpeedKPI from './pages/WarpSpeedKPI';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -26,7 +26,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="tasks" element={<TaskManagement />} />
           <Route path="projects/:id" element={<ProjectDetail />} />
           <Route path="projects/:id/edit" element={<ProjectEdit />} />
-          <Route path="gap-analysis" element={<GapAnalysis />} />
+          <Route path="projects/warp-speed/kpi" element={<WarpSpeedKPI />} />
           <Route path="team" element={<Team />} />
           <Route path="contacts" element={<Contacts />} />
           <Route path="calendar" element={<Calendar />} />

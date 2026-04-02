@@ -1,0 +1,124 @@
+{
+  "date": "2026-04-01",
+  "articleCount": 13,
+  "articles": [
+    {
+      "category": "Data Center Construction",
+      "title": "New Data Center Developments: March 2026",
+      "description": "<strong>AVAIO Digital Partners announced a multi-phase campus in Little Rock, Ark., beginning with a combined investment of $6 billion</strong>. As the hub grows, AVAIO expects power demand to reach up to 1 GW.",
+      "url": "https://www.datacenterknowledge.com/data-center-construction/new-data-center-developments-march-2026",
+      "source": "www.datacenterknowledge.com",
+      "foundAt": "2026-04-01T12:00:05.412Z",
+      "validated": true
+    },
+    {
+      "category": "Data Center Construction",
+      "title": "New Data Center Developments: February 2026",
+      "description": "OpenAI also said it has selected SB Energy to build and operate its 1.2 GW data center in Milam County, Texas. For its part, Meta announced an agreement with three nuclear power providers – TerraPower, Oklo, and Vistra – to secure up to 6.6 GW of energy over the next 20 years. The company will gain immediate access to power from three existing nuclear facilities in Ohio and Pennsylvania, while also supporting the construction of new modular nuclear plants expected to come online by 2032. Related:Hyperscalers in 2026: What’s Next for the World’s Biggest Data Center Operators?",
+      "url": "https://www.datacenterknowledge.com/data-center-construction/new-data-center-developments-february-2026",
+      "source": "www.datacenterknowledge.com",
+      "foundAt": "2026-04-01T12:00:05.550Z",
+      "validated": true
+    },
+    {
+      "category": "Data Center Construction",
+      "title": "AI-First Hyperscalers: 2026’s Sprint Meets the Power Bottleneck",
+      "description": "Fung noted that <strong>hyperscalers are now designing data centers optimized for large-scale AI workloads</strong>. “These deployments require tens of gigawatts of aggregate power capacity over the next two to three years, reflecting both the scale and intensity ...",
+      "url": "https://www.datacenterknowledge.com/hyperscalers/hyperscalers-in-2026-what-s-next-for-the-world-s-largest-data-center-operators-",
+      "source": "www.datacenterknowledge.com",
+      "foundAt": "2026-04-01T12:00:06.298Z",
+      "validated": true
+    },
+    {
+      "category": "Data Center Construction",
+      "title": "'Nothing but a noise trap': Dowagiac residents push back against AI data center expansion",
+      "description": "— A data center company has big expansion plans here in Southwest Michigan. Hyperscale Data, an artificial intelligence and bitcoin company, says <strong>it&#x27;s reached an agreement to more than double its campus</strong>, saying the need for AI is exploding.",
+      "url": "https://wwmt.com/news/local/ai-data-center-expansion-dowagiac-loud-noise-complaints-residents-southwest-michigan-hyperscale-megawatt-bitcoin-wwmt",
+      "source": "wwmt.com",
+      "foundAt": "2026-04-01T12:00:06.502Z",
+      "validated": true
+    },
+    {
+      "category": "Data Center Construction",
+      "title": "Hyperscalers Sign White House Pledge to Fund Data Center Power, Grid Upgrades",
+      "description": "Bloomberg reported Thursday that <strong>the company is planning to cut thousands of jobs across divisions as early as this month amid cash pressure from its AI infrastructure expansion</strong>. xAI. xAI, Elon Musk’s AI company, was represented at the White ...",
+      "url": "https://www.powermag.com/hyperscalers-sign-white-house-pledge-to-fund-data-center-power-grid-upgrades/",
+      "source": "www.powermag.com",
+      "foundAt": "2026-04-01T12:00:06.686Z",
+      "validated": true
+    },
+    {
+      "category": "Data Center Construction",
+      "title": "Permitting a Data Center: Step-by-Step Guide",
+      "description": "Data center projects often require rezoning, permitting waivers, and special exemptions. The location of data centers compounds this problem. As developers search the country for large parcels of land with necessary access to surplus grid power, they have increasingly focused on small, rural jurisdictions where similar infrastructure development is unprecedented.",
+      "url": "https://www.withpulley.com/resources/guide-to-permitting-a-data-center",
+      "source": "www.withpulley.com",
+      "foundAt": "2026-04-01T12:00:07.789Z",
+      "validated": true
+    },
+    {
+      "category": "Data Center Construction",
+      "title": "Accelerating Federal Permitting of Data Center Infrastructure – The White House",
+      "description": "These plans include artificial intelligence (AI) data centers and infrastructure that powers them, including high‑voltage transmission lines and other equipment. It will be a priority of my Administration to facilitate the rapid and efficient buildout of this infrastructure by easing Federal regulatory burdens. In addition, my Administration will utilize federally owned land and resources for the expeditious and orderly development of data centers.",
+      "url": "https://www.whitehouse.gov/presidential-actions/2025/07/accelerating-federal-permitting-of-data-center-infrastructure/",
+      "source": "www.whitehouse.gov",
+      "foundAt": "2026-04-01T12:00:07.980Z",
+      "validated": true
+    },
+    {
+      "category": "Fiber Deployment",
+      "title": "OFC 2026: new launches round-up, part II",
+      "description": "Moran Roth, VP Product Line Management ... scalability, and value to customers operating in fiber-limited environments.” <strong>The dual-laser QSFP28-DCO is generally available beginning in March 2026</strong>....",
+      "url": "https://optics.org/news/17/3/33",
+      "source": "optics.org",
+      "foundAt": "2026-04-01T12:00:10.053Z",
+      "validated": true
+    },
+    {
+      "category": "Fiber Deployment",
+      "title": "Nokia launches suite of application‑optimized optical solutions for AI-era networks",
+      "description": "To address this challenge, Nokia ... deployments. This solution delivers a 40-fold increase in in-line amplifier density over today’s solutions or 160 fiber pairs in a single rack. This enables them to expand capacity and services within their existing network footprint while reducing cost and operational complexity. Nokia’s new multi-rail optical line system will be available in the second half of 2026...",
+      "url": "https://www.nokia.com/newsroom/nokia-launches-suite-of-applicationoptimized-optical-solutions-for-ai-era-networks/",
+      "source": "www.nokia.com",
+      "foundAt": "2026-04-01T12:00:10.507Z",
+      "validated": true
+    },
+    {
+      "category": "Fiber Deployment",
+      "title": "Underwater Cable Installation - LS Power",
+      "description": "<strong>The cable is fed vertically down through the tool, along with the pipes for the pressurized water</strong>. The fluidized sediment then falls back into place, covering the cable. There are also hybrid systems for undersea cables that combine the two technologies – water jets fluidize sand and clay ...",
+      "url": "https://www.lspower.com/news/underwater-cable-installation/",
+      "source": "www.lspower.com",
+      "foundAt": "2026-04-01T12:00:11.763Z",
+      "validated": true
+    },
+    {
+      "category": "Fiber Deployment",
+      "title": "Underwater Cable Construction & Installation | Kokosing",
+      "description": "<strong>Kokosing has successfully installed three, 230 kV power transmission lines and two fiber optic lines in San Francisco Bay</strong>. A special barge was mobilized and assembled for the sole purpose of this project.",
+      "url": "https://www.kokosing.biz/our-expertise/marine/submarine-cable-installation/",
+      "source": "www.kokosing.biz",
+      "foundAt": "2026-04-01T12:00:12.070Z",
+      "validated": true
+    },
+    {
+      "category": "Fiber Deployment",
+      "title": "With Private Investment, Fiber Broadband Deployment Is Rising",
+      "description": "Fiber broadband infrastructure continues to be deployed across the nation, largely as <strong>capital investment projects by the private sector</strong>, and regardless of changes to federal funding.",
+      "url": "https://www.govtech.com/network/with-private-investment-fiber-broadband-deployment-is-rising",
+      "source": "www.govtech.com",
+      "foundAt": "2026-04-01T12:00:13.267Z",
+      "validated": true
+    },
+    {
+      "category": "Fiber Deployment",
+      "title": "Unit Economics of Fiber Optic Investments - Phoenix Strategy Group",
+      "description": "Fiber optic investments are <strong>reshaping internet infrastructure by meeting growing demand for high-speed, reliable connections</strong>. This article breaks down the unit economics of fiber optic networks, focusing on costs, revenue models, and ROI benchmarks.",
+      "url": "https://www.phoenixstrategy.group/blog/unit-economics-of-fiber-optic-investments",
+      "source": "www.phoenixstrategy.group",
+      "foundAt": "2026-04-01T12:00:13.529Z",
+      "validated": true
+    }
+  ],
+  "generatedAt": "2026-04-01T12:00:13.789Z"
+}

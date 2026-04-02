@@ -5,7 +5,6 @@ import App from './App';
 import Dashboard from './pages/Dashboard';
 import ProjectDetail from './pages/ProjectDetail';
 import ProjectEdit from './pages/ProjectEdit';
-import GapAnalysis from './pages/GapAnalysis';
 import Team from './pages/Team';
 import Contacts from './pages/Contacts';
 import Calendar from './pages/Calendar';
@@ -22,7 +21,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route index element={<Dashboard />} />
           <Route path="projects/:id" element={<ProjectDetail />} />
           <Route path="projects/:id/edit" element={<ProjectEdit />} />
-          <Route path="gap-analysis" element={<GapAnalysis />} />
           <Route path="team" element={<Team />} />
           <Route path="contacts" element={<Contacts />} />
           <Route path="calendar" element={<Calendar />} />

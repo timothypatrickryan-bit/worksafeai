@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: '🏠', path: '/' },
-  { id: 'gap-analysis', label: 'Gap Analysis', icon: '📊', path: '/gap-analysis' },
   { id: 'team', label: 'Team', icon: '👥', path: '/team' },
   { id: 'contacts', label: 'Contacts', icon: '👤', path: '/contacts' },
   { id: 'calendar', label: 'Calendar', icon: '📅', path: '/calendar' },

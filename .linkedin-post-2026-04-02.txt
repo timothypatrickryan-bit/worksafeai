@@ -1,0 +1,33 @@
+=== LINKEDIN POST ===
+Generated: 4/2/2026, 9:20:49 AM EST
+Format: story
+Topic: Energy Department Announces $1.9B Investment in Critical Grid Infrastructure to Reduce Electricity Costs | Department of Energy
+Quality Score: 88.9%
+
+---
+
+Energy Department Announces $1.9B Investment in Critical Grid Infrastructure to Reduce Electricity Costs | Department of Energy
+
+I saw this news and realized something important.
+
+Most teams think infrastructure upgrades are about capacity. "We need more bandwidth, more compute, more scale."
+
+But that's not what's driving the wins right now.
+
+The companies actually winning are focused on one thing: resilience.
+
+The U.S. Department of Energy’s Office of Electricity (OE) today announced an approximately <strong>$1.9 billion</strong> funding opportunity to accelerate urgently needed upgrades to the nation’s power grid.
+
+Whether it's fiber diversity, power redundancy, or geographic distribution, the winners are building for failure. Not just for growth.
+
+Your infrastructure spend should be resilience-first. Everything else follows.
+
+What's your biggest infrastructure challenge right now?
+
+#DataCenter #FiberOptics #Telecom #EdgeComputing #NetworkResiliency #Hyperscaler #ThoughtLeadership
+
+---
+Post ready to copy + paste to LinkedIn.
+Optimal posting time: 8-9 AM EST (Tue/Wed/Thu)
+Engagement hook: Question at end drives comments
+---

@@ -1213,6 +1213,48 @@ app.get('/api/improvements', (req, res) => {
   }
 });
 
+// GET /api/projects/:id/kpi - KPI data for specific project
+app.get('/api/projects/:id/kpi', (req, res) => {
+  const id = parseInt(req.params.id);
+  if (isNaN(id)) return res.status(400).json({ error: 'Invalid project ID' });
+  
+  const project = projects.find(p => p.id === id);
+  if (!project) return res.status(404).json({ error: 'Project not found' });
+  
+  // For Project Warp Speed (ID 6), return KPI data from warp-speed-tasks.json
+  if (id === 6) {
+    try {
+      const warpSpeedPath = path.join(WORKSPACE_ROOT, 'projects', 'warp-speed-tasks.json');
+      if (fs.existsSync(warpSpeedPath)) {
+        const warpSpeedData = JSON.parse(fs.readFileSync(warpSpeedPath, 'utf8'));
+        return res.json({
+          success: true,
+          projectId: id,
+          projectName: project.name,
+          kpis: warpSpeedData.kpis || [],
+          milestones: warpSpeedData.milestones || [],
+          investment: warpSpeedData.investment,
+          timeline: warpSpeedData.timeline,
+          timestamp: new Date().toISOString(),
+        });
+      }
+    } catch (err) {
+      console.error('Failed to load Warp Speed KPI data:', err.message);
+    }
+  }
+  
+  // Fallback: return empty KPI structure for other projects
+  res.json({
+    success: true,
+    projectId: id,
+    projectName: project.name,
+    kpis: [],
+    milestones: [],
+    message: 'No KPI data available for this project',
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // --- 404 for unknown API routes ---
 app.all('/api/*', (req, res) => {
   res.status(404).json({ error: 'API route not found' });

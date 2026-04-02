@@ -113,43 +113,6 @@ node scripts/heartbeat-mission-control.js
 - Auto-fix any issues found (don't wait for approval)
 - Report summary of findings + fixes applied
 
-## Daily Gap Analysis Review (Once per day - PRIORITY)
-
-**Run once daily (suggest: 9 AM EST)**
-
-This autonomous task reviews progress toward the mission:
-> "An autonomous organization of AI agents that does work for me and produces value 24/7"
-
-**What it does:**
-1. **Read current GAP Analysis grades** (from Mission Control dashboard)
-2. **Identify Critical Priority items** with low scores (1-2)
-3. **Pick the highest-impact improvement** for that day
-4. **Execute work** to move that area forward (delegate to appropriate agent)
-5. **Log progress** to memory/YYYY-MM-DD.md
-
-**Priority Order (work on these in order):**
-1. 🤖 **Autonomy & Independence** (Critical) — agents should make decisions independently
-2. 💰 **Value Generation & Delivery** (Critical) — measurable output & business impact
-3. 🏗️ **Organization & Structure** (High) — clear roles, coordination, specialization
-4. 📈 **Scalability & Growth** (High) — grow team/workload efficiently
-5. 🛡️ **Reliability & Resilience** (High) — uptime, error recovery, data integrity
-6. 👤 **Human-AI Collaboration** (Medium) — transparency, feedback loops, trust
-
-**Example Daily Work:**
-```
-Day 1: Autonomy → Add error recovery to agents
-Day 2: Value Generation → Measure output quality
-Day 3: Organization → Document agent specialties
-Day 4: Scalability → Automate agent provisioning
-Day 5: Reliability → Add monitoring & alerting
-Day 6: Collaboration → Improve decision transparency
-```
-
-**Files to check:**
-- `.mission-control-state.json` — Current assessment grades
-- `apps/mission-control/` — GAP Analysis component
-- `memory/YYYY-MM-DD.md` — Daily progress log
-
 ---
 
 ## Execution Tracking System (✅ LIVE - Real-time monitoring)
@@ -732,33 +695,3 @@ cat .linkedin-post-*.txt                        # View latest post
 6. Quality check (gate: 80%+ score)
 7. Saves to `.linkedin-post-[date].txt`
 8. You copy + paste to LinkedIn (manual posting, no 2FA issues)
-
----
-
-## QC + Continuous Deployment Workflow (✅ ESTABLISHED - March 26, 2026)
-
-**Standard Process for ALL improvements to WorkSafeAI, Consensus, Mission Control:**
-
-1. **Agent completes work** (feature/fix implemented + tested locally)
-2. **Submit for QC** → Create QC briefing with test plan
-3. **Velma reviews** (execute QC checklist, verify in staging)
-4. **QC Pass** → Commit + Push to GitHub
-5. **Auto-Deploy** → GitHub Actions → Vercel (live in production)
-6. **Post-Deployment** → Smoke tests + close task
-
-**See:** `QC_DEPLOYMENT_WORKFLOW.md` for complete checklist + metrics
-
-**Responsibility:**
-- **Agents:** Code quality, local testing, QC submission
-- **Velma:** QC gating, staging verification, sign-off
-- **Lucy:** Enforce QC gate before commits/pushes
-- **GitHub/Vercel:** Auto-deploy when main branch updated
-
-**Target:** 30 minutes from QC submission to production live
-
-**Benefits:**
-- ✅ Zero broken production deployments
-- ✅ Continuous improvement delivery (not batched)
-- ✅ Full visibility into what's live
-- ✅ Measurable quality metrics
-- ✅ Fast, safe iteration cycle
