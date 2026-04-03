@@ -140,3 +140,13 @@ function monitorBriefings() {
 
 // Main
 monitorBriefings();
+
+// Export for use by heartbeat-mission-control.js
+async function processBriefings() {
+  return monitorBriefings();
+}
+
+module.exports = {
+  processBriefings,
+  monitorBriefings
+};
