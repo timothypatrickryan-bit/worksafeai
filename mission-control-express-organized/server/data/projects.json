@@ -102,5 +102,17 @@
     "description": "Build real-time collaboration system with WebSockets and shared document editing",
     "owner": "Lucy",
     "createdAt": "2026-03-30T16:39:03.170Z"
+  },
+  {
+    "id": 10,
+    "name": "Mission Control iOS",
+    "status": "In Progress",
+    "progress": 15,
+    "taskCount": 8,
+    "description": "Native iOS companion app for Mission Control dashboard. Provides real-time project tracking, task notifications, and briefing access on iOS devices.",
+    "owner": "Tim Ryan",
+    "team": "Mobile Team",
+    "createdAt": "2026-04-04T13:00:00.000Z",
+    "updatedAt": "2026-04-04T13:00:00.000Z"
   }
 ]

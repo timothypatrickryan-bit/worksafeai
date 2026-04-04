@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Mission Control",
+    "slug": "mission-control-ios",
+    "version": "0.1.0",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTabletMode": true,
+      "bundleIdentifier": "com.elevationai.missioncontrol.ios",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSLocalNetworkUsageDescription": "Allow access to local network for development",
+        "NSBonjourServiceTypes": ["_http._tcp", "_ws._tcp"]
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "scheme": "missioncontrol",
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#0066cc"
+        }
+      ]
+    ]
+  }
+}
