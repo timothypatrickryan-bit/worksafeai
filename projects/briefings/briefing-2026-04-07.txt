@@ -1,0 +1,73 @@
+═══════════════════════════════════════════════════════════════
+  HYPERSCALER DAILY UPDATE - 4/6/2026
+═══════════════════════════════════════════════════════════════
+
+📰 Data Center Construction (7 articles)
+────────────────────────────────────────────────────────────
+
+1. Data center construction rolls into 2026 | Construction Dive
+   Source: www.constructiondive.com
+   Even as fears of a bubble persisted in the sector to end the year, new data center groundbreakings, plans for additional developments and legislation 
+   🔗 https://www.constructiondive.com/news/data-center-construction-rolls-into-2026/808636/
+
+2. New Data Center Developments: March 2026
+   Source: www.datacenterknowledge.com
+   <strong>AVAIO Digital Partners announced a multi-phase campus in Little Rock, Ark., beginning with a combined investment of $6 billion</strong>. As th
+   🔗 https://www.datacenterknowledge.com/data-center-construction/new-data-center-developments-march-2026
+
+3. New Data Center Developments: February 2026
+   Source: www.datacenterknowledge.com
+   OpenAI also said it has selected SB Energy to build and operate its 1.2 GW data center in Milam County, Texas. For its part, Meta announced an agreeme
+   🔗 https://www.datacenterknowledge.com/data-center-construction/new-data-center-developments-february-2026
+
+4. AI-First Hyperscalers: 2026’s Sprint Meets the Power Bottleneck
+   Source: www.datacenterknowledge.com
+   Fung noted that <strong>hyperscalers are now designing data centers optimized for large-scale AI workloads</strong>. “These deployments require tens o
+   🔗 https://www.datacenterknowledge.com/hyperscalers/hyperscalers-in-2026-what-s-next-for-the-world-s-largest-data-center-operators-
+
+5. 'Nothing but a noise trap': Dowagiac residents push back against AI data center expansion
+   Source: wwmt.com
+   — A data center company has big expansion plans here in Southwest Michigan. Hyperscale Data, an artificial intelligence and bitcoin company, says <str
+   🔗 https://wwmt.com/news/local/ai-data-center-expansion-dowagiac-loud-noise-complaints-residents-southwest-michigan-hyperscale-megawatt-bitcoin-wwmt
+
+6. Permitting a Data Center: Step-by-Step Guide
+   Source: www.withpulley.com
+   Data center projects often require rezoning, permitting waivers, and special exemptions. The location of data centers compounds this problem. As devel
+   🔗 https://www.withpulley.com/resources/guide-to-permitting-a-data-center
+
+7. Accelerating Federal Permitting of Data Center Infrastructure – The White House
+   Source: www.whitehouse.gov
+   These plans include artificial intelligence (AI) data centers and infrastructure that powers them, including high‑voltage transmission lines and other
+   🔗 https://www.whitehouse.gov/presidential-actions/2025/07/accelerating-federal-permitting-of-data-center-infrastructure/
+
+📰 Fiber Deployment (5 articles)
+────────────────────────────────────────────────────────────
+
+1. Nokia launches suite of application‑optimized optical solutions for AI-era networks
+   Source: www.nokia.com
+   To address this challenge, Nokia ... deployments. This solution delivers a 40-fold increase in in-line amplifier density over today’s solutions or 160
+   🔗 https://www.nokia.com/newsroom/nokia-launches-suite-of-applicationoptimized-optical-solutions-for-ai-era-networks/
+
+2. OFC 2026: new launches round-up, part II
+   Source: optics.org
+   Moran Roth, VP Product Line Management ... scalability, and value to customers operating in fiber-limited environments.” <strong>The dual-laser QSFP28
+   🔗 https://optics.org/news/17/3/33
+
+3. Underwater Cable Installation - LS Power
+   Source: www.lspower.com
+   <strong>The cable is fed vertically down through the tool, along with the pipes for the pressurized water</strong>. The fluidized sediment then falls 
+   🔗 https://www.lspower.com/news/underwater-cable-installation/
+
+4. With Private Investment, Fiber Broadband Deployment Is Rising
+   Source: www.govtech.com
+   Fiber broadband infrastructure continues to be deployed across the nation, largely as <strong>capital investment projects by the private sector</stron
+   🔗 https://www.govtech.com/network/with-private-investment-fiber-broadband-deployment-is-rising
+
+5. Fiber Optic Infrastructure: A Connection Is Made | KKR
+   Source: www.kkr.com
+   One of our most recently announced investments tackles the “last mile” digital gap in the United States. KKR initially invested in Metronet, the faste
+   🔗 https://www.kkr.com/insights/fiber-optic-infrastructure
+
+═══════════════════════════════════════════════════════════════
+Generated: 2026-04-07T12:01:10.907Z
+All links verified and active ✅

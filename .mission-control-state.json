@@ -112,7 +112,7 @@
       "currentTasks": 0
     }
   },
-  "lastUpdate": "2026-04-02T23:17:54.683Z",
+  "lastUpdate": "2026-04-07T16:19:10.422Z",
   "projects": [
     {
       "id": "ryan-family-financial-plan",
@@ -134,7 +134,25 @@
           "requiredFields": 6,
           "handler": "scripts/intake-form-handler.js"
         }
-      ]
+      ],
+      "lastProgressUpdate": "2026-04-07T16:16:04.099Z"
     }
-  ]
+  ],
+  "dashboardStats": {
+    "timestamp": "2026-04-07T16:16:04.099Z",
+    "taskStats": {
+      "total": 5,
+      "completed": 0,
+      "inProgress": 0,
+      "queued": 0,
+      "awaiting": 0
+    },
+    "projectCount": 1,
+    "activeProjects": 0,
+    "completedProjects": 0,
+    "agentCount": 0,
+    "idleAgents": 0,
+    "workingAgents": 0,
+    "lastRefresh": "2026-04-07T16:16:04.099Z"
+  }
 }

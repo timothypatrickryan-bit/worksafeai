@@ -1,0 +1,3 @@
+# Zernio API Configuration
+ZERNIO_API_KEY="sk_211156c59836adee0f77d6f9bd471ede9dfc827bb5da4aa2eae7a5acf6c0c2c6"
+ZERNIO_API_URL="https://api.zernio.com"

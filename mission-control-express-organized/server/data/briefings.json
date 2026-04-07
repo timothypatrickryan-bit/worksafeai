@@ -1,7 +1,7 @@
 [
   {
     "id": 1774888368180,
-    "status": "executing",
+    "status": "completed",
     "agent": "johnny",
     "type": "design",
     "title": "Test: Design new dashboard layout",
@@ -10,11 +10,13 @@
     "level": 2,
     "userFeedback": null,
     "timestamp": "2026-03-30T16:32:48.180Z",
-    "executionStarted": "2026-03-31T21:53:36.338Z"
+    "executionStarted": "2026-03-31T21:53:36.338Z",
+    "completedAt": "2026-04-03T13:15:06.474Z",
+    "note": "Auto-resolved: stale test briefing"
   },
   {
     "id": 1774888743174,
-    "status": "executing",
+    "status": "completed",
     "agent": "johnny",
     "type": "design",
     "title": "Test: Collaboration Features: Architecture & Planning",
@@ -24,11 +26,13 @@
     "dueDate": null,
     "projectId": 9,
     "projectName": "Test: Collaboration Features",
-    "executionStarted": "2026-03-31T21:53:36.340Z"
+    "executionStarted": "2026-03-31T21:53:36.340Z",
+    "completedAt": "2026-04-03T13:15:06.474Z",
+    "note": "Auto-resolved: stale test briefing"
   },
   {
     "id": 1774888743175,
-    "status": "executing",
+    "status": "completed",
     "agent": "jarvis",
     "type": "design",
     "title": "Test: Collaboration Features: Backend Development",
@@ -38,11 +42,13 @@
     "dueDate": null,
     "projectId": 9,
     "projectName": "Test: Collaboration Features",
-    "executionStarted": "2026-03-31T21:53:36.341Z"
+    "executionStarted": "2026-03-31T21:53:36.341Z",
+    "completedAt": "2026-04-03T13:15:06.474Z",
+    "note": "Auto-resolved: stale test briefing"
   },
   {
     "id": 1774888743176,
-    "status": "executing",
+    "status": "completed",
     "agent": "johnny",
     "type": "design",
     "title": "Test: Collaboration Features: Frontend Development",
@@ -52,11 +58,13 @@
     "dueDate": null,
     "projectId": 9,
     "projectName": "Test: Collaboration Features",
-    "executionStarted": "2026-03-31T21:53:36.341Z"
+    "executionStarted": "2026-03-31T21:53:36.341Z",
+    "completedAt": "2026-04-03T13:15:06.474Z",
+    "note": "Auto-resolved: stale test briefing"
   },
   {
     "id": 1774888743177,
-    "status": "executing",
+    "status": "completed",
     "agent": "velma",
     "type": "design",
     "title": "Test: Collaboration Features: Integration & Testing",
@@ -66,11 +74,13 @@
     "dueDate": null,
     "projectId": 9,
     "projectName": "Test: Collaboration Features",
-    "executionStarted": "2026-03-31T21:53:36.342Z"
+    "executionStarted": "2026-03-31T21:53:36.342Z",
+    "completedAt": "2026-04-03T13:15:06.474Z",
+    "note": "Auto-resolved: stale test briefing"
   },
   {
     "id": 1774888743178,
-    "status": "executing",
+    "status": "completed",
     "agent": "steven",
     "type": "design",
     "title": "Test: Collaboration Features: Deployment & Launch",
@@ -80,101 +90,117 @@
     "dueDate": null,
     "projectId": 9,
     "projectName": "Test: Collaboration Features",
-    "executionStarted": "2026-03-31T21:53:36.342Z"
+    "executionStarted": "2026-03-31T21:53:36.342Z",
+    "completedAt": "2026-04-03T13:15:06.474Z",
+    "note": "Auto-resolved: stale test briefing"
   },
   {
     "id": 1774888743177.506,
-    "status": "executing",
+    "status": "completed",
     "agent": "Lucy",
     "type": "Task Briefing",
     "title": "Test: Collaboration Features: Requirements & design",
-    "description": "Project: Test: Collaboration Features\nTask: Requirements & design\nDetails: Finalize requirements and technical design\nTimeline: TBD\nOwner: Lucy\n\nGoals: See project details\n\nThis is a Level 2 task for \"Test: Collaboration Features\".\n\u2705 Execute immediately.",
+    "description": "Project: Test: Collaboration Features\nTask: Requirements & design\nDetails: Finalize requirements and technical design\nTimeline: TBD\nOwner: Lucy\n\nGoals: See project details\n\nThis is a Level 2 task for \"Test: Collaboration Features\".\n✅ Execute immediately.",
     "level": 2,
     "timestamp": "2026-03-30T16:39:03.177Z",
-    "executionStarted": "2026-03-31T21:53:36.343Z"
+    "executionStarted": "2026-03-31T21:53:36.343Z",
+    "completedAt": "2026-04-03T13:15:06.474Z",
+    "note": "Auto-resolved: stale test briefing"
   },
   {
     "id": 1774888743177.7136,
-    "status": "executing",
+    "status": "completed",
     "agent": "Lucy",
     "type": "Task Briefing",
     "title": "Test: Collaboration Features: Implementation",
-    "description": "Project: Test: Collaboration Features\nTask: Implementation\nDetails: Code implementation and unit testing\nTimeline: TBD\nOwner: Lucy\n\nGoals: See project details\n\nThis is a Level 2 task for \"Test: Collaboration Features\".\n\u2705 Execute immediately.",
+    "description": "Project: Test: Collaboration Features\nTask: Implementation\nDetails: Code implementation and unit testing\nTimeline: TBD\nOwner: Lucy\n\nGoals: See project details\n\nThis is a Level 2 task for \"Test: Collaboration Features\".\n✅ Execute immediately.",
     "level": 2,
     "timestamp": "2026-03-30T16:39:03.177Z",
-    "executionStarted": "2026-03-31T21:53:36.343Z"
+    "executionStarted": "2026-03-31T21:53:36.343Z",
+    "completedAt": "2026-04-03T13:15:06.474Z",
+    "note": "Auto-resolved: stale test briefing"
   },
   {
     "id": 1774888743177.751,
-    "status": "executing",
+    "status": "completed",
     "agent": "Lucy",
     "type": "Task Briefing",
     "title": "Test: Collaboration Features: Code review",
-    "description": "Project: Test: Collaboration Features\nTask: Code review\nDetails: Peer review and address feedback\nTimeline: TBD\nOwner: Lucy\n\nGoals: See project details\n\nThis is a Level 2 task for \"Test: Collaboration Features\".\n\u2705 Execute immediately.",
+    "description": "Project: Test: Collaboration Features\nTask: Code review\nDetails: Peer review and address feedback\nTimeline: TBD\nOwner: Lucy\n\nGoals: See project details\n\nThis is a Level 2 task for \"Test: Collaboration Features\".\n✅ Execute immediately.",
     "level": 2,
     "timestamp": "2026-03-30T16:39:03.177Z",
-    "executionStarted": "2026-03-31T21:53:36.343Z"
+    "executionStarted": "2026-03-31T21:53:36.343Z",
+    "completedAt": "2026-04-03T13:15:06.474Z",
+    "note": "Auto-resolved: stale test briefing"
   },
   {
     "id": 1774888743177.7905,
-    "status": "executing",
+    "status": "completed",
     "agent": "Lucy",
     "type": "Task Briefing",
     "title": "Test: Collaboration Features: Integration testing",
-    "description": "Project: Test: Collaboration Features\nTask: Integration testing\nDetails: Test integration with other systems\nTimeline: TBD\nOwner: Lucy\n\nGoals: See project details\n\nThis is a Level 2 task for \"Test: Collaboration Features\".\n\u2705 Execute immediately.",
+    "description": "Project: Test: Collaboration Features\nTask: Integration testing\nDetails: Test integration with other systems\nTimeline: TBD\nOwner: Lucy\n\nGoals: See project details\n\nThis is a Level 2 task for \"Test: Collaboration Features\".\n✅ Execute immediately.",
     "level": 2,
     "timestamp": "2026-03-30T16:39:03.177Z",
-    "executionStarted": "2026-03-31T21:53:36.344Z"
+    "executionStarted": "2026-03-31T21:53:36.344Z",
+    "completedAt": "2026-04-03T13:15:06.474Z",
+    "note": "Auto-resolved: stale test briefing"
   },
   {
     "id": 1774888743177.1755,
-    "status": "executing",
+    "status": "completed",
     "agent": "Lucy",
     "type": "Task Briefing",
     "title": "Test: Collaboration Features: Documentation",
-    "description": "Project: Test: Collaboration Features\nTask: Documentation\nDetails: Create API docs and technical documentation\nTimeline: TBD\nOwner: Lucy\n\nGoals: See project details\n\nThis is a Level 2 task for \"Test: Collaboration Features\".\n\u2705 Execute immediately.",
+    "description": "Project: Test: Collaboration Features\nTask: Documentation\nDetails: Create API docs and technical documentation\nTimeline: TBD\nOwner: Lucy\n\nGoals: See project details\n\nThis is a Level 2 task for \"Test: Collaboration Features\".\n✅ Execute immediately.",
     "level": 2,
     "timestamp": "2026-03-30T16:39:03.177Z",
-    "executionStarted": "2026-03-31T21:53:36.344Z"
+    "executionStarted": "2026-03-31T21:53:36.344Z",
+    "completedAt": "2026-04-03T13:15:06.474Z",
+    "note": "Auto-resolved: stale test briefing"
   },
   {
     "id": 1774888743177.0354,
-    "status": "executing",
+    "status": "completed",
     "agent": "Lucy",
     "type": "Task Briefing",
     "title": "Test: Collaboration Features: Deployment",
-    "description": "Project: Test: Collaboration Features\nTask: Deployment\nDetails: Deploy to production and verify\nTimeline: TBD\nOwner: Lucy\n\nGoals: See project details\n\nThis is a Level 2 task for \"Test: Collaboration Features\".\n\u2705 Execute immediately.",
+    "description": "Project: Test: Collaboration Features\nTask: Deployment\nDetails: Deploy to production and verify\nTimeline: TBD\nOwner: Lucy\n\nGoals: See project details\n\nThis is a Level 2 task for \"Test: Collaboration Features\".\n✅ Execute immediately.",
     "level": 2,
     "timestamp": "2026-03-30T16:39:03.177Z",
-    "executionStarted": "2026-03-31T21:53:36.345Z"
+    "executionStarted": "2026-03-31T21:53:36.345Z",
+    "completedAt": "2026-04-03T13:15:06.474Z",
+    "note": "Auto-resolved: stale test briefing"
   },
   {
     "id": 1774993990255,
-    "status": "executing",
+    "status": "pending",
     "agent": "lucy",
     "type": "product-discovery",
     "title": "Home Builder Helper: Phase 1 - Discovery & Planning",
-    "description": "**PROJECT:** Home Builder Helper\n**PHASE:** 1 - Discovery & Planning\n\n**OBJECTIVE:** Establish product foundation through requirements gathering, user research, and feature prioritization.\n\n**DELIVERABLES:**\n1. User personas (3-5 homeowner archetypes)\n2. User journey map (planning \u2192 construction \u2192 completion)\n3. Feature priority list (MVP scope)\n4. Requirements specification\n5. High-level timeline estimate\n\n**SCOPE:**\n- Homeowner uses app during new house construction\n- Two main phases: Physical construction + Design decisions\n- Upload design plans OR answer intake form questions\n- Keep build organized and on schedule\n\n**SUCCESS CRITERIA:**\n\u2705 Clear user research documented\n\u2705 MVP features defined (<15 core features)\n\u2705 Technical approach identified\n\u2705 Timeline estimate: 4-6 weeks to MVP\n\n**LEVEL:** 2 (Execute Immediately)\n**PROJECT ID:** 8\n**PROJECT NAME:** Home Builder Helper\n\nThis is the foundation work. Get this right before design/dev begins.",
+    "description": "**PROJECT:** Home Builder Helper\n**PHASE:** 1 - Discovery & Planning\n\n**OBJECTIVE:** Establish product foundation through requirements gathering, user research, and feature prioritization.\n\n**DELIVERABLES:**\n1. User personas (3-5 homeowner archetypes)\n2. User journey map (planning → construction → completion)\n3. Feature priority list (MVP scope)\n4. Requirements specification\n5. High-level timeline estimate\n\n**SCOPE:**\n- Homeowner uses app during new house construction\n- Two main phases: Physical construction + Design decisions\n- Upload design plans OR answer intake form questions\n- Keep build organized and on schedule\n\n**SUCCESS CRITERIA:**\n✅ Clear user research documented\n✅ MVP features defined (<15 core features)\n✅ Technical approach identified\n✅ Timeline estimate: 4-6 weeks to MVP\n\n**LEVEL:** 2 (Execute Immediately)\n**PROJECT ID:** 8\n**PROJECT NAME:** Home Builder Helper\n\nThis is the foundation work. Get this right before design/dev begins.",
     "level": 2,
     "timestamp": "2026-03-31T17:53:10.255066Z",
     "projectId": 8,
     "projectName": "Home Builder Helper",
     "dueDate": null,
-    "executionStarted": "2026-03-31T21:53:36.346Z"
+    "executionStarted": "2026-03-31T21:53:36.346Z",
+    "note": "Reset from stale executing - needs real execution"
   },
   {
     "id": 1774994926323,
-    "status": "executing",
+    "status": "pending",
     "agent": "johnny",
     "type": "design",
     "title": "Home Builder Helper: Phase 2 - Design & Wireframes",
-    "description": "**PROJECT:** Home Builder Helper\n**PHASE:** 2 - Design & Wireframes\n**OWNER:** Johnny (Design Lead)\n\n**OBJECTIVE:** Create UX/UI design foundation using discovered user personas and journeys.\n\n**INPUTS (From Phase 1):**\n- 5 user personas with pain points\n- 4-phase user journey map\n- 10 P0 features for MVP\n- Tech stack: React Native + Supabase\n\n**DELIVERABLES:**\n1. Design system (component library, colors, typography)\n2. Wireframes for all 10 MVP features\n3. Key user flows (first-time setup, add selection, track budget)\n4. Mobile-first mockups (iPhone 14 Pro size)\n5. Design spec document (handoff-ready for development)\n\n**SCOPE:**\nFocus on the core user journey: Home Owner opens app \u2192 sees dashboard \u2192 manages selections/budget \u2192 tracks inspections \u2192 gets insights.\n\nDesign for 5 user personas:\n- First-Timer Fiona (needs guidance, hand-holding)\n- Budget-Conscious Brad (cost visibility paramount)\n- Luxury Linda (complex customization)\n- Tech-Savvy Tyler (data/automation)\n- Large Family Larry (collaboration/shared views)\n\n**SUCCESS CRITERIA:**\n\u2705 Component system defined + reusable\n\u2705 All 10 MVP screens wireframed + annotated\n\u2705 User flows clear (onboarding \u2192 core tasks)\n\u2705 Mobile-friendly (not just responsive)\n\u2705 Design spec ready for handoff to development\n\n**TIMELINE:** Target 3-4 days (Phase 2 of 5)\n**NEXT PHASE:** Development (Jarvis will build from your spec)\n\n**LEVEL:** 2 (Execute Immediately)\n**PROJECT ID:** 8\n**PROJECT NAME:** Home Builder Helper",
+    "description": "**PROJECT:** Home Builder Helper\n**PHASE:** 2 - Design & Wireframes\n**OWNER:** Johnny (Design Lead)\n\n**OBJECTIVE:** Create UX/UI design foundation using discovered user personas and journeys.\n\n**INPUTS (From Phase 1):**\n- 5 user personas with pain points\n- 4-phase user journey map\n- 10 P0 features for MVP\n- Tech stack: React Native + Supabase\n\n**DELIVERABLES:**\n1. Design system (component library, colors, typography)\n2. Wireframes for all 10 MVP features\n3. Key user flows (first-time setup, add selection, track budget)\n4. Mobile-first mockups (iPhone 14 Pro size)\n5. Design spec document (handoff-ready for development)\n\n**SCOPE:**\nFocus on the core user journey: Home Owner opens app → sees dashboard → manages selections/budget → tracks inspections → gets insights.\n\nDesign for 5 user personas:\n- First-Timer Fiona (needs guidance, hand-holding)\n- Budget-Conscious Brad (cost visibility paramount)\n- Luxury Linda (complex customization)\n- Tech-Savvy Tyler (data/automation)\n- Large Family Larry (collaboration/shared views)\n\n**SUCCESS CRITERIA:**\n✅ Component system defined + reusable\n✅ All 10 MVP screens wireframed + annotated\n✅ User flows clear (onboarding → core tasks)\n✅ Mobile-friendly (not just responsive)\n✅ Design spec ready for handoff to development\n\n**TIMELINE:** Target 3-4 days (Phase 2 of 5)\n**NEXT PHASE:** Development (Jarvis will build from your spec)\n\n**LEVEL:** 2 (Execute Immediately)\n**PROJECT ID:** 8\n**PROJECT NAME:** Home Builder Helper",
     "level": 2,
     "timestamp": "2026-03-31T18:08:46.323964Z",
     "projectId": 8,
     "projectName": "Home Builder Helper",
     "dueDate": null,
-    "executionStarted": "2026-03-31T22:08:50.777Z"
+    "executionStarted": "2026-03-31T22:08:50.777Z",
+    "note": "Reset from stale executing - needs real execution"
   },
   {
     "id": 1774994949337,
